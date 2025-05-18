@@ -1,6 +1,6 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,7 +10,37 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended'
+  ),
+  {
+    ignores: ['**/*.d.ts', '.next/**/*', 'node_modules/**/*', 'dist/**/*'],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+    rules: {
+      semi: ['error', 'always'],
+      quotes: ['error', 'single'],
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_' },
+      ],
+    },
+  },
+  {
+    rules: {
+      semi: ['error', 'always'],
+      quotes: ['error', 'single'],
+    },
+  },
 ];
 
 export default eslintConfig;

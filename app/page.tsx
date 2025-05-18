@@ -1,5 +1,7 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import styles from './page.module.css';
+
+//  "lint": "next lint",
 
 export default function Home() {
   return (
