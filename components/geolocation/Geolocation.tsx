@@ -10,9 +10,16 @@ const Geolocation = () => {
     }
   }, [navigator]);
 
-  const handleSuccess = ({ coords: { latitude, longitude }}: { coords: { latitude: number, longitude: number }}) => {};
+  const handleSuccess = ({ coords: { latitude, longitude }}: { coords: { latitude: number, longitude: number }}) => {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  };
   return (
-    <div>Geolocation</div>
+    <div>
+      <h2>Geolocation:</h2>
+      <div>Latitude: {latitude}</div>
+      <div>Longitude: {longitude}</div>
+    </div>
   )
 }
 
