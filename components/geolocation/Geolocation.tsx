@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react'
+type GeolocationProps = {
+  latitude: number | null,
+  longitude: number | null
+}
 
-const Geolocation = () => {
-  const [latitude, setLatitude ] = useState<number | null>(null);
-  const [longitude, setLongitude ] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleSuccess)
-    }
-  }, [navigator]);
-
-  const handleSuccess = ({ coords: { latitude, longitude }}: { coords: { latitude: number, longitude: number }}) => {
-    setLatitude(latitude);
-    setLongitude(longitude);
-  };
+const Geolocation = ({ latitude, longitude }: GeolocationProps) => {
   return (
     <div>
       <h2>Geolocation:</h2>
@@ -23,4 +13,4 @@ const Geolocation = () => {
   )
 }
 
-export default Geolocation
+export default Geolocation;
