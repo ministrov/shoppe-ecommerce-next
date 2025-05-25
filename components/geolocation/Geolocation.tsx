@@ -10,7 +10,7 @@ const Geolocation = ({ latitude, longitude }: GeolocationProps) => {
       <div>Latitude: {latitude}</div>
       <div>Longitude: {longitude}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Geolocation;
