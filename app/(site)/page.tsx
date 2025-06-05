@@ -16,6 +16,7 @@ export default function Home() {
       <div style={{ maxWidth: '500px'}}>
         <Button>Вход</Button>
         <Button size={'medium'} ghost>Вход</Button>
+        <Button size={'small'}>Отправить</Button>
       </div>
     </div>
   );

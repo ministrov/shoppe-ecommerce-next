@@ -6,7 +6,7 @@
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 19px;
   color: var(--white);
   background-color: var(--black);
   border: 1px solid var(--white);
@@ -18,6 +18,14 @@
   color: var(--black);
   background-color: var(--white);
   border: 1px solid var(--black);
+}
+
+.button--medium {
+  max-width: 187px;
+}
+
+.button--small {
+  max-width: 156px;
 }
 
 @media screen and (max-width: 328px) {
