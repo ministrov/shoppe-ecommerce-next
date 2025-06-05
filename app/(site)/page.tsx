@@ -13,7 +13,7 @@ export default function Home() {
 
       <Circle x={20} y={20} radius={20} fill={'blue'} />
 
-      <Button />
+      <Button appearence={'primary'} size={'full'}>text</Button>
     </div>
   );
 }
