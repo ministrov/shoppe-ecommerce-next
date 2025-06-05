@@ -5,6 +5,8 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  size: 'medium' | 'small',
+  className?: string,
+  ghost?: boolean,
+  size?: 'medium' | 'small',
   children: ReactNode;
 }

@@ -14,7 +14,8 @@ export default function Home() {
       <Circle x={20} y={20} radius={20} fill={'blue'} />
 
       <div style={{ maxWidth: '500px'}}>
-        <Button size={'medium'}>Вход</Button>
+        <Button>Вход</Button>
+        <Button size={'medium'} ghost>Вход</Button>
       </div>
     </div>
   );

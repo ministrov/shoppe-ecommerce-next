@@ -2,11 +2,13 @@ import { ButtonProps } from './Button.props';
 import cn from 'classnames';
 import styles from './Button.module.css';
 
-const Button = ({ children, size }: ButtonProps) => {
-  // console.log(appearence, children, size);
+const Button = ({ children, size, className, ghost = false }: ButtonProps) => {
+
+  console.log(className);
   return (
   <button
-    className={cn(styles.button, {
+    className={cn(styles.button, className, {
+      [styles['button--ghost']]: ghost,
       [styles.medium]: size === 'medium',
       [styles.small]: size === 'small',
     })}
