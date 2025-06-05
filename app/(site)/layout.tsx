@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.className}>
-      <body className={'home-page'}>
+    <html lang="en">
+      <body className={`${dmSans.variable}`} >
         <header>
           <Logo />
         </header>
