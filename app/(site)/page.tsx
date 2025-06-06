@@ -2,7 +2,7 @@ import { Profile } from '@/components/profile/Profile';
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
 import Circle from '@/components/circle/Circle';
 import Button from '@/components/button/Button';
-import Message from '@/components/successMessage/Message';
+import Message from '@/components/Message/Message';
 
 export default function Home() {
   return (
