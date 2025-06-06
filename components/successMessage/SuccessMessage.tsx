@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './SuccesMessage.module.css';
+import styles from './SuccessMessage.module.css';
 
 const SuccessMessage = () => {
   return (
