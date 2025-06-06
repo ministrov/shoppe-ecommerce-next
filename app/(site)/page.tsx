@@ -2,6 +2,7 @@ import { Profile } from '@/components/profile/Profile';
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
 import Circle from '@/components/circle/Circle';
 import Button from '@/components/button/Button';
+import SuccessMessage from '@/components/succesMessage/SuccessMessage';
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
         <Button size={'medium'} ghost>Вход</Button>
         <Button size={'small'}>Отправить</Button>
       </div>
+
+      <SuccessMessage/>
     </div>
   );
 }
