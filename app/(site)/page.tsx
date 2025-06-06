@@ -19,7 +19,8 @@ export default function Home() {
         <Button size={'small'}>Отправить</Button>
       </div>
 
-      <Message/>
+      <Message content={'Ваш email подписан на новости и уведомления'}/>
+      <Message content={'Ваш отзыв отправлен на модерацию'}/>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import styles from './SuccessMessage.module.css';
+import { MessageProps } from './Message.props';
+import styles from './Message.module.css';
 
-const Message = () => {
+const Message = ({ content }: MessageProps) => {
   return (
     <div className={styles.success}>
       <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'}/>
-      <p>Ваш email подписан на новости и уведомления</p>
+      <p>{content}</p>
     </div>
   );
 };
