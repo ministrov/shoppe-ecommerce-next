@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './SuccessMessage.module.css';
 
-const SuccessMessage = () => {
+const Message = () => {
   return (
     <div className={styles.success}>
       <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'}/>
@@ -10,4 +10,4 @@ const SuccessMessage = () => {
   );
 };
 
-export default SuccessMessage;
+export default Message;

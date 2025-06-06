@@ -2,7 +2,7 @@ import { Profile } from '@/components/profile/Profile';
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
 import Circle from '@/components/circle/Circle';
 import Button from '@/components/button/Button';
-import SuccessMessage from '@/components/successMessage/SuccessMessage';
+import Message from '@/components/successMessage/Message';
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
         <Button size={'small'}>Отправить</Button>
       </div>
 
-      <SuccessMessage/>
+      <Message/>
     </div>
   );
 }
