@@ -14,3 +14,13 @@
   line-height: 21px;
   color: var(--light-gray);
 }
+
+.success--long {
+  max-width: 100%;
+  border-top: 2px solid var(--accent);
+  box-shadow: none;
+}
+
+.success--long p {
+  color: var(--black);
+}

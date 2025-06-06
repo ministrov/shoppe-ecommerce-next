@@ -21,6 +21,8 @@ export default function Home() {
 
       <Message content={'Ваш email подписан на новости и уведомления'}/>
       <Message content={'Ваш отзыв отправлен на модерацию'}/>
+
+      <Message content={'Мы получили ваш заказ'} isLong/>
     </div>
   );
 }
