@@ -1,4 +1,4 @@
-import { DM_Sans } from 'next/font/google'
+import { DM_Sans } from 'next/font/google';
 import type { Metadata } from 'next';
 import Logo from '@/components/logo/Logo';
 import './globals.css';
@@ -6,8 +6,9 @@ import './globals.css';
 const dmSans = DM_Sans({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
+  variable: '--font-dm-sans',
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.className}>
-      <body className={'home-page'}>
+    <html lang="en">
+      <body className={`${dmSans.variable}`} >
         <header>
-          <Logo/>
+          <Logo />
         </header>
         <main>
           {children}

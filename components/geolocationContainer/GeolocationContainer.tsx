@@ -16,11 +16,11 @@ const GeolocationContainer = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleSuccess);
     }
-  }, [navigator]);
+  }, []);
 
   return (
-    <Geolocation latitude={latitude} longitude={longitude}/>
-  )
-}
+    <Geolocation latitude={latitude} longitude={longitude} />
+  );
+};
 
 export default GeolocationContainer;
