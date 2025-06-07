@@ -21,20 +21,23 @@ const Header = () => {
         <ul className={styles.iconList}>
           <li>
             <Link href={''}>
-              <Image src={'/search.svg'} width={19} height={19} alt={''} />
+              <Image src={'/search.svg'} width={19} height={19} alt={'Icon search'} />
             </Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/shopping-cart.svg'} width={21} height={21} alt={''} /></Link>
+              <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Icon shopping cart'} />
+            </Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/heart.svg'} width={21} height={21} alt={''} /></Link>
+              <Image src={'/heart.svg'} width={21} height={21} alt={'Icon heart for favorites'} />
+            </Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/account.svg'} width={21} height={21} alt={''} /></Link>
+              <Image src={'/account.svg'} width={21} height={21} alt={'Icon user account'} />
+            </Link>
           </li>
         </ul>
       </div>
