@@ -1,6 +1,6 @@
 import { DM_Sans } from 'next/font/google';
 import type { Metadata } from 'next';
-import Logo from '@/components/logo/Logo';
+import Header from '@/components/header/Header';
 import './globals.css';
 
 const dmSans = DM_Sans({
@@ -23,13 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable}`} >
-        <header>
-          <Logo />
-        </header>
-        <main>
-          {children}
-        </main>
-        <footer>footer</footer>
+        <div className="container">
+          <Header/>
+          <main>
+            {children}
+          </main>
+          <footer>footer</footer>
+        </div>
       </body>
     </html>
   );

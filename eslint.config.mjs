@@ -11,8 +11,8 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends(
-    'next/core-web-vitals',
-    'plugin:@typescript-eslint/recommended',
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     'prettier'
   ),
   {
@@ -34,12 +34,6 @@ const eslintConfig = [
         'warn',
         { argsIgnorePattern: '^_' },
       ],
-    },
-  },
-  {
-    rules: {
-      semi: ['error', 'always'],
-      quotes: ['error', 'single'],
     },
   },
 ];
