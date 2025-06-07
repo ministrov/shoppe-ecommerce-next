@@ -10,10 +10,10 @@ const Header = () => {
 
       <div className={styles.mainMenu}>
         <ul className={styles.linksList}>
-          <li>
+          <li className={styles.shop}>
             <Link href={'#'}>Магазин</Link>
           </li>
-          <li>
+          <li className={styles.about}>
             <Link href={'#'}>О нас</Link>
           </li>
         </ul>

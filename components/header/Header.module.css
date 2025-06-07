@@ -15,13 +15,23 @@
 .mainMenu {
   display: flex;
   gap: 124px;
-  max-height: 42px;
-}
-
-.linksList {
-  gap: 60px;
+  height: 20px;
 }
 
 .iconList {
   gap: 40px;
+}
+
+.linksList li {
+  padding-right: 60px;
+}
+
+.linksList li:last-child {
+  border-right: 1px solid var(--light-gray);
+}
+
+.linksList a {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 22px;
 }

@@ -1,3 +1,4 @@
 .logo {
-  background-color: tomato;
+  display: block;
+  max-height: 40px;
 }
