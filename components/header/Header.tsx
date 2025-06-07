@@ -11,31 +11,31 @@ const Header = () => {
       <div className={styles.mainMenu}>
         <ul className={styles.linksList}>
           <li className={styles.shop}>
-            <Link href={'#'}>Магазин</Link>
+            <Link href={'/catalog'}>Магазин</Link>
           </li>
           <li className={styles.about}>
-            <Link href={'#'}>О нас</Link>
+            <Link href={'/about'}>О нас</Link>
           </li>
         </ul>
 
         <ul className={styles.iconList}>
           <li>
-            <Link href={''}>
+            <Link href={'#'}>
               <Image src={'/search.svg'} width={19} height={19} alt={'Icon search'} />
             </Link>
           </li>
           <li>
-            <Link href={''}>
+            <Link href={'/cart'}>
               <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Icon shopping cart'} />
             </Link>
           </li>
           <li>
-            <Link href={''}>
+            <Link href={'/favorites'}>
               <Image src={'/heart.svg'} width={21} height={21} alt={'Icon heart for favorites'} />
             </Link>
           </li>
           <li>
-            <Link href={''}>
+            <Link href={'/orders'}>
               <Image src={'/account.svg'} width={21} height={21} alt={'Icon user account'} />
             </Link>
           </li>
