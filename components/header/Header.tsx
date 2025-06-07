@@ -9,7 +9,7 @@ const Header = () => {
       <Logo/>
 
       <div className={styles.mainMenu}>
-        <ul>
+        <ul className={styles.linksList}>
           <li>
             <Link href={'#'}>Магазин</Link>
           </li>
@@ -18,23 +18,23 @@ const Header = () => {
           </li>
         </ul>
 
-        <ul>
+        <ul className={styles.iconList}>
           <li>
             <Link href={''}>
-              <Image src={'/search.svg'} width={20} height={20} alt={''} />
+              <Image src={'/search.svg'} width={19} height={19} alt={''} />
             </Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/shopping-cart.svg'} width={20} height={20} alt={''} /></Link>
+            <Image src={'/shopping-cart.svg'} width={21} height={21} alt={''} /></Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/heart.svg'} width={20} height={20} alt={''} /></Link>
+            <Image src={'/heart.svg'} width={21} height={21} alt={''} /></Link>
           </li>
           <li>
             <Link href={''}>
-            <Image src={'/account.svg'} width={20} height={20} alt={''} /></Link>
+            <Image src={'/account.svg'} width={21} height={21} alt={''} /></Link>
           </li>
         </ul>
       </div>

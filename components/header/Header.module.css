@@ -1,3 +1,27 @@
 .header {
-  background-color: tan;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.header ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mainMenu {
+  display: flex;
+  gap: 124px;
+  max-height: 42px;
+}
+
+.linksList {
+  gap: 60px;
+}
+
+.iconList {
+  gap: 40px;
 }
