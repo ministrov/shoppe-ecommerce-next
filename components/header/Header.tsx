@@ -1,9 +1,15 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../logo/Logo';
 import styles from './Header.module.css';
 
 const Header = () => {
+  const pathname = usePathname();
+
+  console.log(pathname);
   return (
     <header className={styles.header}>
       <Logo/>
@@ -11,10 +17,20 @@ const Header = () => {
       <div className={styles.mainMenu}>
         <ul className={styles.linksList}>
           <li className={styles.shop}>
-            <Link href={'/catalog'}>Магазин</Link>
+            <Link 
+              href={'/catalog'}
+              className={pathname === '/catalog' ? styles.active : ''}
+              >
+                Магазин
+              </Link>
           </li>
           <li className={styles.about}>
-            <Link href={'/about'}>О нас</Link>
+            <Link 
+              href={'/about'}
+              className={pathname === '/about' ? styles.active : ''}
+            >
+              О нас
+            </Link>
           </li>
         </ul>
 
@@ -25,17 +41,26 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href={'/cart'}>
+            <Link 
+              href={'/cart'}
+              className={pathname === '/cart' ? styles.active : ''}
+            >
               <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Icon shopping cart'} />
             </Link>
           </li>
           <li>
-            <Link href={'/favorites'}>
+            <Link 
+              href={'/favorites'}
+              className={pathname === '/favorites' ? styles.active : ''}
+            >
               <Image src={'/heart.svg'} width={21} height={21} alt={'Icon heart for favorites'} />
             </Link>
           </li>
           <li>
-            <Link href={'/orders'}>
+            <Link 
+              href={'/orders'}
+              className={pathname === 'orders' ? styles.active : ''}
+            >
               <Image src={'/account.svg'} width={21} height={21} alt={'Icon user account'} />
             </Link>
           </li>
