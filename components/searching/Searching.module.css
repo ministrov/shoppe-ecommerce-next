@@ -8,22 +8,15 @@
   border-radius: 4px;
 }
 
-.searchIcon {
-  display: inline-block;
-  width: auto;
-  height: 100%;
-}
-
 .searchInput {
   width: 100%;
   font-family: var(--font-family);
   font-size: 16px;
-  font-weight: 400;
-  line-height: 22px;
   border: none;
   background-color: transparent;
 }
 
 .searchInput::placeholder {
+  font-family: var(--font-family) !important;
   color: var(--light-gray);
 }
