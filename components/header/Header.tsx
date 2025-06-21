@@ -59,12 +59,6 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            {/* <Link 
-              href={'/cart'}
-              className={pathname === '/cart' ? styles.active : ''}
-            >
-              <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Icon shopping cart'} />
-            </Link> */}
             <Link href={'/cart'} className={styles.iconLink}>
               <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
               {pathname === '/cart' && (
@@ -78,12 +72,6 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            {/* <Link 
-              href={'/favorites'}
-              className={pathname === '/favorites' ? styles.active : ''}
-            >
-              <Image src={'/heart.svg'} width={21} height={21} alt={'Icon heart for favorites'} />
-            </Link> */}
             <Link href={'/favorites'} className={styles.iconLink}>
               <Image src={'/heart.svg'} width={21} height={21} alt={'Cart'} />
               {pathname === '/favorites' && (
@@ -97,12 +85,6 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            {/* <Link 
-              href={'/orders'}
-              className={pathname === '/orders' ? styles.active : ''}
-            >
-              <Image src={'/account.svg'} width={21} height={21} alt={'Icon user account'} />
-            </Link> */}
             <Link href={'/orders'} className={styles.iconLink}>
               <Image src={'/account.svg'} width={21} height={21} alt={'Cart'} />
               {pathname === '/orders' && (
