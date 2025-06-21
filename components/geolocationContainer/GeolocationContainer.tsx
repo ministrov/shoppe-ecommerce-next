@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Geolocation from '../geolocation/Geolocation';
+import { Geolocation } from '../geolocation/Geolocation';
 
 const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);

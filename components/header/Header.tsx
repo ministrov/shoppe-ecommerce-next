@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import Logo from '../logo/Logo';
+import { Logo } from '../logo/Logo';
 import styles from './Header.module.css';
 
-const Header = () => {
+export const Header = () => {
   const pathname = usePathname();
 
   const underlineVariants = {
@@ -102,5 +102,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

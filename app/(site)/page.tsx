@@ -1,6 +1,7 @@
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
-import Button from '@/components/button/Button';
-import Message from '@/components/Message/Message';
+import { Button } from '@/components/button/Button';
+import { Searching } from '@/components/searching/Searching';
+import { Message } from '@/components/Message/Message';
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
       <Message content={'Ваш отзыв отправлен на модерацию'}/>
 
       <Message content={'Мы получили ваш заказ'} isLong/>
+
+      <Searching/>
     </div>
   );
 }
