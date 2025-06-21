@@ -16,13 +16,12 @@ export const Header = () => {
     visible: { width: '100%' }
   };
 
-  console.log(pathname);
   return (
     <header className={styles.header}>
       <Logo />
 
       <div className={styles.mainMenu}>
-        <ul className={styles.linksList}>
+        <ul className={styles.navList}>
           <li className={styles.shop}>
             <Link href={'/catalog'} className={styles.navLink}>
               Магазин
@@ -55,13 +54,13 @@ export const Header = () => {
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
-            <Searching />
+            <Searching className={styles.searchInput}/>
             <Link href={'#'}>
               <Image src={'/search.svg'} width={19} height={19} alt={'Icon search'} />
             </Link>
           </div>
 
-          <ul className={styles.iconList}>
+          <ul className={styles.userList}>
             <li>
               <Link href={'/cart'} className={styles.iconLink}>
                 <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
