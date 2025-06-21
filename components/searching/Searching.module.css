@@ -1,3 +1,17 @@
-.searching {
-  background-color: tomato;
+.search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 288px;
+  padding: 10px;
+  background-color: var(--light-gray-200);
+  border-radius: 4px;
+}
+
+.input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  border: none;
+  background-color: var(--light-gray);
 }

@@ -8,18 +8,20 @@ export default function Home() {
     <div>
       <GeolocationContainer />
 
-      <div style={{ maxWidth: '500px'}}>
+      <div style={{ maxWidth: '500px' }}>
         <Button>Вход</Button>
-        <Button size={'medium'} ghost>Вход</Button>
+        <Button size={'medium'} ghost>
+          Вход
+        </Button>
         <Button size={'small'}>Отправить</Button>
       </div>
 
-      <Message content={'Ваш email подписан на новости и уведомления'}/>
-      <Message content={'Ваш отзыв отправлен на модерацию'}/>
+      <Message content={'Ваш email подписан на новости и уведомления'} />
+      <Message content={'Ваш отзыв отправлен на модерацию'} />
 
-      <Message content={'Мы получили ваш заказ'} isLong/>
+      <Message content={'Мы получили ваш заказ'} isLong />
 
-      <Searching/>
+      <Searching />
     </div>
   );
 }
