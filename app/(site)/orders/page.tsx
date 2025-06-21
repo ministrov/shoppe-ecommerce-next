@@ -1,9 +1,5 @@
-import React from 'react';
-
-const Orders = () => {
+export default function Orders() {
   return (
     <div>Orders</div>
   );
 };
-
-export default Orders;

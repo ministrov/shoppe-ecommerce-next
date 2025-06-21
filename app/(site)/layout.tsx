@@ -1,13 +1,26 @@
-import { DM_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import type { Metadata } from 'next';
-import Header from '@/components/header/Header';
+import { Header } from '@/components/header/Header';
 import './globals.css';
 
-const dmSans = DM_Sans({
-  weight: ['400', '500', '700'],
-  subsets: ['latin'],
-  variable: '--font-dm-sans',
-  display: 'swap',
+const DM_Sans = localFont({
+  src: [
+    {
+      path: '../../public/fonts/DMSans-Regular.woff2',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: '../../public/fonts/DMSans-Medium.woff2',
+      weight: '500',
+      style: 'normal'
+    },
+    {
+      path: '../../public/fonts/DMSans-Bold.woff2',
+      weight: '700',
+      style: 'normal'
+    },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -21,13 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${dmSans.variable}`} >
-        <div className="container">
-          <Header/>
-          <main>
-            {children}
-          </main>
+    <html lang='en' className={DM_Sans.className}>
+      <body>
+        <div className='container'>
+          <Header />
+          <main>{children}</main>
           <footer>footer</footer>
         </div>
       </body>

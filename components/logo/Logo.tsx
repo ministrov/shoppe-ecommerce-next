@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Logo.module.css';
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <div className={styles.logo}>
       <Link href={'/'} >
@@ -12,5 +12,3 @@ const Logo = () => {
     </div>
   );
 };
-
-export default Logo;

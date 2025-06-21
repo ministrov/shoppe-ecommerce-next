@@ -2,3 +2,8 @@
   display: block;
   max-height: 40px;
 }
+
+.logo a {
+  display: block;
+  height: 40px;
+}

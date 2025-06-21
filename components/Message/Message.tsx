@@ -3,7 +3,7 @@ import { MessageProps } from './Message.props';
 import cn from 'classnames';
 import styles from './Message.module.css';
 
-const Message = ({ content, isLong = false }: MessageProps) => {
+export const Message = ({ content, isLong = false }: MessageProps) => {
   return (
     <div className={cn(styles.success, {
       [styles['success--long']]: isLong
@@ -13,5 +13,3 @@ const Message = ({ content, isLong = false }: MessageProps) => {
     </div>
   );
 };
-
-export default Message;

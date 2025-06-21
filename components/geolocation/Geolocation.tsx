@@ -3,7 +3,7 @@ type GeolocationProps = {
   longitude: number | null
 }
 
-const Geolocation = ({ latitude, longitude }: GeolocationProps) => {
+export const Geolocation = ({ latitude, longitude }: GeolocationProps) => {
   return (
     <div>
       <h2>Geolocation:</h2>
@@ -12,5 +12,3 @@ const Geolocation = ({ latitude, longitude }: GeolocationProps) => {
     </div>
   );
 };
-
-export default Geolocation;
