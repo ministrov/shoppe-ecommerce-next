@@ -1,6 +1,6 @@
 .search {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 5px;
   max-width: 288px;
   padding: 10px;
@@ -8,10 +8,22 @@
   border-radius: 4px;
 }
 
-.input {
+.searchIcon {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+}
+
+.searchInput {
   width: 100%;
-  font-family: inherit;
+  font-family: var(--font-family);
   font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
   border: none;
-  background-color: var(--light-gray);
+  background-color: transparent;
+}
+
+.searchInput::placeholder {
+  color: var(--light-gray);
 }

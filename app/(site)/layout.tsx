@@ -6,7 +6,7 @@ import './globals.css';
 const dmSans = DM_Sans({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-family',
   display: 'swap',
 });
 
@@ -21,13 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${dmSans.variable}`} >
-        <div className="container">
-          <Header/>
-          <main>
-            {children}
-          </main>
+    <html lang='en'>
+      <body className={`${dmSans.variable}`}>
+        <div className='container'>
+          <Header />
+          <main>{children}</main>
           <footer>footer</footer>
         </div>
       </body>
