@@ -20,6 +20,15 @@
   height: 20px;
 }
 
+.searchBox {
+  display: flex;
+  gap: 1rem;
+}
+
+.userBlock {
+  display: flex;
+}
+
 .iconList {
   gap: 40px;
 }

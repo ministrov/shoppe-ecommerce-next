@@ -1,5 +1,3 @@
-import React from 'react';
-
-export const Favorites = () => {
+export default function Favorites() {
   return <div>Favorites</div>;
 };

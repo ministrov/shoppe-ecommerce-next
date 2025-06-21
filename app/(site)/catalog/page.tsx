@@ -1,5 +1,3 @@
-import React from 'react';
-
-export const Catalog = () => {
+export default function Catalog() {
   return <div>Catalog</div>;
 };
