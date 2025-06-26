@@ -28,13 +28,13 @@
   margin-right: 40px;
 }
 
+.searchIcon {
+  cursor: pointer;
+}
+
 .userBlock {
   display: flex;
 }
-
-/* .searchInput {
-  display: none;
-} */
 
 .userList {
   display: flex;

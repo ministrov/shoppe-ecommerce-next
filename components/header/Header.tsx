@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -9,7 +10,10 @@ import { Searching } from '../searching/Searching';
 import styles from './Header.module.css';
 
 export const Header = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const pathname = usePathname();
+
+  // console.log(open);
 
   const underlineVariants = {
     hidden: { width: 0 },
@@ -54,8 +58,8 @@ export const Header = () => {
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
-            <Searching />
-            <Image src={'/search.svg'} width={19} height={19} alt={'Icon search'} />
+            {open && <Searching />}
+            <Image className={styles.searchIcon} src={'/search.svg'} width={19} height={19} alt={'Icon search'} onClick={() => setOpen(current => !current)} />
           </div>
 
           <ul className={styles.userList}>
