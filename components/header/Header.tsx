@@ -74,7 +74,8 @@ export const Header = () => {
           </div>
 
           <ul className={styles.userList}>
-            <li>
+            <li className={styles.userItem}>
+              <span className={styles.cartCount}>0</span>
               <Link href={'/cart'} className={styles.iconLink}>
                 <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
                 {pathname === '/cart' && (
