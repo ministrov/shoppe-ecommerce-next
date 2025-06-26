@@ -18,10 +18,10 @@ export const Header = () => {
     visible: { width: '100%' }
   };
 
-  // const showSearching = {
-  //   hidden: { opacity: 0},
-  //   visible: { opacity: 1}
-  // };
+  const showSearching = {
+    hidden: { opacity: 0 },
+    visible: { opacity: open ? 1 : 0 }
+  };
 
   return (
     <header className={styles.header}>
@@ -65,6 +65,8 @@ export const Header = () => {
               className={styles.searching}
               initial={'hidden'}
               animate={'visible'} 
+              variants={showSearching}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               {open && <Searching />}
             </motion.div>
