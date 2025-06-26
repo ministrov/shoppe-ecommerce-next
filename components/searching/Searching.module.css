@@ -1,9 +1,7 @@
 .search {
   display: flex;
-  align-items: baseline;
   gap: 5px;
   max-width: 288px;
-  height: 32px;
   padding: 10px;
   background-color: var(--light-gray-200);
   border-radius: 4px;

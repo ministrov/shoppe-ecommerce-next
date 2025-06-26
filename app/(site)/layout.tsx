@@ -1,27 +1,6 @@
-import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import { Header } from '@/components/header/Header';
 import './globals.css';
-
-const DM_Sans = localFont({
-  src: [
-    {
-      path: '../../public/fonts/DMSans-Regular.woff2',
-      weight: '400',
-      style: 'normal'
-    },
-    {
-      path: '../../public/fonts/DMSans-Medium.woff2',
-      weight: '500',
-      style: 'normal'
-    },
-    {
-      path: '../../public/fonts/DMSans-Bold.woff2',
-      weight: '700',
-      style: 'normal'
-    },
-  ],
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -34,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={DM_Sans.className}>
+    <html lang='en'>
       <body>
         <div className='container'>
           <Header />

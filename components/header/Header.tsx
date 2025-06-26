@@ -54,7 +54,7 @@ export const Header = () => {
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
-            <Searching className={styles.searchInput}/>
+            <Searching />
             <Image src={'/search.svg'} width={19} height={19} alt={'Icon search'} />
           </div>
 
