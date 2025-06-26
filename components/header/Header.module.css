@@ -25,7 +25,6 @@
   display: flex;
   align-items: center;
   gap: 21px;
-  margin-right: 40px;
 }
 
 .searchIcon {
@@ -34,6 +33,7 @@
 
 .userBlock {
   display: flex;
+  gap: 40px;
 }
 
 .userList {
@@ -67,7 +67,7 @@
 
 .activeIndicator {
   position: absolute;
-  bottom: -25px;
+  bottom: -27px;
   left: 0;
   height: 2px;
   background-color: var(--black);

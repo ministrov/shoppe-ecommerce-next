@@ -13,12 +13,15 @@ export const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
-  // console.log(open);
-
   const underlineVariants = {
     hidden: { width: 0 },
     visible: { width: '100%' }
   };
+
+  // const showSearching = {
+  //   hidden: { opacity: 0},
+  //   visible: { opacity: 1}
+  // };
 
   return (
     <header className={styles.header}>
@@ -35,7 +38,7 @@ export const Header = () => {
                   initial='hidden'
                   animate='visible'
                   variants={underlineVariants}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                 />
               )}
             </Link>
@@ -49,7 +52,7 @@ export const Header = () => {
                   initial='hidden'
                   animate='visible'
                   variants={underlineVariants}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                 />
               )}
             </Link>
@@ -58,7 +61,13 @@ export const Header = () => {
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
-            {open && <Searching />}
+            <motion.div 
+              className={styles.searching}
+              initial={'hidden'}
+              animate={'visible'} 
+            >
+              {open && <Searching />}
+            </motion.div>
             <Image className={styles.searchIcon} src={'/search.svg'} width={19} height={19} alt={'Icon search'} onClick={() => setOpen(current => !current)} />
           </div>
 
@@ -68,10 +77,11 @@ export const Header = () => {
                 <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
                 {pathname === '/cart' && (
                   <motion.span
-                    className={styles.iconActiveIndicator}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
+                    className={styles.activeIndicator}
+                    initial='hidden'
+                    animate='visible'
+                    variants={underlineVariants}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                   />
                 )}
               </Link>
@@ -81,10 +91,11 @@ export const Header = () => {
                 <Image src={'/heart.svg'} width={21} height={21} alt={'Cart'} />
                 {pathname === '/favorites' && (
                   <motion.span
-                    className={styles.iconActiveIndicator}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
+                    className={styles.activeIndicator}
+                    initial='hidden'
+                    animate='visible'
+                    variants={underlineVariants}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                   />
                 )}
               </Link>
@@ -94,10 +105,11 @@ export const Header = () => {
                 <Image src={'/account.svg'} width={21} height={21} alt={'Cart'} />
                 {pathname === '/orders' && (
                   <motion.span
-                    className={styles.iconActiveIndicator}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
+                    className={styles.activeIndicator}
+                    initial='hidden'
+                    animate='visible'
+                    variants={underlineVariants}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                   />
                 )}
               </Link>
