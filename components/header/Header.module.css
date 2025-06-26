@@ -32,9 +32,9 @@
   display: flex;
 }
 
-.searchInput {
+/* .searchInput {
   display: none;
-}
+} */
 
 .userList {
   display: flex;
