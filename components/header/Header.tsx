@@ -12,6 +12,7 @@ import styles from './Header.module.css';
 
 export const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [isOpened, setIsOpened] = useState<boolean>(false);
   const pathname = usePathname();
 
   const underlineVariants = {
@@ -22,6 +23,20 @@ export const Header = () => {
   const showSearching = {
     hidden: { opacity: 0 },
     visible: { opacity: open ? 1 : 0 },
+  };
+
+  const variants = {
+    opened: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        stiffness: 20,
+      },
+    },
+    closed: {
+      opacity: 0,
+      x: '100%',
+    },
   };
 
   return (
@@ -99,6 +114,29 @@ export const Header = () => {
           </ul>
         </div>
       </div>
+
+      <button className={styles.burgerMenu}>
+        <Image onClick={() => setIsOpened(true)} src={'/burger-menu.svg'} width={20} height={20} alt={'Burger to open menu on mobile'} />
+      </button>
+
+      <motion.div
+        initial={'closed'}
+        variants={variants}
+        animate={isOpened ? 'opened' : 'closed'}
+        className={styles.mobileMenu}
+      >
+        <Searching />
+
+        <button className={styles.closeMenu}>
+          <Image
+            onClick={() => setIsOpened(false)}
+            src={'/close.svg'}
+            width={20}
+            height={20}
+            alt={'Cross button to close menu on mobile'}
+          />
+        </button>
+      </motion.div>
     </header>
   );
 };
