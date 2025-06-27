@@ -33,3 +33,9 @@
   background-color: var(--black);
   transform-origin: left center;
 }
+
+@media screen and (max-width: 768px) {
+  .navList {
+    display: none;
+  }
+}

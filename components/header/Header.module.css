@@ -73,6 +73,14 @@
 }
 
 @media screen and (max-width: 768px) {
+  .searchBox {
+    display: none;
+  }
+
+  .userList {
+    display: none;
+  }
+
   .burgerMenu {
     display: block;
     width: 40px;
@@ -80,7 +88,16 @@
     border: none;
     border-radius: 10px;
     background-color: transparent;
-    /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05); */
+    cursor: pointer;
+  }
+
+  .closeMenu {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
     cursor: pointer;
   }
 }

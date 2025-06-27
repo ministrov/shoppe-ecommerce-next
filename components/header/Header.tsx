@@ -116,7 +116,13 @@ export const Header = () => {
       </div>
 
       <button className={styles.burgerMenu}>
-        <Image onClick={() => setIsOpened(true)} src={'/burger-menu.svg'} width={20} height={20} alt={'Burger to open menu on mobile'} />
+        <Image
+          onClick={() => setIsOpened(true)}
+          src={'/burger-menu.svg'}
+          width={20}
+          height={20}
+          alt={'Burger to open menu on mobile'}
+        />
       </button>
 
       <motion.div
@@ -125,17 +131,26 @@ export const Header = () => {
         animate={isOpened ? 'opened' : 'closed'}
         className={styles.mobileMenu}
       >
-        <Searching />
+        <header className={styles.mobileHeader}>
+          <Logo />
 
-        <button className={styles.closeMenu}>
-          <Image
-            onClick={() => setIsOpened(false)}
-            src={'/close.svg'}
-            width={20}
-            height={20}
-            alt={'Cross button to close menu on mobile'}
-          />
-        </button>
+          <Link href={'/cart'}>
+            <span>0</span>
+            <Image onClick={() => setIsOpened(false)} src={'/cart.svg'} width={20} height={20} alt={'Cart icon'} />
+          </Link>
+
+          <button className={styles.closeMenu}>
+            <Image
+              onClick={() => setIsOpened(false)}
+              src={'/close.svg'}
+              width={20}
+              height={20}
+              alt={'Cross button to close menu on mobile'}
+            />
+          </button>
+        </header>
+
+        <Searching />
       </motion.div>
     </header>
   );
