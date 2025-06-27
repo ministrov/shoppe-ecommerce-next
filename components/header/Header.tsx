@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../logo/Logo';
 import { Searching } from '../searching/Searching';
+import { CartLink } from '../cartLink/CartLink';
 import styles from './Header.module.css';
 
 export const Header = () => {
@@ -15,12 +16,12 @@ export const Header = () => {
 
   const underlineVariants = {
     hidden: { width: 0 },
-    visible: { width: '100%' }
+    visible: { width: '100%' },
   };
 
   const showSearching = {
     hidden: { opacity: 0 },
-    visible: { opacity: open ? 1 : 0 }
+    visible: { opacity: open ? 1 : 0 },
   };
 
   return (
@@ -61,34 +62,27 @@ export const Header = () => {
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
-            <motion.div 
+            <motion.div
               className={styles.searching}
               initial={'hidden'}
-              animate={'visible'} 
+              animate={'visible'}
               variants={showSearching}
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               {open && <Searching />}
             </motion.div>
-            <Image className={styles.searchIcon} src={'/search.svg'} width={19} height={19} alt={'Icon search'} onClick={() => setOpen(current => !current)} />
+            <Image
+              className={styles.searchIcon}
+              src={'/search.svg'}
+              width={19}
+              height={19}
+              alt={'Icon search'}
+              onClick={() => setOpen((current) => !current)}
+            />
           </div>
 
           <ul className={styles.userList}>
-            <li className={styles.userItem}>
-              <span className={styles.cartCount}>0</span>
-              <Link href={'/cart'} className={styles.iconLink}>
-                <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
-                {pathname === '/cart' && (
-                  <motion.span
-                    className={styles.activeIndicator}
-                    initial='hidden'
-                    animate='visible'
-                    variants={underlineVariants}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  />
-                )}
-              </Link>
-            </li>
+            <CartLink pathname={pathname} />
             <li>
               <Link href={'/favorites'} className={styles.iconLink}>
                 <Image src={'/heart.svg'} width={21} height={21} alt={'Cart'} />
