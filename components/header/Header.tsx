@@ -30,6 +30,7 @@ export const Header = () => {
 
       <div className={styles.mainMenu}>
         <NavList pathname={pathname} />
+
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>
             <motion.div
