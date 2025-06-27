@@ -29,6 +29,10 @@
   gap: 40px;
 }
 
+.searching {
+  max-width: 288px;
+}
+
 .userList {
   display: flex;
   align-items: center;
@@ -64,8 +68,8 @@
   bottom: 0;
   left: 0;
   overflow-y: scroll;
-  padding: 20px 10px;
-  background-color: #fff;
+  padding: 16px 16px;
+  background-color: var(--white);
 }
 
 .burgerMenu {
@@ -83,8 +87,8 @@
 
   .burgerMenu {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 15px;
     border: none;
     border-radius: 10px;
     background-color: transparent;
@@ -93,12 +97,24 @@
 
   .closeMenu {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     border: none;
     border-radius: 10px;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  .mobileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .mobileHeaderRight {
+    display: flex;
+    gap: 16px;
   }
 }
 

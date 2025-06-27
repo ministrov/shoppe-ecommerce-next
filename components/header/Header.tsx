@@ -134,20 +134,28 @@ export const Header = () => {
         <header className={styles.mobileHeader}>
           <Logo />
 
-          <Link href={'/cart'}>
-            <span>0</span>
-            <Image onClick={() => setIsOpened(false)} src={'/cart.svg'} width={20} height={20} alt={'Cart icon'} />
-          </Link>
+          <div className={styles.mobileHeaderRight}>
+            <Link className={styles.cartLink} href={'/cart'}>
+              <span className={styles.cartCount}>0</span>
+              <Image
+                onClick={() => setIsOpened(false)}
+                src={'/shopping-cart.svg'}
+                width={20}
+                height={20}
+                alt={'Cart icon'}
+              />
+            </Link>
 
-          <button className={styles.closeMenu}>
-            <Image
-              onClick={() => setIsOpened(false)}
-              src={'/close.svg'}
-              width={20}
-              height={20}
-              alt={'Cross button to close menu on mobile'}
-            />
-          </button>
+            <button className={styles.closeMenu}>
+              <Image
+                onClick={() => setIsOpened(false)}
+                src={'/close.svg'}
+                width={20}
+                height={20}
+                alt={'Cross button to close menu on mobile'}
+              />
+            </button>
+          </div>
         </header>
 
         <Searching />
