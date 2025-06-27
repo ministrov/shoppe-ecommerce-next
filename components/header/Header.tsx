@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../logo/Logo';
 import { Searching } from '../searching/Searching';
-import { CartLink } from '../cartLink/CartLink';
 import styles from './Header.module.css';
 
 export const Header = () => {
@@ -82,7 +81,21 @@ export const Header = () => {
           </div>
 
           <ul className={styles.userList}>
-            <CartLink pathname={pathname} />
+            <li className={styles.userItem}>
+              <span className={styles.cartCount}>0</span>
+              <Link href={'/cart'} className={styles.iconLink}>
+                <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
+                {pathname === '/cart' && (
+                  <motion.span
+                    className={styles.activeIndicator}
+                    initial='hidden'
+                    animate='visible'
+                    variants={underlineVariants}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  />
+                )}
+              </Link>
+            </li>
             <li>
               <Link href={'/favorites'} className={styles.iconLink}>
                 <Image src={'/heart.svg'} width={21} height={21} alt={'Cart'} />
