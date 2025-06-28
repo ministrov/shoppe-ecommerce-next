@@ -1,0 +1,19 @@
+.navMenu {
+  display: flex;
+  gap: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navMenu li:last-child {
+  padding-right: 60px;
+  border-right: 1px solid var(--light-gray);
+}
+
+
+@media screen and (max-width: 768px) {
+  .navMenu {
+    display: none;
+  }
+}

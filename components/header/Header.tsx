@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../logo/Logo';
-import { NavMenu } from '../navList/NavMenu';
+import { NavMenu } from '../navMenu/NavMenu';
 import { Searching } from '../searching/Searching';
 import styles from './Header.module.css';
 
@@ -138,7 +138,6 @@ export const Header = () => {
             <Link className={styles.cartLink} href={'/cart'}>
               <span className={styles.cartCount}>0</span>
               <Image
-                onClick={() => setIsOpened(false)}
                 src={'/shopping-cart.svg'}
                 width={20}
                 height={20}

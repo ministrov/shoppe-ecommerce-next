@@ -1,11 +1,3 @@
-.navList {
-  display: flex;
-  gap: 60px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 .navLink {
   position: relative;
   display: inline-block;
@@ -14,11 +6,6 @@
   color: var(--black);
   text-decoration: none;
   transition: color 0.2s ease;
-}
-
-.navList li:last-child {
-  padding-right: 60px;
-  border-right: 1px solid var(--light-gray);
 }
 
 .navLink:hover {
@@ -32,10 +19,4 @@
   height: 2px;
   background-color: var(--black);
   transform-origin: left center;
-}
-
-@media screen and (max-width: 768px) {
-  .navList {
-    display: none;
-  }
 }
