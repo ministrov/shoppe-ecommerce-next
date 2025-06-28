@@ -8,6 +8,7 @@ type ButtonLinkProps = {
   path: string;
   iconPath?: string;
   text?: string;
+  isCount?: boolean;
   count?: number;
 };
 
@@ -16,7 +17,7 @@ const underlineVariants = {
   visible: { width: '100%' },
 };
 
-export const ButtonLink = ({ pathname, path, iconPath, text, count }: ButtonLinkProps) => {
+export const ButtonLink = ({ pathname, path, iconPath, text, isCount, count }: ButtonLinkProps) => {
   return (
     <Link href={path} className={styles.navLink}>
       {iconPath && <Image src={iconPath} width={21} height={21} alt={`Icon link ${iconPath}`} />}
@@ -30,7 +31,7 @@ export const ButtonLink = ({ pathname, path, iconPath, text, count }: ButtonLink
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         />
       )}
-      {count && <span className={styles.count}>{count}</span>}
+      {isCount && <span className={styles.count}>{count}</span>}
     </Link>
   );
 };

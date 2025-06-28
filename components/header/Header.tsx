@@ -68,7 +68,7 @@ export const Header = () => {
       </div>
 
       <div className={styles.burgerWrapper}>
-        <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} />
+        <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} isCount count={2} />
         <button className={styles.burgerMenu}>
           <Image
             onClick={() => setIsOpened(true)}
@@ -90,8 +90,7 @@ export const Header = () => {
           <Logo />
 
           <div className={styles.mobileHeaderRight}>
-            <span className={styles.cartCount}>0</span>
-            <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} />
+            <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} isCount count={2} />
 
             <button className={styles.closeMenu}>
               <Image
