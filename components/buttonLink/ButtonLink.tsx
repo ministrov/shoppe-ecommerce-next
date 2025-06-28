@@ -22,7 +22,7 @@ export const ButtonLink = ({ pathname, path, iconPath, text }: ButtonLinkProps) 
       {text}
       {pathname === path && (
         <motion.span
-          className={styles.activeIndicator}
+          className={styles.active}
           initial='hidden'
           animate='visible'
           variants={underlineVariants}

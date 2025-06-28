@@ -43,6 +43,10 @@
   background-color: var(--white);
 }
 
+.burgerWrapper {
+  display: none;
+}
+
 .burgerMenu {
   display: none;
 }
@@ -54,6 +58,11 @@
 
   .userList {
     display: none;
+  }
+
+  .burgerWrapper {
+    display: flex;
+    gap: 16px;
   }
 
   .burgerMenu {

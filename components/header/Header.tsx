@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Logo } from '../logo/Logo';
+import { ButtonLink } from '../buttonLink/ButtonLink';
 import { NavMenu } from '../navMenu/NavMenu';
 import { UserMenu } from '../userMenu/UserMenu';
 import { Searching } from '../searching/Searching';
@@ -63,19 +63,22 @@ export const Header = () => {
             />
           </div>
 
-          <UserMenu pathname={pathname}/>
+          <UserMenu pathname={pathname} />
         </div>
       </div>
 
-      <button className={styles.burgerMenu}>
-        <Image
-          onClick={() => setIsOpened(true)}
-          src={'/burger-menu.svg'}
-          width={20}
-          height={20}
-          alt={'Burger to open menu on mobile'}
-        />
-      </button>
+      <div className={styles.burgerWrapper}>
+        <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} />
+        <button className={styles.burgerMenu}>
+          <Image
+            onClick={() => setIsOpened(true)}
+            src={'/burger-menu.svg'}
+            width={20}
+            height={20}
+            alt={'Burger to open menu on mobile'}
+          />
+        </button>
+      </div>
 
       <motion.div
         initial={'closed'}
@@ -87,15 +90,8 @@ export const Header = () => {
           <Logo />
 
           <div className={styles.mobileHeaderRight}>
-            <Link className={styles.cartLink} href={'/cart'}>
-              <span className={styles.cartCount}>0</span>
-              <Image
-                src={'/shopping-cart.svg'}
-                width={20}
-                height={20}
-                alt={'Cart icon'}
-              />
-            </Link>
+            <span className={styles.cartCount}>0</span>
+            <ButtonLink pathname={pathname} path={'/cart'} iconPath={'/shopping-cart.svg'} />
 
             <button className={styles.closeMenu}>
               <Image

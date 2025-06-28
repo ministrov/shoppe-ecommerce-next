@@ -12,10 +12,16 @@
   color: var(--foreground);
 }
 
-.activeIndicator {
+.active {
   position: absolute;
   bottom: -26px;
   left: 0;
   height: 2px;
   background-color: var(--black);
+}
+
+@media screen and (max-width: 768px) {
+  .active {
+    display: none;
+  }
 }
