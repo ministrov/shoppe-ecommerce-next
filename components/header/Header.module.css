@@ -32,33 +32,6 @@
   max-width: 288px;
 }
 
-/* .userList {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  gap: 40px;
-} */
-
-.cartCount {
-  display: none;
-}
-
-/* .activeIndicator {
-  position: absolute;
-  bottom: -26px;
-  left: 0;
-  height: 2px;
-  background-color: var(--black);
-  transform-origin: left center;
-} */
-
-.iconLink {
-  position: relative;
-  display: inline-block;
-}
-
 .mobileMenu {
   position: fixed;
   z-index: 10;

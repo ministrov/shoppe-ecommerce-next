@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../logo/Logo';
 import { NavMenu } from '../navMenu/NavMenu';
+import { UserMenu } from '../userMenu/UserMenu';
 import { Searching } from '../searching/Searching';
 import styles from './Header.module.css';
 
@@ -14,11 +15,6 @@ export const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const pathname = usePathname();
-
-  const underlineVariants = {
-    hidden: { width: 0 },
-    visible: { width: '100%' },
-  };
 
   const showSearching = {
     hidden: { opacity: 0 },
@@ -67,51 +63,7 @@ export const Header = () => {
             />
           </div>
 
-          <ul className={styles.userList}>
-            <li className={styles.userItem}>
-              <span className={styles.cartCount}>0</span>
-              <Link href={'/cart'} className={styles.iconLink}>
-                <Image src={'/shopping-cart.svg'} width={21} height={21} alt={'Cart'} />
-                {pathname === '/cart' && (
-                  <motion.span
-                    className={styles.activeIndicator}
-                    initial='hidden'
-                    animate='visible'
-                    variants={underlineVariants}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  />
-                )}
-              </Link>
-            </li>
-            <li>
-              <Link href={'/favorites'} className={styles.iconLink}>
-                <Image src={'/heart.svg'} width={21} height={21} alt={'Cart'} />
-                {pathname === '/favorites' && (
-                  <motion.span
-                    className={styles.activeIndicator}
-                    initial='hidden'
-                    animate='visible'
-                    variants={underlineVariants}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  />
-                )}
-              </Link>
-            </li>
-            <li>
-              <Link href={'/orders'} className={styles.iconLink}>
-                <Image src={'/account.svg'} width={21} height={21} alt={'Cart'} />
-                {pathname === '/orders' && (
-                  <motion.span
-                    className={styles.activeIndicator}
-                    initial='hidden'
-                    animate='visible'
-                    variants={underlineVariants}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  />
-                )}
-              </Link>
-            </li>
-          </ul>
+          <UserMenu/>
         </div>
       </div>
 

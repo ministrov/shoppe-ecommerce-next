@@ -1,0 +1,18 @@
+
+.userList {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 40px;
+}
+
+.cartCount {
+  display: none;
+}
+
+.iconLink {
+  position: relative;
+  display: inline-block;
+}
