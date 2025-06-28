@@ -14,7 +14,7 @@ export const NavMenu = ({ pathname }: NavListProps) => {
   return (
     <ul className={styles.navMenu}>
       {links.map((link) => (
-        <li key={link.id} className={styles.item}>
+        <li key={link.id} className={styles.navMenuItem}>
           <ButtonLink pathname={pathname} path={link.path} text={link.text} />
         </li>
       ))}

@@ -1,23 +1,24 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './ButtonLink.module.css';
 
 type ButtonLinkProps = {
   pathname: string;
   path: string;
-  icon?: string | null;
-  text: string
-}
+  iconPath?: string;
+  text?: string;
+};
 
 const underlineVariants = {
   hidden: { width: 0 },
   visible: { width: '100%' },
 };
 
-export const ButtonLink = ({ pathname, path, icon = null, text }: ButtonLinkProps) => {
+export const ButtonLink = ({ pathname, path, iconPath, text }: ButtonLinkProps) => {
   return (
     <Link href={path} className={styles.navLink}>
-      {icon && icon}
+      {iconPath && <Image src={iconPath} width={21} height={21} alt={`Icon link ${iconPath}`} />}
       {text}
       {pathname === path && (
         <motion.span

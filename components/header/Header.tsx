@@ -63,7 +63,7 @@ export const Header = () => {
             />
           </div>
 
-          <UserMenu/>
+          <UserMenu pathname={pathname}/>
         </div>
       </div>
 

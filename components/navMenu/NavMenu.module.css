@@ -6,11 +6,10 @@
   list-style: none;
 }
 
-.navMenu li:last-child {
+.navMenuItem:last-child {
   padding-right: 60px;
   border-right: 1px solid var(--light-gray);
 }
-
 
 @media screen and (max-width: 768px) {
   .navMenu {
