@@ -8,13 +8,8 @@
   gap: 40px;
 }
 
-.cartCount {
-  display: none;
-}
-
-.iconLink {
+.userItem {
   position: relative;
-  display: inline-block;
 }
 
 @media screen and (max-width: 768px) {

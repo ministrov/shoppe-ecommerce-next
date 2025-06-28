@@ -6,6 +6,10 @@
   list-style: none;
 }
 
+.navMenuItem {
+  position: relative;
+}
+
 .navMenuItem:last-child {
   padding-right: 60px;
   border-right: 1px solid var(--light-gray);
