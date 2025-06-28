@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 17px;
-  padding-bottom: 17px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--light-gray-150);
 }
 
@@ -13,19 +13,15 @@
   gap: 62px;
 }
 
-.navList {
-  display: flex;
-  gap: 60px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 .searchBox {
   display: flex;
   align-items: center;
   gap: 21px;
 }
+
+/* .searchBox:has(div.searching:has(form.search)) {
+  gap: 21px;
+} */
 
 .searchIcon {
   cursor: pointer;
@@ -36,53 +32,81 @@
   gap: 40px;
 }
 
-.userList {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  gap: 40px;
+.searching {
+  max-width: 288px;
 }
 
-.cartCount {
+.mobileMenu {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 16px 16px;
+  background-color: var(--white);
+}
+
+.burgerWrapper {
   display: none;
 }
 
-.navList li:last-child {
-  padding-right: 60px;
-  border-right: 1px solid var(--light-gray);
+.burgerMenu {
+  display: none;
 }
 
-.navLink {
-  position: relative;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 27px;
-  color: var(--black);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+@media screen and (max-width: 768px) {
+  .searchBox {
+    display: none;
+  }
 
-.navLink:hover {
-  color: var(--foreground);
-}
+  .userList {
+    display: none;
+  }
 
-.activeIndicator {
-  position: absolute;
-  bottom: -26px;
-  left: 0;
-  height: 2px;
-  background-color: var(--black);
-  transform-origin: left center;
-}
+  .burgerWrapper {
+    display: flex;
+    gap: 16px;
+  }
 
-.iconLink {
-  position: relative;
-  display: inline-block;
+  .burgerMenu {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .closeMenu {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .mobileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .mobileHeaderRight {
+    display: flex;
+    gap: 16px;
+  }
 }
 
 @media screen and (max-width: 320px) {
+  .header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .cartCount {
     display: flex;
   }
