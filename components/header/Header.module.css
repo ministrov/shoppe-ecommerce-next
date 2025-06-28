@@ -19,6 +19,10 @@
   gap: 21px;
 }
 
+/* .searchBox:has(div.searching:has(form.search)) {
+  gap: 21px;
+} */
+
 .searchIcon {
   cursor: pointer;
 }
