@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../logo/Logo';
-import { NavList } from '../navList/NavList';
+import { NavMenu } from '../navList/NavMenu';
 import { Searching } from '../searching/Searching';
 import styles from './Header.module.css';
 
@@ -44,7 +44,7 @@ export const Header = () => {
       <Logo />
 
       <div className={styles.mainMenu}>
-        <NavList pathname={pathname} />
+        <NavMenu pathname={pathname} />
 
         <div className={styles.userBlock}>
           <div className={styles.searchBox}>

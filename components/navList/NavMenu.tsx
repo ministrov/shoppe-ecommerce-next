@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import styles from './NavList.module.css';
+import styles from './NavMenu.module.css';
 
 type NavListProps = {
   pathname: string;
@@ -11,7 +11,7 @@ const underlineVariants = {
   visible: { width: '100%' },
 };
 
-export const NavList = ({ pathname }: NavListProps) => {
+export const NavMenu = ({ pathname }: NavListProps) => {
   return (
     <ul className={styles.navList}>
       <li className={styles.shop}>
