@@ -19,7 +19,7 @@ export const ButtonLink = ({ pathname, path, iconPath, text }: ButtonLinkProps) 
   return (
     <Link href={path} className={styles.navLink}>
       {iconPath && <Image src={iconPath} width={21} height={21} alt={`Icon link ${iconPath}`} />}
-      {text}
+      {<p className={styles.linkText}>{text}</p>}
       {pathname === path && (
         <motion.span
           className={styles.active}
