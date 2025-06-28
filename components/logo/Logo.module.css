@@ -3,7 +3,14 @@
   max-height: 40px;
 }
 
-.logo a {
-  display: block;
-  height: 40px;
+@media screen and (max-width: 320px) {
+  .logo {
+    max-height: 36px;
+  }
+
+  .logo a img {
+    display: block;
+    max-width: 99px;
+    max-height: 36px;
+  }
 }

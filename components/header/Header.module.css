@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 76px;
   padding-top: 17px;
   padding-bottom: 17px;
   border-bottom: 1px solid var(--light-gray-150);
@@ -67,7 +66,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding: 16px 16px;
   background-color: var(--white);
 }
@@ -119,6 +118,10 @@
 }
 
 @media screen and (max-width: 320px) {
+  .header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .cartCount {
     display: flex;
   }
