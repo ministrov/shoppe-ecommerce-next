@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SocialList } from '@/components/socialsList/SocialList';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -28,7 +29,9 @@ export const Footer = () => {
       </div>
       <div className={styles.footer__bottom}>
         <div className={styles.footer__copyright}>© {new Date().getFullYear()} Shoppe</div>
-        <div className={styles.footer__social}>{/* <SocialIcons /> */}</div>
+        <div className={styles.footer__social}>
+          <SocialList />
+        </div>
       </div>
     </div>
   );
