@@ -1,5 +1,5 @@
 :root {
-  --font-family: "DM Sans", system-ui, sans-serif;
+  --font-family: 'DM Sans', system-ui, sans-serif;
   --white: #ffffff;
   --light-gray-200: #efefef;
   --light-gray-150: #d8d8d8;
@@ -16,6 +16,9 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: var(--foreground);
   background-color: var(--background);
 }

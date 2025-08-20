@@ -1,0 +1,15 @@
+.socials {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socials a {
+  color: #979797;
+}
+
+.socials a:hover {
+  opacity: 0.8;
+}
