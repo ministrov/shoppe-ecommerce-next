@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { Logo } from '../logo/Logo';
-import { ButtonLink } from '../buttonLink/ButtonLink';
-import { NavMenu } from '../navMenu/NavMenu';
-import { UserMenu } from '../userMenu/UserMenu';
-import { Searching } from '../searching/Searching';
+import { Logo } from '../../components/logo/Logo';
+import { ButtonLink } from '../../components/buttonLink/ButtonLink';
+import { NavMenu } from '../../components/navMenu/NavMenu';
+import { UserMenu } from '../../components/userMenu/UserMenu';
+import { Searching } from '../../components/searching/Searching';
 import styles from './Header.module.css';
 
 export const Header = () => {
