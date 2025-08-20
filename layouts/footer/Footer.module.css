@@ -1,6 +1,146 @@
 .footer {
-  padding: 1rem;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 0 16px;
+  padding-bottom: 68px;
+}
+.footer hr {
+  height: 1px;
+  border: none;
+  border-bottom: 1px solid var(--color-gray);
+}
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__top ul {
+  display: flex;
+  padding: 0;
+  gap: 30px;
+  list-style: none;
+}
+
+.footer__top ul a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-dark-gray);
+}
+
+.footer__top a:hover {
+  fill: red;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__form {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__input {
+  width: 396px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__subscribe {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  background: none;
+  border: none;
+  transform: translateY(-50%);
+}
+
+@media screen and (max-width: 1024px) {
+  .footer__top {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer__input {
+    order: 1;
+  }
+
+  .footer__top ul {
+    order: 2;
+  }
+
+  .footer__social {
+    order: 1;
+  }
+
+  .footer__copyright {
+    order: 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding-bottom: 48px;
+  }
+
+  .footer__top {
+    align-items: normal;
+  }
+
+  .footer__input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .footer {
+    gap: 0;
+  }
+
+  .footer hr {
+    display: none;
+  }
+
+  .footer__top {
+    gap: 20px;
+  }
+
+  .footer__top ul {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .footer__top ul a {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .footer {
+    padding-bottom: 32px;
+  }
+
+  .footer__bottom {
+    align-items: flex-start;
+    gap: 25px;
+  }
 }
