@@ -11,12 +11,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={'auth'}>
         {/* <header></header> */}
-        <main className='auth-content'>
-          {children}
-        </main>
+        <main className='auth-content'>{children}</main>
         {/* <footer></footer> */}
       </body>
     </html>
