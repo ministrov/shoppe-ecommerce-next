@@ -1,18 +1,19 @@
 :root {
-  --font-family: 'DM Sans', system-ui, sans-serif;
+  --font: 'DM Sans', sans-serif;
   --white: #ffffff;
-  --light-gray-200: #efefef;
-  --light-gray-150: #d8d8d8;
-  --light-gray: #707070;
-  --accent: #a18a68;
   --black: #000000;
   --foreground: #171717;
+  --light-gray: #707070;
+  --color-gray-300: #979797;
+  --light-gray-200: #efefef;
+  --light-gray-150: #d8d8d8;
+  --accent: #a18a68;
   --errors: #d82700;
   --border-radius: 4px;
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -36,4 +37,11 @@ a {
 .container {
   max-width: 1248px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1285px) {
+  .container {
+    margin: 0;
+    padding: 0 16px;
+  }
 }

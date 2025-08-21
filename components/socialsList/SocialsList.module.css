@@ -7,7 +7,7 @@
 }
 
 .socials a {
-  color: #979797;
+  color: var(--color-gray-300);
 }
 
 .socials a:hover {

@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { SocialList } from '@/components/socialsList/SocialList';
+import Image from 'next/image';
+import { SocialsList } from '@/components/socialsList/SocialsList';
+import { InputField } from '@/components/inputField/InputField';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -18,19 +20,23 @@ export const Footer = () => {
             <Link href='#'>Доставка и возврат</Link>
           </li>
         </ul>
-        <div className={styles.footer__form}>
-          {/* <InputField
-          class="footer__input"
-          placeholder="Ваш email для акций и предложений"
-          variant="black"
-        /> */}
-          <button className={styles.footer__subscribe}>{/* <Icon name="icons:arrow-right" size="8px" /> */}</button>
+        <div>
+          <form className={styles.footer__form} action='#' method='POST'>
+            <InputField
+              className={styles.footer__input}
+              name='subscribe'
+              placeholder='Ваш email для акций и предложений'
+            />
+            <button className={styles.footer__subscribe} type='submit' name='subscribe'>
+              <Image src='/arrow-right.svg' width={20} height={20} alt='Subscribe icon' />
+            </button>
+          </form>
         </div>
       </div>
       <div className={styles.footer__bottom}>
         <div className={styles.footer__copyright}>© {new Date().getFullYear()} Shoppe</div>
         <div className={styles.footer__social}>
-          <SocialList />
+          <SocialsList />
         </div>
       </div>
     </div>

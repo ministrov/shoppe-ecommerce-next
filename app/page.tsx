@@ -1,7 +1,7 @@
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
 import { Button } from '@/components/button/Button';
 import { Searching } from '@/components/searching/Searching';
-import { Message } from '@/components/Message/Message';
+import { Message } from '@/components/message/Message';
 
 export default function Home() {
   return (
