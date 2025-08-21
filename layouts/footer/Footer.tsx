@@ -20,10 +20,7 @@ export const Footer = () => {
           </li>
         </ul>
         <div className={styles.footer__form}>
-          <InputField
-            className={styles.footer__input}
-            // placeholder="Ваш email для акций и предложений"
-          />
+          <InputField className={styles.footer__input} placeholder='Ваш email для акций и предложений' />
           <button className={styles.footer__subscribe}></button>
         </div>
       </div>
