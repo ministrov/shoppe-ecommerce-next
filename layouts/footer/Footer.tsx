@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SocialList } from '@/components/socialsList/SocialList';
+import { SocialsList } from '@/components/socialsList/SocialsList';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -24,13 +24,13 @@ export const Footer = () => {
           placeholder="Ваш email для акций и предложений"
           variant="black"
         /> */}
-          <button className={styles.footer__subscribe}>{/* <Icon name="icons:arrow-right" size="8px" /> */}</button>
+          <button className={styles.footer__subscribe}></button>
         </div>
       </div>
       <div className={styles.footer__bottom}>
         <div className={styles.footer__copyright}>© {new Date().getFullYear()} Shoppe</div>
         <div className={styles.footer__social}>
-          <SocialList />
+          <SocialsList />
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
 :root {
   --font-family: 'DM Sans', system-ui, sans-serif;
   --white: #ffffff;
-  --light-gray-200: #efefef;
-  --light-gray-150: #d8d8d8;
-  --light-gray: #707070;
-  --accent: #a18a68;
   --black: #000000;
   --foreground: #171717;
+  --light-gray: #707070;
+  --color-gray-300: #979797;
+  --light-gray-200: #efefef;
+  --light-gray-150: #d8d8d8;
+  --accent: #a18a68;
   --errors: #d82700;
   --border-radius: 4px;
 }
