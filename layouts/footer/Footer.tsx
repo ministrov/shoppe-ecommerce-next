@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SocialsList } from '@/components/socialsList/SocialsList';
+import { InputField } from '@/components/inputField/InputField';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -19,11 +20,10 @@ export const Footer = () => {
           </li>
         </ul>
         <div className={styles.footer__form}>
-          {/* <InputField
-          class="footer__input"
-          placeholder="Ваш email для акций и предложений"
-          variant="black"
-        /> */}
+          <InputField
+            className={styles.footer__input}
+            // placeholder="Ваш email для акций и предложений"
+          />
           <button className={styles.footer__subscribe}></button>
         </div>
       </div>
