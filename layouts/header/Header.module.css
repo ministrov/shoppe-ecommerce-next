@@ -102,6 +102,80 @@
   }
 }
 
+.navMobile {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 24px 32px;
+  background-color: var(--color-white);
+}
+
+.navMobile__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.navMobile__search {
+  margin-bottom: 40px;
+}
+
+.navMobile__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 30px;
+}
+
+.navMobile__hr {
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.navMobile__icons {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.navMobile__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font);
+  font-size: 24px;
+  line-height: 30px;
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.navMobile__btns {
+  display: flex;
+  gap: 16px;
+}
+
+.navMobile__close {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+  .nav-mobile {
+    padding: 16px 16px;
+  }
+
+  .nav-mobile__link {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .cartCount {
     display: flex;

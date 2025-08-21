@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Logo } from '../../components/logo/Logo';
 import { ButtonLink } from '../../components/buttonLink/ButtonLink';
 import { NavMenu } from '../../components/navMenu/NavMenu';
@@ -106,7 +107,36 @@ export const Header = () => {
 
         <Searching />
 
-        <div className={styles.mobileMenuBottom}>mobile menu bottom</div>
+        {/* <div classNameName={styles.mobileMenuBottom}>mobile menu bottom</div> */}
+
+        <div className={styles.navMobile__content}>
+          <div className={styles.navMobile__menu}>
+            <Link href='/' className={styles.navMobile__link}>
+              Главная
+            </Link>
+            <Link href='/catalog' className={styles.navMobile__link}>
+              Магазин
+            </Link>
+            <Link href='/about' className={styles.navMobile__link}>
+              О нас
+            </Link>
+          </div>
+          <div className={styles.navMobile__hr}></div>
+          <div className={styles.navMobile__icons}>
+            <Link href='/account' className={styles.navMobile__link}>
+              {/* <Icon name='icons:user' size='24px' /> */}
+              Мой аккаунт
+            </Link>
+            <Link href='/favorites' className={styles.navMobile__link}>
+              {/* <Icon name='icons:favorites' size='24px' /> */}
+              Избранное
+            </Link>
+            <Link href='/cart' className={styles.navMobile__link}>
+              {/* <Icon name='icons:exit' size='24px' /> */}
+              Выход
+            </Link>
+          </div>
+        </div>
       </motion.div>
     </header>
   );
