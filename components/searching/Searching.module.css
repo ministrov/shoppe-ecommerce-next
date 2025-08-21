@@ -9,13 +9,13 @@
 
 .searchInput {
   width: 100%;
-  font-family: var(--font-family);
+  font-family: var(--font);
   font-size: 16px;
   border: none;
   background-color: transparent;
 }
 
 .searchInput::placeholder {
-  font-family: var(--font-family) !important;
+  font-family: var(--font) !important;
   color: var(--light-gray);
 }

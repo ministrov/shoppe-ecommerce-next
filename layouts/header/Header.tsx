@@ -105,6 +105,8 @@ export const Header = () => {
         </header>
 
         <Searching />
+
+        <div className={styles.mobileMenuBottom}>mobile menu bottom</div>
       </motion.div>
     </header>
   );
