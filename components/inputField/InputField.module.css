@@ -5,6 +5,7 @@
   font-weight: 400;
   color: var(--black);
   border: none;
+  border-bottom: 1px solid var(--light-gray);
   background: none;
 }
 .input::placeholder {

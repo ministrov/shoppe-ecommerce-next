@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { SocialsList } from '@/components/socialsList/SocialsList';
 import { InputField } from '@/components/inputField/InputField';
 import styles from './Footer.module.css';
@@ -21,7 +22,9 @@ export const Footer = () => {
         </ul>
         <div className={styles.footer__form}>
           <InputField className={styles.footer__input} placeholder='Ваш email для акций и предложений' />
-          <button className={styles.footer__subscribe}></button>
+          <button className={styles.footer__subscribe}>
+            <Image src='/arrow-right.svg' width={20} height={20} alt='Subscribe icon' />
+          </button>
         </div>
       </div>
       <div className={styles.footer__bottom}>
