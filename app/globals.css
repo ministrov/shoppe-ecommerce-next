@@ -38,3 +38,10 @@ a {
   max-width: 1248px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 1285px) {
+  .container {
+    margin: 0;
+    padding: 0 16px;
+  }
+}

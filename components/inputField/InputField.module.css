@@ -2,6 +2,7 @@
   width: 100%;
   padding: 12px 0;
   font-size: 16px;
+  line-height: 22px;
   font-weight: 400;
   color: var(--black);
   border: none;
@@ -10,4 +11,11 @@
 }
 .input::placeholder {
   color: var(--light-gray);
+}
+
+@media screen and (max-width: 375px) {
+  .input {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
