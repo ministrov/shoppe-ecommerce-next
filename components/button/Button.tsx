@@ -8,7 +8,7 @@ export const Button = ({ children, size, className, ghost = false, ...props }: B
       className={cn(styles.button, className, {
         [styles['button--ghost']]: ghost,
         [styles['button--medium']]: size === 'medium',
-        [styles['button--small']]: size === 'small',
+        // [styles['button--small']]: size === 'small',
       })}
       {...props}
     >

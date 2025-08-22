@@ -24,10 +24,6 @@
   max-width: 187px;
 }
 
-.button--small {
-  max-width: 156px;
-}
-
 @media screen and (max-width: 328px) {
   .button {
     padding-top: 6px;
