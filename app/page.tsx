@@ -3,32 +3,32 @@ import { Button } from '@/components/button/Button';
 import { Searching } from '@/components/searching/Searching';
 import { Message } from '@/components/message/Message';
 
-type idDisplay = {
-  id: string;
-  display: string;
-};
+// type idDisplay = {
+//   id: string;
+//   display: string;
+// };
 
-const list: idDisplay[] = [
-  {
-    id: 'foo',
-    display: 'Foo select',
-  },
-  {
-    id: 'bar',
-    display: 'bar select',
-  },
-];
+// const list: idDisplay[] = [
+//   {
+//     id: 'foo',
+//     display: 'Foo select',
+//   },
+//   {
+//     id: 'bar',
+//     display: 'bar select',
+//   },
+// ];
 
 export default function Home() {
-  const fooIndex = list.map((item) => item.id).indexOf('foo');
+  // const fooIndex = list.map((item) => item.id).indexOf('foo');
 
-  console.log(fooIndex);
+  // console.log(fooIndex);
 
-  if (fooIndex === -1) {
-    console.log('fooIndex is -1, which means that the item with id "foo" was not found in the list');
-  } else {
-    console.log(`The item with id "foo" was found at index ${fooIndex} in the list`);
-  }
+  // if (fooIndex === -1) {
+  //   console.log('fooIndex is -1, which means that the item with id "foo" was not found in the list');
+  // } else {
+  //   console.log(`The item with id "foo" was found at index ${fooIndex} in the list`);
+  // }
   return (
     <div>
       <GeolocationContainer />
