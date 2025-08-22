@@ -107,8 +107,6 @@ export const Header = () => {
 
         <Searching />
 
-        {/* <div classNameName={styles.mobileMenuBottom}>mobile menu bottom</div> */}
-
         <div className={styles.navMobile__content}>
           <div className={styles.navMobile__menu}>
             <Link href='/' className={styles.navMobile__link}>
@@ -124,15 +122,15 @@ export const Header = () => {
           <div className={styles.navMobile__hr}></div>
           <div className={styles.navMobile__icons}>
             <Link href='/account' className={styles.navMobile__link}>
-              {/* <Icon name='icons:user' size='24px' /> */}
+              <Image src={'/user.svg'} width={20} height={20} alt={'User account icon'} />
               Мой аккаунт
             </Link>
             <Link href='/favorites' className={styles.navMobile__link}>
-              {/* <Icon name='icons:favorites' size='24px' /> */}
+              <Image src={'/heart.svg'} width={20} height={20} alt={'Favorite icon'} />
               Избранное
             </Link>
             <Link href='/cart' className={styles.navMobile__link}>
-              {/* <Icon name='icons:exit' size='24px' /> */}
+              <Image src={'/exit.svg'} width={20} height={20} alt={'Exit icon'} />
               Выход
             </Link>
           </div>
