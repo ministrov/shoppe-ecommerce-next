@@ -3,22 +3,6 @@ import { Button } from '@/components/button/Button';
 import { Searching } from '@/components/searching/Searching';
 import { Message } from '@/components/message/Message';
 
-// type idDisplay = {
-//   id: string;
-//   display: string;
-// };
-
-// const list: idDisplay[] = [
-//   {
-//     id: 'foo',
-//     display: 'Foo select',
-//   },
-//   {
-//     id: 'bar',
-//     display: 'bar select',
-//   },
-// ];
-
 export default function Home() {
   // const fooIndex = list.map((item) => item.id).indexOf('foo');
 
