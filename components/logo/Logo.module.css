@@ -3,7 +3,7 @@
   max-height: 40px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 375px) {
   .logo {
     max-height: 36px;
   }
