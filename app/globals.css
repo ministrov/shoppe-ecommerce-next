@@ -34,6 +34,19 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  margin: 0;
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 43px;
+  text-align: center;
+  color: var(--color-black);
+}
+
+h1.left {
+  text-align: left;
+}
+
 .container {
   max-width: 1248px;
   margin: 0 auto;
