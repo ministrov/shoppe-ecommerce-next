@@ -13,13 +13,14 @@ import { Searching } from '../../components/searching/Searching';
 import styles from './Header.module.css';
 
 export const Header = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const pathname = usePathname();
 
   const showSearching = {
     hidden: { opacity: 0 },
-    visible: { opacity: open ? 1 : 0 },
+    // visible: { opacity: open ? 1 : 0 },
+    visible: { opacity: visible ? 1 : 0 },
   };
 
   const variants = {
@@ -52,7 +53,7 @@ export const Header = () => {
               variants={showSearching}
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
-              {open && <Searching />}
+              {visible && <Searching />}
             </motion.div>
             <Image
               className={styles.searchIcon}
@@ -60,7 +61,7 @@ export const Header = () => {
               width={19}
               height={19}
               alt={'Icon search'}
-              onClick={() => setOpen((current) => !current)}
+              onClick={() => setVisible((current) => !current)}
             />
           </div>
 
