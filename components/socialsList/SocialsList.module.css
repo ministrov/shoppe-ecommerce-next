@@ -6,6 +6,11 @@
   list-style: none;
 }
 
+.item {
+  width: 20px;
+  height: 20px;
+}
+
 .socials a {
   color: var(--color-gray-300);
 }

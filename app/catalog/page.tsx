@@ -17,7 +17,7 @@ export default function Catalog() {
             {/* <InputField v-model="search" variant="gray" placeholder="Поиск..." />
           <Icon name="icons:search" size="18px" /> */}
           </div>
-          {/* <SelectField v-model="category_id" :options="categoriesSelect" /> */}
+
           <div className={styles.catalog__priceSearch}>
             {/* <USlider v-model="price" color="neutral" size="lg" /> */}
 
