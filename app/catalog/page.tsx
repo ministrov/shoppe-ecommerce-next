@@ -1,3 +1,4 @@
+import { InputField } from '@/components/inputField/InputField';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -14,8 +15,9 @@ export default function Catalog() {
       <div className={styles.catalog}>
         <div className={styles.catalog__filter}>
           <div className={styles.catalog__search}>
-            {/* <InputField v-model="search" variant="gray" placeholder="Поиск..." />
-          <Icon name="icons:search" size="18px" /> */}
+            <InputField className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
+
+            Icon of search
           </div>
 
           <div className={styles.catalog__priceSearch}>
