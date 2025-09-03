@@ -1,10 +1,21 @@
+'use client';
+
 import Image from 'next/image';
 import { InputField } from '@/components/inputField/InputField';
 import { SelectField } from '@/components/selectField/SelectField';
 import cn from 'classnames';
 import styles from './page.module.css';
 
+const options = [
+  { label: 'Option 1', value: '1' },
+  { label: 'Option 2', value: '2' },
+  { label: 'Option 3', value: '3' },
+];
+
 export default function Catalog() {
+  const handleSelectChange = (value: string) => {
+    console.log('Selected value:', value)
+  }
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
@@ -21,11 +32,11 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
-          <SelectField />
+          <SelectField options={options} onChange={handleSelectChange} />
           <div className={styles.catalog__priceSearch}>
-            {/* <USlider v-model="price" color="neutral" size="lg" /> */}
+            slider
 
-            {/* <span>{{ `Цена: $${price[0]} - $${price[1]}` }}</span> */}
+            <span>{`Цена: $40 - $180`}</span>
           </div>
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
@@ -37,7 +48,6 @@ export default function Catalog() {
           <ul className={styles.catalog__cards}>
 
           </ul>
-
         </div>
       </div>
     </section>

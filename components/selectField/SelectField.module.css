@@ -1,3 +1,20 @@
+.selectWrapper {
+  position: relative;
+}
+
+.selectWrapper svg {
+  position: absolute;
+  right: 24px;
+  top: 22px;
+}
+
 .select {
-  background-color: tomato;
+  width: 100%;
+  font-family: inherit;
+  margin: 0;
+  padding: 15px 12px;
+  background-color: transparent;
+  border: 1px solid var(--light-gray-150);
+  border-radius: 4px;
+  appearance: none;
 }
