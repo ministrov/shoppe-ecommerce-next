@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { InputField } from '@/components/inputField/InputField';
+import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import cn from 'classnames';
 import styles from './page.module.css';
@@ -19,8 +20,7 @@ export default function Catalog() {
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
-        {/* <SearchForm /> */}
-        SearchForm in here
+        <Searching />
       </div>
 
       <h1 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h1>

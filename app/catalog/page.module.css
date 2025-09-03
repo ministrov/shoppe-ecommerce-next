@@ -24,6 +24,11 @@
   gap: 24px;
 }
 
+.catalog__cardsWrapper {
+  min-height: 100vh;
+  background-color: tomato;
+}
+
 .catalog__search {
   position: relative;
 }
@@ -90,6 +95,10 @@
 
   .catalog {
     flex-direction: column;
+  }
+
+  .catalog__filter {
+    width: 100%;
   }
 
   .catalog__cards {
