@@ -1,0 +1,126 @@
+.catalogPage {
+  min-height: 100vh;
+  padding-top: 96px;
+  padding-bottom: 164px;
+}
+
+.searchMobile {
+  display: none;
+}
+
+.left {
+  margin-bottom: 38px;
+}
+
+.catalog {
+  display: flex;
+  gap: 40px;
+}
+
+.catalog__filter {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.catalog__search {
+  position: relative;
+}
+
+.catalog__search .iconify {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.catalog__priceSearch {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog__switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalog__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  column-gap: 24px;
+  row-gap: 70px;
+  margin: 0;
+  margin-bottom: 60px;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (max-width: 1330px) {
+  .catalog__cards {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    column-gap: 16px;
+    row-gap: 48px;
+  }
+}
+
+@media screen and (max-width: 946px) {
+  .catalog {
+    flex-direction: column;
+  }
+
+  .catalog__cards {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    column-gap: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .searchMobile {
+    display: block;
+    margin-bottom: 48px;
+  }
+
+  .catalogPage {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .catalog {
+    flex-direction: column;
+  }
+
+  .catalog__cards {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    column-gap: 12px;
+    row-gap: 24px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .searchMobile {
+    margin-top: 17px;
+    margin-bottom: 24px;
+  }
+
+  .catalogPage {
+    padding-top: 0;
+    padding-bottom: 64px;
+  }
+
+  .catalogPage__title {
+    margin-bottom: 16px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .catalog__filter {
+    width: 100%;
+  }
+
+  .catalog__cards {
+    grid-template-columns: repeat(2, minmax(136px, 1fr));
+  }
+}
