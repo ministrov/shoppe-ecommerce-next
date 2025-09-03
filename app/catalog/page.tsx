@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
@@ -14,6 +15,10 @@ const options = [
 ];
 
 export default function Catalog() {
+  const [showFilter, setShowFilter] = useState<boolean>(false);
+
+  console.log(showFilter);
+
   const handleSelectChange = (value: string) => {
     console.log('Selected value:', value)
   }
@@ -26,7 +31,14 @@ export default function Catalog() {
       <h1 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h1>
 
       <div className={styles.catalog}>
-        <div className={styles.catalog__filter}>
+        <div className={styles.catalog__filterMobile} onClick={() => setShowFilter(true)}>
+          <Image src={'/filter-mobile.svg'} width={20} height={20} alt={''} />
+
+          <span className={styles.filterMobileLabel}>Фильтры</span>
+        </div>
+        <div className={cn(styles.catalog__filter, {
+          [styles.visible]: showFilter
+        })} onClick={() => setShowFilter(false)}>
           <div className={styles.catalog__search}>
             <InputField className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
 
