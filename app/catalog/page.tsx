@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { InputField } from '@/components/inputField/InputField';
 import { SelectField } from '@/components/selectField/SelectField';
 import cn from 'classnames';
@@ -18,7 +19,7 @@ export default function Catalog() {
           <div className={styles.catalog__search}>
             <InputField className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
 
-            Icon of search
+            <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
           <SelectField />
           <div className={styles.catalog__priceSearch}>

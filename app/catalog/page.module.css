@@ -28,7 +28,7 @@
   position: relative;
 }
 
-.catalog__search .iconify {
+.catalog__search img {
   position: absolute;
   right: 5px;
   top: 50%;
