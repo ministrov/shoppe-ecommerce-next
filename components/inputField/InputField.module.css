@@ -6,11 +6,19 @@
   font-weight: 400;
   color: var(--black);
   border: none;
-  border-bottom: 1px solid var(--light-gray);
   background: none;
 }
+
 .input::placeholder {
   color: var(--light-gray);
+}
+
+.gray {
+  border-bottom: 1px solid var(--light-gray-150);
+}
+
+.black {
+  border-bottom: 1px solid var(--black);
 }
 
 @media screen and (max-width: 375px) {

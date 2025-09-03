@@ -7,7 +7,7 @@ export const SocialsList = () => {
   return (
     <ul className={styles.socials}>
       {socials.map((social) => (
-        <li key={social.id}>
+        <li key={social.id} className={styles.item}>
           <Link href='#'>
             <Image src={social.icon} width={20} height={20} alt={`Social icon ${social.name}`} />
           </Link>
