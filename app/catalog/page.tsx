@@ -1,4 +1,5 @@
 import { InputField } from '@/components/inputField/InputField';
+import { SelectField } from '@/components/selectField/SelectField';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -19,7 +20,7 @@ export default function Catalog() {
 
             Icon of search
           </div>
-
+          <SelectField />
           <div className={styles.catalog__priceSearch}>
             {/* <USlider v-model="price" color="neutral" size="lg" /> */}
 
