@@ -34,7 +34,7 @@
 
 .catalog__cardsWrapper {
   min-height: 100vh;
-  background-color: tomato;
+  /* background-color: tomato; */
 }
 
 .catalog__search {

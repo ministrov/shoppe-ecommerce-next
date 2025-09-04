@@ -1,27 +1,43 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
+import { ProductCard } from '@/components/productCard/ProductCard';
+import { Category } from '@/interfaces/category.interface';
+import { Product } from '@/interfaces/product.interface';
+import { useApiData } from '@/hooks/useApiData';
 import cn from 'classnames';
 import styles from './page.module.css';
 
-const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
-  { label: 'Option 3', value: '3' },
-];
-
 export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const { data, error, isLoading } = useApiData();
+  console.log(error, isLoading);
 
-  console.log(showFilter);
+  useEffect(() => {
+    setCategories(data.categories);
+    setProducts(data.products);
+  }, [data.categories, data.products]);
 
   const handleSelectChange = (value: string) => {
     console.log('Selected value:', value)
   }
+
+  const categoriesSelect = useMemo(() => {
+    const defaultOption = { value: "", label: "Категория" };
+    const categoryOptions = categories.map(category => ({
+      value: category.id.toString(),
+      label: category.name
+    }));
+
+    return [defaultOption, ...categoryOptions];
+  }, [categories]);
+
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
@@ -44,7 +60,7 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
-          <SelectField options={options} onChange={handleSelectChange} />
+          <SelectField options={categoriesSelect} onChange={handleSelectChange} />
           <div className={styles.catalog__priceSearch}>
             slider
 
@@ -58,7 +74,9 @@ export default function Catalog() {
 
         <div className={styles.catalog__cardsWrapper}>
           <ul className={styles.catalog__cards}>
-
+            {products.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </ul>
         </div>
       </div>
