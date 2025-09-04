@@ -7,8 +7,7 @@ import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { Category } from '@/interfaces/category.interface';
 import { Product } from '@/interfaces/product.interface';
-import { fetchCategories } from '@/api/categories';;
-import { getProducts } from '@/api/products';
+import { useApiData } from '@/hooks/useApiData';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -16,28 +15,13 @@ export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const { data, error, isLoading } = useApiData();
+  console.log(error, isLoading);
 
   useEffect(() => {
-    fetchCategories().then(categories => {
-      if (categories) {
-        setCategories(categories);
-      }
-    }).catch(error => {
-      console.error('Failed to fetch categories:', error);
-    });
-
-  }, []);
-
-  useEffect(() => {
-    getProducts().then(products => {
-      if (products) {
-        setProducts(products);
-      }
-    }).catch(error => {
-      console.error('Failed to fetch products:', error);
-    });
-
-  }, []);
+    setCategories(data.categories);
+    setProducts(data.products);
+  }, [data.categories, data.products]);
 
   const handleSelectChange = (value: string) => {
     console.log('Selected value:', value)
@@ -53,8 +37,6 @@ export default function Catalog() {
     return [defaultOption, ...categoryOptions];
   }, [categories]);
 
-  console.log(categoriesSelect);
-  console.log(products);
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
