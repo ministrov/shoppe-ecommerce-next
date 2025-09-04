@@ -8,19 +8,14 @@ import { SelectField } from '@/components/selectField/SelectField';
 import { Category, GetCategoryResponse } from '@/interfaces/category.interface';
 import cn from 'classnames';
 import styles from './page.module.css';
-// import { label } from 'framer-motion/client';
-
-// const options = [
-//   { label: 'Option 1', value: '1' },
-//   { label: 'Option 2', value: '2' },
-//   { label: 'Option 3', value: '3' },
-// ];
+import { GetProductsResponse, Product } from '@/interfaces/product.interface';
 
 const API_URL = 'http://localhost:3000/api';
 
 export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -34,6 +29,20 @@ export default function Catalog() {
     };
 
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await fetch(API_URL + '/products');
+        const data: GetProductsResponse = await response.json();
+        setProducts(data.products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    getProducts();
   }, []);
 
   const handleSelectChange = (value: string) => {
@@ -51,6 +60,7 @@ export default function Catalog() {
   }, [categories]);
 
   console.log(categoriesSelect);
+  console.log(products);
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
@@ -87,7 +97,9 @@ export default function Catalog() {
 
         <div className={styles.catalog__cardsWrapper}>
           <ul className={styles.catalog__cards}>
-
+            {products.map(product => (
+              <li key={product.id}>{product.name}</li>
+            ))}
           </ul>
         </div>
       </div>
