@@ -5,6 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
+import { ProductCard } from '@/components/productCard/ProductCard';
 import { Category } from '@/interfaces/category.interface';
 import { Product } from '@/interfaces/product.interface';
 import { useApiData } from '@/hooks/useApiData';
@@ -74,7 +75,7 @@ export default function Catalog() {
         <div className={styles.catalog__cardsWrapper}>
           <ul className={styles.catalog__cards}>
             {products.map(product => (
-              <li key={product.id}>{product.name}</li>
+              <ProductCard key={product.id} product={product} />
             ))}
           </ul>
         </div>

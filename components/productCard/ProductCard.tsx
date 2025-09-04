@@ -1,23 +1,42 @@
+import { useMemo } from 'react';
 import Link from 'next/link';
 import { ProductCardProps } from './ProductCard.interface';
 import styles from './ProductCard.module.css';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  // Получаем URL изображения из переменных окружения
+  const imageUrl = useMemo(() => {
+    const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+
+    console.log(baseUrl);
+    if (!baseUrl) {
+      console.warn('NEXT_PUBLIC_IMAGE_URL is not defined in environment variables');
+      return '';
+    }
+    return `${baseUrl}${product.images[0]}`;
+  }, [product.images]);
+
+  const imageStyle = useMemo(() => ({
+    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none'
+  }), [imageUrl]);
+
+  console.log(imageStyle);
+  console.log(imageUrl);
+
+
   return (
-    <li className={styles.catalog__item}>
-      <Link className={styles.card} href={''}>
-        <div className={styles.card__image}>
-          <span v-if="product.discount > 0" className={styles.card__discount}
-          >-{product.discount}%</span>
-          <span v-else></span>
+    <li className={styles.item}>
+      <Link className={styles.card} href={`/catalog/${product.id}`}>
+        <div className={styles.image} style={imageStyle}>
+          {product.discount > 0 ? <span className={styles.discount}>-{product.discount}%</span> : <span></span>}
           {/* <AddFavorite :id="product.id" :is-shown="isHovered" /> */}
         </div>
-        <div className="card__footer">
-          <div className="card__name">
+        <div className={styles.footer}>
+          <div className={styles.name}>
             {product.name}
           </div>
-          <div className="card__price">
-            <span v-if="product.discount" className="card__price-discount">$ {product.price}</span>
+          <div className={styles.price}>
+            {product.discount && <span className={styles.priceDiscount}>$ {product.price}</span>}
             {/* $ {priceWithDiscount} */}
           </div>
         </div>
