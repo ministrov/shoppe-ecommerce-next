@@ -6,9 +6,9 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { Category } from '@/interfaces/category.interface';
-import { GetProductsResponse, Product } from '@/interfaces/product.interface';
-import { fetchCategories } from '@/api/categories';
-import { API_URL } from '@/helpers';
+import { Product } from '@/interfaces/product.interface';
+import { fetchCategories } from '@/api/categories';;
+import { getProducts } from '@/api/products';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -26,21 +26,17 @@ export default function Catalog() {
       console.error('Failed to fetch categories:', error);
     });
 
-    fetchCategories();
   }, []);
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await fetch(API_URL + '/products');
-        const data: GetProductsResponse = await response.json();
-        setProducts(data.products);
-      } catch (error) {
-        console.error('Error fetching products:', error);
+    getProducts().then(products => {
+      if (products) {
+        setProducts(products);
       }
-    };
+    }).catch(error => {
+      console.error('Failed to fetch products:', error);
+    });
 
-    getProducts();
   }, []);
 
   const handleSelectChange = (value: string) => {
