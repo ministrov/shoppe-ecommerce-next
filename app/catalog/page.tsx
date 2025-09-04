@@ -1,10 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
+import { Category, GetCategoryResponse } from '@/interfaces/category.interface';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -14,10 +15,28 @@ const options = [
   { label: 'Option 3', value: '3' },
 ];
 
+const API_URL = 'http://localhost:3000/api';
+
 export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(API_URL + '/categories');
+        const data: GetCategoryResponse = await response.json();
+        setCategories(data.categories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   console.log(showFilter);
+  console.log(categories);
 
   const handleSelectChange = (value: string) => {
     console.log('Selected value:', value)
