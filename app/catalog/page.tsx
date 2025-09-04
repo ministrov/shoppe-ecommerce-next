@@ -1,19 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { Category, GetCategoryResponse } from '@/interfaces/category.interface';
 import cn from 'classnames';
 import styles from './page.module.css';
+// import { label } from 'framer-motion/client';
 
-const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
-  { label: 'Option 3', value: '3' },
-];
+// const options = [
+//   { label: 'Option 1', value: '1' },
+//   { label: 'Option 2', value: '2' },
+//   { label: 'Option 3', value: '3' },
+// ];
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -35,12 +36,21 @@ export default function Catalog() {
     fetchCategories();
   }, []);
 
-  console.log(showFilter);
-  console.log(categories);
-
   const handleSelectChange = (value: string) => {
     console.log('Selected value:', value)
   }
+
+  const categoriesSelect = useMemo(() => {
+    const defaultOption = { value: "", label: "Категория" };
+    const categoryOptions = categories.map(category => ({
+      value: category.id.toString(),
+      label: category.name
+    }));
+
+    return [defaultOption, ...categoryOptions];
+  }, [categories]);
+
+  console.log(categoriesSelect);
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
@@ -63,7 +73,7 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
-          <SelectField options={options} onChange={handleSelectChange} />
+          <SelectField options={categoriesSelect} onChange={handleSelectChange} />
           <div className={styles.catalog__priceSearch}>
             slider
 
