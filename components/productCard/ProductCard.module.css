@@ -17,12 +17,15 @@
   background-size: cover;
 }
 .price {
+  display: flex;
+  gap: 16px;
   font-size: 20px;
   font-weight: 500;
   line-height: 26px;
   text-transform: capitalize;
   color: var(--accent);
 }
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -46,5 +49,11 @@
   font-weight: 500;
   line-height: 26px;
   text-decoration: line-through;
-  color: var(--red);
+  color: var(--errors);
+}
+
+@media screen and (max-width: 375px) {
+  .price {
+    gap: 8px;
+  }
 }

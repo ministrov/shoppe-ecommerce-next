@@ -4,25 +4,30 @@ import { ProductCardProps } from './ProductCard.interface';
 import styles from './ProductCard.module.css';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  // Получаем URL изображения из переменных окружения
-  const imageUrl = useMemo(() => {
-    const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  // // Получаем URL изображения из переменных окружения
+  // const imageUrl = useMemo(() => {
+  //   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
-    console.log(baseUrl);
-    if (!baseUrl) {
-      console.warn('NEXT_PUBLIC_IMAGE_URL is not defined in environment variables');
-      return '';
-    }
-    return `${baseUrl}${product.images[0]}`;
-  }, [product.images]);
+  //   console.log(baseUrl);
+  //   if (!baseUrl) {
+  //     console.warn('NEXT_PUBLIC_IMAGE_URL is not defined in environment variables');
+  //     return '';
+  //   }
+  //   return `${baseUrl}${product.images[0]}`;
+  // }, [product.images]);
 
-  const imageStyle = useMemo(() => ({
-    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none'
-  }), [imageUrl]);
+  // const imageStyle = useMemo(() => ({
+  //   backgroundImage: imageUrl ? `url(${imageUrl})` : 'none'
+  // }), [imageUrl]);
+  const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  const imageUrl = baseUrl ? `${baseUrl}${product.images[0]}` : '';
+  const imageStyle = { backgroundImage: imageUrl ? `url(${imageUrl})` : 'none' };
+
+  const sale = useMemo(() => (product.price * product.discount) / 100, [product.price, product.discount]);
+  const priceWithDiscount = useMemo(() => Math.round(product.price - sale), [product.price, sale]);
 
   console.log(imageStyle);
   console.log(imageUrl);
-
 
   return (
     <li className={styles.item}>
@@ -37,7 +42,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </div>
           <div className={styles.price}>
             {product.discount && <span className={styles.priceDiscount}>$ {product.price}</span>}
-            {/* $ {priceWithDiscount} */}
+            $ {priceWithDiscount}
           </div>
         </div>
       </Link>
