@@ -5,12 +5,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
-import { Category, GetCategoryResponse } from '@/interfaces/category.interface';
+import { Category } from '@/interfaces/category.interface';
+import { GetProductsResponse, Product } from '@/interfaces/product.interface';
+import { fetchCategories } from '@/api/categories';
+import { API_URL } from '@/helpers';
 import cn from 'classnames';
 import styles from './page.module.css';
-import { GetProductsResponse, Product } from '@/interfaces/product.interface';
-
-const API_URL = 'http://localhost:3000/api';
 
 export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
@@ -18,15 +18,13 @@ export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(API_URL + '/categories');
-        const data: GetCategoryResponse = await response.json();
-        setCategories(data.categories);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
+    fetchCategories().then(categories => {
+      if (categories) {
+        setCategories(categories);
       }
-    };
+    }).catch(error => {
+      console.error('Failed to fetch categories:', error);
+    });
 
     fetchCategories();
   }, []);
