@@ -25,8 +25,11 @@ export default function Catalog() {
   // Получаем параметры из URL
   const category_id = searchParams.get('category_id') || '';
   const searchQuery = searchParams.get('search') || '';
+  const minPrice = parseInt(searchParams.get('minPrice') || '0');
+  const maxPrice = parseInt(searchParams.get('maxPrice') || '185');
 
   const [search, setSearch] = useState(searchQuery);
+  const [price, setPrice] = useState([minPrice, maxPrice]);
   const { data, error, isLoading } = useApiData();
   console.log(error, isLoading);
 
@@ -102,6 +105,10 @@ export default function Catalog() {
     setSearch(value);
   };
 
+  const handlePriceChange = (newPrice: number[]) => {
+    setPrice(newPrice);
+  };
+
   const categoriesSelect = useMemo(() => {
     const defaultOption = { value: "", label: "Категория" };
     const categoryOptions = categories.map(category => ({
@@ -136,9 +143,26 @@ export default function Catalog() {
           </div>
           <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
           <div className={styles.catalog__priceSearch}>
-            slider
-
-            <span>{`Цена: $40 - $180`}</span>
+            <div className={styles.slider}>
+              {/* Ценовой диапазон: ${price[0]} - ${price[1]} */}
+              <input
+                type="range"
+                min="0"
+                max="185"
+                value={price[0]}
+                onChange={(e) => handlePriceChange([parseInt(e.target.value), price[1]])}
+                style={{ width: '100%', margin: '10px 0' }}
+              />
+              <input
+                type="range"
+                min="0"
+                max="185"
+                value={price[1]}
+                onChange={(e) => handlePriceChange([price[0], parseInt(e.target.value)])}
+                style={{ width: '100%', margin: '10px 0' }}
+              />
+            </div>
+            <span>{`Цена: $${price[0]} - $${price[1]}`}</span>
           </div>
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
