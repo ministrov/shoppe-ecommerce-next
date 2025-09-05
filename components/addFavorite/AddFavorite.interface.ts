@@ -5,6 +5,6 @@ export interface AddFavoriteProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  id: string;
+  productId: number;
   isShown: boolean;
 }

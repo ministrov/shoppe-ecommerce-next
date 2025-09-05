@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { AddFavoriteProps } from './AddFavorite.interface';
 import styles from './AddFavorite.module.css';
 
-export const AddFavorite = ({ id, isShown }: AddFavoriteProps) => {
-  console.log(id, isShown);
+export const AddFavorite = ({ productId, isShown }: AddFavoriteProps) => {
+  console.log(productId, isShown);
   return (
     <button
       // v-show="isShown || favoriteStore.isFavorite(id)"
