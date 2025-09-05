@@ -36,6 +36,16 @@
   min-height: 100vh;
 }
 
+.noProducts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 48px;
+  line-height: 52px;
+}
+
 .catalog__search {
   position: relative;
 }

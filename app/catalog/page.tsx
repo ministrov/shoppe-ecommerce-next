@@ -149,8 +149,15 @@ export default function Catalog() {
         </div>
 
         <div className={styles.catalog__cardsWrapper}>
+          {isLoading && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>Loading</div>}
+
+          {!isLoading && products.length === 0 && (
+            <div className={styles.noProducts}>
+              Товары не найдены
+            </div>
+          )}
+
           <ul className={styles.catalog__cards}>
-            {isLoading && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading</div>}
             {!isLoading && products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
