@@ -20,7 +20,6 @@ export default function About() {
             <h3 className={styles.about__itemTitle}>Тренды в украшениях</h3>
             <div className={styles.about__imageBlock}>
               <Image src={'/about-1.jpg'} width='670' height='300' alt={'about-img-1'} />
-              {/* <img src='../assets/about-img-1.jpg' width='670' height='300' alt='about-img-1' /> */}
             </div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit,
@@ -39,7 +38,6 @@ export default function About() {
             <h3 className={styles.about__itemTitle}>Сделано с любовью</h3>
             <div className={styles.about__imageBlock}>
               <Image src={'/about-2.jpg'} width='670' height='300' alt={'about-img-2'} />
-              {/* <img src='../assets/about-img-2.jpg' width='670' height='300' alt='about-img-2' /> */}
             </div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit,
