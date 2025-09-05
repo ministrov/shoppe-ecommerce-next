@@ -6,6 +6,7 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
+import { Button } from '@/components/button/Button';
 import { Category } from '@/interfaces/category.interface';
 import { Product } from '@/interfaces/product.interface';
 import { useApiData } from '@/hooks/useApiData';
@@ -37,10 +38,6 @@ export default function Catalog() {
 
     return [defaultOption, ...categoryOptions];
   }, [categories]);
-
-  // if (isLoading) {
-  //   return 
-  // }
 
   return (
     <section className={styles.catalogPage}>
@@ -74,11 +71,13 @@ export default function Catalog() {
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
             {/* <USwitch size="xl" color="neutral" value="false" /> */}
           </div>
+
+          <Button>Нажать</Button>
         </div>
 
         <div className={styles.catalog__cardsWrapper}>
           <ul className={styles.catalog__cards}>
-            {isLoading && <div style={{ height: '50vh' }}>Loading</div>}
+            {isLoading && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading</div>}
             {!isLoading && products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

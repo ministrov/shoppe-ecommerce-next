@@ -23,7 +23,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {product.name}
           </div>
           <div className={styles.price}>
-            {product.discount && <span className={styles.priceDiscount}>$ {product.price}</span>}
+            {product.discount > 0 && <span className={styles.priceDiscount}>$ {product.price}</span>}
             $ {priceWithDiscount}
           </div>
         </div>
