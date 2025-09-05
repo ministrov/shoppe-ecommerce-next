@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
@@ -17,13 +17,13 @@ import styles from './page.module.css';
 
 export default function Catalog() {
   const searchParams = useSearchParams();
-  // const router = useRouter();
+  const router = useRouter();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
 
   // Получаем параметры из URL
-  // const category_id = searchParams.get('category_id') || '';
+  const category_id = searchParams.get('category_id') || '';
   const searchQuery = searchParams.get('search') || '';
 
   const [search, setSearch] = useState(searchQuery);
@@ -47,7 +47,7 @@ export default function Catalog() {
         // params.append('page', page.toString());
         // params.append('limit', '6');
 
-        // if (category_id) params.append('category_id', category_id);
+        if (category_id) params.append('category_id', category_id);
         if (search) params.append('search', search);
         // if (hasDiscount) params.append('discount', 'true');
         // params.append('minPrice', debouncedPrice[0].toString());
@@ -72,30 +72,30 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [search]);
+  }, [search, category_id]);
 
   // Обновляем URL при изменении фильтров
-  // const updateURL = useCallback((newParams: Record<string, string>) => {
-  //   const params = new URLSearchParams(searchParams.toString());
+  const updateURL = useCallback((newParams: Record<string, string>) => {
+    const params = new URLSearchParams(searchParams.toString());
 
-  //   Object.entries(newParams).forEach(([key, value]) => {
-  //     if (value) {
-  //       params.set(key, value);
-  //     } else {
-  //       params.delete(key);
-  //     }
-  //   });
+    Object.entries(newParams).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
 
-  //   if (!newParams.page && params.get('page') !== '1') {
-  //     params.set('page', '1');
-  //   }
+    // if (!newParams.page && params.get('page') !== '1') {
+    //   params.set('page', '1');
+    // }
 
-  //   router.replace(`/catalog?${params.toString()}`, { scroll: false });
-  // }, [router, searchParams]);
+    router.replace(`/catalog?${params.toString()}`, { scroll: false });
+  }, [router, searchParams]);
 
-  const handleSelectChange = (value: string) => {
+  const handleCategoryChange = (value: string) => {
     console.log('Selected value:', value);
-    // updateURL(value);
+    updateURL({ category_id: value });
   }
 
   const handleSearchChange = (value: string) => {
@@ -134,7 +134,7 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
-          <SelectField options={categoriesSelect} onChange={handleSelectChange} />
+          <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
           <div className={styles.catalog__priceSearch}>
             slider
 
@@ -149,7 +149,7 @@ export default function Catalog() {
         </div>
 
         <div className={styles.catalog__cardsWrapper}>
-          {isLoading && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>Loading</div>}
+          {isLoading && <div className={styles.loading}>Loading</div>}
 
           {!isLoading && products.length === 0 && (
             <div className={styles.noProducts}>
@@ -158,7 +158,7 @@ export default function Catalog() {
           )}
 
           <ul className={styles.catalog__cards}>
-            {!isLoading && products.map(product => (
+            {!isLoading && products.length !== 0 && products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
