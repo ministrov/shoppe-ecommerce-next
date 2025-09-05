@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { ProductCardProps } from './ProductCard.interface';
+import { AddFavorite } from '../addFavorite/AddFavorite';
 import styles from './ProductCard.module.css';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
@@ -16,7 +17,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <Link className={styles.card} href={`/catalog/${product.id}`}>
         <div className={styles.image} style={imageStyle}>
           {product.discount > 0 ? <span className={styles.discount}>-{product.discount}%</span> : <span></span>}
-          {/* <AddFavorite :id="product.id" :is-shown="isHovered" /> */}
+          <AddFavorite id='sdf' isShown />
         </div>
         <div className={styles.footer}>
           <div className={styles.name}>
