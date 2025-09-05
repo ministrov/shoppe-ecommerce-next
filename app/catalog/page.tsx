@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
@@ -8,15 +9,24 @@ import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Button } from '@/components/button/Button';
 import { Category } from '@/interfaces/category.interface';
-import { Product } from '@/interfaces/product.interface';
+import { Product, GetProductsResponse } from '@/interfaces/product.interface';
+import { API_URL } from '@/helpers';
 import { useApiData } from '@/hooks/useApiData';
 import cn from 'classnames';
 import styles from './page.module.css';
 
 export default function Catalog() {
+  const searchParams = useSearchParams();
+  // const router = useRouter();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+
+  // Получаем параметры из URL
+  // const category_id = searchParams.get('category_id') || '';
+  const searchQuery = searchParams.get('search') || '';
+
+  const [search, setSearch] = useState(searchQuery);
   const { data, error, isLoading } = useApiData();
   console.log(error, isLoading);
 
@@ -25,9 +35,72 @@ export default function Catalog() {
     setProducts(data.products);
   }, [data.categories, data.products]);
 
+  // Фетчим продукты напрямую с фильтрами
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // setIsLoading(true);
+      // setError(null);
+
+      try {
+        // Формируем query параметры напрямую для вашего API
+        const params = new URLSearchParams();
+        // params.append('page', page.toString());
+        // params.append('limit', '6');
+
+        // if (category_id) params.append('category_id', category_id);
+        if (search) params.append('search', search);
+        // if (hasDiscount) params.append('discount', 'true');
+        // params.append('minPrice', debouncedPrice[0].toString());
+        // params.append('maxPrice', debouncedPrice[1].toString());
+
+        // ✅ ПРЯМОЙ запрос к вашему API!
+        const response = await fetch(`${API_URL}/products?${params}`);
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+
+        const data: GetProductsResponse = await response.json();
+        setProducts(data.products || []);
+        // setTotalProducts(data.total || 0);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        // setError('Failed to load products');
+      } finally {
+        // setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [search]);
+
+  // Обновляем URL при изменении фильтров
+  // const updateURL = useCallback((newParams: Record<string, string>) => {
+  //   const params = new URLSearchParams(searchParams.toString());
+
+  //   Object.entries(newParams).forEach(([key, value]) => {
+  //     if (value) {
+  //       params.set(key, value);
+  //     } else {
+  //       params.delete(key);
+  //     }
+  //   });
+
+  //   if (!newParams.page && params.get('page') !== '1') {
+  //     params.set('page', '1');
+  //   }
+
+  //   router.replace(`/catalog?${params.toString()}`, { scroll: false });
+  // }, [router, searchParams]);
+
   const handleSelectChange = (value: string) => {
-    console.log('Selected value:', value)
+    console.log('Selected value:', value);
+    // updateURL(value);
   }
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+  };
 
   const categoriesSelect = useMemo(() => {
     const defaultOption = { value: "", label: "Категория" };
@@ -57,7 +130,7 @@ export default function Catalog() {
           [styles.visible]: showFilter
         })} onClick={() => setShowFilter(false)}>
           <div className={styles.catalog__search}>
-            <InputField className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
+            <InputField onChange={(e) => handleSearchChange(e.target.value)} value={search} className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
