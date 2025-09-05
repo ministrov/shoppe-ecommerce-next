@@ -38,6 +38,10 @@ export default function Catalog() {
     return [defaultOption, ...categoryOptions];
   }, [categories]);
 
+  // if (isLoading) {
+  //   return 
+  // }
+
   return (
     <section className={styles.catalogPage}>
       <div className={styles.searchMobile}>
@@ -74,7 +78,8 @@ export default function Catalog() {
 
         <div className={styles.catalog__cardsWrapper}>
           <ul className={styles.catalog__cards}>
-            {products.map(product => (
+            {isLoading && <div style={{ height: '50vh' }}>Loading</div>}
+            {!isLoading && products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
