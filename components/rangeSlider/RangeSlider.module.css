@@ -4,10 +4,10 @@
 
 .sliderWrapper {
   position: relative;
-  height: 40px;
+  height: 11px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .track {
@@ -40,41 +40,24 @@
 .thumb::-webkit-slider-thumb {
   pointer-events: all;
   appearance: none;
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid #007bff;
+  height: 10px;
+  width: 2px;
+  background: var(--black);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
-}
-
-.thumb::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .thumb::-moz-range-thumb {
   pointer-events: all;
   appearance: none;
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid #007bff;
+  height: 10px;
+  width: 2px;
+  background: var(--black);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
-.thumb::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
 .priceDisplay {
-  margin-top: 8px;
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
