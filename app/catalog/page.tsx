@@ -7,6 +7,7 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
+import { Switch } from "@/components/ui/switch"
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -165,7 +166,7 @@ export default function Catalog() {
           </div>
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            {/* <USwitch size="xl" color="neutral" value="false" /> */}
+            <Switch />
           </div>
 
           {/* <Button>Нажать</Button> */}
