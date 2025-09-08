@@ -1,7 +1,7 @@
 import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
 import { Button } from '@/components/button/Button';
 import { Searching } from '@/components/searching/Searching';
-import { Message } from '@/components/message/Message';
+// import { Message } from '@/components/message/Message';
 
 export default function Home() {
   // const fooIndex = list.map((item) => item.id).indexOf('foo');
@@ -25,10 +25,14 @@ export default function Home() {
         <Button size={'small'}>Отправить</Button>
       </div>
 
-      <Message content={'Ваш email подписан на новости и уведомления'} />
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+
+      {/* <Message content={'Ваш email подписан на новости и уведомления'} />
       <Message content={'Ваш отзыв отправлен на модерацию'} />
 
-      <Message content={'Мы получили ваш заказ'} isLong />
+      <Message content={'Мы получили ваш заказ'} isLong /> */}
 
       <Searching />
     </div>

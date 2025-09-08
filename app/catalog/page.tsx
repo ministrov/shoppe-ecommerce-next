@@ -7,7 +7,6 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
-import { Button } from '@/components/button/Button';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -169,7 +168,7 @@ export default function Catalog() {
             {/* <USwitch size="xl" color="neutral" value="false" /> */}
           </div>
 
-          <Button>Нажать</Button>
+          {/* <Button>Нажать</Button> */}
         </div>
 
         <div className={styles.catalog__cardsWrapper}>

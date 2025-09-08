@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   --font: 'DM Sans', sans-serif;
   --white: #ffffff;
