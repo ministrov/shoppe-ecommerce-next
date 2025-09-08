@@ -7,8 +7,7 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
-// import { Switch } from "@/components/ui/switch";
-// import { Slider } from "@/components/ui/slider";
+import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -30,7 +29,7 @@ export default function Catalog() {
   const maxPrice = parseInt(searchParams.get('maxPrice') || '185');
 
   const [search, setSearch] = useState(searchQuery);
-  const [price, setPrice] = useState([minPrice, maxPrice]);
+  const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
   const { data, error, isLoading } = useApiData();
   console.log(error, isLoading);
 
@@ -106,7 +105,7 @@ export default function Catalog() {
     setSearch(value);
   };
 
-  const handlePriceChange = (newPrice: number[]) => {
+  const handlePriceChange = (newPrice: [number, number]) => {
     setPrice(newPrice);
   };
 
@@ -144,28 +143,11 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
+
           <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
-          <div className={styles.catalog__priceSearch}>
-            <div className={styles.slider}>
-              <input
-                type="range"
-                min="0"
-                max="185"
-                value={price[0]}
-                onChange={(e) => handlePriceChange([parseInt(e.target.value), price[1]])}
-                style={{ width: '100%', margin: '10px 0' }}
-              />
-              <input
-                type="range"
-                min="0"
-                max="185"
-                value={price[1]}
-                onChange={(e) => handlePriceChange([price[0], parseInt(e.target.value)])}
-                style={{ width: '100%', margin: '10px 0' }}
-              />
-            </div>
-            <span>{`Цена: $${price[0]} - $${price[1]}`}</span>
-          </div>
+
+          <RangeSlider min={0} max={185} value={price} onChange={handlePriceChange} />
+
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
             {/* <Switch /> */}
