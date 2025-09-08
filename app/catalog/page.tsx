@@ -7,7 +7,8 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
-import { Switch } from "@/components/ui/switch"
+// import { Switch } from "@/components/ui/switch";
+// import { Slider } from "@/components/ui/slider";
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -109,6 +110,8 @@ export default function Catalog() {
     setPrice(newPrice);
   };
 
+  // console.log(handlePriceChange);
+
   const categoriesSelect = useMemo(() => {
     const defaultOption = { value: "", label: "Категория" };
     const categoryOptions = categories.map(category => ({
@@ -144,7 +147,6 @@ export default function Catalog() {
           <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
           <div className={styles.catalog__priceSearch}>
             <div className={styles.slider}>
-              {/* Ценовой диапазон: ${price[0]} - ${price[1]} */}
               <input
                 type="range"
                 min="0"
@@ -166,10 +168,8 @@ export default function Catalog() {
           </div>
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            <Switch />
+            {/* <Switch /> */}
           </div>
-
-          {/* <Button>Нажать</Button> */}
         </div>
 
         <div className={styles.catalog__cardsWrapper}>
