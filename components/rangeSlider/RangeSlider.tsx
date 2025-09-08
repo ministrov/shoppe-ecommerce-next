@@ -14,8 +14,8 @@ export const RangeSlider = ({
   const [minValue, setMinValue] = useState(value[0]);
   const [maxValue, setMaxValue] = useState(value[1]);
 
-  console.log(minValue);
-  console.log(maxValue);
+  // console.log(minValue);
+  // console.log(maxValue);
 
   useEffect(() => {
     setMinValue(value[0]);

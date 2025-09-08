@@ -12,7 +12,7 @@
 
 .navMenuItem:last-child {
   padding-right: 60px;
-  border-right: 1px solid var(--light-gray);
+  border-right: 1px solid var(--color-gray-500);
 }
 
 @media screen and (max-width: 768px) {

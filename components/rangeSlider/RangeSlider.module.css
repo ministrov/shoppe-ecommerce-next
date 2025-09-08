@@ -1,6 +1,5 @@
 .sliderContainer {
   width: 100%;
-  padding: 10px 0;
 }
 
 .sliderWrapper {
@@ -15,7 +14,7 @@
   position: absolute;
   height: 4px;
   width: 100%;
-  background-color: #e1e1e1;
+  background-color: var(--color-gray-150);
   border-radius: 2px;
   z-index: 1;
 }
@@ -23,7 +22,7 @@
 .range {
   position: absolute;
   height: 4px;
-  background: linear-gradient(90deg, #007bff, #0056b3);
+  background: var(--black);
   border-radius: 2px;
   z-index: 2;
 }
@@ -75,9 +74,9 @@
 }
 
 .priceDisplay {
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
   margin-top: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: var(--color-gray-700);
 }

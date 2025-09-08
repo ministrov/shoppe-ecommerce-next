@@ -3,10 +3,11 @@
   --white: #ffffff;
   --black: #000000;
   --foreground: #171717;
-  --light-gray: #707070;
+  --color-gray-700: #333;
+  --color-gray-500: #707070;
   --color-gray-300: #979797;
-  --light-gray-200: #efefef;
-  --light-gray-150: #d8d8d8;
+  --color-gray-200: #efefef;
+  --color-gray-150: #d8d8d8;
   --accent: #a18a68;
   --errors: #d82700;
   --border-radius: 4px;

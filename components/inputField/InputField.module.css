@@ -10,11 +10,11 @@
 }
 
 .input::placeholder {
-  color: var(--light-gray);
+  color: var(--color-gray-500);
 }
 
 .gray {
-  border-bottom: 1px solid var(--light-gray-150);
+  border-bottom: 1px solid var(--color-gray-500-150);
 }
 
 .black {
