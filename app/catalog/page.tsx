@@ -25,11 +25,13 @@ export default function Catalog() {
   // Получаем параметры из URL
   const category_id = searchParams.get('category_id') || '';
   const searchQuery = searchParams.get('search') || '';
-  const minPrice = parseInt(searchParams.get('minPrice') || '0');
-  const maxPrice = parseInt(searchParams.get('maxPrice') || '185');
+  const has_discount = searchParams.get('has_discount') === 'true';
+  const minPrice = parseInt(searchParams.get('price_from') || '0');
+  const maxPrice = parseInt(searchParams.get('price_to') || '185');
 
   const [search, setSearch] = useState(searchQuery);
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
+  const [hasDiscount, setHasDiscount] = useState(has_discount);
   const { data, error, isLoading } = useApiData();
   console.log(error, isLoading);
 
@@ -52,11 +54,11 @@ export default function Catalog() {
 
         if (category_id) params.append('category_id', category_id);
         if (search) params.append('search', search);
-        // if (hasDiscount) params.append('discount', 'true');
-        // params.append('minPrice', debouncedPrice[0].toString());
-        // params.append('maxPrice', debouncedPrice[1].toString());
+        if (hasDiscount) params.append('has_discount', 'true');
+        params.append('price_from', price[0].toString());
+        params.append('price_to', price[1].toString());
 
-        // ✅ ПРЯМОЙ запрос к вашему API!
+        // ПРЯМОЙ запрос к вашему API!
         const response = await fetch(`${API_URL}/products?${params}`);
 
         if (!response.ok) {
@@ -75,7 +77,7 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [search, category_id]);
+  }, [search, category_id, has_discount, hasDiscount, price]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
@@ -107,6 +109,12 @@ export default function Catalog() {
 
   const handlePriceChange = (newPrice: [number, number]) => {
     setPrice(newPrice);
+  };
+
+  const handleDiscountChange = () => {
+    const newDiscount = !hasDiscount;
+    setHasDiscount(newDiscount);
+    updateURL({ discount: newDiscount.toString() });
   };
 
   // console.log(handlePriceChange);
@@ -150,7 +158,12 @@ export default function Catalog() {
 
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            {/* <Switch /> */}
+            <input
+              type="checkbox"
+              checked={hasDiscount}
+              onChange={handleDiscountChange}
+              style={{ width: 40, height: 20 }}
+            />
           </div>
         </div>
 
