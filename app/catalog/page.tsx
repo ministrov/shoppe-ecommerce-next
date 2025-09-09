@@ -13,6 +13,7 @@ import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
 import { useApiData } from '@/hooks/useApiData';
 import { useDebounce } from '@/hooks/useDebounce';
+import { fetchCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -22,7 +23,7 @@ export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const [totalProducts, setTotalProducts] = useState(8);
+  const [totalProducts, setTotalProducts] = useState(0);
 
   // Получаем параметры из URL
   const category_id = searchParams.get('category_id') || '';
@@ -35,15 +36,28 @@ export default function Catalog() {
   const [search, setSearch] = useState(searchQuery);
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
   const [hasDiscount, setHasDiscount] = useState<boolean>(has_discount);
-  const { data, error, isLoading } = useApiData();
+  const { error, isLoading } = useApiData();
 
   const debouncedSearch = useDebounce<string>(search, 500);
   const debouncedPrice = useDebounce<[number, number]>(price, 500);
 
+  console.log('totalProducts:', totalProducts);
+
+  // Получаем категории через ваш модуль
   useEffect(() => {
-    setCategories(data.categories);
-    setProducts(data.products);
-  }, [data.categories, data.products]);
+    const getCategories = async () => {
+      try {
+        const categoriesData = await fetchCategories();
+        if (categoriesData) {
+          setCategories(categoriesData);
+        }
+      } catch (error) {
+        console.error('Error loading categories:', error);
+      }
+    };
+
+    getCategories();
+  }, []);
 
   // Фетчим продукты напрямую с фильтрами
   useEffect(() => {
@@ -72,25 +86,20 @@ export default function Catalog() {
         }
 
         const data: GetProductsResponse = await response.json();
+        console.log('API response:', data);
         setProducts(data.products || []);
-        console.log(totalProducts);
         setTotalProducts(data.total || 0);
       } catch (error) {
         console.error('Error fetching products:', error);
-        // setError('Failed to load products');
-      } finally {
-        // setIsLoading(false);
       }
     };
 
     fetchProducts();
-  }, [category_id, has_discount, hasDiscount, debouncedSearch, debouncedPrice, page, totalProducts]);
+  }, [category_id, hasDiscount, debouncedSearch, debouncedPrice, page]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
-
-    console.log(searchParams);
 
     Object.entries(newParams).forEach(([key, value]) => {
       if (value) {
@@ -100,7 +109,7 @@ export default function Catalog() {
       }
     });
 
-    if (!newParams.page && params.get('page') !== '1') {
+    if (!newParams.page) {
       params.set('page', '1');
     }
 
@@ -108,7 +117,6 @@ export default function Catalog() {
   }, [router, searchParams]);
 
   const handleCategoryChange = (value: string) => {
-    console.log('Selected value:', value);
     updateURL({ category_id: value });
   }
 
@@ -128,14 +136,12 @@ export default function Catalog() {
   const handleDiscountChange = () => {
     const newDiscount = !hasDiscount;
     setHasDiscount(newDiscount);
-    updateURL({ discount: newDiscount.toString() });
+    updateURL({ has_discount: newDiscount.toString() });
   };
 
   const handlePageChange = (newPage: number) => {
     updateURL({ page: newPage.toString() });
   };
-
-  // console.log(handlePriceChange);
 
   const categoriesSelect = useMemo(() => {
     const defaultOption = { value: "", label: "Категория" };
@@ -178,7 +184,7 @@ export default function Catalog() {
 
           <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
 
-          <RangeSlider min={0} max={185} value={price} onChange={handlePriceChange} />
+          <RangeSlider min={0} max={1200} value={price} onChange={handlePriceChange} />
 
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
@@ -206,7 +212,6 @@ export default function Catalog() {
             ))}
           </ul>
 
-          {/* Пагинация - добавьте ваш компонент */}
           {totalProducts > 6 && (
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               <button
@@ -216,10 +221,12 @@ export default function Catalog() {
               >
                 Назад
               </button>
-              <span style={{ margin: '0 10px', padding: '10px' }}>Страница {page}</span>
+              <span style={{ margin: '0 10px', padding: '10px' }}>
+                Страница {page} из {Math.ceil(totalProducts / 6)}
+              </span>
               <button
                 onClick={() => handlePageChange(page + 1)}
-                disabled={products.length < 6}
+                disabled={page >= Math.ceil(totalProducts / 6)} // Правильная логика отключения
                 style={{ margin: '0 10px', padding: '10px 20px' }}
               >
                 Вперед
