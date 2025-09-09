@@ -35,8 +35,11 @@ export default function Catalog() {
   const [hasDiscount, setHasDiscount] = useState(has_discount);
   const { data, error, isLoading } = useApiData();
 
-  const debouncedSearch = useDebounce(search, 500);
-  const debouncedPrice = useDebounce(price, 500);
+  const debouncedSearch = useDebounce<string>(search, 500);
+  const debouncedPrice = useDebounce<[number, number]>(price, 500);
+
+  // console.log(debouncedPrice);
+  // console.log(debouncedSearch);
   // console.log(error, isLoading);
 
   useEffect(() => {
@@ -47,8 +50,9 @@ export default function Catalog() {
   // Фетчим продукты напрямую с фильтрами
   useEffect(() => {
     const fetchProducts = async () => {
-      // setIsLoading(true);
-      // setError(null);
+      if (debouncedSearch.length < 2 && debouncedSearch !== '') {
+        return; // Не делаем запрос при слишком коротком поиске
+      }
 
       try {
         // Формируем query параметры напрямую для вашего API
@@ -81,7 +85,7 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [search, category_id, has_discount, hasDiscount, price, debouncedSearch, debouncedPrice]);
+  }, [category_id, has_discount, hasDiscount, debouncedSearch, debouncedPrice]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
@@ -111,10 +115,15 @@ export default function Catalog() {
 
   const handleSearchChange = (value: string) => {
     setSearch(value);
+    updateURL({ search: value });
   };
 
   const handlePriceChange = (newPrice: [number, number]) => {
     setPrice(newPrice);
+    updateURL({
+      price_from: newPrice[0].toString(),
+      price_to: newPrice[1].toString()
+    });
   };
 
   const handleDiscountChange = () => {
