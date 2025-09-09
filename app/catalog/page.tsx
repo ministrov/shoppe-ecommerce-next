@@ -22,25 +22,23 @@ export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [totalProducts, setTotalProducts] = useState(8);
 
   // Получаем параметры из URL
   const category_id = searchParams.get('category_id') || '';
   const searchQuery = searchParams.get('search') || '';
   const has_discount = searchParams.get('has_discount') === 'true';
+  const page = parseInt(searchParams.get('page') || '1');
   const minPrice = parseInt(searchParams.get('price_from') || '0');
   const maxPrice = parseInt(searchParams.get('price_to') || '185');
 
   const [search, setSearch] = useState(searchQuery);
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
-  const [hasDiscount, setHasDiscount] = useState(has_discount);
+  const [hasDiscount, setHasDiscount] = useState<boolean>(has_discount);
   const { data, error, isLoading } = useApiData();
 
   const debouncedSearch = useDebounce<string>(search, 500);
   const debouncedPrice = useDebounce<[number, number]>(price, 500);
-
-  // console.log(debouncedPrice);
-  // console.log(debouncedSearch);
-  // console.log(error, isLoading);
 
   useEffect(() => {
     setCategories(data.categories);
@@ -57,8 +55,8 @@ export default function Catalog() {
       try {
         // Формируем query параметры напрямую для вашего API
         const params = new URLSearchParams();
-        // params.append('page', page.toString());
-        // params.append('limit', '6');
+        params.append('page', page.toString());
+        params.append('limit', '6');
 
         if (category_id) params.append('category_id', category_id);
         if (debouncedSearch) params.append('search', debouncedSearch);
@@ -75,7 +73,8 @@ export default function Catalog() {
 
         const data: GetProductsResponse = await response.json();
         setProducts(data.products || []);
-        // setTotalProducts(data.total || 0);
+        console.log(totalProducts);
+        setTotalProducts(data.total || 0);
       } catch (error) {
         console.error('Error fetching products:', error);
         // setError('Failed to load products');
@@ -85,7 +84,7 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [category_id, has_discount, hasDiscount, debouncedSearch, debouncedPrice]);
+  }, [category_id, has_discount, hasDiscount, debouncedSearch, debouncedPrice, page, totalProducts]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
@@ -101,9 +100,9 @@ export default function Catalog() {
       }
     });
 
-    // if (!newParams.page && params.get('page') !== '1') {
-    //   params.set('page', '1');
-    // }
+    if (!newParams.page && params.get('page') !== '1') {
+      params.set('page', '1');
+    }
 
     router.replace(`/catalog?${params.toString()}`, { scroll: false });
   }, [router, searchParams]);
@@ -130,6 +129,10 @@ export default function Catalog() {
     const newDiscount = !hasDiscount;
     setHasDiscount(newDiscount);
     updateURL({ discount: newDiscount.toString() });
+  };
+
+  const handlePageChange = (newPage: number) => {
+    updateURL({ page: newPage.toString() });
   };
 
   // console.log(handlePriceChange);
@@ -202,6 +205,27 @@ export default function Catalog() {
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
+
+          {/* Пагинация - добавьте ваш компонент */}
+          {totalProducts > 6 && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+              <button
+                onClick={() => handlePageChange(page - 1)}
+                disabled={page === 1}
+                style={{ margin: '0 10px', padding: '10px 20px' }}
+              >
+                Назад
+              </button>
+              <span style={{ margin: '0 10px', padding: '10px' }}>Страница {page}</span>
+              <button
+                onClick={() => handlePageChange(page + 1)}
+                disabled={products.length < 6}
+                style={{ margin: '0 10px', padding: '10px 20px' }}
+              >
+                Вперед
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
