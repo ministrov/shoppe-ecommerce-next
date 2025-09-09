@@ -12,6 +12,7 @@ import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
 import { useApiData } from '@/hooks/useApiData';
+import { useDebounce } from '@/hooks/useDebounce';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -33,7 +34,10 @@ export default function Catalog() {
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
   const [hasDiscount, setHasDiscount] = useState(has_discount);
   const { data, error, isLoading } = useApiData();
-  console.log(error, isLoading);
+
+  const debouncedSearch = useDebounce(search, 500);
+  const debouncedPrice = useDebounce(price, 500);
+  // console.log(error, isLoading);
 
   useEffect(() => {
     setCategories(data.categories);
@@ -53,10 +57,10 @@ export default function Catalog() {
         // params.append('limit', '6');
 
         if (category_id) params.append('category_id', category_id);
-        if (search) params.append('search', search);
+        if (debouncedSearch) params.append('search', debouncedSearch);
         if (hasDiscount) params.append('has_discount', 'true');
-        params.append('price_from', price[0].toString());
-        params.append('price_to', price[1].toString());
+        params.append('price_from', debouncedPrice[0].toString());
+        params.append('price_to', debouncedPrice[1].toString());
 
         // ПРЯМОЙ запрос к вашему API!
         const response = await fetch(`${API_URL}/products?${params}`);
@@ -77,11 +81,13 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [search, category_id, has_discount, hasDiscount, price]);
+  }, [search, category_id, has_discount, hasDiscount, price, debouncedSearch, debouncedPrice]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
+
+    console.log(searchParams);
 
     Object.entries(newParams).forEach(([key, value]) => {
       if (value) {
@@ -131,6 +137,12 @@ export default function Catalog() {
 
   return (
     <section className={styles.catalogPage}>
+      {error && (
+        <div className={styles.error}>
+          {error}
+        </div>
+      )}
+
       <div className={styles.searchMobile}>
         <Searching />
       </div>
