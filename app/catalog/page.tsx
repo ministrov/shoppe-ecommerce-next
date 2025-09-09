@@ -16,6 +16,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { fetchCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
+import { Pagination } from '@/components/pagination/Pagination';
 
 export default function Catalog() {
   const searchParams = useSearchParams();
@@ -31,7 +32,7 @@ export default function Catalog() {
   const has_discount = searchParams.get('has_discount') === 'true';
   const page = parseInt(searchParams.get('page') || '1');
   const minPrice = parseInt(searchParams.get('price_from') || '0');
-  const maxPrice = parseInt(searchParams.get('price_to') || '185');
+  const maxPrice = parseInt(searchParams.get('price_to') || '1200');
 
   const [search, setSearch] = useState(searchQuery);
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
@@ -213,25 +214,7 @@ export default function Catalog() {
           </ul>
 
           {totalProducts > 6 && (
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-              <button
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 1}
-                style={{ margin: '0 10px', padding: '10px 20px' }}
-              >
-                Назад
-              </button>
-              <span style={{ margin: '0 10px', padding: '10px' }}>
-                Страница {page} из {Math.ceil(totalProducts / 6)}
-              </span>
-              <button
-                onClick={() => handlePageChange(page + 1)}
-                disabled={page >= Math.ceil(totalProducts / 6)} // Правильная логика отключения
-                style={{ margin: '0 10px', padding: '10px 20px' }}
-              >
-                Вперед
-              </button>
-            </div>
+            <Pagination page={page} total={totalProducts} onClick={handlePageChange} />
           )}
         </div>
       </div>
