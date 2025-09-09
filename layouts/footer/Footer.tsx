@@ -24,6 +24,7 @@ export const Footer = () => {
           <form className={styles.footer__form} action='#' method='POST'>
             <InputField
               className={styles.footer__input}
+              variant='black'
               name='subscribe'
               placeholder='Ваш email для акций и предложений'
             />

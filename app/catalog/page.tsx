@@ -7,13 +7,16 @@ import { InputField } from '@/components/inputField/InputField';
 import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
-import { Button } from '@/components/button/Button';
+import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
 import { useApiData } from '@/hooks/useApiData';
+import { useDebounce } from '@/hooks/useDebounce';
+import { fetchCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
+import { Pagination } from '@/components/pagination/Pagination';
 
 export default function Catalog() {
   const searchParams = useSearchParams();
@@ -21,42 +24,62 @@ export default function Catalog() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [totalProducts, setTotalProducts] = useState(0);
 
   // Получаем параметры из URL
   const category_id = searchParams.get('category_id') || '';
   const searchQuery = searchParams.get('search') || '';
-  const minPrice = parseInt(searchParams.get('minPrice') || '0');
-  const maxPrice = parseInt(searchParams.get('maxPrice') || '185');
+  const has_discount = searchParams.get('has_discount') === 'true';
+  const page = parseInt(searchParams.get('page') || '1');
+  const minPrice = parseInt(searchParams.get('price_from') || '0');
+  const maxPrice = parseInt(searchParams.get('price_to') || '1200');
 
   const [search, setSearch] = useState(searchQuery);
-  const [price, setPrice] = useState([minPrice, maxPrice]);
-  const { data, error, isLoading } = useApiData();
-  console.log(error, isLoading);
+  const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
+  const [hasDiscount, setHasDiscount] = useState<boolean>(has_discount);
+  const { error, isLoading } = useApiData();
 
+  const debouncedSearch = useDebounce<string>(search, 500);
+  const debouncedPrice = useDebounce<[number, number]>(price, 500);
+
+  console.log('totalProducts:', totalProducts);
+
+  // Получаем категории через ваш модуль
   useEffect(() => {
-    setCategories(data.categories);
-    setProducts(data.products);
-  }, [data.categories, data.products]);
+    const getCategories = async () => {
+      try {
+        const categoriesData = await fetchCategories();
+        if (categoriesData) {
+          setCategories(categoriesData);
+        }
+      } catch (error) {
+        console.error('Error loading categories:', error);
+      }
+    };
+
+    getCategories();
+  }, []);
 
   // Фетчим продукты напрямую с фильтрами
   useEffect(() => {
     const fetchProducts = async () => {
-      // setIsLoading(true);
-      // setError(null);
+      if (debouncedSearch.length < 2 && debouncedSearch !== '') {
+        return; // Не делаем запрос при слишком коротком поиске
+      }
 
       try {
         // Формируем query параметры напрямую для вашего API
         const params = new URLSearchParams();
-        // params.append('page', page.toString());
-        // params.append('limit', '6');
+        params.append('page', page.toString());
+        params.append('limit', '6');
 
         if (category_id) params.append('category_id', category_id);
-        if (search) params.append('search', search);
-        // if (hasDiscount) params.append('discount', 'true');
-        // params.append('minPrice', debouncedPrice[0].toString());
-        // params.append('maxPrice', debouncedPrice[1].toString());
+        if (debouncedSearch) params.append('search', debouncedSearch);
+        if (hasDiscount) params.append('has_discount', 'true');
+        params.append('price_from', debouncedPrice[0].toString());
+        params.append('price_to', debouncedPrice[1].toString());
 
-        // ✅ ПРЯМОЙ запрос к вашему API!
+        // ПРЯМОЙ запрос к вашему API!
         const response = await fetch(`${API_URL}/products?${params}`);
 
         if (!response.ok) {
@@ -64,18 +87,16 @@ export default function Catalog() {
         }
 
         const data: GetProductsResponse = await response.json();
+        console.log('API response:', data);
         setProducts(data.products || []);
-        // setTotalProducts(data.total || 0);
+        setTotalProducts(data.total || 0);
       } catch (error) {
         console.error('Error fetching products:', error);
-        // setError('Failed to load products');
-      } finally {
-        // setIsLoading(false);
       }
     };
 
     fetchProducts();
-  }, [search, category_id]);
+  }, [category_id, hasDiscount, debouncedSearch, debouncedPrice, page]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
@@ -89,24 +110,38 @@ export default function Catalog() {
       }
     });
 
-    // if (!newParams.page && params.get('page') !== '1') {
-    //   params.set('page', '1');
-    // }
+    if (!newParams.page) {
+      params.set('page', '1');
+    }
 
     router.replace(`/catalog?${params.toString()}`, { scroll: false });
   }, [router, searchParams]);
 
   const handleCategoryChange = (value: string) => {
-    console.log('Selected value:', value);
     updateURL({ category_id: value });
   }
 
   const handleSearchChange = (value: string) => {
     setSearch(value);
+    updateURL({ search: value });
   };
 
-  const handlePriceChange = (newPrice: number[]) => {
+  const handlePriceChange = (newPrice: [number, number]) => {
     setPrice(newPrice);
+    updateURL({
+      price_from: newPrice[0].toString(),
+      price_to: newPrice[1].toString()
+    });
+  };
+
+  const handleDiscountChange = () => {
+    const newDiscount = !hasDiscount;
+    setHasDiscount(newDiscount);
+    updateURL({ has_discount: newDiscount.toString() });
+  };
+
+  const handlePageChange = (newPage: number) => {
+    updateURL({ page: newPage.toString() });
   };
 
   const categoriesSelect = useMemo(() => {
@@ -121,6 +156,12 @@ export default function Catalog() {
 
   return (
     <section className={styles.catalogPage}>
+      {error && (
+        <div className={styles.error}>
+          {error}
+        </div>
+      )}
+
       <div className={styles.searchMobile}>
         <Searching />
       </div>
@@ -141,35 +182,20 @@ export default function Catalog() {
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
           </div>
+
           <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
-          <div className={styles.catalog__priceSearch}>
-            <div className={styles.slider}>
-              {/* Ценовой диапазон: ${price[0]} - ${price[1]} */}
-              <input
-                type="range"
-                min="0"
-                max="185"
-                value={price[0]}
-                onChange={(e) => handlePriceChange([parseInt(e.target.value), price[1]])}
-                style={{ width: '100%', margin: '10px 0' }}
-              />
-              <input
-                type="range"
-                min="0"
-                max="185"
-                value={price[1]}
-                onChange={(e) => handlePriceChange([price[0], parseInt(e.target.value)])}
-                style={{ width: '100%', margin: '10px 0' }}
-              />
-            </div>
-            <span>{`Цена: $${price[0]} - $${price[1]}`}</span>
-          </div>
+
+          <RangeSlider min={0} max={1200} value={price} onChange={handlePriceChange} />
+
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            {/* <USwitch size="xl" color="neutral" value="false" /> */}
+            <input
+              type="checkbox"
+              checked={hasDiscount}
+              onChange={handleDiscountChange}
+              style={{ width: 40, height: 20 }}
+            />
           </div>
-
-          <Button>Нажать</Button>
         </div>
 
         <div className={styles.catalog__cardsWrapper}>
@@ -186,6 +212,10 @@ export default function Catalog() {
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
+
+          {totalProducts > 6 && (
+            <Pagination page={page} total={totalProducts} onClick={handlePageChange} />
+          )}
         </div>
       </div>
     </section>
