@@ -80,12 +80,10 @@
 }
 
 .catalog__switchLabel {
-  /* font-family: DM Sans; */
   font-size: 16px;
   line-height: 27px;
   font-weight: 400;
   color: var(--black);
-  /* letter-spacing: 0%; */
 }
 
 .catalog__cards {
@@ -93,6 +91,7 @@
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   column-gap: 24px;
   row-gap: 70px;
+  /* min-height: 854px; */
   margin: 0;
   margin-bottom: 60px;
   padding: 0;

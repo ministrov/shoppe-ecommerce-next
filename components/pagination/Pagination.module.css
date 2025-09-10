@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: 0.4;
+}
+
 .prevButton img {
   transform: rotate(180deg);
 }
