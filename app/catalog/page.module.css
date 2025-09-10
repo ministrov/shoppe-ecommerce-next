@@ -91,7 +91,6 @@
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   column-gap: 24px;
   row-gap: 70px;
-  /* min-height: 854px; */
   margin: 0;
   margin-bottom: 60px;
   padding: 0;
@@ -169,7 +168,7 @@
 
   .catalog__cards {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
-    column-gap: 12px;
+    column-gap: 16px;
     row-gap: 24px;
   }
 }
@@ -182,7 +181,7 @@
 
   .catalogPage {
     padding-top: 0;
-    padding-bottom: 64px;
+    padding-bottom: 48px;
   }
 
   .catalogPage__title {
@@ -197,5 +196,6 @@
 
   .catalog__cards {
     grid-template-columns: repeat(2, minmax(136px, 1fr));
+    margin-bottom: 30px;
   }
 }
