@@ -1,3 +1,8 @@
 .carousel {
+  overflow: hidden;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 64px;
   background-color: plum;
+  border-radius: var(--border-radius);
 }
