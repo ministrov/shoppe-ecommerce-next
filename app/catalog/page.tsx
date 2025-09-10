@@ -8,6 +8,7 @@ import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
+import { Pagination } from '@/components/pagination/Pagination';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -16,7 +17,6 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { fetchCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
-import { Pagination } from '@/components/pagination/Pagination';
 
 export default function Catalog() {
   const searchParams = useSearchParams();
@@ -214,7 +214,7 @@ export default function Catalog() {
           </ul>
 
           {totalProducts > 6 && (
-            <Pagination page={page} total={totalProducts} onClick={handlePageChange} />
+            <Pagination page={page} total={totalProducts} limit={6} onClick={handlePageChange} />
           )}
         </div>
       </div>

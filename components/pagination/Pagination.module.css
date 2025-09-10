@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   justify-content: flex-start;
+  gap: 8px;
   margin-top: 20px;
 }
 
@@ -19,4 +20,10 @@
 
 .prevButton img {
   transform: rotate(180deg);
+}
+
+.active {
+  color: var(--white);
+  background-color: var(--black);
+  border: 1px solid var(--white);
 }
