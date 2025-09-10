@@ -23,7 +23,8 @@ export default function Catalog() {
   const router = useRouter();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [paginatedProducts, setPaginatedProducts] = useState<Product[]>([]);
   const [totalProducts, setTotalProducts] = useState(0);
 
   // Получаем параметры из URL
@@ -41,6 +42,8 @@ export default function Catalog() {
 
   const debouncedSearch = useDebounce<string>(search, 500);
   const debouncedPrice = useDebounce<[number, number]>(price, 500);
+
+  const ITEMS_PER_PAGE = 6;
 
   console.log('totalProducts:', totalProducts);
 
@@ -70,8 +73,8 @@ export default function Catalog() {
       try {
         // Формируем query параметры напрямую для вашего API
         const params = new URLSearchParams();
-        params.append('page', page.toString());
-        params.append('limit', '6');
+        // params.append('page', page.toString());
+        // params.append('limit', '6');
 
         if (category_id) params.append('category_id', category_id);
         if (debouncedSearch) params.append('search', debouncedSearch);
@@ -88,7 +91,7 @@ export default function Catalog() {
 
         const data: GetProductsResponse = await response.json();
         console.log('API response:', data);
-        setProducts(data.products || []);
+        setAllProducts(data.products || []);
         setTotalProducts(data.total || 0);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -96,7 +99,25 @@ export default function Catalog() {
     };
 
     fetchProducts();
-  }, [category_id, hasDiscount, debouncedSearch, debouncedPrice, page]);
+  }, [category_id, hasDiscount, debouncedSearch, debouncedPrice]);
+
+  // Пагинация на клиентской стороне
+  useEffect(() => {
+    const startIndex = (page - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentPageProducts = allProducts.slice(startIndex, endIndex);
+
+    console.log('Pagination debug:', {
+      page,
+      startIndex,
+      endIndex,
+      allProductsLength: allProducts.length,
+      currentPageProductsLength: currentPageProducts.length
+    })
+
+
+    setPaginatedProducts(currentPageProducts);
+  }, [allProducts, page]);
 
   // Обновляем URL при изменении фильтров
   const updateURL = useCallback((newParams: Record<string, string>) => {
@@ -201,14 +222,14 @@ export default function Catalog() {
         <div className={styles.catalog__cardsWrapper}>
           {isLoading && <div className={styles.loading}>Loading</div>}
 
-          {!isLoading && products.length === 0 && (
+          {!isLoading && paginatedProducts.length === 0 && (
             <div className={styles.noProducts}>
               Товары не найдены
             </div>
           )}
 
           <ul className={styles.catalog__cards}>
-            {!isLoading && products.length !== 0 && products.map(product => (
+            {!isLoading && paginatedProducts.length !== 0 && paginatedProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
