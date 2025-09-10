@@ -19,7 +19,15 @@
 }
 
 .button:disabled {
-  opacity: 0.4;
+  opacity: 0.5;
+  background-color: var(--color-gray-150);
+  border-color: var(--color-gray-200);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button:disabled:hover {
+  animation: shake 0.5s ease-in-out;
 }
 
 .prevButton img {
@@ -30,4 +38,17 @@
   color: var(--white);
   background-color: var(--black);
   border: 1px solid var(--white);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
 }
