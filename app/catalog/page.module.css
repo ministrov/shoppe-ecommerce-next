@@ -80,12 +80,10 @@
 }
 
 .catalog__switchLabel {
-  /* font-family: DM Sans; */
   font-size: 16px;
   line-height: 27px;
   font-weight: 400;
   color: var(--black);
-  /* letter-spacing: 0%; */
 }
 
 .catalog__cards {
@@ -170,7 +168,7 @@
 
   .catalog__cards {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
-    column-gap: 12px;
+    column-gap: 16px;
     row-gap: 24px;
   }
 }
@@ -183,7 +181,7 @@
 
   .catalogPage {
     padding-top: 0;
-    padding-bottom: 64px;
+    padding-bottom: 48px;
   }
 
   .catalogPage__title {
@@ -198,5 +196,6 @@
 
   .catalog__cards {
     grid-template-columns: repeat(2, minmax(136px, 1fr));
+    margin-bottom: 30px;
   }
 }

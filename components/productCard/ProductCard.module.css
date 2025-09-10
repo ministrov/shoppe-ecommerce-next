@@ -5,6 +5,7 @@
   width: 100%;
   text-decoration: none;
 }
+
 .image {
   display: flex;
   justify-content: space-between;
@@ -16,6 +17,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .price {
   display: flex;
   gap: 16px;
@@ -31,11 +33,13 @@
   flex-direction: column;
   gap: 16px;
 }
+
 .name {
   font-size: 20px;
   line-height: 26px;
   color: var(--black);
 }
+
 .discount {
   padding: 2px 8px;
   font-size: 12px;
@@ -53,7 +57,36 @@
 }
 
 @media screen and (max-width: 375px) {
+  /* .item {
+    max-width: 136px;
+  } */
+
+  .card {
+    gap: 6px;
+  }
+
+  .image {
+    /* max-width: 136px; */
+    padding: 8px;
+  }
+
   .price {
     gap: 8px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .priceDiscount {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .name {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .footer {
+    gap: 4px;
   }
 }
