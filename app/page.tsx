@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Carousel } from '@/components/carousel/Carousel';
 import { Searching } from '@/components/searching/Searching';
 import styles from './page.module.css';
 
@@ -8,7 +9,8 @@ export default function Home() {
       <div className={styles.searchMobile}>
         <Searching />
       </div>
-      <div className={styles.carousel}>Carousel</div>
+
+      <Carousel />
 
       <section className={styles.newIncome}>
         <header>

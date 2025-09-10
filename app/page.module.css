@@ -5,3 +5,20 @@
 .newIncome {
   background-color: tomato;
 }
+
+.searchMobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchMobile {
+    display: block;
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .searchMobile {
+    margin-top: 16px;
+  }
+}
