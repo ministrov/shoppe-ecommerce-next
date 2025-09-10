@@ -4,13 +4,16 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
-import { getProducts } from '@/api/products';
 import { Searching } from '@/components/searching/Searching';
-import styles from './page.module.css';
+import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
+import { useApiData } from '@/hooks/useApiData';
+import styles from './page.module.css';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const { isLoading } = useApiData();
+  // const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getLastIncomeProducts = async () => {
@@ -27,9 +30,7 @@ export default function Home() {
 
     getLastIncomeProducts();
   }, []);
-  console.log(products);
-  console.log(typeof products);
-  // console.log(lastIncomeProducts);
+
   return (
     <section>
       <div className={styles.searchMobile}>
@@ -45,8 +46,16 @@ export default function Home() {
           <Link href={'/catalog'} >Все</Link>
         </header>
 
+        {isLoading && <div className={styles.loading}>Loading</div>}
+
+        {!isLoading && products.length === 0 && (
+          <div className={styles.noProducts}>
+            Товары не найдены
+          </div>
+        )}
+
         <ul className={styles.list}>
-          {products?.slice(0, 6).map(product => (
+          {!isLoading && products.length > 0 && products?.slice(0, 6).map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </ul>
