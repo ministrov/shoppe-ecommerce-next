@@ -8,6 +8,7 @@ import { Searching } from '@/components/searching/Searching';
 import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { useApiData } from '@/hooks/useApiData';
+import { carouselImages } from '@/interfaces/carousel.interface';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -37,12 +38,7 @@ export default function Home() {
       </div>
 
       <Carousel
-        images={[{
-          src: '/home-img-1.jpg',
-          alt: 'Image 1',
-          width: 1248,
-          height: 646,
-        }]}
+        images={carouselImages}
       />
 
       <section className={styles.newIncome}>

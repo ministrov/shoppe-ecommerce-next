@@ -19,7 +19,7 @@ export const carouselImages: CarouselImage[] = [
     height: 646,
   },
   {
-    src: '/home-img-3.jpg',
+    src: '/home-img-1.jpg',
     alt: 'Image 3',
     width: 1248,
     height: 646,

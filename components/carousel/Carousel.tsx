@@ -1,15 +1,28 @@
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { CarouselProps } from './Carousel.interface';
 import styles from './Carousel.module.css';
 
 export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-  console.log(images, autoPlayInterval);
-  console.log(currentSlide, setCurrentSlide);
+  console.log(currentSlide);
 
-  useEffect(() => { }, []);
+  // Функция для перехода к следующему слайду
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  // Функция для перехода к конкретному слайду
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Автоматическое переключение слайдов
+  useEffect(() => {
+    const interval = setInterval(nextSlide, autoPlayInterval);
+    return () => clearInterval(interval);
+  }, [autoPlayInterval, images.length, nextSlide]);
   return (
     <div className={styles.carousel}>
       <div className={styles.slidesContainer}>
@@ -35,7 +48,7 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
           <button
             key={index}
             className={`${styles.bullet} ${index === currentSlide ? styles.active : ''}`}
-            // onClick={() => goToSlide(index)}
+            onClick={() => goToSlide(index)}
             aria-label={`Перейти к слайду ${index + 1}`}
           />
         ))}
