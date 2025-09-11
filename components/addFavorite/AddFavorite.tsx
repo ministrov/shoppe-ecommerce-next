@@ -1,17 +1,28 @@
 import Image from 'next/image';
+import React from 'react';
+import { useFavorites } from '@/hooks/useFavorite';
 import { AddFavoriteProps } from './AddFavorite.interface';
 import styles from './AddFavorite.module.css';
 
 export const AddFavorite = ({ productId }: AddFavoriteProps) => {
-  // console.log(productId, isShown);
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(productId);
+  };
   console.log(productId);
   return (
     <button
-      // v-show="isShown || favoriteStore.isFavorite(id)"
       className={styles.favButton}
-    // @click.stop.prevent="() => favoriteStore.toggleFavorite(id)"
+      onClick={handleClick}
+      aria-label={
+        isFavorite(productId)
+          ? 'Remove from favorites'
+          : 'Add to favorites'
+      }
     >
-      {/* <Icon name="icons:add-favorite" size="18px" /> */}
       <Image src={'/favorite.svg'} width={18} height={18} alt={''} />
     </button>
   )

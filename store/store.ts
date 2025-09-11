@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -9,14 +11,35 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import favoritesReducer from './favoriteSlice';
+
+// Создаем безопасную версию storage
+const createNoopStorage = () => {
+  return {
+    getItem(_key: any) {
+      return Promise.resolve(null);
+    },
+    setItem(_key: any, value: any) {
+      return Promise.resolve(value);
+    },
+    removeItem(_key: any) {
+      return Promise.resolve();
+    },
+  };
+};
+
+// Выбираем правильное хранилище в зависимости от среды выполнения
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage();
 
 // Конфигурация для persist
 const persistConfig = {
-  key: 'root', // ключ для хранения в storage
-  storage, // используем localStorage
-  // whitelist: ['favorites'], // только favorites сохраняем (опционально)
+  key: 'root',
+  storage,
+  whitelist: ['favorites'],
 };
 
 // Создаем persisted reducer

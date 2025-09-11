@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/layouts/header/Header';
 import { Footer } from '@/layouts/footer/Footer';
+import StoreProvider from './StoreProvider';
 import { dmSans } from '@/styles/fonts';
 import './globals.css';
 
@@ -19,7 +20,11 @@ export default function RootLayout({
       <body>
         <div className='container'>
           <Header />
-          <main>{children}</main>
+          <main>{
+            <StoreProvider>
+              {children}
+            </StoreProvider>
+          }</main>
           <Footer />
         </div>
       </body>

@@ -1,9 +1,3 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
-
-export interface AddFavoriteProps
-  extends DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+export interface AddFavoriteProps {
   productId: number;
 }

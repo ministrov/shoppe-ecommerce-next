@@ -24,12 +24,14 @@ const favoritesSlice = createSlice({
 
 // export default favoritesSlice.reducer;
 
-// Селекторы
+export const { toggleFavorite } = favoritesSlice.actions;
+
+// Правильные типизированные селекторы
 export const selectFavoriteIds = (state: RootState) =>
   state.favorites.favoriteIds;
-export const selectIsFavorite = (id: number) => (state: RootState) =>
-  state.favorites.favoriteIds.includes(id);
 export const selectFavoritesCount = (state: RootState) =>
   state.favorites.favoriteIds.length;
+export const selectIsFavorite = (id: number) => (state: RootState) =>
+  state.favorites.favoriteIds.includes(id);
 
 export default favoritesSlice.reducer;
