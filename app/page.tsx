@@ -13,7 +13,6 @@ import styles from './page.module.css';
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { isLoading } = useApiData();
-  // const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getLastIncomeProducts = async () => {
@@ -37,7 +36,14 @@ export default function Home() {
         <Searching />
       </div>
 
-      <Carousel />
+      <Carousel
+        images={[{
+          src: '/home-img-1.jpg',
+          alt: 'Image 1',
+          width: 1248,
+          height: 646,
+        }]}
+      />
 
       <section className={styles.newIncome}>
         <header className={styles.header}>
