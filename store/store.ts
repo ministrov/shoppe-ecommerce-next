@@ -66,6 +66,11 @@ export const makeStore = () => {
   return { store, persistor };
 };
 
+// Отдельно создаем persistor
+export const makePersistor = (store: AppStore) => {
+  return persistStore(store);
+};
+
 // Типы для TypeScript
 export type AppStore = ReturnType<typeof makeStore>['store'];
 export type AppPersistor = ReturnType<typeof makeStore>['persistor'];

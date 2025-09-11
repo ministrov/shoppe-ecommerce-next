@@ -1,34 +1,39 @@
-'use client';
+// 'use client';
 
-import { useRef, ReactNode } from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { makeStore } from '@/store/store';
+// import { useRef, useEffect, useState } from 'react';
+// import { Provider } from 'react-redux';
+// import { AppStore, makeStore } from '@/store/store';
+// // import { PersistGate } from 'redux-persist/integration/react';
 
-interface StoreProviderProps {
-  children: ReactNode;
-}
+// export default function StoreProvider({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   const storeRef = useRef<AppStore>();
+//   // const persistorRef = useRef<any>(null);
+//   const [isClient, setIsClient] = useState(false);
 
-export default function StoreProvider({ children }: StoreProviderProps) {
-  const storeRef = useRef<ReturnType<typeof makeStore>>(null);
+//   useEffect(() => {
+//     setIsClient(true);
+//     if (!storeRef.current) {
+//       storeRef.current = makeStore();
+//       //   // persistorRef.current = makePersistor(storeRef.current);
+//       // }
+//     }
 
-  if (typeof window !== 'undefined' && !storeRef.current) {
-    storeRef.current = makeStore();
-  }
+//   }, []);
 
-  // Для SSR возвращаем children без Redux Provider
-  if (typeof window === 'undefined') {
-    return <>{children}</>;
-  }
+//   if (!isClient) {
+//     return <>{children}</>;
+//   }
 
-  return (
-    <Provider store={storeRef.current!.store}>
-      <PersistGate
-        loading={null} // Можно показать loading indicator
-        persistor={storeRef.current!.persistor}
-      >
-        {children}
-      </PersistGate>
-    </Provider>
-  );
-}
+//   return (
+//     <Provider store={storeRef.current!}>
+//       {/* <PersistGate loading={null} persistor={persistorRef.current!}>
+//         {children}
+//       </PersistGate> */}
+//       {children}
+//     </Provider>
+//   );
+// }

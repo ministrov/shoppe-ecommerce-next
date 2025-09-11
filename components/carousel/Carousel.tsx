@@ -12,7 +12,6 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
     setCurrentSlide((prev) => (prev + 1) % images.length);
   }, [images.length]);
 
-  console.log(nextSlide);
   // Функция для перехода к конкретному слайду
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
