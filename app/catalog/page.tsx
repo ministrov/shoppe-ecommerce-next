@@ -211,6 +211,8 @@ export default function Catalog() {
 
   return (
     <section className={styles.catalogPage} ref={catalogRef}>
+      <h1 className='visually-hidden'>Страница каталога товаров с фильтрами</h1>
+
       {error && (
         <div className={styles.error}>
           {error}

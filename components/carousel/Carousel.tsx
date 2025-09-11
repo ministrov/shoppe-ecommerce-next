@@ -7,22 +7,26 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   console.log(currentSlide);
+  console.log(autoPlayInterval);
 
   // Функция для перехода к следующему слайду
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
   }, [images.length]);
 
+  console.log(nextSlide);
   // Функция для перехода к конкретному слайду
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
+  useEffect(() => { }, []);
+
   // Автоматическое переключение слайдов
-  useEffect(() => {
-    const interval = setInterval(nextSlide, autoPlayInterval);
-    return () => clearInterval(interval);
-  }, [autoPlayInterval, images.length, nextSlide]);
+  // useEffect(() => {
+  //   const interval = setInterval(nextSlide, autoPlayInterval);
+  //   return () => clearInterval(interval);
+  // }, [autoPlayInterval, images.length, nextSlide]);
   return (
     <div className={styles.carousel}>
       <div className={styles.slidesContainer}>
@@ -38,6 +42,10 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
               alt={image.alt}
               className={styles.image}
             />
+
+            <div className={styles.text}>
+
+            </div>
           </div>
         ))}
       </div>

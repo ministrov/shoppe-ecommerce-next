@@ -33,6 +33,7 @@ export default function Home() {
 
   return (
     <section>
+      <h1 className="visually-hidden">Секция домашней страницы</h1>
       <div className={styles.searchMobile}>
         <Searching />
       </div>
@@ -42,8 +43,9 @@ export default function Home() {
       />
 
       <section className={styles.newIncome}>
+        <h2 className="visually-hidden">Секция со списком последних поступлений</h2>
         <header className={styles.header}>
-          <h2>Последние поступления</h2>
+          <h3>Последние поступления</h3>
 
           <Link href={'/catalog'} >Все</Link>
         </header>
