@@ -1,28 +1,69 @@
-import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
-import { Button } from '@/components/button/Button';
+'use client';
+
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { Carousel } from '@/components/carousel/Carousel';
+import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
-// import { Message } from '@/components/message/Message';
+import { getProducts } from '@/api/products';
+import { Product } from '@/interfaces/product.interface';
+import { useApiData } from '@/hooks/useApiData';
+import { carouselImages } from '@/interfaces/carousel.interface';
+import styles from './page.module.css';
 
 export default function Home() {
-  return (
-    <div>
-      <GeolocationContainer />
+  const [products, setProducts] = useState<Product[]>([]);
+  const { isLoading } = useApiData();
 
-      <div style={{ maxWidth: '500px' }}>
-        <Button>Вход</Button>
-        <Button size={'medium'} ghost>
-          Вход
-        </Button>
-        <Button size={'small'}>Отправить</Button>
+  useEffect(() => {
+    const getLastIncomeProducts = async () => {
+      try {
+        const incomeProducts = await getProducts();
+
+        if (incomeProducts) {
+          setProducts(incomeProducts);
+        }
+      } catch (error) {
+        console.error('Error loading categories:', error);
+      }
+    };
+
+    getLastIncomeProducts();
+  }, []);
+
+  return (
+    <section>
+      <h1 className="visually-hidden">Секция домашней страницы</h1>
+      <div className={styles.searchMobile}>
+        <Searching />
       </div>
 
-      <h1>
-        Hello world!
-      </h1>
+      <Carousel
+        images={carouselImages}
+      />
 
-      <Searching />
+      <section className={styles.newIncome}>
+        <h2 className="visually-hidden">Секция со списком последних поступлений</h2>
+        <header className={styles.header}>
+          <h3>Последние поступления</h3>
 
-      {/* <Message content={'dfdfdfdfde'} /> */}
-    </div>
+          <Link href={'/catalog'} >Все</Link>
+        </header>
+
+        {isLoading && <div className={styles.loading}>Loading</div>}
+
+        {!isLoading && products.length === 0 && (
+          <div className={styles.noProducts}>
+            Товары не найдены
+          </div>
+        )}
+
+        <ul className={styles.list}>
+          {!isLoading && products.length > 0 && products?.slice(0, 6).map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </ul>
+      </section>
+    </section>
   );
 }

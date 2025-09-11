@@ -1,0 +1,63 @@
+.carousel {
+  background-color: purple;
+}
+
+.newIncome {
+  margin-bottom: 250px;
+}
+
+.searchMobile {
+  display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header h3 {
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 39px;
+  color: var(--color-black);
+}
+
+.header a {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--accent);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  column-gap: 58px;
+  row-gap: 86px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+@media screen and (max-width: 768px) {
+  .searchMobile {
+    display: block;
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .searchMobile {
+    margin-top: 16px;
+  }
+}
