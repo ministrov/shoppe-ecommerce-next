@@ -24,7 +24,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       >
         <div className={styles.image} style={imageStyle}>
           {product.discount > 0 ? <span className={styles.discount}>-{product.discount}%</span> : <span></span>}
-          {isHovered && <AddFavorite />}
+          {isHovered && <AddFavorite productId={product.id} />}
         </div>
         <div className={styles.footer}>
           <div className={styles.name}>
