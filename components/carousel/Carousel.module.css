@@ -23,6 +23,46 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+.text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-left: 40px;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 33px;
+  line-height: 39px;
+  color: var(--white);
+}
+
+.price {
+  display: inline-block;
+  margin-bottom: 48px;
+  font-family: var(--font);
+  font-size: 26px;
+  line-height: 32px;
+  color: var(--white);
+}
+
+.link {
+  display: block;
+  width: 193px;
+  height: 53px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--white);
+  border-radius: 6px;
+  border: 2px solid var(--white);
+}
+
 .slide.active {
   opacity: 1;
 }

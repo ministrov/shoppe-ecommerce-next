@@ -1,13 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { CarouselProps } from './Carousel.interface';
 import styles from './Carousel.module.css';
 
 export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-
-  console.log(currentSlide);
-  console.log(autoPlayInterval);
 
   // Функция для перехода к следующему слайду
   const nextSlide = useCallback(() => {
@@ -23,10 +21,10 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
   useEffect(() => { }, []);
 
   // Автоматическое переключение слайдов
-  // useEffect(() => {
-  //   const interval = setInterval(nextSlide, autoPlayInterval);
-  //   return () => clearInterval(interval);
-  // }, [autoPlayInterval, images.length, nextSlide]);
+  useEffect(() => {
+    const interval = setInterval(nextSlide, autoPlayInterval);
+    return () => clearInterval(interval);
+  }, [autoPlayInterval, images.length, nextSlide]);
   return (
     <div className={styles.carousel}>
       <div className={styles.slidesContainer}>
@@ -44,7 +42,10 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
             />
 
             <div className={styles.text}>
+              <p className={styles.title}>Gold big hoops</p>
+              <span className={styles.price}>$ 68,00</span>
 
+              <Link className={styles.link} href={'/catalog'}>Смотреть</Link>
             </div>
           </div>
         ))}
