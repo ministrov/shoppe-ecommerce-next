@@ -1,9 +1,10 @@
 import Image from 'next/image';
-// import { AddFavoriteProps } from './AddFavorite.interface';
+import { AddFavoriteProps } from './AddFavorite.interface';
 import styles from './AddFavorite.module.css';
 
-export const AddFavorite = () => {
+export const AddFavorite = ({ productId }: AddFavoriteProps) => {
   // console.log(productId, isShown);
+  console.log(productId);
   return (
     <button
       // v-show="isShown || favoriteStore.isFavorite(id)"

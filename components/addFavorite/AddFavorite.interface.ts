@@ -6,5 +6,4 @@ export interface AddFavoriteProps
     HTMLButtonElement
   > {
   productId: number;
-  isShown: boolean;
 }

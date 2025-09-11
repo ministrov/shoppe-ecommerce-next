@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
-// Функции для работы с sessionStorage
-// const loadFromSessionStorage = () => {
-//   // Загрузка из storage
-// };
+interface FavoritesState {
+  favoriteIds: number[];
+}
 
-// const saveToSessionStorage = (ids: number[]) => {
-//   // Сохранение в storage
-// };
+const initialState: FavoritesState = {
+  favoriteIds: [],
+};
 
 const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState: undefined,
+  initialState: initialState,
   reducers: {
-    toggleFavorite: (state, action) => {
+    toggleFavorite: (state, action: PayloadAction<number>) => {
       // Логика переключения
       console.log(state);
       console.log(action);
@@ -21,5 +21,15 @@ const favoritesSlice = createSlice({
     // Другие редюсеры
   },
 });
+
+// export default favoritesSlice.reducer;
+
+// Селекторы
+export const selectFavoriteIds = (state: RootState) =>
+  state.favorites.favoriteIds;
+export const selectIsFavorite = (id: number) => (state: RootState) =>
+  state.favorites.favoriteIds.includes(id);
+export const selectFavoritesCount = (state: RootState) =>
+  state.favorites.favoriteIds.length;
 
 export default favoritesSlice.reducer;
