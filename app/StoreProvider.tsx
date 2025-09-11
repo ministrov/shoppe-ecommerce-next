@@ -1,19 +1,34 @@
-// app/StoreProvider.tsx
 'use client';
 
-import { useRef } from 'react';
+import { useRef, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { makeStore, AppStore } from '@/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { makeStore } from '@/store/store';
 
-export default function StoreProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const storeRef = useRef<AppStore>(null);
-  if (!storeRef.current) {
+interface StoreProviderProps {
+  children: ReactNode;
+}
+
+export default function StoreProvider({ children }: StoreProviderProps) {
+  const storeRef = useRef<ReturnType<typeof makeStore>>(null);
+
+  if (typeof window !== 'undefined' && !storeRef.current) {
     storeRef.current = makeStore();
   }
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  // Для SSR возвращаем children без Redux Provider
+  if (typeof window === 'undefined') {
+    return <>{children}</>;
+  }
+
+  return (
+    <Provider store={storeRef.current!.store}>
+      <PersistGate
+        loading={null} // Можно показать loading indicator
+        persistor={storeRef.current!.persistor}
+      >
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 }
