@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/layouts/header/Header';
 import { Footer } from '@/layouts/footer/Footer';
-// import StoreProvider from './StoreProvider';
+import StoreProvider from './StoreProvider';
 import { dmSans } from '@/styles/fonts';
 import './globals.css';
 
@@ -19,14 +19,13 @@ export default function RootLayout({
     <html lang='en' className={dmSans.variable}>
       <body>
         <div className='container'>
-          <Header />
-          {/* <StoreProvider>
-            
-          </StoreProvider> */}
-          <main>
-            {children}
-          </main>
-          <Footer />
+          <StoreProvider>
+            <Header />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </StoreProvider>
         </div>
       </body>
     </html>

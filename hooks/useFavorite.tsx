@@ -1,11 +1,9 @@
-// hooks/useFavorites.ts
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFavoriteIds,
   selectFavoritesCount,
   toggleFavorite
-} from '../store/favoriteSlice';
-// import type { RootState } from '@/store/store';
+} from '../store/features/favorites/favoriteSlice';
 import type { AppDispatch } from '@/store/store';
 
 export const useFavorites = () => {
