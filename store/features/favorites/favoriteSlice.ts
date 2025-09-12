@@ -21,8 +21,6 @@ const favoritesSlice = createSlice({
   },
 });
 
-// export default favoritesSlice.reducer;
-
 export const { toggleFavorite } = favoritesSlice.actions;
 
 // Правильные типизированные селекторы
