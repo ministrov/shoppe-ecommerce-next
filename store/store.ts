@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import favoritesReducer from './features/favorites/favoriteSlice';
+import counterReducer from './features/counter/counterSlice';
 
 // Конфигурация основного хранилища
 export const makeStore = () => {
   return configureStore({
     reducer: {
       favorites: favoritesReducer,
+      counter: counterReducer,
     },
     // middleware: (getDefaultMiddleware) =>
     //   getDefaultMiddleware({
