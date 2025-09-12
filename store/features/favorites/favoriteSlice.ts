@@ -12,17 +12,17 @@ const initialState: FavoritesState = {
 // 3. Реализация персистентности
 // typescript
 // Функции для работы с sessionStorage
-const loadFromSessionStorage = () => {
-  // Загрузка из storage
-};
+// const loadFromSessionStorage = () => {
+//   // Загрузка из storage
+// };
 
-const saveToSessionStorage = (ids: number[]) => {
-  // Сохранение в storage
-  console.log(ids);
-};
+// const saveToSessionStorage = (ids: number[]) => {
+//   // Сохранение в storage
+//   console.log(ids);
+// };
 
-console.log(loadFromSessionStorage);
-console.log(saveToSessionStorage);
+// console.log(loadFromSessionStorage);
+// console.log(saveToSessionStorage);
 
 const favoritesSlice = createSlice({
   name: 'favorites',

@@ -1,4 +1,4 @@
-import { RootState } from '@/store/store';
+// import { RootState } from '@/store/store';
 import { createSlice } from '@reduxjs/toolkit';
 // import { stat } from 'fs';
 
@@ -26,6 +26,6 @@ const counterSlice = createSlice({
 export const { incCount, decCount } = counterSlice.actions;
 
 // Правильные типизированные селекторы
-export const selectCounter = (state: RootState) => state.counter.counter;
+// export const selectCounter = (state: RootState) => state.counter.counter;
 
 export default counterSlice.reducer;
