@@ -4,17 +4,23 @@ import { useFavorites } from '@/hooks/useFavorite';
 import { AddFavoriteProps } from './AddFavorite.interface';
 import styles from './AddFavorite.module.css';
 
-export const AddFavorite = ({ productId }: AddFavoriteProps) => {
+export const AddFavorite = ({ productId, isShown }: AddFavoriteProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
-  console.log(productId);
+  // console.log(isShown);
+  console.log(isFavorite);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    // console.log(e.target)
     toggleFavorite(productId);
   };
-  // console.log(productId);
+
+  const shouldShow = isShown || isFavorite(productId);
+
+  if (!shouldShow) {
+    return null;
+  }
+
   return (
     <button
       className={styles.favButton}
@@ -25,7 +31,7 @@ export const AddFavorite = ({ productId }: AddFavoriteProps) => {
           : 'Add to favorites'
       }
     >
-      <Image src={'/favorite.svg'} width={18} height={18} alt={''} />
+      <Image src={'/favorite.svg'} width={18} height={18} alt={isFavorite(productId) ? 'Remove from favorites' : 'Add to favorites'} />
     </button>
   )
 }

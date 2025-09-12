@@ -29,6 +29,15 @@ const favoritesSlice = createSlice({
   initialState: initialState,
   reducers: {
     toggleFavorite: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      const index = state.favoriteIds.indexOf(id);
+      // console.log(index);
+
+      if (index === -1) {
+        state.favoriteIds.push(id);
+      } else {
+        state.favoriteIds.splice(index, 1);
+      }
       //  const id = action.payload;
       // const index = state.favoriteIds.indexOf(id);
 
@@ -37,8 +46,8 @@ const favoritesSlice = createSlice({
       // } else {
       //   state.favoriteIds.splice(index, 1);
       // }
-      console.log(state);
-      console.log(action);
+      // console.log(state.favoriteIds);
+      // console.log(action);
     },
   },
 });
