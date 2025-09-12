@@ -1,39 +1,23 @@
-// 'use client';
+'use client';
 
-// import { useRef, useEffect, useState } from 'react';
-// import { Provider } from 'react-redux';
-// import { AppStore, makeStore } from '@/store/store';
-// // import { PersistGate } from 'redux-persist/integration/react';
+import { useRef } from 'react';
+import { Provider } from 'react-redux';
+import { AppStore, makeStore } from '@/store/store';
 
-// export default function StoreProvider({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   const storeRef = useRef<AppStore>();
-//   // const persistorRef = useRef<any>(null);
-//   const [isClient, setIsClient] = useState(false);
+export default function StoreProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const storeRef = useRef<AppStore>(undefined);
 
-//   useEffect(() => {
-//     setIsClient(true);
-//     if (!storeRef.current) {
-//       storeRef.current = makeStore();
-//       //   // persistorRef.current = makePersistor(storeRef.current);
-//       // }
-//     }
+  if (!storeRef.current) {
+    storeRef.current = makeStore();
+  }
 
-//   }, []);
-
-//   if (!isClient) {
-//     return <>{children}</>;
-//   }
-
-//   return (
-//     <Provider store={storeRef.current!}>
-//       {/* <PersistGate loading={null} persistor={persistorRef.current!}>
-//         {children}
-//       </PersistGate> */}
-//       {children}
-//     </Provider>
-//   );
-// }
+  return (
+    <Provider store={storeRef.current!}>
+      {children}
+    </Provider>
+  );
+}

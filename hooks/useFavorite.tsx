@@ -4,7 +4,7 @@ import {
   selectFavoriteIds,
   selectFavoritesCount,
   toggleFavorite
-} from '../store/favoriteSlice';
+} from '../store/features/favorites/favoriteSlice';
 // import type { RootState } from '@/store/store';
 import type { AppDispatch } from '@/store/store';
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from './store';
+import { RootState } from '../../store';
 
 interface FavoritesState {
   favoriteIds: number[];
@@ -18,7 +18,6 @@ const favoritesSlice = createSlice({
       console.log(state);
       console.log(action);
     },
-    // Другие редюсеры
   },
 });
 
