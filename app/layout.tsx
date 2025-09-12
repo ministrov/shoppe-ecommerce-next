@@ -19,13 +19,13 @@ export default function RootLayout({
     <html lang='en' className={dmSans.variable}>
       <body>
         <div className='container'>
-          <Header />
           <StoreProvider>
+            <Header />
             <main>
               {children}
             </main>
+            <Footer />
           </StoreProvider>
-          <Footer />
         </div>
       </body>
     </html>

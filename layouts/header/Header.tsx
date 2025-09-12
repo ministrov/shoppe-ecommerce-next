@@ -19,7 +19,6 @@ export const Header = () => {
 
   const showSearching = {
     hidden: { opacity: 0 },
-    // visible: { opacity: open ? 1 : 0 },
     visible: { opacity: visible ? 1 : 0 },
   };
 
