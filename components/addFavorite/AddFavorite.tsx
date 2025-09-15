@@ -6,8 +6,6 @@ import styles from './AddFavorite.module.css';
 
 export const AddFavorite = ({ productId, isShown }: AddFavoriteProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
-  // console.log(isShown);
-  console.log(isFavorite);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

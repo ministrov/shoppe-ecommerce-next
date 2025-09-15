@@ -5,11 +5,20 @@ import { useFavorites } from '@/hooks/useFavorite';
 import styles from './page.module.css';
 
 export default function Favorites() {
-  const { favoritesCount } = useFavorites();
+  const { favoritesCount, favoriteIds } = useFavorites();
 
-  return <div className={styles.favorites}>
-    <h1 className="left">Избранное</h1>
+  // console.log(favoriteIds.map((el) => el));
+  console.log(favoriteIds);
 
-    {favoritesCount === 0 && <NoFavorites />}
-  </div>;
+  return (
+    <div className={styles.favorites}>
+      <h1 className="left">Избранное</h1>
+
+      {favoritesCount === 0 && <NoFavorites />}
+
+      <ul>
+
+      </ul>
+    </div>
+  );
 };
