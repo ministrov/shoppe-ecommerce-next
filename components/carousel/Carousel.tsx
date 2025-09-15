@@ -24,6 +24,7 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
     const interval = setInterval(nextSlide, autoPlayInterval);
     return () => clearInterval(interval);
   }, [autoPlayInterval, images.length, nextSlide]);
+
   return (
     <div className={styles.carousel}>
       <div className={styles.slidesContainer}>
@@ -32,13 +33,16 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
             key={index}
             className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
           >
-            <Image
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={image.alt}
-              className={styles.image}
-            />
+            <picture>
+              <source media="(max-width: 375px)" srcSet={image.mobileSrc} />
+              <Image
+                src={image.src}
+                width={image.width}
+                height={image.height}
+                alt={image.alt}
+                className={styles.image}
+              />
+            </picture>
 
             <div className={styles.text}>
               <p className={styles.title}>Gold big hoops</p>
