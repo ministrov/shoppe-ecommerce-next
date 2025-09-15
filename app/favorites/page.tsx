@@ -38,6 +38,8 @@ export default function Favorites() {
           })
         );
 
+        console.log(results);
+
         const successfulProducts = results
           .filter(result => result.status === 'fulfilled')
           .map(result => (result as PromiseFulfilledResult<Product>).value);
@@ -63,7 +65,7 @@ export default function Favorites() {
 
   if (loading) {
     return (
-      <div className="catalog">
+      <div className={styles.favorites}>
         <h1 className="left">Избранное</h1>
         <div className="loading">Загрузка...</div>
       </div>
@@ -72,7 +74,7 @@ export default function Favorites() {
 
   if (error) {
     return (
-      <div className="catalog">
+      <div className={styles.favorites}>
         <h1 className="left">Избранное</h1>
         <div className="error">{error}</div>
       </div>
@@ -92,10 +94,10 @@ export default function Favorites() {
         <NoFavorites />
       ) : (
         <>
-          <p className="favorites-count">
+          <p className={styles.favoritesCount}>
             {products.length} товар{products.length % 10 === 1 ? '' : 'ов'} в избранном
           </p>
-          <ul className="catalog__grid">
+          <ul className={styles.favoritesList}>
             {products.map((product) => (
 
               <ProductCard key={product.id} product={product} />
