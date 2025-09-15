@@ -103,8 +103,14 @@
   transform: scale(1.2);
 }
 
-/* Для accessibility */
 .bullet:focus {
   outline: 2px solid #ffffff;
   outline-offset: 2px;
+}
+
+@media screen and (max-width: 375px) {
+  .carousel {
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
 }
