@@ -70,11 +70,11 @@ export default function Register() {
           </label>
         </div>
 
-        <Button color="primary" type='submit'>
+        <Button color="primary" type='submit' className={styles.registerBtn}>
           Зарегистрироваться
         </Button>
 
-        <Link href={'/'} className={styles.forgotPassword}>Забыли пароль?</Link>
+        <Link className={styles.forgotPassword} href={'/'} >Забыли пароль?</Link>
       </form>
     </main>
   );

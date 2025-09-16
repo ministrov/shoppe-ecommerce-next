@@ -7,7 +7,6 @@ import { Button } from '@/components/button/Button';
 import { Tabs } from '@/components/tabs/Tabs';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
-// import { style } from 'framer-motion/client';
 
 export default function Login() {
   const pathname = usePathname();
@@ -75,7 +74,7 @@ export default function Login() {
           Вход
         </Button>
 
-        <Link href={'/'} className={styles.forgotPassword}>Забыли пароль?</Link>
+        <Link className={styles.forgotPassword} href={'/'}>Забыли пароль?</Link>
       </form>
     </main>
   );
