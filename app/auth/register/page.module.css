@@ -3,34 +3,5 @@
   margin: 0 auto;
   padding-top: 144px;
   padding-bottom: 265px;
-  background-color: powderblue;
   border-radius: 8px;
-}
-
-.tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 64px;
-  margin-bottom: 126px;
-  padding: 5px;
-  background-color: var(--color-gray-200);
-}
-
-.tabsItem {
-  display: block;
-  width: 236px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-}
-
-.tabsItem a {
-  font-size: 20px;
-  line-height: 26px;
-  color: var(--black);
-}
-
-.active {
-  border-radius: 8px;
-  background-color: var(--white);
 }

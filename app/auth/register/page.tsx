@@ -6,6 +6,8 @@ import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
+import { Tabs } from '@/components/tabs/Tabs';
+// import path from 'path';
 
 export default function Register() {
   const pathname = usePathname();
@@ -14,7 +16,8 @@ export default function Register() {
     <div className={styles.register}>
       <h1>Мой аккаунт</h1>
 
-      <div className={styles.tabs}>
+      <Tabs tabs={tabs} pathname={pathname} />
+      {/* <div className={styles.tabs}>
         {tabs.map((tab) => (
           <span
             key={tab.href}
@@ -24,7 +27,7 @@ export default function Register() {
             <Link href={tab.href}>{tab.label}</Link>
           </span>
         ))}
-      </div>
+      </div> */}
 
       <form method="post" action="" className={styles.form}>
         <div className={styles.fiels}>

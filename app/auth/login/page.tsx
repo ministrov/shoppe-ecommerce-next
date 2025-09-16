@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
+import { Tabs } from '@/components/tabs/Tabs';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
 
@@ -15,17 +16,7 @@ export default function Login() {
     <div className={styles.login}>
       <h1>Мой аккаунт</h1>
 
-      <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <span
-            key={tab.href}
-            className={`${styles.tabsItem} ${pathname === tab.href ? styles.active : ''
-              }`}
-          >
-            <Link href={tab.href}>{tab.label}</Link>
-          </span>
-        ))}
-      </div>
+      <Tabs tabs={tabs} pathname={pathname} />
 
       <form method="post" action="" className={styles.form}>
         <div className={styles.fiels}>
