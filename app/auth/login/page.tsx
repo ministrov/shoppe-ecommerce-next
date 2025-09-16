@@ -47,6 +47,8 @@ export default function Login() {
         <Button color="primary">
           Вход
         </Button>
+
+        <Link href={'/'}>Забыли пароль?</Link>
       </form>
     </div>
   );

@@ -52,6 +52,8 @@ export default function Register() {
         <Button color="primary">
           Зарегистрироваться
         </Button>
+
+        <Link href={'/'}>Забыли пароль?</Link>
       </form>
     </div>
   );
