@@ -1,13 +1,19 @@
 .login {
+  max-width: 500px;
+  margin: 0 auto;
   padding-top: 144px;
   padding-bottom: 265px;
   background-color: powderblue;
 }
 
-/* .form {
-
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
 }
 
 .fields {
-
-} */
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
