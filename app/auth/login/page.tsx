@@ -37,7 +37,7 @@ export default function Login() {
           Вход
         </Button>
 
-        <Link href={'/'}>Забыли пароль?</Link>
+        <Link href={'/'} className={styles.forgotPassword}>Забыли пароль?</Link>
       </form>
     </div>
   );

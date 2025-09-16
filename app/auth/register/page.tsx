@@ -7,7 +7,6 @@ import { Button } from '@/components/button/Button';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
 import { Tabs } from '@/components/tabs/Tabs';
-// import path from 'path';
 
 export default function Register() {
   const pathname = usePathname();
@@ -17,17 +16,6 @@ export default function Register() {
       <h1>Мой аккаунт</h1>
 
       <Tabs tabs={tabs} pathname={pathname} />
-      {/* <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <span
-            key={tab.href}
-            className={`${styles.tabsItem} ${pathname === tab.href ? styles.active : ''
-              }`}
-          >
-            <Link href={tab.href}>{tab.label}</Link>
-          </span>
-        ))}
-      </div> */}
 
       <form method="post" action="" className={styles.form}>
         <div className={styles.fiels}>
@@ -53,7 +41,7 @@ export default function Register() {
           Зарегистрироваться
         </Button>
 
-        <Link href={'/'}>Забыли пароль?</Link>
+        <Link href={'/'} className={styles.forgotPassword}>Забыли пароль?</Link>
       </form>
     </div>
   );

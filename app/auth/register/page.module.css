@@ -5,3 +5,9 @@
   padding-bottom: 265px;
   border-radius: 8px;
 }
+
+.forgotPassword {
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--black);
+}
