@@ -24,11 +24,13 @@ export default function Register() {
             type="password"
             variant="gray"
             placeholder="Пароль"
+          // autoComplete="off"
           />
           <InputField
             type="password"
             variant="gray"
             placeholder="Повторите пароль"
+          // autoComplete="off"
           />
         </div>
 

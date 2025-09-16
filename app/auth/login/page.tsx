@@ -11,7 +11,6 @@ import styles from './page.module.css';
 export default function Login() {
   const pathname = usePathname();
 
-
   return (
     <div className={styles.login}>
       <h1>Мой аккаунт</h1>
@@ -25,6 +24,7 @@ export default function Login() {
             type="password"
             variant="gray"
             placeholder="Пароль"
+          // autoComplete="off"
           />
         </div>
 
