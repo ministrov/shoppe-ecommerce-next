@@ -10,10 +10,32 @@
   flex-direction: column;
 }
 
+.fieldset {
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+  border: none;
+}
+
 .fields {
   display: flex;
   flex-direction: column;
   gap: 46px;
+}
+
+.checkboxGroup {
+  margin-bottom: 64px;
+}
+
+.checkbox {
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--black);
+}
+
+.enterBtn {
+  margin-bottom: 16px;
 }
 
 .forgotPassword {
