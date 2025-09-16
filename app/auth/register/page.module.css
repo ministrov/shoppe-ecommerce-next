@@ -1,0 +1,37 @@
+.register {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 144px;
+  padding-bottom: 265px;
+  border-radius: 8px;
+}
+
+.fieldset {
+  display: block;
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+  border: none;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+
+.checkboxGroup {
+  margin-bottom: 64px;
+}
+
+.registerBtn {
+  margin-bottom: 16px;
+}
+
+.forgotPassword {
+  display: block;
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  color: var(--black);
+}
