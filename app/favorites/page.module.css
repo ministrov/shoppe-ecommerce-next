@@ -1,0 +1,18 @@
+.favorites {
+  padding-top: 96px;
+}
+
+.favoritesCount {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.favoritesList {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 64px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

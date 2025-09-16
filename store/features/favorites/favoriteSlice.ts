@@ -1,12 +1,41 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 
+const STORAGE_KEY = 'favoriteIds';
 interface FavoritesState {
   favoriteIds: number[];
 }
 
+const loadFromLocalStorage = (): number[] => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error('Ошибка загрузки из localStorage:', error);
+    return [];
+  }
+};
+
+const saveToLocalStorage = (ids: number[]): void => {
+  // Проверяем, что мы на клиенте
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+  } catch (error) {
+    console.error('Ошибка сохранения в localStorage:', error);
+  }
+};
+
 const initialState: FavoritesState = {
-  favoriteIds: [],
+  // favoriteIds: [],
+  favoriteIds: loadFromLocalStorage(),
 };
 
 // 3. Реализация персистентности
@@ -31,23 +60,14 @@ const favoritesSlice = createSlice({
     toggleFavorite: (state, action: PayloadAction<number>) => {
       const id = action.payload;
       const index = state.favoriteIds.indexOf(id);
-      // console.log(index);
 
       if (index === -1) {
         state.favoriteIds.push(id);
       } else {
         state.favoriteIds.splice(index, 1);
       }
-      //  const id = action.payload;
-      // const index = state.favoriteIds.indexOf(id);
 
-      // if (index === -1) {
-      //   state.favoriteIds.push(id);
-      // } else {
-      //   state.favoriteIds.splice(index, 1);
-      // }
-      // console.log(state.favoriteIds);
-      // console.log(action);
+      saveToLocalStorage(state.favoriteIds);
     },
   },
 });

@@ -50,14 +50,57 @@
 }
 
 @media screen and (max-width: 768px) {
+  .newIncome {
+    margin-bottom: 90px;
+  }
+
   .searchMobile {
     display: block;
     margin-top: 24px;
   }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(136px, 1fr));
+    column-gap: 24px;
+    row-gap: 48px;
+  }
+
+  .header h3 {
+    font-size: 27px;
+    line-height: 33px;
+  }
 }
 
 @media screen and (max-width: 375px) {
+  .newIncome {
+    margin-bottom: 64px;
+  }
+
   .searchMobile {
     margin-top: 16px;
+  }
+
+  .header {
+    margin-bottom: 12px;
+  }
+
+  .header h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .header a {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .list {
+    column-gap: 16px;
+    row-gap: 24px;
   }
 }
