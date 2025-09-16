@@ -2,16 +2,13 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import styles from './page.module.css';
-import { Button } from '@/components/button/Button';
 import { InputField } from '@/components/inputField/InputField';
+import { Button } from '@/components/button/Button';
+import { tabs } from '@/interfaces/tabs.interface';
+import styles from './page.module.css';
 
 export default function Register() {
   const pathname = usePathname();
-  const tabs = [
-    { href: '/auth/login', label: 'Войти' },
-    { href: '/auth/register', label: 'Зарегистрироваться' },
-  ];
 
   return (
     <div className={styles.register}>

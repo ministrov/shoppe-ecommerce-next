@@ -3,16 +3,14 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { InputField } from '@/components/inputField/InputField';
-import styles from './page.module.css';
 import { Button } from '@/components/button/Button';
+import { tabs } from '@/interfaces/tabs.interface';
+import styles from './page.module.css';
 
 export default function Login() {
   const pathname = usePathname();
 
-  const tabs = [
-    { href: '/auth/login', label: 'Войти' },
-    { href: '/auth/register', label: 'Зарегистрироваться' },
-  ];
+
   return (
     <div className={styles.login}>
       <h1>Мой аккаунт</h1>
