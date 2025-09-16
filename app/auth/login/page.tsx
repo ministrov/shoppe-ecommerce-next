@@ -18,12 +18,6 @@ export default function Login() {
       <h1>Мой аккаунт</h1>
 
       <div className={styles.tabs}>
-        {/* <span className={styles.tabsItem}>
-          <Link href={'/auth/login'}>Войти</Link>
-        </span>
-        <span className={styles.tabsItem}>
-          <Link href={'/auth/register'}>Зарегистрироваться</Link>
-        </span> */}
         {tabs.map((tab) => (
           <span
             key={tab.href}
