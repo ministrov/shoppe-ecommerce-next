@@ -7,6 +7,10 @@ interface FavoritesState {
 }
 
 const loadFromLocalStorage = (): number[] => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -17,6 +21,11 @@ const loadFromLocalStorage = (): number[] => {
 };
 
 const saveToLocalStorage = (ids: number[]): void => {
+  // Проверяем, что мы на клиенте
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
   } catch (error) {
