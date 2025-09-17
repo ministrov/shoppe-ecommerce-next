@@ -9,31 +9,26 @@ interface AuthState {
   error: string | null;
 }
 
-// Функция для работы с cookies
+// Убрать проверку window из функций
 const setAuthCookie = (token: string | null) => {
-  if (typeof window !== 'undefined') {
-    if (token) {
-      document.cookie = `auth-token=${token}; path=/; max-age=86400`; // 24 часа
-    } else {
-      document.cookie =
-        'auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    }
+  if (token) {
+    document.cookie = `auth-token=${token}; path=/; max-age=86400`;
+  } else {
+    document.cookie =
+      'auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   }
 };
 
 const getAuthCookie = (): string | null => {
-  if (typeof window !== 'undefined') {
-    const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find((cookie) =>
-      cookie.trim().startsWith('auth-token=')
-    );
-    return tokenCookie ? tokenCookie.split('=')[1] : null;
-  }
-  return null;
+  const cookies = document.cookie.split(';');
+  const tokenCookie = cookies.find((cookie) =>
+    cookie.trim().startsWith('auth-token=')
+  );
+  return tokenCookie ? tokenCookie.split('=')[1] : null;
 };
 
 const initialState: AuthState = {
-  token: getAuthCookie(),
+  token: null,
   user: null,
   isLoading: false,
   error: null,
@@ -49,16 +44,13 @@ export const authSlice = createSlice({
       setAuthCookie(action.payload);
     },
     setUser: (state, action: PayloadAction<User>) => {
-      console.log(state);
-      console.log(action);
+      state.user = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
-      console.log(state);
-      console.log(action);
+      state.isLoading = action.payload;
     },
     setError: (state, action: PayloadAction<string>) => {
-      console.log(state);
-      console.log(action);
+      state.error = action.payload;
     },
     logout: (state) => {
       state.token = null;
@@ -76,7 +68,7 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Обработка loginUser thunk
-    console.log(builder);
+    // console.log(builder);
     builder
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;

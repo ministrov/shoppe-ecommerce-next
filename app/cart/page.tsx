@@ -1,27 +1,32 @@
 'use client';
 
 import { Button } from '@/components/button/Button';
-import { RootState } from '@/store/store';
+import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
 import { incCount, decCount } from '@/store/features/counter/counterSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export default function Cart() {
-  const counter = useSelector((state: RootState) => state.counter.counter);
-  const dispatch = useDispatch();
+  const counter = useAppSelector((state) => state.counter.counter);
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   return (
-    <div>
+    <ProtectedRoute>
+      {token && (
+        <div>
 
-      Cart
+          Cart
 
-      <Button onClick={() => dispatch(incCount())}>
-        +
-      </Button>
+          <Button onClick={() => dispatch(incCount())}>
+            +
+          </Button>
 
-      {counter}
+          {counter}
 
-      <Button onClick={() => dispatch(decCount())}>
-        -
-      </Button>
-    </div>
+          <Button onClick={() => dispatch(decCount())}>
+            -
+          </Button>
+        </div>
+      )}
+    </ProtectedRoute>
   );
 };
