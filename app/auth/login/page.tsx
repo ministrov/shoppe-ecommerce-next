@@ -2,6 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+// useRouter 
+// import { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
 import { Tabs } from '@/components/tabs/Tabs';
@@ -9,7 +12,12 @@ import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
 
 export default function Login() {
+  // const [email, setEmail] = useState<string>('');
+  // const [password, setPassword] = useState<string>('');
+  // const dispatch = useDispatch();
+  // const router = useRouter();
   const pathname = usePathname();
+  // const { isLoading, error} = useSelector((state) => state.auth);
 
   return (
     <main className={styles.login}>

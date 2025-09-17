@@ -45,10 +45,24 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Обработка loginUser thunk
-    builder.addCase(loginUser.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    });
+    console.log(builder);
+    builder
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // Токен и пользователь уже установлены в thunk через dispatch
+        console.log('Login successful:', action.payload);
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+        state.token = null;
+        state.user = null;
+      });
   },
 });
 
