@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { token, isLoading } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
