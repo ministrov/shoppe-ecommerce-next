@@ -9,8 +9,31 @@ interface AuthState {
   error: string | null;
 }
 
+// Функция для работы с cookies
+const setAuthCookie = (token: string | null) => {
+  if (typeof window !== 'undefined') {
+    if (token) {
+      document.cookie = `auth-token=${token}; path=/; max-age=86400`; // 24 часа
+    } else {
+      document.cookie =
+        'auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+  }
+};
+
+const getAuthCookie = (): string | null => {
+  if (typeof window !== 'undefined') {
+    const cookies = document.cookie.split(';');
+    const tokenCookie = cookies.find((cookie) =>
+      cookie.trim().startsWith('auth-token=')
+    );
+    return tokenCookie ? tokenCookie.split('=')[1] : null;
+  }
+  return null;
+};
+
 const initialState: AuthState = {
-  token: null,
+  token: getAuthCookie(),
   user: null,
   isLoading: false,
   error: null,
@@ -23,6 +46,7 @@ export const authSlice = createSlice({
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
       state.error = null;
+      setAuthCookie(action.payload);
     },
     setUser: (state, action: PayloadAction<User>) => {
       console.log(state);
@@ -41,6 +65,13 @@ export const authSlice = createSlice({
       state.user = null;
       state.error = null;
       state.isLoading = false;
+      setAuthCookie(null);
+    },
+    initializeAuth: (state) => {
+      const token = getAuthCookie();
+      if (token) {
+        state.token = token;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -62,10 +93,17 @@ export const authSlice = createSlice({
         state.error = action.payload as string;
         state.token = null;
         state.user = null;
+        setAuthCookie(null);
       });
   },
 });
 
-export const { setToken, setUser, setLoading, setError, logout } =
-  authSlice.actions;
+export const {
+  setToken,
+  setUser,
+  setLoading,
+  setError,
+  logout,
+  initializeAuth,
+} = authSlice.actions;
 export default authSlice.reducer;
