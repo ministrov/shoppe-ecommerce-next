@@ -9,6 +9,8 @@ import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
 import { Pagination } from '@/components/pagination/Pagination';
+import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
+import { useAppSelector } from '@/store/hooks';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
@@ -19,6 +21,7 @@ import cn from 'classnames';
 import styles from './page.module.css';
 
 export default function Catalog() {
+  const { token } = useAppSelector((state) => state.auth);
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showFilter, setShowFilter] = useState<boolean>(false);
@@ -210,71 +213,75 @@ export default function Catalog() {
   }, [categories]);
 
   return (
-    <section className={styles.catalogPage} ref={catalogRef}>
-      <h1 className='visually-hidden'>Страница каталога товаров с фильтрами</h1>
+    <ProtectedRoute>
+      {token && (
+        <section className={styles.catalogPage} ref={catalogRef}>
+          <h1 className='visually-hidden'>Страница каталога товаров с фильтрами</h1>
 
-      {error && (
-        <div className={styles.error}>
-          {error}
-        </div>
-      )}
-
-      <div className={styles.searchMobile}>
-        <Searching />
-      </div>
-
-      <h1 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h1>
-
-      <div className={styles.catalog}>
-        <div className={styles.catalog__filterMobile} onClick={() => setShowFilter(true)}>
-          <Image src={'/filter-mobile.svg'} width={20} height={20} alt={''} />
-
-          <span className={styles.filterMobileLabel}>Фильтры</span>
-        </div>
-        <div className={cn(styles.catalog__filter, {
-          [styles.visible]: showFilter
-        })} onClick={() => setShowFilter(false)}>
-          <div className={styles.catalog__search}>
-            <InputField onChange={(e) => handleSearchChange(e.target.value)} value={search} className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
-
-            <Image src={'/search.svg'} width={20} height={20} alt={''} />
-          </div>
-
-          <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
-
-          <RangeSlider min={0} max={1200} value={price} onChange={handlePriceChange} />
-
-          <div className={styles.catalog__switch}>
-            <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            <input
-              type="checkbox"
-              checked={hasDiscount}
-              onChange={handleDiscountChange}
-              style={{ width: 40, height: 20 }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.catalog__cardsWrapper}>
-          {isLoading && <div className={styles.loading}>Loading</div>}
-
-          {!isLoading && paginatedProducts.length === 0 && (
-            <div className={styles.noProducts}>
-              Товары не найдены
+          {error && (
+            <div className={styles.error}>
+              {error}
             </div>
           )}
 
-          <ul className={styles.catalog__cards}>
-            {!isLoading && paginatedProducts.length !== 0 && paginatedProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ul>
+          <div className={styles.searchMobile}>
+            <Searching />
+          </div>
 
-          {totalProducts > ITEMS_PER_PAGE && (
-            <Pagination page={page} total={totalProducts} limit={6} onClick={handlePageChange} />
-          )}
-        </div>
-      </div>
-    </section>
+          <h1 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h1>
+
+          <div className={styles.catalog}>
+            <div className={styles.catalog__filterMobile} onClick={() => setShowFilter(true)}>
+              <Image src={'/filter-mobile.svg'} width={20} height={20} alt={''} />
+
+              <span className={styles.filterMobileLabel}>Фильтры</span>
+            </div>
+            <div className={cn(styles.catalog__filter, {
+              [styles.visible]: showFilter
+            })} onClick={() => setShowFilter(false)}>
+              <div className={styles.catalog__search}>
+                <InputField onChange={(e) => handleSearchChange(e.target.value)} value={search} className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
+
+                <Image src={'/search.svg'} width={20} height={20} alt={''} />
+              </div>
+
+              <SelectField options={categoriesSelect} value={category_id} onChange={handleCategoryChange} />
+
+              <RangeSlider min={0} max={1200} value={price} onChange={handlePriceChange} />
+
+              <div className={styles.catalog__switch}>
+                <span className={styles.catalog__switchLabel}>Со скидкой</span>
+                <input
+                  type="checkbox"
+                  checked={hasDiscount}
+                  onChange={handleDiscountChange}
+                  style={{ width: 40, height: 20 }}
+                />
+              </div>
+            </div>
+
+            <div className={styles.catalog__cardsWrapper}>
+              {isLoading && <div className={styles.loading}>Loading</div>}
+
+              {!isLoading && paginatedProducts.length === 0 && (
+                <div className={styles.noProducts}>
+                  Товары не найдены
+                </div>
+              )}
+
+              <ul className={styles.catalog__cards}>
+                {!isLoading && paginatedProducts.length !== 0 && paginatedProducts.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </ul>
+
+              {totalProducts > ITEMS_PER_PAGE && (
+                <Pagination page={page} total={totalProducts} limit={6} onClick={handlePageChange} />
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+    </ProtectedRoute>
   );
 };

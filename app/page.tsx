@@ -18,8 +18,6 @@ export default function Home() {
   const { isLoading } = useApiData();
   const { token } = useAppSelector((state) => state.auth);
 
-  console.log(token);
-
   useEffect(() => {
     const getLastIncomeProducts = async () => {
       try {

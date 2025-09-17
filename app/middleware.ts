@@ -16,6 +16,8 @@ const publicRoutes = ['/auth/login', '/auth/register', '/auth/restore'];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // console.log(pathname);
+
   // Получаем токен из cookies
   const token = request.cookies.get('auth-token')?.value;
   const isAuthenticated = !!token;

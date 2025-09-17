@@ -3,16 +3,17 @@
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { NoFavorites } from '@/components/noFavorites/NoFavorites';
+import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
+import { useAppSelector } from '@/store/hooks';
 import { Product } from '@/interfaces/product.interface';
 import { useFavorites } from '@/hooks/useFavorite';
 import styles from './page.module.css';
 
 const API_URL = process.env.NEXT_PUBLIC_API;
 
-console.log(API_URL);
-
 export default function Favorites() {
   const { favoritesCount, favoriteIds } = useFavorites();
+  const { token } = useAppSelector((state) => state.auth);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,8 +38,6 @@ export default function Favorites() {
             return result.product;
           })
         );
-
-        console.log(results);
 
         const successfulProducts = results
           .filter(result => result.status === 'fulfilled')
@@ -81,30 +80,31 @@ export default function Favorites() {
     );
   }
 
-  console.log(products);
-
-
   return (
-    <div className={styles.favorites}>
-      <h1 className="left">Избранное</h1>
+    <ProtectedRoute>
+      {token && (
+        <div className={styles.favorites}>
+          <h1 className="left">Избранное</h1>
 
-      {favoritesCount === 0 && <NoFavorites />}
+          {favoritesCount === 0 && <NoFavorites />}
 
-      {products.length === 0 ? (
-        <NoFavorites />
-      ) : (
-        <>
-          <p className={styles.favoritesCount}>
-            {products.length} товар{products.length % 10 === 1 ? '' : 'ов'} в избранном
-          </p>
-          <ul className={styles.favoritesList}>
-            {products.map((product) => (
+          {products.length === 0 ? (
+            <NoFavorites />
+          ) : (
+            <>
+              <p className={styles.favoritesCount}>
+                {products.length} товар{products.length % 10 === 1 ? '' : 'ов'} в избранном
+              </p>
+              <ul className={styles.favoritesList}>
+                {products.map((product) => (
 
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ul>
-        </>
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </ProtectedRoute>
   );
 };

@@ -36,7 +36,8 @@ export default function Login() {
       // Проверяем результат thunk-действия
       if (loginUser.fulfilled.match(result)) {
         // Успешный вход - перенаправляем
-        router.push('/orders');
+        // router.push('/orders');
+        router.push('/');
         console.log("Успешный вход:", result.payload);
       }
       // В случае ошибки она автоматически установится в state.auth.error
