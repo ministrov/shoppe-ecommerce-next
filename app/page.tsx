@@ -12,12 +12,10 @@ import { carouselImages } from '@/interfaces/carousel.interface';
 import { useApiData } from '@/hooks/useApiData';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './page.module.css';
-import { Button } from '@/components/button/Button';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { isLoading } = useApiData();
-  const { clearToken } = useAuth();
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
@@ -45,13 +43,6 @@ export default function Home() {
 
   return (
     <section>
-      {/* Кнопка выхода */}
-      <div style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 1000, width: '236px' }}>
-        <Button size='medium' onClick={clearToken}>
-          Выход
-        </Button>
-      </div>
-
       <h1 className="visually-hidden">Секция домашней страницы</h1>
       <div className={styles.searchMobile}>
         <Searching />

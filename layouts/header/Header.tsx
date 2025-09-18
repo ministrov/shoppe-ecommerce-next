@@ -10,12 +10,14 @@ import { ButtonLink } from '../../components/buttonLink/ButtonLink';
 import { NavMenu } from '../../components/navMenu/NavMenu';
 import { UserMenu } from '../../components/userMenu/UserMenu';
 import { Searching } from '../../components/searching/Searching';
+import { useAuth } from '@/hooks/useAuth';
 import styles from './Header.module.css';
 
 export const Header = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const pathname = usePathname();
+  const { clearToken, token } = useAuth();
 
   const showSearching = {
     hidden: { opacity: 0 },
@@ -65,6 +67,12 @@ export const Header = () => {
           </div>
 
           <UserMenu pathname={pathname} />
+
+          {token && (
+            <button className={styles.exitBtn} onClick={clearToken}>
+              <Image src={'/exit.svg'} width={21} height={21} alt={'Exit icon'} />
+            </button>
+          )}
         </div>
       </div>
 

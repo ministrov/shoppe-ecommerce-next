@@ -4,11 +4,8 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  console.log('Middleware triggered for:', pathname);
-
   // Получаем токен из cookies
   const token = request.cookies.get('auth-token')?.value;
-  console.log('Token from cookies:', token);
 
   // Защищенные маршруты
   const protectedRoutes = [
@@ -23,12 +20,8 @@ export function middleware(request: NextRequest) {
     (route) => pathname === route || pathname.startsWith(route + '/')
   );
 
-  console.log('Is protected route:', isProtectedRoute);
-  console.log('Has token:', !!token);
-
   // Если маршрут защищенный и нет токена - редирект на логин
   if (isProtectedRoute && !token) {
-    console.log('Redirecting to login');
     const url = new URL('/auth/login', request.url);
     url.searchParams.set('redirect', pathname);
     return NextResponse.redirect(url);
@@ -39,11 +32,9 @@ export function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
   if (isAuthRoute && token) {
-    console.log('Redirecting to home (already authenticated)');
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  console.log('Allowing access to:', pathname);
   return NextResponse.next();
 }
 
