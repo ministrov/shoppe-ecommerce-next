@@ -98,4 +98,6 @@ export const {
   logout,
   initializeAuth,
 } = authSlice.actions;
+export const selectIsAuthenticated = (state: { auth: AuthState }) =>
+  !!state.auth.token;
 export default authSlice.reducer;

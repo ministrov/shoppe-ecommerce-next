@@ -1,43 +1,30 @@
 // hooks/useAuth.ts
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { initializeAuth, logout } from '@/store/features/auth/authSlice';
+import { selectIsAuthenticated } from '@/store/features/auth/authSlice';
 
 export function useAuth() {
-  const [token, setToken] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Проверяем токен при монтировании
-    checkAuth();
-  }, []);
-
-  const checkAuth = () => {
-    // Простая проверка наличия токена в cookies
-    const cookieToken = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('auth-token='))
-      ?.split('=')[1];
-
-    if (cookieToken) {
-      setToken(cookieToken);
-      setIsAuthenticated(true);
-    } else {
-      setToken(null);
-      setIsAuthenticated(false);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const isLoading = useAppSelector((state) => state.auth.isLoading);
 
   const clearToken = () => {
-    // Удаляем токен из cookies
-    document.cookie = 'auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    setToken(null);
-    setIsAuthenticated(false);
+    dispatch(logout());
+  };
+
+  const checkAuth = () => {
+    dispatch(initializeAuth());
   };
 
   return {
     token,
+    user,
     isAuthenticated,
+    isLoading,
     clearToken,
     checkAuth
   };
