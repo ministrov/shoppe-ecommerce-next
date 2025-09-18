@@ -1,12 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-// import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
-// import { useAppSelector } from '@/store/hooks';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 import styles from './page.module.css';
 
 export default function About() {
-  // const { token } = useAppSelector((state) => state.auth);
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/auth/login');
+    }
+  }, [isAuthenticated, router]);
 
   return (
     <section className={styles.about}>

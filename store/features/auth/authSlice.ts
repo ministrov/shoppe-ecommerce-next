@@ -58,6 +58,7 @@ export const authSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       setAuthCookie(null);
+      console.log(state.token);
     },
     initializeAuth: (state) => {
       const token = getAuthCookie();
