@@ -47,8 +47,6 @@ export default function Login() {
       console.error("Неожиданная ошибка:", error);
       alert("Произошла непредвиденная ошибка");
     }
-
-    console.log(e.currentTarget);
   };
 
   return (
@@ -82,6 +80,7 @@ export default function Login() {
               aria-required="true"
               autoComplete="email"
             />
+
             <InputField
               type="password"
               value={password}

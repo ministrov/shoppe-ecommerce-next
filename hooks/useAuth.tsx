@@ -1,4 +1,3 @@
-// hooks/useAuth.ts
 'use client';
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
