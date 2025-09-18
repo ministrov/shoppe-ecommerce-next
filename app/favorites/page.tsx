@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { NoFavorites } from '@/components/noFavorites/NoFavorites';
-// import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
-// import { useAppSelector } from '@/store/hooks';
 import { Product } from '@/interfaces/product.interface';
 import { useFavorites } from '@/hooks/useFavorite';
 import styles from './page.module.css';
@@ -13,7 +11,6 @@ const API_URL = process.env.NEXT_PUBLIC_API;
 
 export default function Favorites() {
   const { favoritesCount, favoriteIds } = useFavorites();
-  // const { token } = useAppSelector((state) => state.auth);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

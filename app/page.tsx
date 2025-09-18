@@ -5,18 +5,15 @@ import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
-// import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
 import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
 import { useApiData } from '@/hooks/useApiData';
-// import { useAppSelector } from '@/store/hooks';
 import styles from './page.module.css';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { isLoading } = useApiData();
-  // const { token } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     const getLastIncomeProducts = async () => {

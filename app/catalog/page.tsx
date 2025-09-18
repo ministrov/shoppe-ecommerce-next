@@ -9,8 +9,6 @@ import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
 import { Pagination } from '@/components/pagination/Pagination';
-// import { ProtectedRoute } from '@/components/protectedRoute/ProtectedRoute';
-// import { useAppSelector } from '@/store/hooks';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
