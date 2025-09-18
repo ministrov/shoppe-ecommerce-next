@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Header } from '@/layouts/header/Header';
 import { Footer } from '@/layouts/footer/Footer';
-import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
 import StoreProvider from './StoreProvider';
 import { dmSans } from '@/styles/fonts';
 import './globals.css';
@@ -23,7 +22,6 @@ export default function RootLayout({
           <StoreProvider>
             <Header />
             <main>
-              <AuthInitializer />
               {children}
             </main>
             <Footer />

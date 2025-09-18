@@ -1,46 +1,44 @@
+// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-// Защищенные маршруты - требуют аутентификации
-const protectedRoutes = [
-  '/',
-  '/catalog',
-  '/favorites',
-  '/orders',
-  '/cart',
-  '/about',
-];
-// Публичные маршруты - доступны без аутентификации
-const publicRoutes = ['/auth/login', '/auth/register', '/auth/restore'];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // console.log(pathname);
-
   // Получаем токен из cookies
   const token = request.cookies.get('auth-token')?.value;
-  const isAuthenticated = !!token;
 
-  // Проверяем, является ли текущий маршрут защищенным
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname.startsWith(route)
+  // Защищенные маршруты
+  const protectedRoutes = [
+    '/',
+    '/catalog',
+    '/favorites',
+    '/orders',
+    '/cart',
+    '/about',
+  ];
+  const isProtectedRoute = protectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(route + '/')
   );
 
-  // Проверяем, является ли текущий маршрут публичным
-  const isPublicRoute = publicRoutes.some((route) =>
-    pathname.startsWith(route)
-  );
-
-  // Если пользователь не аутентифицирован и пытается попасть на защищенный маршрут
-  if (isProtectedRoute && !isAuthenticated) {
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+  // Если маршрут защищенный и нет токена - редирект на логин
+  if (isProtectedRoute && !token) {
+    const url = new URL('/auth/login', request.url);
+    url.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(url);
   }
 
-  // Если пользователь аутентифицирован и пытается попасть на страницу логина/регистрации
-  if (isAuthenticated && isPublicRoute && pathname !== '/') {
-    return NextResponse.redirect(new URL('/orders', request.url));
+  // Если уже авторизован и пытается зайти на логин/регистрацию - редирект на главную
+  const authRoutes = ['/auth/login', '/auth/register'];
+  const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
+
+  if (isAuthRoute && token) {
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
   return NextResponse.next();
 }
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};

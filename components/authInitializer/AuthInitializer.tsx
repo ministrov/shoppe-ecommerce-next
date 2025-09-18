@@ -1,15 +1,15 @@
-'use client';
+// 'use client';
 
-import { useEffect } from 'react';
-import { useAppDispatch } from '@/store/hooks';
-import { initializeAuth } from '@/store/features/auth/authSlice';
+// import { useEffect } from 'react';
+// import { useAppDispatch } from '@/store/hooks';
+// import { initializeAuth } from '@/store/features/auth/authSlice';
 
-export const AuthInitializer = () => {
-  const dispatch = useAppDispatch();
+// export const AuthInitializer = () => {
+//   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(initializeAuth());
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(initializeAuth());
+//   }, [dispatch]);
 
-  return null;
-}
+//   return null;
+// }

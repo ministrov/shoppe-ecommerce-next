@@ -41,6 +41,7 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
                 height={image.height}
                 alt={image.alt}
                 className={styles.image}
+                priority
               />
             </picture>
 
