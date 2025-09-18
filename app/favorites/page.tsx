@@ -1,21 +1,29 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { NoFavorites } from '@/components/noFavorites/NoFavorites';
 import { Product } from '@/interfaces/product.interface';
 import { useFavorites } from '@/hooks/useFavorite';
+import { useAuth } from '@/hooks/useAuth';
 import styles from './page.module.css';
 
 const API_URL = process.env.NEXT_PUBLIC_API;
 
-console.log(API_URL);
-
 export default function Favorites() {
   const { favoritesCount, favoriteIds } = useFavorites();
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/auth/login');
+    }
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     const fetchFavoriteProducts = async () => {
@@ -37,8 +45,6 @@ export default function Favorites() {
             return result.product;
           })
         );
-
-        console.log(results);
 
         const successfulProducts = results
           .filter(result => result.status === 'fulfilled')
@@ -80,9 +86,6 @@ export default function Favorites() {
       </div>
     );
   }
-
-  console.log(products);
-
 
   return (
     <div className={styles.favorites}>

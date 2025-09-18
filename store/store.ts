@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import favoritesReducer from './features/favorites/favoriteSlice';
 import counterReducer from './features/counter/counterSlice';
+import authReducer from './features/auth/authSlice';
 
 // Конфигурация основного хранилища
 export const makeStore = () => {
@@ -8,6 +9,7 @@ export const makeStore = () => {
     reducer: {
       favorites: favoritesReducer,
       counter: counterReducer,
+      auth: authReducer,
     },
     // middleware: (getDefaultMiddleware) =>
     //   getDefaultMiddleware({

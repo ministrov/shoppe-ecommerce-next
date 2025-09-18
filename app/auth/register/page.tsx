@@ -4,9 +4,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
+import { Tabs } from '@/components/tabs/Tabs';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
-import { Tabs } from '@/components/tabs/Tabs';
 
 export default function Register() {
   const pathname = usePathname();
