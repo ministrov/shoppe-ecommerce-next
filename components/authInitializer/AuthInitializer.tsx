@@ -1,17 +1,16 @@
+// components/AuthInitializer.tsx
 'use client';
 
 import { useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAppDispatch } from '@/store/hooks';
+import { initializeAuth } from '@/store/features/auth/authSlice';
 
 export function AuthInitializer() {
-  const { checkAuth } = useAuth();
-  const isAuth = checkAuth();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log(isAuth);
-    checkAuth();
-    console.log(isAuth);
-  }, [checkAuth, isAuth]);
+    dispatch(initializeAuth());
+  }, [dispatch]);
 
   return null;
 }
