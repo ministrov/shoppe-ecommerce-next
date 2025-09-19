@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/layouts/header/Header';
 import { Footer } from '@/layouts/footer/Footer';
 import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
+import { PageTransitions } from '@/components/pageTransitons/PageTransitions';
 import StoreProvider from './StoreProvider';
 import { dmSans } from '@/styles/fonts';
 import './globals.css';
@@ -22,9 +23,11 @@ export default function RootLayout({
         <div className='container'>
           <StoreProvider>
             <Header />
+            <AuthInitializer />
             <main>
-              <AuthInitializer />
-              {children}
+              <PageTransitions>
+                {children}
+              </PageTransitions>
             </main>
             <Footer />
           </StoreProvider>
