@@ -45,3 +45,14 @@
   text-align: center;
   color: var(--black);
 }
+
+@media screen and (max-width: 484px) {
+  .login {
+    padding-top: 24px;
+    padding-bottom: 90px;
+  }
+
+  .checkboxGroup {
+    margin-bottom: 12px;
+  }
+}
