@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useState } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
 import { Tabs } from '@/components/tabs/Tabs';
@@ -9,7 +10,30 @@ import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
 
 export default function Register() {
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const pathname = usePathname();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const form = e.currentTarget as HTMLFormElement;
+
+    // Проверяем валидность формы средствами HTML5
+    if (!form.checkValidity()) {
+      form.reportValidity(); // Показывает браузерные сообщения
+      return;
+    }
+
+    // Дополнительная проверка совпадения паролей
+    if (password !== confirmPassword) {
+      alert('Пароли не совпадают');
+      return;
+    }
+
+    console.log('Форма валидна, можно отправлять данные');
+    // Здесь ваш API запрос на регистрацию
+  };
 
   return (
     <main className={styles.register}>
@@ -17,7 +41,11 @@ export default function Register() {
 
       <Tabs tabs={tabs} pathname={pathname} />
 
-      <form method="post" action="" className={styles.form}>
+      <form
+        onSubmit={handleSubmit}
+        className={styles.form}
+        noValidate
+      >
         <fieldset className={styles.fieldset}>
           <legend className="visually-hidden">Данные для регистрации</legend>
 
@@ -31,8 +59,12 @@ export default function Register() {
               required
               aria-required="true"
               autoComplete="email"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
+              title="Пожалуйста, введите корректный email адрес" // ← Сообщение об ошибке
             />
             <InputField
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               type="password"
               variant="gray"
               placeholder="Пароль"
@@ -45,6 +77,8 @@ export default function Register() {
             />
             <InputField
               type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               variant="gray"
               placeholder="Повторите пароль"
               name="confirmPassword"
@@ -52,6 +86,9 @@ export default function Register() {
               required
               aria-required="true"
               autoComplete="new-password"
+              // pattern="[0-9]*"
+              inputMode="numeric" // ← Цифровая клавиатура на мобильных
+              title="Пароль должен содержать только цифры"
             />
           </div>
         </fieldset>
