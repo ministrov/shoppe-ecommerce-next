@@ -26,3 +26,24 @@
   border-radius: 8px;
   background-color: var(--white);
 }
+
+@media screen and (max-width: 484px) {
+  .tabs {
+    margin-top: 24px;
+    margin-bottom: 87px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: var(--color-gray-200);
+  }
+
+  .tabsItem {
+    width: 100%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .tabsItem a {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

@@ -98,9 +98,32 @@ h1.left {
   margin: 0 auto;
 }
 
+.page-content {
+  width: 100%;
+}
+
+/* Анимации для backward compatibility */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.5s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
 @media screen and (max-width: 1285px) {
   .container {
     margin: 0;
     padding: 0 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  h1,
+  h1.left {
+    font-size: 20px;
+    line-height: 26px;
   }
 }

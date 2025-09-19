@@ -7,10 +7,23 @@
   color: var(--black);
   border: none;
   background: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  padding: 12px 0px 12px 12px;
+  outline: 2px solid var(--color-gray-150);
+  border-bottom: 1px solid transparent;
+  border-radius: 4px;
 }
 
 .input::placeholder {
   color: var(--color-gray-500);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-gray-150);
+  border-radius: 4px;
 }
 
 .gray {
@@ -23,7 +36,7 @@
 
 @media screen and (max-width: 375px) {
   .input {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 20px;
   }
 }

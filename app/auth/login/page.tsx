@@ -22,6 +22,14 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const form = e.currentTarget as HTMLFormElement;
+
+    // Проверяем валидность формы средствами HTML5
+    if (!form.checkValidity()) {
+      form.reportValidity(); // Показывает браузерные сообщения
+      return;
+    }
+
     if (!email || !password) {
       alert(
         "Заполните все поля для входа в систему. Пожалуйста, проверьте введенные данные и повторите попытку."
@@ -47,8 +55,6 @@ export default function Login() {
       console.error("Неожиданная ошибка:", error);
       alert("Произошла непредвиденная ошибка");
     }
-
-    console.log(e.currentTarget);
   };
 
   return (
@@ -61,6 +67,7 @@ export default function Login() {
         onSubmit={handleLogin}
         className={styles.form}
         aria-labelledby="form-heading"
+        noValidate
       >
         <h2 id="form-heading" className="visually-hidden">
           Форма регистрации
@@ -81,7 +88,10 @@ export default function Login() {
               required
               aria-required="true"
               autoComplete="email"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
+              title="Пожалуйста, введите корректный email адрес"
             />
+
             <InputField
               type="password"
               value={password}
@@ -94,6 +104,9 @@ export default function Login() {
               aria-required="true"
               autoComplete="new-password"
               minLength={8}
+              // pattern="[0-9]*"
+              inputMode="numeric" // ← Цифровая клавиатура на мобильных
+              title="Пароль должен содержать только цифры"
             />
 
             {error && (
@@ -113,7 +126,7 @@ export default function Login() {
             aria-required="true"
             className={styles.checkbox}
           />
-          <label htmlFor="agreeTerms" className={styles.checkboxLabel}>
+          <label htmlFor="rememberMe" className={styles.checkboxLabel}>
             Запомнить меня
           </label>
         </div>
@@ -122,7 +135,7 @@ export default function Login() {
           {isLoading ? 'Вход...' : 'Вход'}
         </Button>
 
-        <Link className={styles.forgotPassword} href={'/'}>Забыли пароль?</Link>
+        <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
     </main>
   );

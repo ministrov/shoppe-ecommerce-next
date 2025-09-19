@@ -100,9 +100,9 @@ export default function Favorites() {
           <p className={styles.favoritesCount}>
             {products.length} товар{products.length % 10 === 1 ? '' : 'ов'} в избранном
           </p>
+
           <ul className={styles.favoritesList}>
             {products.map((product) => (
-
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
