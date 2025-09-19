@@ -22,6 +22,14 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const form = e.currentTarget as HTMLFormElement;
+
+    // Проверяем валидность формы средствами HTML5
+    if (!form.checkValidity()) {
+      form.reportValidity(); // Показывает браузерные сообщения
+      return;
+    }
+
     if (!email || !password) {
       alert(
         "Заполните все поля для входа в систему. Пожалуйста, проверьте введенные данные и повторите попытку."
@@ -59,6 +67,7 @@ export default function Login() {
         onSubmit={handleLogin}
         className={styles.form}
         aria-labelledby="form-heading"
+        noValidate
       >
         <h2 id="form-heading" className="visually-hidden">
           Форма регистрации
@@ -79,6 +88,8 @@ export default function Login() {
               required
               aria-required="true"
               autoComplete="email"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
+              title="Пожалуйста, введите корректный email адрес"
             />
 
             <InputField
@@ -93,6 +104,7 @@ export default function Login() {
               aria-required="true"
               autoComplete="new-password"
               minLength={8}
+              title="Пароль должен содержать минимум 8 символов"
             />
 
             {error && (
@@ -112,7 +124,7 @@ export default function Login() {
             aria-required="true"
             className={styles.checkbox}
           />
-          <label htmlFor="agreeTerms" className={styles.checkboxLabel}>
+          <label htmlFor="rememberMe" className={styles.checkboxLabel}>
             Запомнить меня
           </label>
         </div>
