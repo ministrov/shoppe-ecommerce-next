@@ -137,10 +137,12 @@ export const Header = () => {
               <Image src={'/heart.svg'} width={20} height={20} alt={'Favorite icon'} />
               Избранное
             </Link>
-            <Link href='/cart' className={styles.navMobile__link}>
-              <Image src={'/exit.svg'} width={20} height={20} alt={'Exit icon'} />
-              Выход
-            </Link>
+            {token && (
+              <button className={styles.navMobile__exit} onClick={clearToken}>
+                <Image src={'/exit.svg'} width={20} height={20} alt={'Exit icon'} />
+                <span>Выход</span>
+              </button>
+            )}
           </div>
         </div>
       </motion.div>

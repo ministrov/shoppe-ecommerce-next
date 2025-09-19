@@ -49,6 +49,15 @@
   line-height: 34px;
 }
 
+@media screen and (max-width: 988px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(136px, 1fr));
+    column-gap: 24px;
+    row-gap: 48px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .newIncome {
     margin-bottom: 90px;
@@ -61,13 +70,6 @@
 
   .header {
     margin-bottom: 24px;
-  }
-
-  .list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(136px, 1fr));
-    column-gap: 24px;
-    row-gap: 48px;
   }
 
   .header h3 {
