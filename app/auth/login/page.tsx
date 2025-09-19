@@ -121,7 +121,7 @@ export default function Login() {
           {isLoading ? 'Вход...' : 'Вход'}
         </Button>
 
-        <Link className={styles.forgotPassword} href={'/'}>Забыли пароль?</Link>
+        <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
     </main>
   );

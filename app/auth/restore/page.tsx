@@ -11,13 +11,17 @@ export default function Restore() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // if (!email) {
-    //   alert(
-    //     "Заполните все поля для входа в систему. Пожалуйста, проверьте введенные данные и повторите попытку."
-    //   );
-    //   return;
-    // }
-    console.log(e);
+    const form = e.currentTarget as HTMLFormElement;
+
+    // Проверяем валидность формы средствами HTML5
+    if (!form.checkValidity()) {
+      // Показываем браузерные сообщения об ошибке
+      form.reportValidity();
+      return;
+    }
+
+    console.log('Email valid:', email);
+    // Здесь ваш API запрос
   };
 
   return (
@@ -32,6 +36,7 @@ export default function Restore() {
         onSubmit={handleLogin}
         className={styles.form}
         aria-labelledby="form-heading"
+        noValidate
       >
         <h2 id="form-heading" className="visually-hidden">
           Форма для сброса пароля
@@ -51,7 +56,8 @@ export default function Restore() {
               placeholder="Email"
               required
               aria-required="true"
-              autoComplete="email"
+              autoComplete="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Простая валидация email
+              title="Пожалуйста, введите корректный email адрес"
             />
           </div>
         </fieldset>

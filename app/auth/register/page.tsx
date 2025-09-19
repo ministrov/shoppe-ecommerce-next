@@ -74,7 +74,7 @@ export default function Register() {
           Зарегистрироваться
         </Button>
 
-        <Link className={styles.forgotPassword} href={'/'} >Забыли пароль?</Link>
+        <Link className={styles.forgotPassword} href={'/auth/restore'} >Забыли пароль?</Link>
       </form>
     </main>
   );
