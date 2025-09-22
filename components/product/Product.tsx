@@ -1,14 +1,16 @@
+import { ProductProps } from './Product.interface';
 import styles from './Product.module.css';
 
-type ProductProps = {
-  id: string;
-}
-
-export const Product = ({ id }: ProductProps) => {
+export const Product = ({ product }: ProductProps) => {
   return (
-    <div className={styles.product}>
-      <h1>Product Page</h1>
-      <p>Product ID: {id}</p>
-    </div>
+    <article className={styles.product}>
+      <div className="card__img-container">
+
+      </div>
+      <div className="card__info-container card-info">
+        <h1>Product Page</h1>
+        <p>Product ID: {product?.product.id}</p>
+      </div>
+    </article>
   )
 }

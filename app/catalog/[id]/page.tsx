@@ -1,5 +1,6 @@
-// import { getProduct } from '@/api/product';
+import { getProduct } from '@/api/product';
 import { Product } from '@/components/product/Product';
+import { GetProductResponse } from '@/interfaces/product.interface';
 import { notFound } from 'next/navigation';
 
 type ProductPageProps = {
@@ -8,7 +9,7 @@ type ProductPageProps = {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = (await params);
-  // const product = await getProduct(id);
+  const product = await getProduct(id) as GetProductResponse | undefined;
 
   // console.log(product);
 
@@ -17,6 +18,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <Product id={id} />
+    <Product product={product} />
   )
 }
