@@ -1,15 +1,20 @@
-// import { notFound } from 'next/navigation'
+import { notFound } from 'next/navigation';
 
 type ProductPageProps = {
   params: Promise<{ id: string }>
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  // if (!(await params).id) {
-  //   notFound();
-  // }
+  const { id } = (await params);
+
+  if (id === 'invalid' || id === 'test' || id === '0') {
+    notFound()
+  }
 
   return (
-    <div>My product: {(await params).id}</div>
+    <div style={{ paddingTop: '128px' }}>
+      <h1>Product Page</h1>
+      <p>Product ID: {id}</p>
+    </div>
   )
 }
