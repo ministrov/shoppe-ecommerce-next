@@ -1,5 +1,4 @@
-// export const API_URL = process.env.NEXT_PUBLIC_API || 'http://localhost:3001';
-export const API_URL = process.env.NEXT_PUBLIC_API;
+import { API_URL } from '@/helpers';
 
 export async function fetchAPI<T>(
   endpoint: string,
