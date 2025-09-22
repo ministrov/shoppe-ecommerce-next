@@ -1,4 +1,5 @@
 // import { getProduct } from '@/api/product';
+import { Product } from '@/components/product/Product';
 import { notFound } from 'next/navigation';
 
 type ProductPageProps = {
@@ -16,9 +17,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div style={{ paddingTop: '128px' }}>
-      <h1>Product Page</h1>
-      <p>Product ID: {id}</p>
-    </div>
+    <Product id={id} />
   )
 }
