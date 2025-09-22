@@ -1,4 +1,4 @@
-import { getProduct } from '@/api/product';
+// import { getProduct } from '@/api/product';
 import { notFound } from 'next/navigation';
 
 type ProductPageProps = {
@@ -7,9 +7,9 @@ type ProductPageProps = {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = (await params);
-  const product = await getProduct(id);
+  // const product = await getProduct(id);
 
-  console.log(product);
+  // console.log(product);
 
   if (id === 'invalid' || id === 'test' || id === '0') {
     notFound()
@@ -19,7 +19,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div style={{ paddingTop: '128px' }}>
       <h1>Product Page</h1>
       <p>Product ID: {id}</p>
-      {/* {product} */}
     </div>
   )
 }

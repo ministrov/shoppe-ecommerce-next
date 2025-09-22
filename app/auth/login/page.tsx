@@ -104,7 +104,6 @@ export default function Login() {
               aria-required="true"
               autoComplete="new-password"
               minLength={8}
-              // pattern="[0-9]*"
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
