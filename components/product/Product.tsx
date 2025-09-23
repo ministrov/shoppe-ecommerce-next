@@ -2,10 +2,29 @@ import Image from 'next/image';
 import { ProductProps } from './Product.interface';
 import styles from './Product.module.css';
 
+const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
+
 export const Product = ({ product }: ProductProps) => {
-  const images = product?.product.images || [];
-  console.log('Product images:', product?.product?.images);
-  // const { product } = product;
+  if (!product?.product) return <div>Product not available</div>;
+
+  // Функция для создания полного URL изображения - всегда возвращает string
+  const getFullImageUrl = (imagePath: string): string => {
+    if (!imagePath) return '/images/placeholder.jpg'; // Заглушка вместо null
+
+    // Если путь уже полный URL
+    if (imagePath.startsWith('http')) return imagePath;
+
+    // Если путь абсолютный (начинается с /)
+    if (imagePath.startsWith('/')) {
+      return `${IMAGE_BASE_URL}${imagePath}`;
+    }
+
+    // Если путь относительный
+    return `${IMAGE_BASE_URL}/uploads/${imagePath}`;
+  };
+
+  const images = product.product.images?.map(getFullImageUrl) || [];
+
   return (
     <article className={styles.product}>
       <div className={styles.imgContainer}>
@@ -20,34 +39,15 @@ export const Product = ({ product }: ProductProps) => {
                 alt={`Product image ${index + 1}`}
                 width={index === 0 ? 570 : 170}
                 height={index === 0 ? 630 : 160}
-              // onError={(e) => {
-              //   console.error(`Failed to load image: ${image}`);
-              //   e.currentTarget.style.display = 'none';
-              // }}
               />
             </li>
           ))}
-
-          {images.length === 0 && (
-            <li className="img-carousel__item active">
-              <div style={{
-                width: 570,
-                height: 630,
-                backgroundColor: '#f0f0f0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <span>No images available</span>
-              </div>
-            </li>
-          )}
         </ul>
       </div>
       <div className={styles.infoContainer}>
-        <h1>Product Page</h1>
-        <p>Product ID: {product?.product.id}</p>
+        <h1>{product.product.name}</h1>
+        <p>Product ID: {product.product.id}</p>
       </div>
     </article>
-  )
+  );
 }
