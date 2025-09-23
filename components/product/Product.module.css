@@ -1,0 +1,90 @@
+.product {
+  padding-top: 128px;
+  background-color: plum;
+}
+
+.wrapper {
+  display: flex;
+  gap: 64px;
+  margin-bottom: 128px;
+}
+
+.infoContainer {
+  flex: 1;
+}
+
+.infoTitle {
+  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: start;
+}
+
+.price {
+  margin-bottom: 64px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  text-transform: capitalize;
+  color: var(--accent);
+}
+
+.rating {
+  margin-bottom: 24px;
+}
+
+.shortDescr {
+  margin-bottom: 64px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  color: var(--color-gray-500);
+}
+
+.addToCart {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.counter {
+  width: 102px;
+  height: 53px;
+  background-color: var(--color-gray-200);
+  border-radius: 4px;
+}
+
+.addToCartBtn {
+  max-width: 358px;
+}
+
+.whishlist {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.sku {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.categoryName {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.sku span {
+  color: var(--color-gray-500);
+}
+
+.categoryName span {
+  color: var(--color-gray-500);
+}

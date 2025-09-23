@@ -1,4 +1,5 @@
 import { Category } from './category.interface';
+import { Review } from './review.interface';
 
 export interface Product {
   id: number;
@@ -20,4 +21,9 @@ export interface GetProductsResponse {
   total: number;
   limit: number;
   offset: number;
+}
+
+export interface GetProductResponse {
+  product: Product;
+  reviews: Review[];
 }

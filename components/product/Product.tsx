@@ -1,0 +1,88 @@
+'use client';
+
+import { AddFavorite } from '../addFavorite/AddFavorite';
+import { Button } from '../button/Button';
+import { ImageCarousel } from '../imageCarousel/ImageCarousel';
+import { SocialsList } from '../socialsList/SocialsList';
+import { ProductProps } from './Product.interface';
+import styles from './Product.module.css';
+
+const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
+
+export const Product = ({ product }: ProductProps) => {
+  if (!product?.product) return <div>Product not available</div>;
+
+  // Функция для создания полного URL изображения - всегда возвращает string
+  const getFullImageUrl = (imagePath: string): string => {
+    if (!imagePath) return '/images/placeholder.jpg'; // Заглушка вместо null
+
+    // Если путь уже полный URL
+    if (imagePath.startsWith('http')) return imagePath;
+
+    // Если путь абсолютный (начинается с /)
+    if (imagePath.startsWith('/')) {
+      return `${IMAGE_BASE_URL}${imagePath}`;
+    }
+
+    // Если путь относительный
+    return `${IMAGE_BASE_URL}/uploads/${imagePath}`;
+  };
+
+  const images = product.product.images?.map(getFullImageUrl) || [];
+  console.log(images);
+  return (
+    <article className={styles.product}>
+      <div className={styles.wrapper}>
+        <div className={styles.imgContainer}>
+          <ImageCarousel images={images} />
+        </div>
+        <div className={styles.infoContainer}>
+          <h1 className={styles.infoTitle}>{product.product.name}</h1>
+          <p className={styles.price}>$ {product.product.price}</p>
+
+          <div className={styles.rating}>
+            rating component
+
+            {product.reviews.length}<span> отзыва</span>
+          </div>
+          <p className={styles.shortDescr}>{product.product.short_description}</p>
+
+          <div className={styles.addToCart}>
+            <div className={styles.counter}></div>
+
+            <Button className={styles.addToCartBtn} ghost>
+              Добавить в корзину
+            </Button>
+          </div>
+
+          <div className={styles.whishlist}>
+            <AddFavorite productId={product.product.id} isShown={true} />
+
+            <SocialsList />
+          </div>
+
+          <div className={styles.skuBlock}>
+            <p className={styles.sku}>
+              SKU:
+              <span>{product.product.sku}</span>
+            </p>
+            <p className={styles.categoryName}>
+              Категория:
+              <span>{product.product?.category.name}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section className={styles.description}>
+        <h2 className='visually-hidden'>Rewies and Definitions</h2>
+
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti,
+      </section>
+    </article>
+  );
+}
