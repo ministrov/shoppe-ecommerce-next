@@ -62,9 +62,13 @@ export const Product = ({ product }: ProductProps) => {
           </div>
 
           <div className={styles.skuBlock}>
-            <p className={styles.sku}>{product.product.sku}</p>
+            <p className={styles.sku}>
+              SKU:
+              <span>{product.product.sku}</span>
+            </p>
             <p className={styles.categoryName}>
-              {product.product?.category.name}
+              Категория:
+              <span>{product.product?.category.name}</span>
             </p>
           </div>
         </div>

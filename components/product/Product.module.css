@@ -6,6 +6,7 @@
 .wrapper {
   display: flex;
   gap: 64px;
+  margin-bottom: 128px;
 }
 
 .infoContainer {
@@ -61,4 +62,29 @@
 .whishlist {
   display: flex;
   gap: 24px;
+  margin-bottom: 48px;
+}
+
+.sku {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.categoryName {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.sku span {
+  color: var(--color-gray-500);
+}
+
+.categoryName span {
+  color: var(--color-gray-500);
 }
