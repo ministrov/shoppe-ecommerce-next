@@ -45,13 +45,7 @@ export const Product = ({ product }: ProductProps) => {
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti,
       </section>
     </article>
   );

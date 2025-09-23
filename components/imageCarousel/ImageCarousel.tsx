@@ -8,7 +8,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
       {images.map((image, index) => (
         <li
           key={index}
-          className={`img-carousel__item ${index === 0 ? 'active' : ''}`}
+          className={`${styles.imgCarouselItem} ${index === 0 ? 'active' : ''}`}
         >
           <Image
             src={image}
