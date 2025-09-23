@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { ProductProps } from './Product.interface';
 import styles from './Product.module.css';
 
@@ -25,27 +25,12 @@ export const Product = ({ product }: ProductProps) => {
 
   const images = product.product.images?.map(getFullImageUrl) || [];
   console.log(images);
-
   return (
     <article className={styles.product}>
       <h1 className="visually-hidden">Карточка товара</h1>
       <div className={styles.wrapper}>
         <div className={styles.imgContainer}>
-          <ul className="img-carousel">
-            {images.map((image, index) => (
-              <li
-                key={index}
-                className={`img-carousel__item ${index === 0 ? 'active' : ''}`}
-              >
-                <Image
-                  src={image}
-                  alt={`Product image ${index + 1}`}
-                  width={index === 0 ? 570 : 120}
-                  height={index === 0 ? 630 : 120}
-                />
-              </li>
-            ))}
-          </ul>
+          <ImageCarousel images={images} />
         </div>
         <div className={styles.infoContainer}>
           <h1>{product.product.name}</h1>
@@ -55,6 +40,18 @@ export const Product = ({ product }: ProductProps) => {
 
       <section>
         <h2 className='visually-hidden'>Rewies and Definitions</h2>
+
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
       </section>
     </article>
   );
