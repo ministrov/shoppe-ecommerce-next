@@ -3,31 +3,45 @@ import { ProductProps } from './Product.interface';
 import styles from './Product.module.css';
 
 export const Product = ({ product }: ProductProps) => {
+  const images = product?.product.images || [];
+  console.log('Product images:', product?.product?.images);
   // const { product } = product;
   return (
     <article className={styles.product}>
       <div className={styles.imgContainer}>
         <ul className="img-carousel">
-          <li className="img-carousel__item active">
-            {product?.product.images[0] && (
-              <Image src={product?.product.images[0]} alt="" width="570" height="630" />
-            )}
-          </li>
-          <li className="img-carousel__item">
-            {product?.product.images[1] && (
-              <Image src={product?.product.images[1]} alt="" width="170" height="160" />
-            )}
-          </li>
-          <li className="img-carousel__item">
-            {product?.product.images[2] && (
-              <Image src={product?.product.images[2]} alt="" width="170" height="160" />
-            )}
-          </li>
-          <li className="img-carousel__item">
-            {product?.product.images[3] && (
-              <Image src={product?.product.images[3]} alt="" width="170" height="160" />
-            )}
-          </li>
+          {images.map((image, index) => (
+            <li
+              key={index}
+              className={`img-carousel__item ${index === 0 ? 'active' : ''}`}
+            >
+              <Image
+                src={image}
+                alt={`Product image ${index + 1}`}
+                width={index === 0 ? 570 : 170}
+                height={index === 0 ? 630 : 160}
+              // onError={(e) => {
+              //   console.error(`Failed to load image: ${image}`);
+              //   e.currentTarget.style.display = 'none';
+              // }}
+              />
+            </li>
+          ))}
+
+          {images.length === 0 && (
+            <li className="img-carousel__item active">
+              <div style={{
+                width: 570,
+                height: 630,
+                backgroundColor: '#f0f0f0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <span>No images available</span>
+              </div>
+            </li>
+          )}
         </ul>
       </div>
       <div className={styles.infoContainer}>
