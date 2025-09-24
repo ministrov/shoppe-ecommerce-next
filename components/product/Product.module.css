@@ -1,6 +1,5 @@
 .product {
   padding-top: 128px;
-  background-color: plum;
 }
 
 .wrapper {
@@ -31,7 +30,22 @@
 }
 
 .rating {
+  display: flex;
+  gap: 24px;
   margin-bottom: 24px;
+}
+
+.ratingContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.reviewsCount {
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--color-gray-500);
 }
 
 .shortDescr {
@@ -46,13 +60,6 @@
   display: flex;
   gap: 24px;
   margin-bottom: 64px;
-}
-
-.counter {
-  width: 102px;
-  height: 53px;
-  background-color: var(--color-gray-200);
-  border-radius: 4px;
 }
 
 .addToCartBtn {

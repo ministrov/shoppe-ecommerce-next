@@ -2,9 +2,12 @@
 
 import { AddFavorite } from '../addFavorite/AddFavorite';
 import { Button } from '../button/Button';
+import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
+import { ProductCounter } from '../productCounter/ProductCounter';
+import { ProductTabs } from '../productTabs/ProductTabs';
 import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
@@ -29,7 +32,7 @@ export const Product = ({ product }: ProductProps) => {
   };
 
   const images = product.product.images?.map(getFullImageUrl) || [];
-  console.log(images);
+
   return (
     <article className={styles.product}>
       <div className={styles.wrapper}>
@@ -41,14 +44,23 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
-            rating component
+            <div className={styles.ratingContainer}>
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+            </div>
 
-            {product.reviews.length}<span> отзыва</span>
+            <div className={styles.reviewsCount}>
+              <span>{product.reviews.length}</span>
+              <span>отзыва</span>
+            </div>
           </div>
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
           <div className={styles.addToCart}>
-            <div className={styles.counter}></div>
+            <ProductCounter />
 
             <Button className={styles.addToCartBtn} ghost>
               Добавить в корзину
@@ -75,13 +87,9 @@ export const Product = ({ product }: ProductProps) => {
       </div>
 
       <section className={styles.description}>
-        <h2 className='visually-hidden'>Rewies and Definitions</h2>
+        <h2 className='visually-hidden'>Секция описаний и ревью</h2>
 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti,
+        <ProductTabs description={''} reviews={[]} />
       </section>
     </article>
   );

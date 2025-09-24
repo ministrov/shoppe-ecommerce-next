@@ -7,15 +7,15 @@
 
 .mainImageWrapper {
   width: 100%;
-  aspect-ratio: 570 / 630;
+  aspect-ratio: 570 / 600;
   border-radius: 8px;
   overflow: hidden;
-  background: #f5f5f5;
 }
 
 .mainImage {
   width: 100%;
   height: 100%;
+  max-height: 600px;
   object-fit: cover;
 }
 
@@ -49,6 +49,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .emptyState {
