@@ -6,8 +6,9 @@ import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
-import styles from './Product.module.css';
 import { ProductCounter } from '../productCounter/ProductCounter';
+import { ProductTabs } from '../productTabs/ProductTabs';
+import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
 
@@ -86,13 +87,9 @@ export const Product = ({ product }: ProductProps) => {
       </div>
 
       <section className={styles.description}>
-        <h2 className='visually-hidden'>Rewies and Definitions</h2>
+        <h2 className='visually-hidden'>Секция описаний и ревью</h2>
 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti, blanditiis mollitia recusandae eius deleniti molestiae dolorum ab aut illo, quod at laborum iure fuga!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, quos reiciendis doloremque sequi provident corrupti,
+        <ProductTabs />
       </section>
     </article>
   );
