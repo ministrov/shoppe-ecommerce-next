@@ -6,6 +6,7 @@ import { Review } from '@/interfaces/review.interface';
 import styles from './TabContent.module.css';
 
 export const TabContent = ({ activeTab, description, reviews, formatDescription }: TabContentProps) => {
+  console.log(activeTab);
   return (
     <div className={styles.tabsContent}>
       <AnimatePresence mode="wait">

@@ -38,7 +38,7 @@ export const ProductTabs = ({ description, reviews, loading = false }: ProductTa
       </div>
 
 
-      <TabContent activeTab={'description'} description={description} reviews={[]} formatDescription={formatDescription} />
+      <TabContent activeTab={activeTab} description={description} reviews={[]} formatDescription={formatDescription} />
     </div>
   );
 };
