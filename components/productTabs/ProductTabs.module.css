@@ -24,8 +24,7 @@
 }
 
 .tabButton:hover {
-  color: #374151;
-  /* background: #f9fafb; */
+  color: var(--color-gray-500);
 }
 
 .tabButton.active {
@@ -39,7 +38,6 @@
   right: 0;
   height: 1px;
   background-color: var(--black);
-  /* border-radius: 3px 3px 0 0; */
 }
 
 .tabsContent {
@@ -63,18 +61,18 @@
 }
 
 .description {
+  font-size: 16px;
   line-height: 1.7;
   color: #4b5563;
-  font-size: 16px;
   white-space: pre-line;
 }
 
 .reviewsCount {
+  padding: 2px 8px;
   font-size: 14px;
   font-weight: 500;
   color: #6b7280;
   background: #f3f4f6;
-  padding: 2px 8px;
   border-radius: 12px;
 }
 
@@ -86,9 +84,9 @@
 
 .reviewItem {
   padding: 20px;
-  border: 1px solid #e5e7eb;
   border-radius: 12px;
   background: #ffffff;
+  border: 1px solid #e5e7eb;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s ease;
 }

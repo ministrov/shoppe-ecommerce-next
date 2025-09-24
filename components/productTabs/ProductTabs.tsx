@@ -3,20 +3,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProductTabsProps } from './ProductTabs.interface';
+import { formatDescription } from '@/helpers';
 import styles from './ProductTabs.module.css';
 
 export const ProductTabs = ({ description, reviews, loading = false }: ProductTabsProps) => {
   const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description');
-
-  // Форматирование описания с сохранением переносов строк
-  const formatDescription = (text: string) => {
-    return text.split('\n').map((line, index) => (
-      <span key={index}>
-        {line}
-        {index < text.split('\n').length - 1 && <br />}
-      </span>
-    ));
-  };
 
   if (loading) {
     return (
