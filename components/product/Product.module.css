@@ -31,7 +31,22 @@
 }
 
 .rating {
+  display: flex;
+  gap: 24px;
   margin-bottom: 24px;
+}
+
+.ratingContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.reviewsCount {
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--color-gray-500);
 }
 
 .shortDescr {

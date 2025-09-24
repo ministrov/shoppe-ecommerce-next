@@ -2,6 +2,7 @@
 
 import { AddFavorite } from '../addFavorite/AddFavorite';
 import { Button } from '../button/Button';
+import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
@@ -29,7 +30,7 @@ export const Product = ({ product }: ProductProps) => {
   };
 
   const images = product.product.images?.map(getFullImageUrl) || [];
-  console.log(images);
+
   return (
     <article className={styles.product}>
       <div className={styles.wrapper}>
@@ -41,9 +42,18 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
-            rating component
+            <div className={styles.ratingContainer}>
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+              <StarIcon isEditable={false} />
+            </div>
 
-            {product.reviews.length}<span> отзыва</span>
+            <div className={styles.reviewsCount}>
+              <span>{product.reviews.length}</span>
+              <span>отзыва</span>
+            </div>
           </div>
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
