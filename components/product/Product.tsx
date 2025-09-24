@@ -7,6 +7,7 @@ import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
 import styles from './Product.module.css';
+import { ProductCounter } from '../productCounter/ProductCounter';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
 
@@ -58,7 +59,7 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
           <div className={styles.addToCart}>
-            <div className={styles.counter}></div>
+            <ProductCounter />
 
             <Button className={styles.addToCartBtn} ghost>
               Добавить в корзину
