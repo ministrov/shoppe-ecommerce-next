@@ -147,38 +147,6 @@
   border-radius: 8px;
 }
 
-/* Скелетон для загрузки */
-.skeleton {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  color: transparent;
-  border-radius: 6px;
-  min-width: 100px;
-}
-
-.skeletonText {
-  height: 16px;
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 4px;
-  margin-bottom: 12px;
-}
-
-.skeletonText:last-child {
-  width: 70%;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 /* Адаптивность */
 @media (max-width: 768px) {
   .tabsHeader {

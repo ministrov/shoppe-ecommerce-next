@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TabsSkeleton } from '../tabSkeleton/TabSkeleton';
 import { ProductTabsProps } from './ProductTabs.interface';
 import { formatDescription } from '@/helpers';
 import styles from './ProductTabs.module.css';
@@ -11,17 +12,7 @@ export const ProductTabs = ({ description, reviews, loading = false }: ProductTa
 
   if (loading) {
     return (
-      <div className={styles.tabs}>
-        <div className={styles.tabsHeader}>
-          <div className={`${styles.tabButton} ${styles.skeleton}`}>Описание</div>
-          <div className={`${styles.tabButton} ${styles.skeleton}`}>Отзывы</div>
-        </div>
-        <div className={styles.tabsContent}>
-          <div className={styles.skeletonText}></div>
-          <div className={styles.skeletonText}></div>
-          <div className={styles.skeletonText}></div>
-        </div>
-      </div>
+      <TabsSkeleton />
     );
   }
 
