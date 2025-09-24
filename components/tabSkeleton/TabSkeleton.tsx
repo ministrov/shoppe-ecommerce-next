@@ -1,6 +1,6 @@
-import styles from './TabsSkeleton.module.css';
+import styles from './TabSkeleton.module.css';
 
-export const TabsSkeleton = () => {
+export const TabSkeleton = () => {
   return (
     <div className={styles.tabs}>
       <div className={styles.tabsHeader}>

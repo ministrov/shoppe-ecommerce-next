@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TabsSkeleton } from '../tabSkeleton/TabSkeleton';
+import { TabSkeleton } from '../tabSkeleton/TabSkeleton';
+import { TabButton } from '../tabButton/TabButton';
 import { ProductTabsProps } from './ProductTabs.interface';
 import { formatDescription } from '@/helpers';
 import styles from './ProductTabs.module.css';
@@ -12,7 +13,7 @@ export const ProductTabs = ({ description, reviews, loading = false }: ProductTa
 
   if (loading) {
     return (
-      <TabsSkeleton />
+      <TabSkeleton />
     );
   }
 
@@ -20,33 +21,20 @@ export const ProductTabs = ({ description, reviews, loading = false }: ProductTa
     <div className={styles.tabs}>
       {/* Заголовки табов с анимацией индикатора */}
       <div className={styles.tabsHeader}>
-        <button
-          className={`${styles.tabButton} ${activeTab === 'description' ? styles.active : ''}`}
+        <TabButton
+          label="Описание"
+          isActive={activeTab === 'description'}
           onClick={() => setActiveTab('description')}
-        >
-          Описание
-          {activeTab === 'description' && (
-            <motion.div
-              className={styles.activeIndicator}
-              layoutId="activeTab"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          )}
-        </button>
+          layoutId="activeTab"
+        />
 
-        <button
-          className={`${styles.tabButton} ${activeTab === 'reviews' ? styles.active : ''}`}
+        <TabButton
+          label="Отзывы"
+          isActive={activeTab === 'reviews'}
+          count={reviews.length}
           onClick={() => setActiveTab('reviews')}
-        >
-          Отзывы {reviews.length > 0 && <span className={styles.reviewsCount}>({reviews.length})</span>}
-          {activeTab === 'reviews' && (
-            <motion.div
-              className={styles.activeIndicator}
-              layoutId="activeTab"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          )}
-        </button>
+          layoutId="activeTab"
+        />
       </div>
 
       {/* Контент табов с анимацией смены */}

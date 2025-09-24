@@ -1,0 +1,30 @@
+.tabButton {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 34px 0px;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  border-bottom: 1px solid transparent;
+}
+
+.tabButton:hover {
+  color: var(--color-gray-500);
+}
+
+.tabButton.active {
+  color: var(--black);
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--black);
+}
