@@ -17,11 +17,13 @@ export const ReviewForm = () => {
       aria-labelledby="form-heading"
       noValidate
     >
-      <h2 id="form-heading">
+      <h2 id="form-heading" className={styles.formTitle}>
         Добавить отзыв
       </h2>
 
       <fieldset className={styles.fieldset}>
+        <legend className={styles.formLegend}>Ваш email не будет опубликован. Обязательные поля помечены *</legend>
+
         <textarea
           className={styles.textarea}
           value={textarea}
@@ -86,10 +88,9 @@ export const ReviewForm = () => {
         </div>
       </div>
 
-      <Button>
+      <Button className={styles.reviewFormBtn}>
         Отправить
       </Button>
-
     </form>
   )
 }
