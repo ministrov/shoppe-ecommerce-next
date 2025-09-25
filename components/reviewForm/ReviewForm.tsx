@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Button } from '../button/Button';
 import { InputField } from '../inputField/InputField';
 import { StarIcon } from '../starIcon/StarIcon';
@@ -11,8 +11,25 @@ export const ReviewForm = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    // console.log(e.currentTarget);
+    const newData = {
+      textarea,
+      userName,
+      email
+    };
+
+    console.log(newData);
+    setTextArea('');
+    setUserName('');
+    setEmail('');
+  }
+
   return (
     <form
+      onSubmit={handleSubmit}
       className={styles.reviewForm}
       aria-labelledby="form-heading"
       noValidate
@@ -82,11 +99,11 @@ export const ReviewForm = () => {
         <p>Рейтинг*</p>
 
         <div className={styles.starIconContainer}>
-          <StarIcon isEditable={false} />
-          <StarIcon isEditable={false} />
-          <StarIcon isEditable={false} />
-          <StarIcon isEditable={false} />
-          <StarIcon isEditable={false} />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
         </div>
       </div>
 

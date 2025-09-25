@@ -18,11 +18,11 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
         </span>
       </div>
       <div className={styles.reviewRating}>
-        <StarIcon isEditable={false} />
-        <StarIcon isEditable={false} />
-        <StarIcon isEditable={false} />
-        <StarIcon isEditable={false} />
-        <StarIcon isEditable={false} />
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
       </div>
       <p className={styles.reviewText}>{review.text}</p>
     </motion.div>
