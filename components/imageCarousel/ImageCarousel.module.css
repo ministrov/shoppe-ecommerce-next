@@ -29,7 +29,7 @@
   width: 120px;
   height: 120px;
   border: 2px solid transparent;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   background: none;
@@ -38,18 +38,17 @@
 }
 
 .thumbnail:hover {
+  border-radius: 8px;
   border-color: #ddd;
 }
 
 .thumbnail.active {
-  border-color: #007bff;
+  border-radius: 8px;
+  border-color: var(--black);
 }
 
 .thumbnailImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  display: block;
 }
 
 .emptyState {
