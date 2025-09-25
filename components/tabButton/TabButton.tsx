@@ -3,8 +3,6 @@ import { TabButtonProps } from './TabButton.interface';
 import styles from './TabButton.module.css';
 
 export const TabButton = ({ label, isActive, count, onClick, layoutId }: TabButtonProps) => {
-  console.log(layoutId);
-  console.log(count);
   return (
     <button
       className={`${styles.tabButton} ${isActive ? styles.active : ''}`}
