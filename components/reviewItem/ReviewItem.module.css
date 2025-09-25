@@ -24,7 +24,7 @@
 
 .reviewRating {
   display: flex;
-  gap: 2px;
+  gap: 10px;
   margin-bottom: 24px;
 }
 

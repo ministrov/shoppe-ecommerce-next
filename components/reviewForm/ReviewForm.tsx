@@ -25,6 +25,8 @@ export const ReviewForm = () => {
         <legend className={styles.formLegend}>Ваш email не будет опубликован. Обязательные поля помечены *</legend>
 
         <textarea
+          id='reviewText'
+          name='reviewText'
           className={styles.textarea}
           value={textarea}
           onChange={(e) => setTextArea(e.target.value)}
