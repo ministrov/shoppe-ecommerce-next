@@ -1,7 +1,7 @@
 .tabsContent {
-  padding: 24px 0;
-  min-height: 200px;
   position: relative;
+  padding: 42px 0;
+  min-height: 200px;
 }
 
 .tabPanel {
@@ -9,16 +9,17 @@
 }
 
 .tabPanel h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
   color: #1f2937;
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .description {
+  max-width: 500px;
   font-size: 16px;
   line-height: 1.7;
   color: #4b5563;
