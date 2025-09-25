@@ -33,3 +33,20 @@
   height: 1px;
   background-color: var(--black);
 }
+
+@media screen and (max-width: 768px) {
+  .tabButton {
+    padding: 24px 0px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .tabButton {
+    padding: 16px 0px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: start;
+  }
+}

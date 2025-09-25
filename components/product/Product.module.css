@@ -121,3 +121,14 @@
     margin-bottom: 64px;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .product {
+    padding-top: 16px;
+  }
+
+  .wrapper {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+}
