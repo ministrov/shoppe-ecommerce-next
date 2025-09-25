@@ -47,12 +47,6 @@
   width: 50%;
 }
 
-.reviewForm {
-  width: 50%;
-  max-height: 600px;
-  background-color: palevioletred;
-}
-
 .noReviews {
   color: #6b7280;
   font-style: italic;

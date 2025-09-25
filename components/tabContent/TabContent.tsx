@@ -2,6 +2,7 @@ import { JSX } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReviewItem } from '../reviewItem/ReviewItem';
 import { TabContentProps } from './TabContent.interface';
+import { ReviewForm } from '../reviewForm/ReviewForm';
 import { Review } from '@/interfaces/review.interface';
 import styles from './TabContent.module.css';
 
@@ -68,8 +69,6 @@ const TabReviews = ({ reviews }: { reviews: Review[] }) => (
       </motion.p>
     )}
 
-    <div className={styles.reviewForm}>
-      ReviewForm
-    </div>
+    <ReviewForm />
   </motion.div>
 );
