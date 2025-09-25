@@ -56,3 +56,9 @@
   background: #f9fafb;
   border-radius: 8px;
 }
+
+@media screen and (max-width: 375px) {
+  .tabsContent {
+    padding: 12px 0;
+  }
+}

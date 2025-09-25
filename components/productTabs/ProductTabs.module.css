@@ -50,3 +50,15 @@
     gap: 8px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .tabsHeader {
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .tabsHeader {
+    gap: 0;
+  }
+}

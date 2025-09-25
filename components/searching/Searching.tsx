@@ -49,14 +49,6 @@ export const Searching = () => {
       <span id="search-description" className={styles.visuallyHidden}>
         Введите поисковый запрос и нажмите Enter для выполнения поиска
       </span>
-
-      {/* <button
-        type="submit"
-        className={styles.searchButton}
-        aria-label="Выполнить поиск"
-      >
-        Найти
-      </button> */}
     </form>
   );
 }
