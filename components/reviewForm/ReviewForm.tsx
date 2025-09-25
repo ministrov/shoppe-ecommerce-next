@@ -11,10 +11,9 @@ export const ReviewForm = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    // console.log(e.currentTarget);
     const newData = {
       textarea,
       userName,
