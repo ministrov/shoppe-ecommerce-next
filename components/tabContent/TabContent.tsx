@@ -6,7 +6,6 @@ import { Review } from '@/interfaces/review.interface';
 import styles from './TabContent.module.css';
 
 export const TabContent = ({ activeTab, description, reviews, formatDescription }: TabContentProps) => {
-  console.log(activeTab);
   return (
     <div className={styles.tabsContent}>
       <AnimatePresence mode="wait">
@@ -38,7 +37,6 @@ const TabDescription = ({ description, formatDescription }: {
     transition={{ duration: 0.3 }}
     className={styles.tabPanel}
   >
-    <h3>Описание товара</h3>
     <div className={styles.description}>
       {formatDescription(description)}
     </div>
@@ -53,10 +51,6 @@ const TabReviews = ({ reviews }: { reviews: Review[] }) => (
     transition={{ duration: 0.3 }}
     className={styles.tabPanel}
   >
-    <h3>
-      Отзывы покупателей
-      {reviews.length > 0 && <span className={styles.reviewsCount}>({reviews.length})</span>}
-    </h3>
     {reviews.length > 0 ? (
       <div className={styles.reviewsList}>
         {reviews.map((review) => (
