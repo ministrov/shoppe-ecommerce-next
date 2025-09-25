@@ -67,5 +67,9 @@ const TabReviews = ({ reviews }: { reviews: Review[] }) => (
         Пока нет отзывов. Будьте первым!
       </motion.p>
     )}
+
+    <div className={styles.reviewForm}>
+      ReviewForm
+    </div>
   </motion.div>
 );

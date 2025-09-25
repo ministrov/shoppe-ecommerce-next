@@ -35,10 +35,22 @@
   border-radius: 12px;
 }
 
+.tabPanel {
+  display: flex;
+  gap: 87px;
+}
+
 .reviewsList {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 50%;
+}
+
+.reviewForm {
+  width: 50%;
+  max-height: 600px;
+  background-color: palevioletred;
 }
 
 .noReviews {
