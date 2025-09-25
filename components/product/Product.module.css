@@ -31,6 +31,7 @@
 
 .rating {
   display: flex;
+  align-items: center;
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -38,6 +39,7 @@
 .ratingContainer {
   display: flex;
   gap: 8px;
+  max-height: 18px;
 }
 
 .reviewsCount {

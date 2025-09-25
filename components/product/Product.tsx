@@ -89,7 +89,7 @@ export const Product = ({ product }: ProductProps) => {
       <section className={styles.description}>
         <h2 className='visually-hidden'>Секция описаний и ревью</h2>
 
-        <ProductTabs description={''} reviews={[]} />
+        <ProductTabs description={product.product.long_description} reviews={product.reviews} />
       </section>
     </article>
   );

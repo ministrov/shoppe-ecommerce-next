@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { StarIcon } from '../starIcon/StarIcon';
 import { ReviewItemProps } from './ReviewItem.interface';
 import styles from './ReviewItem.module.css';
 
@@ -11,17 +12,17 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
       transition={{ duration: 0.2 }}
     >
       <div className={styles.reviewHeader}>
-        {/* <span className={styles.reviewAuthor}>{review.author}</span> */}
-        <div className={styles.reviewRating}>
-          {[...Array(5)].map((_, i) => (
-            <span key={i} className={i < review.rating ? styles.starFilled : styles.starEmpty}>
-              ★
-            </span>
-          ))}
-        </div>
+        <span className={styles.reviewAuthor}>{review.name}</span>
         <span className={styles.reviewDate}>
-          {/* {new Date(review.date).toLocaleDateString('ru-RU')} */}
+          {new Date(review.created_at).toLocaleDateString('ru-RU')}
         </span>
+      </div>
+      <div className={styles.reviewRating}>
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
+        <StarIcon />
       </div>
       <p className={styles.reviewText}>{review.text}</p>
     </motion.div>
