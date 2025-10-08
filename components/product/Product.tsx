@@ -36,20 +36,20 @@ export const Product = ({ product }: ProductProps) => {
   return (
     <article className={styles.product}>
       <div className={styles.wrapper}>
-        <div className={styles.imgContainer}>
-          <ImageCarousel images={images} />
-        </div>
+
+        <ImageCarousel images={images} />
+
         <div className={styles.infoContainer}>
           <h1 className={styles.infoTitle}>{product.product.name}</h1>
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
             <div className={styles.ratingContainer}>
-              <StarIcon isEditable={false} />
-              <StarIcon isEditable={false} />
-              <StarIcon isEditable={false} />
-              <StarIcon isEditable={false} />
-              <StarIcon isEditable={false} />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
             </div>
 
             <div className={styles.reviewsCount}>

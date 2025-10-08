@@ -66,12 +66,15 @@
   }
 
   .thumbnailGallery {
-    gap: 8px;
-    justify-content: center;
+    display: none;
   }
 
   .thumbnail {
     width: 60px;
     height: 60px;
+  }
+
+  .mainImage {
+    max-height: 100%;
   }
 }
