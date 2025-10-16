@@ -131,4 +131,34 @@
     gap: 24px;
     margin-bottom: 32px;
   }
+
+  .infoTitle {
+    margin-bottom: 6px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .price {
+    margin-bottom: 24px;
+  }
+
+  .rating {
+    display: none;
+  }
+
+  .shortDescr {
+    margin-bottom: 24px;
+  }
+
+  .addToCart {
+    margin-bottom: 0;
+  }
+
+  .whishlist {
+    display: none;
+  }
+
+  .skuBlock {
+    display: none;
+  }
 }
