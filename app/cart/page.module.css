@@ -2,3 +2,23 @@
   padding-top: 128px;
   background-color: tomato;
 }
+
+.wrapper {
+  display: flex;
+  gap: 15%;
+  margin-top: 64px;
+}
+
+.cartItem {
+  width: 40%;
+  width: 577px;
+  height: 600px;
+  background-color: palevioletred;
+}
+
+.info {
+  width: 40%;
+  max-width: 459px;
+  height: 600px;
+  background-color: purple;
+}
