@@ -1,13 +1,14 @@
 import Image from 'next/image';
+import { CounterProps } from './Counter.interface';
 import styles from './ProductCounter.module.css';
 
-export const ProductCounter = () => {
+export const Counter = ({ counter }: CounterProps) => {
   return (
     <div className={styles.counter}>
       <button>
         <Image src={'/minus.svg'} width={10} height={27} alt={''} />
       </button>
-      {1}
+      {counter}
       <button>
         <Image src={'/plus.svg'} width={10} height={27} alt={''} />
       </button>
