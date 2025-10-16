@@ -1,0 +1,52 @@
+.cart {
+  padding-top: 128px;
+  padding-bottom: 430px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 15%;
+  margin-top: 64px;
+}
+
+.cartList {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.cartItem {
+  width: 40%;
+  width: 577px;
+  height: 600px;
+}
+
+.info {
+  width: 40%;
+  max-width: 459px;
+  height: 600px;
+}
+
+.sum {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: var(--color-gray-200);
+  border-radius: var(--border-radius);
+}
+
+.sum h3 {
+  margin-bottom: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-gray-150);
+}
+
+.sumText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sumText p {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}

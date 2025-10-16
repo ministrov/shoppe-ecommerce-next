@@ -3,15 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/button/Button';
+import { CartForm } from '@/components/cartForm/CartForm';
+import { CartItem } from '@/components/cartItem/CartItem';
+import { cartItemMocks } from '@/components/cartItem/CartItem.interface';
 import { useAuth } from '@/hooks/useAuth';
-import { incCount, decCount } from '@/store/features/counter/counterSlice';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import styles from './page.module.css';
 
 export default function Cart() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
-  const counter = useAppSelector((state) => state.counter.counter);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -20,19 +20,42 @@ export default function Cart() {
   }, [isAuthenticated, router]);
 
   return (
-    <div>
+    <div className={styles.cart}>
+      <h1>Корзина</h1>
 
-      Cart
+      <div className={styles.wrapper}>
+        <div className={styles.cartItem}>
+          <ul className={styles.cartList}>
+            {cartItemMocks.map((item) => (
+              <li key={item.id}>
+                <CartItem
+                  id={item.id}
+                  title={item.title}
+                  image={item.image}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.info}>
+          <CartForm />
 
-      <Button onClick={() => dispatch(incCount())}>
-        +
-      </Button>
+          <div className={styles.sum}>
+            <h3>Итог</h3>
 
-      {counter}
+            <div className={styles.sumText}>
+              <p>Стоимость</p>
+              <p>$ 87,00</p>
+            </div>
+          </div>
 
-      <Button onClick={() => dispatch(decCount())}>
-        -
-      </Button>
+          <Button>
+            Оплатить
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

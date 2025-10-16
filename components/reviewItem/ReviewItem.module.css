@@ -1,10 +1,10 @@
 .reviewItem {
-  padding-bottom: 42px;
   background: #ffffff;
   transition: box-shadow 0.2s ease;
 }
 
 .reviewItem:not(:last-child) {
+  padding-bottom: 42px;
   border-bottom: 1px solid var(--color-gray-150);
 }
 

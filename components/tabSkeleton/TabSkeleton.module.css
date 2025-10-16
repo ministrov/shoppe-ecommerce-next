@@ -34,12 +34,12 @@
 }
 
 .skeletonText {
+  margin-bottom: 12px;
   height: 16px;
   background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  border-radius: var(--border-radius);
 }
 
 .skeletonText:last-child {

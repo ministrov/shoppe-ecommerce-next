@@ -6,7 +6,7 @@ import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
-import { ProductCounter } from '../productCounter/ProductCounter';
+import { Counter } from '../Counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
 import styles from './Product.module.css';
 
@@ -60,7 +60,7 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
           <div className={styles.addToCart}>
-            <ProductCounter />
+            <Counter counter={0} />
 
             <Button className={styles.addToCartBtn} ghost>
               Добавить в корзину

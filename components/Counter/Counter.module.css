@@ -5,7 +5,7 @@
   width: 102px;
   height: 53px;
   background-color: var(--color-gray-200);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
 }
 
 .counter button {
@@ -13,4 +13,10 @@
   outline: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+  .counter {
+    display: none;
+  }
 }

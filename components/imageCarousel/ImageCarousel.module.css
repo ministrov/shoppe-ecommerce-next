@@ -59,8 +59,7 @@
   border-radius: 8px;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .carouselContainer {
     gap: 16px;
   }
@@ -76,5 +75,11 @@
 
   .mainImage {
     max-height: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .mainImageWrapper {
+    aspect-ratio: 290 / 374;
   }
 }

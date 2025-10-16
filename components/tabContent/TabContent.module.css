@@ -57,8 +57,29 @@
   border-radius: 8px;
 }
 
+@media screen and (max-width: 900px) {
+  .tabPanel {
+    gap: 64px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tabPanel {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .reviewsList {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .tabsContent {
     padding: 12px 0;
+  }
+
+  .tabPanel {
+    gap: 24px;
   }
 }

@@ -1,0 +1,12 @@
+.form {
+  margin-bottom: 48px;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}

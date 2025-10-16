@@ -97,10 +97,10 @@ h1.left {
   max-width: 1248px;
   margin: 0 auto;
 }
-
+/* 
 .page-content {
   width: 100%;
-}
+} */
 
 /* Анимации для backward compatibility */
 .page-enter-active,

@@ -1,8 +1,11 @@
 .search {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 10px;
+  gap: 8px;
+  width: 288px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   background-color: var(--color-gray-200);
   border-radius: var(--border-radius);
 }
