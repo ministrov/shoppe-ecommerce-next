@@ -34,7 +34,7 @@ export const cartItemMocks: CartItemProps[] = [
   },
   {
     id: '3',
-    title: 'Игровая мышь',
+    title: 'Kaede Hair Pin',
     image: img3,
     price: '$ 20,00',
     quantity: 1,

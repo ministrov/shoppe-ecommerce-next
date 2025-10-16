@@ -20,7 +20,7 @@ export const CartItem = ({ title, image, price, quantity }: CartItemProps) => {
         <p>{price}</p>
       </div>
 
-      <Counter counter={quantity} />
+      <Counter className={styles.cartCounter} counter={quantity} />
 
       <button
         type="button"

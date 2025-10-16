@@ -2,8 +2,7 @@
   display: flex;
   align-items: flex-start;
   padding-bottom: 40px;
-  background-color: palegreen;
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid var(--color-gray-150);
 }
 
 .image {
@@ -13,6 +12,28 @@
 .imageWrapper {
   max-height: 136px;
   margin-right: 40px;
+}
+
+.textInfo {
+  margin-right: 104px;
+}
+
+.textInfo h3 {
+  min-width: 132px;
+  font-size: 20px;
+  line-height: 26px;
+  white-space: nowrap;
+  color: var(--black);
+}
+
+.textInfo p {
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--accent);
+}
+
+.cartCounter {
+  margin-right: 52px;
 }
 
 .cartItemRemove {

@@ -1,7 +1,7 @@
 .cart {
   padding-top: 128px;
   padding-bottom: 430px;
-  background-color: tomato;
+  /* background-color: tomato; */
 }
 
 .wrapper {
@@ -14,19 +14,17 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background-color: palegoldenrod;
+  /* background-color: palegoldenrod; */
 }
 
 .cartItem {
   width: 40%;
   width: 577px;
   height: 600px;
-  background-color: palevioletred;
 }
 
 .info {
   width: 40%;
   max-width: 459px;
   height: 600px;
-  background-color: purple;
 }

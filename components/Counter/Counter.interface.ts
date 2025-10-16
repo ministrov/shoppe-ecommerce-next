@@ -6,4 +6,5 @@ export interface CounterProps
     HTMLDivElement
   > {
   counter: number;
+  className: string;
 }
