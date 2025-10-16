@@ -48,7 +48,7 @@
   padding: 12px 0px 12px 12px;
   outline: 2px solid var(--color-gray-150);
   border-bottom: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
 }
 
 .textarea::placeholder {

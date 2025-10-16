@@ -6,7 +6,7 @@
 }
 
 .image {
-  border-radius: 4px;
+  border-radius: var(--border-radius);
 }
 
 .imageWrapper {
