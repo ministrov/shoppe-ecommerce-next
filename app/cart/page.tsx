@@ -6,6 +6,7 @@ import { Button } from '@/components/button/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { incCount, decCount } from '@/store/features/counter/counterSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import styles from './page.module.css';
 
 export default function Cart() {
   const router = useRouter();
@@ -20,19 +21,25 @@ export default function Cart() {
   }, [isAuthenticated, router]);
 
   return (
-    <div>
+    <div className={styles.cart}>
+      <h1>Корзина</h1>
 
-      Cart
+      <div></div>
+      <div></div>
 
-      <Button onClick={() => dispatch(incCount())}>
-        +
-      </Button>
+      <div>
+        Cart
 
-      {counter}
+        <Button onClick={() => dispatch(incCount())}>
+          +
+        </Button>
 
-      <Button onClick={() => dispatch(decCount())}>
-        -
-      </Button>
+        {counter}
+
+        <Button onClick={() => dispatch(decCount())}>
+          -
+        </Button>
+      </div>
     </div>
   );
 };
