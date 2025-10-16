@@ -1,7 +1,6 @@
 .cart {
   padding-top: 128px;
   padding-bottom: 430px;
-  /* background-color: tomato; */
 }
 
 .wrapper {
@@ -14,7 +13,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  /* background-color: palegoldenrod; */
 }
 
 .cartItem {
