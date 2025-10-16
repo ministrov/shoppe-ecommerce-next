@@ -1,3 +1,24 @@
 .item {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 40px;
   background-color: palegreen;
+  border-bottom: 1px solid green;
+}
+
+.image {
+  border-radius: 4px;
+}
+
+.imageWrapper {
+  max-height: 136px;
+  margin-right: 40px;
+}
+
+.cartItemRemove {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

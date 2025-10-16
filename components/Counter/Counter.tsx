@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CounterProps } from './Counter.interface';
-import styles from './ProductCounter.module.css';
+import styles from './Counter.module.css';
 
 export const Counter = ({ counter }: CounterProps) => {
   return (
