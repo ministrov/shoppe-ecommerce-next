@@ -45,8 +45,10 @@ export default function Cart() {
           <div className={styles.sum}>
             <h3>Итог</h3>
 
-            <p>Стоимость</p>
-            <p>$ 87,00</p>
+            <div className={styles.sumText}>
+              <p>Стоимость</p>
+              <p>$ 87,00</p>
+            </div>
           </div>
 
           <Button>
