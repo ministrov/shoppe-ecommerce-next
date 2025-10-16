@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import { CartItemProps } from './CartItem.interface';
 import styles from './CartItem.module.css';
 
-export const CartItem = ({ id, title, image, description, price, quantity }: CartItemProps) => {
+export const CartItem = ({ id, title, image, price, quantity }: CartItemProps) => {
   return (
     <article
       className={styles.item}
@@ -10,12 +11,10 @@ export const CartItem = ({ id, title, image, description, price, quantity }: Car
       tabIndex={0}
     >
       {id}
-      {image}
-      {description}
+      <Image src={image} width={80} height={80} alt={''} />
+      {/* {description} */}
       {price}
       {quantity}
-      {/* {console.log(() => onRemove())} */}
-      {/* {onChangeQuantity} */}
     </article>
   )
 }

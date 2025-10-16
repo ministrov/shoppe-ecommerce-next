@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
+import { CartItem } from '@/components/cartItem/CartItem';
+import { cartItemMocks } from '@/components/cartItem/CartItem.interface';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './page.module.css';
 
@@ -22,7 +24,21 @@ export default function Cart() {
       <h1>Корзина</h1>
 
       <div className={styles.wrapper}>
-        <div className={styles.cartItem}></div>
+        <div className={styles.cartItem}>
+          <ul className={styles.cartList}>
+            {cartItemMocks.map((item) => (
+              <li key={item.id}>
+                <CartItem
+                  id={item.id}
+                  title={item.title}
+                  image={item.image}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className={styles.info}>
           <div className={styles.form}>
             <form action="#">
