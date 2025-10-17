@@ -34,3 +34,9 @@
   line-height: 22px;
   color: var(--color-gray-500);
 }
+
+@media screen and (max-width: 768px) {
+  .search {
+    width: 100%;
+  }
+}
