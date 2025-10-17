@@ -1,5 +1,5 @@
 :root {
-  --font: 'DM Sans', sans-serif;
+  --font-cuprum: 'Cuprum', sans-serif;
   --white: #ffffff;
   --black: #000000;
   --foreground: #171717;
@@ -14,10 +14,10 @@
 }
 
 body {
-  font-family: var(--font);
+  font-family: var(--font-cuprum);
   font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 22px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

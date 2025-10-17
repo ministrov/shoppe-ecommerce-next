@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Counter } from '../Counter/Counter';
+import { Counter } from '../counter/Counter';
 import { CartItemProps } from './CartItem.interface';
 import styles from './CartItem.module.css';
 
@@ -15,12 +15,14 @@ export const CartItem = ({ title, image, price, quantity }: CartItemProps) => {
         <Image className={styles.image} src={image} width={136} height={136} alt={''} />
       </div>
 
-      <div className={styles.textInfo}>
-        <h3>{title}</h3>
-        <p>{price}</p>
-      </div>
+      <div className={styles.textInfoWrapper}>
+        <div className={styles.textInfo}>
+          <h3>{title}</h3>
+          <p>{price}</p>
+        </div>
 
-      <Counter className={styles.cartCounter} counter={quantity} />
+        <Counter className={styles.cartCounter} counter={quantity} />
+      </div>
 
       <button
         type="button"
