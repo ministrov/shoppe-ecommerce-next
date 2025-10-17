@@ -83,4 +83,38 @@
     padding-right: 0;
     padding-bottom: 230px;
   }
+
+  .wrapper {
+    margin-top: 48px;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .cart {
+    padding-top: 24px;
+    padding-bottom: 130px;
+  }
+
+  .wrapper {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .cartList {
+    gap: 24px;
+  }
+
+  .cartItem {
+    margin-bottom: 42px;
+    height: auto;
+  }
+
+  .listItem {
+    padding-bottom: 0;
+  }
+
+  .listItem:not(:last-child) {
+    border-bottom: none;
+  }
 }

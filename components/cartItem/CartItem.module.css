@@ -43,5 +43,37 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1228px) {
+@media screen and (max-width: 768px) {
+  .textInfoWrapper {
+    flex-direction: column;
+    gap: 29px;
+    margin-right: auto;
+  }
+
+  .cartCounter {
+    margin-top: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imageWrapper {
+    margin-right: 8px;
+  }
+
+  .textInfoWrapper {
+    gap: 44px;
+  }
+
+  .textInfo h3 {
+    min-width: 100px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--black);
+  }
+
+  .textInfo p {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-gray-500);
+  }
 }
