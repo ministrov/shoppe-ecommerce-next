@@ -6,7 +6,7 @@ import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
-import { Counter } from '../Counter/Counter';
+import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
 import styles from './Product.module.css';
 

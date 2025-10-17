@@ -14,8 +14,9 @@
   margin-right: 40px;
 }
 
-.textInfo {
-  margin-right: 104px;
+.textInfoWrapper {
+  display: flex;
+  gap: 104px;
 }
 
 .textInfo h3 {
