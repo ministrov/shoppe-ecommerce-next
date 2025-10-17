@@ -27,7 +27,7 @@ export default function Cart() {
         <div className={styles.cartItem}>
           <ul className={styles.cartList}>
             {cartItemMocks.map((item) => (
-              <li key={item.id}>
+              <li className={styles.listItem} key={item.id}>
                 <CartItem
                   id={item.id}
                   title={item.title}
