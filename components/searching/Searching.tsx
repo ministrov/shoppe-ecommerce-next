@@ -41,7 +41,8 @@ export const Searching = () => {
         className={styles.searchInput}
         type="search"
         name="search"
-        placeholder="Поиск"
+        // placeholder="Поиск"
+        placeholder="Search"
         aria-describedby="search-description"
         autoComplete="off"
       />
