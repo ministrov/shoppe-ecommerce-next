@@ -101,6 +101,10 @@
 }
 
 @media screen and (max-width: 400px) {
+  .cart {
+    padding-bottom: 68px;
+  }
+
   .cartList {
     gap: 24px;
   }
@@ -116,5 +120,25 @@
 
   .listItem:not(:last-child) {
     border-bottom: none;
+  }
+
+  .sum {
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  .sum h3 {
+    font-weight: 400;
+    padding-bottom: 12px;
+  }
+
+  .sumText p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .sumText p:nth-child(2) {
+    color: var(--color-gray-500);
   }
 }
