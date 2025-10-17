@@ -16,7 +16,6 @@
 .searchBox {
   display: flex;
   align-items: center;
-  gap: 21px;
 }
 
 .searchIcon {

@@ -59,8 +59,8 @@ export const Header = () => {
             <Image
               className={styles.searchIcon}
               src={'/search.svg'}
-              width={19}
-              height={19}
+              width={21}
+              height={21}
               alt={'Icon search'}
               onClick={() => setVisible((current) => !current)}
             />
@@ -82,8 +82,8 @@ export const Header = () => {
           <Image
             onClick={() => setIsOpened(true)}
             src={'/burger-menu.svg'}
-            width={20}
-            height={20}
+            width={21}
+            height={21}
             alt={'Burger to open menu on mobile'}
           />
         </button>
@@ -130,16 +130,16 @@ export const Header = () => {
           <div className={styles.navMobile__hr}></div>
           <div className={styles.navMobile__icons}>
             <Link href='/account' className={styles.navMobile__link}>
-              <Image src={'/user.svg'} width={20} height={20} alt={'User account icon'} />
+              <Image src={'/user.svg'} width={21} height={21} alt={'User account icon'} />
               Мой аккаунт
             </Link>
             <Link href='/favorites' className={styles.navMobile__link}>
-              <Image src={'/heart.svg'} width={20} height={20} alt={'Favorite icon'} />
+              <Image src={'/heart.svg'} width={21} height={21} alt={'Favorite icon'} />
               Избранное
             </Link>
             {token && (
               <button className={styles.navMobile__exit} onClick={clearToken}>
-                <Image src={'/exit.svg'} width={20} height={20} alt={'Exit icon'} />
+                <Image src={'/exit.svg'} width={21} height={21} alt={'Exit icon'} />
                 <span>Выход</span>
               </button>
             )}

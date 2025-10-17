@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import { useId } from 'react';
+import searchIcon from '../../public/search-icon-2.svg';
 import styles from './Searching.module.css';
 
 export const Searching = () => {
-  const searchId = useId(); // Генерируем уникальный ID для связи label и input
+  const searchId = useId();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -13,7 +14,6 @@ export const Searching = () => {
     const formData = new FormData(event.currentTarget);
     const searchQuery = formData.get('search') as string;
     console.log('Поисковый запрос:', searchQuery);
-    // Здесь можно добавить логику поиска
   };
 
   return (
@@ -23,15 +23,15 @@ export const Searching = () => {
       onSubmit={handleSubmit}
       aria-label="Поиск по сайту"
     >
-      <label htmlFor={searchId} className={styles.visuallyHidden}>
+      <label htmlFor={searchId} className="visually-hidden">
         Поиск
       </label>
 
       <Image
         className={styles.searchIcon}
-        width={12}
-        height={12}
-        src='/search-icon-2.svg'
+        width={14}
+        height={14}
+        src={searchIcon}
         alt=""
         aria-hidden="true"
       />
@@ -46,7 +46,7 @@ export const Searching = () => {
         autoComplete="off"
       />
 
-      <span id="search-description" className={styles.visuallyHidden}>
+      <span id="search-description" className="visually-hidden">
         Введите поисковый запрос и нажмите Enter для выполнения поиска
       </span>
     </form>
