@@ -4,7 +4,7 @@ import { Footer } from '@/layouts/footer/Footer';
 import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
 import { PageTransitions } from '@/components/pageTransitons/PageTransitions';
 import StoreProvider from './StoreProvider';
-import { dmSans } from '@/styles/fonts';
+import { cuprum } from '@/styles/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={dmSans.variable}>
+    <html lang='en' className={cuprum.variable}>
       <body>
         <div className='container'>
           <StoreProvider>
