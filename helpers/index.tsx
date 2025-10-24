@@ -9,3 +9,18 @@ export const formatDescription = (text: string) => {
     </span>
   ));
 };
+
+export const declineNumber = (number: number, titles: [string, string, string]): string => {
+  const remainer = number % 10;
+  const exeptions = [11, 12, 13, 14];
+
+  console.log(remainer);
+
+  if (remainer === 1 && !exeptions.includes(number)) {
+    return titles[0];
+  } else if (remainer > 1 && remainer < 5 && !exeptions.includes(number)) {
+    return titles[1];
+  } else {
+    return titles[2];
+  }
+};

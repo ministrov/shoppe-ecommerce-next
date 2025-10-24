@@ -7,6 +7,7 @@ import { NoFavorites } from '@/components/noFavorites/NoFavorites';
 import { Product } from '@/interfaces/product.interface';
 import { useFavorites } from '@/hooks/useFavorite';
 import { useAuth } from '@/hooks/useAuth';
+import { declineNumber } from '@/helpers';
 import styles from './page.module.css';
 
 const API_URL = process.env.NEXT_PUBLIC_API;
@@ -98,7 +99,7 @@ export default function Favorites() {
       ) : (
         <>
           <p className={styles.favoritesCount}>
-            {products.length} товар{products.length % 10 === 1 ? '' : 'ов'} в избранном
+            {products.length} {declineNumber(products.length, ['товар', 'товара', 'товаров'])} в избранном
           </p>
 
           <ul className={styles.favoritesList}>
