@@ -36,7 +36,7 @@ export default function Register() {
   };
 
   return (
-    <main className={styles.register}>
+    <section className={styles.register}>
       <h1>Мой аккаунт</h1>
 
       <Tabs tabs={tabs} pathname={pathname} />
@@ -113,6 +113,6 @@ export default function Register() {
 
         <Link className={styles.forgotPassword} href={'/auth/restore'} >Забыли пароль?</Link>
       </form>
-    </main>
+    </section>
   );
 }

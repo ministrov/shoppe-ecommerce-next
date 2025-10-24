@@ -88,7 +88,7 @@ export default function Favorites() {
   }
 
   return (
-    <div className={styles.favorites}>
+    <section className={styles.favorites}>
       <h1 className="left">Избранное</h1>
 
       {favoritesCount === 0 && <NoFavorites />}
@@ -108,6 +108,6 @@ export default function Favorites() {
           </ul>
         </>
       )}
-    </div>
+    </section>
   );
 };

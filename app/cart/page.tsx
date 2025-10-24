@@ -20,7 +20,7 @@ export default function Cart() {
   }, [isAuthenticated, router]);
 
   return (
-    <div className={styles.cart}>
+    <section className={styles.cart}>
       <h1>Корзина</h1>
 
       <div className={styles.wrapper}>
@@ -56,7 +56,7 @@ export default function Cart() {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
