@@ -15,6 +15,6 @@ export default function Orders() {
   }, [isAuthenticated, router]);
 
   return (
-    <div>Orders</div>
+    <section>Orders</section>
   );
 };

@@ -11,8 +11,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = (await params);
   const product = await getProduct(id) as GetProductResponse | undefined;
 
-  // console.log(product);
-
   if (id === 'invalid' || id === 'test' || id === '0') {
     notFound()
   }

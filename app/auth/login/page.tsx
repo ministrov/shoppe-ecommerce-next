@@ -58,7 +58,7 @@ export default function Login() {
   };
 
   return (
-    <main className={styles.login}>
+    <section className={styles.login}>
       <h1>Мой аккаунт</h1>
 
       <Tabs tabs={tabs} pathname={pathname} />
@@ -136,6 +136,6 @@ export default function Login() {
 
         <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
-    </main>
+    </section>
   );
 }

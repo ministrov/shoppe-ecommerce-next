@@ -25,7 +25,7 @@ export default function Restore() {
   };
 
   return (
-    <main className={styles.restore}>
+    <section className={styles.restore}>
       <h1>Забыли пароль?</h1>
 
       <p>
@@ -66,6 +66,6 @@ export default function Restore() {
           Сбросить пароль
         </Button>
       </form>
-    </main>
+    </section>
   );
 }
