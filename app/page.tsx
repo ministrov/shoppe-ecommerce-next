@@ -8,23 +8,26 @@ import { Searching } from '@/components/searching/Searching';
 import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
-import { useApiData } from '@/hooks/useApiData';
 import styles from './page.module.css';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const { isLoading } = useApiData();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getLastIncomeProducts = async () => {
+      setIsLoading(true);
       try {
         const incomeProducts = await getProducts();
 
         if (incomeProducts) {
           setProducts(incomeProducts);
         }
-      } catch (error) {
-        console.error('Error loading categories:', error);
+      } catch (err) {
+        // setError(err);
+        console.error('Error loading incomeProducts:', err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
