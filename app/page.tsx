@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-// import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
