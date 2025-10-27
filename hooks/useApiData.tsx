@@ -1,4 +1,4 @@
-import { fetchCategories } from '@/api/categories';
+import { getCategories } from '@/api/categories';
 import { getProducts } from '@/api/products';
 import { Category } from '@/interfaces/category.interface';
 import { Product } from '@/interfaces/product.interface';
@@ -10,7 +10,7 @@ export const useApiData = () => {
     products: []
   });
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const useApiData = () => {
         setIsLoading(true);
 
         const [categories, products] = await Promise.all([
-          fetchCategories(),
+          getCategories(),
           getProducts()
         ]);
 

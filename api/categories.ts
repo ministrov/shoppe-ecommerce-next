@@ -1,7 +1,7 @@
 import { API_URL } from '@/helpers';
 import { GetCategoryResponse } from '@/interfaces/category.interface';
 
-export async function fetchCategories() {
+export async function getCategories() {
   try {
     const response = await fetch(API_URL + '/categories');
     const data: GetCategoryResponse | undefined = await response.json();

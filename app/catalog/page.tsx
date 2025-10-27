@@ -14,15 +14,15 @@ import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
 import { useApiData } from '@/hooks/useApiData';
 import { useDebounce } from '@/hooks/useDebounce';
-// import { useAuth } from '@/hooks/useAuth';
-import { fetchCategories } from '@/api/categories';
+import { useAuth } from '@/hooks/useAuth';
+import { getCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
 
 export default function Catalog() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  // const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -64,17 +64,17 @@ export default function Catalog() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     router.push('/auth/login');
-  //   }
-  // }, [isAuthenticated, router]);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/auth/login');
+    }
+  }, [isAuthenticated, router]);
 
   // Получаем категории через ваш модуль
   useEffect(() => {
-    const getCategories = async () => {
+    const fetchCategories = async () => {
       try {
-        const categoriesData = await fetchCategories();
+        const categoriesData = await getCategories();
         if (categoriesData) {
           setCategories(categoriesData);
         }
@@ -83,7 +83,7 @@ export default function Catalog() {
       }
     };
 
-    getCategories();
+    fetchCategories();
   }, []);
 
   // Фетчим продукты напрямую с фильтрами
