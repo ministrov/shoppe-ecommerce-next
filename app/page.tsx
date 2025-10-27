@@ -1,13 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+// import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
+import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
 import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
+import { mockProducts } from '@/helpers';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -24,7 +27,6 @@ export default function Home() {
           setProducts(incomeProducts);
         }
       } catch (err) {
-        // setError(err);
         console.error('Error loading incomeProducts:', err);
       } finally {
         setIsLoading(false);
@@ -53,13 +55,13 @@ export default function Home() {
           <Link href={'/catalog'} >Все</Link>
         </header>
 
-        {isLoading && <div className={styles.loading}>Loading</div>}
+        {isLoading && <div className={styles.loading}>Loading...</div>}
 
-        {!isLoading && products.length === 0 && (
-          <div className={styles.noProducts}>
-            Товары не найдены
-          </div>
-        )}
+        <ul className={styles.list}>
+          {!isLoading && products.length === 0 && mockProducts.map((product, index) => (
+            <MockProductCard key={product.id} product={product} index={index} />
+          ))}
+        </ul>
 
         <ul className={styles.list}>
           {!isLoading && products.length > 0 && products?.slice(0, 6).map(product => (

@@ -25,7 +25,7 @@ export const declineNumber = (number: number, titles: [string, string, string]):
   }
 };
 
-interface MockProduct {
+export interface MockProduct {
   id: number;
   title: string;
   price: number;
