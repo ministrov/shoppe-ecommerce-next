@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
@@ -10,20 +10,20 @@ import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
 import { useApiData } from '@/hooks/useApiData';
-import { useAuth } from '@/hooks/useAuth';
+// import { useAuth } from '@/hooks/useAuth';
 import styles from './page.module.css';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { isLoading } = useApiData();
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  // const router = useRouter();
+  // const { isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/auth/login');
-    }
-  }, [isAuthenticated, isLoading, router]);
+  // useEffect(() => {
+  //   if (!isLoading && !isAuthenticated) {
+  //     router.push('/auth/login');
+  //   }
+  // }, [isAuthenticated, isLoading, router]);
 
   useEffect(() => {
     const getLastIncomeProducts = async () => {
