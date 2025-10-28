@@ -51,10 +51,11 @@ const images: string[] = [
 
 export const demoProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => {
   const titleStr = titles[i % titles.length];
+  const price = 300 + ((i * 37) % 1701);
   return {
     id: i + 1,
     title: titleStr,
-    price: Math.round(300 + Math.random() * 1700),
+    price,
     images: [images[i % images.length]]
   };
 });
