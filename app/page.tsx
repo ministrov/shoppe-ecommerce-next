@@ -12,18 +12,16 @@ export default async function Home() {
   const products = await getProducts();
 
   let itemsList;
+
   if (!products || products.length === 0) {
-    // Если products undefined или пустой массив — показываем моки
     itemsList = demoProducts.map(product => (
       <MockProductCard key={product.id} product={product} />
     ));
   } else {
-    // Иначе — рендерим настоящие товары (до 6 штук)
     itemsList = products.slice(0, 6).map(product => (
       <ProductCard key={product.id} product={product} />
     ));
   }
-  // console.log(products);
 
   return (
     <section>
