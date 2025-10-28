@@ -1,38 +1,29 @@
 import Link from 'next/link';
-// import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
 import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
 import { getProducts } from '@/api/products';
-// import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
 import { demoProducts } from '@/helpers';
 import styles from './page.module.css';
 
 export default async function Home() {
-  // const [products, setProducts] = useState<Product[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const products = await getProducts();
 
-  // useEffect(() => {
-  //   const getLastIncomeProducts = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const incomeProducts = await getProducts();
-
-  //       if (incomeProducts) {
-  //         setProducts(incomeProducts);
-  //       }
-  //     } catch (err) {
-  //       console.error('Error loading incomeProducts:', err);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   getLastIncomeProducts();
-  // }, []);
+  let itemsList;
+  if (!products || products.length === 0) {
+    // Если products undefined или пустой массив — показываем моки
+    itemsList = demoProducts.map(product => (
+      <MockProductCard key={product.id} product={product} />
+    ));
+  } else {
+    // Иначе — рендерим настоящие товары (до 6 штук)
+    itemsList = products.slice(0, 6).map(product => (
+      <ProductCard key={product.id} product={product} />
+    ));
+  }
+  // console.log(products);
 
   return (
     <section>
@@ -53,18 +44,8 @@ export default async function Home() {
           <Link href={'/catalog'} >Все</Link>
         </header>
 
-        {/* {isLoading && <div className={styles.loading}>Loading...</div>} */}
-
         <ul className={styles.list}>
-          {products?.length === 0 && demoProducts.map((product) => (
-            <MockProductCard key={product.id} product={product} />
-          ))}
-        </ul>
-
-        <ul className={styles.list}>
-          {products?.slice(0, 6).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {itemsList}
         </ul>
       </section>
     </section>
