@@ -32,9 +32,22 @@ export interface MockProduct {
   images: string[];
 }
 
-const titles: string[] = ['Lira Earrings', 'Hal Earrings', 'Kaede Hair Pin Set Of 3 ', 'Hair Pin Set of 3', 'Plaine Necklace', 'Yuki Hair Pin Set of 3'];
+const titles: string[] = [
+  'Lira Earrings',
+  'Hal Earrings',
+  'Kaede Hair Pin Set Of 3 ',
+  'Hair Pin Set of 3',
+  'Plaine Necklace',
+  'Yuki Hair Pin Set of 3'
+];
 
-const images: string[] = ['/mock-card-img-1.png', '/mock-card-img-2.png', '/mock-card-img-3.png', '/mock-card-img-4.png', '/mock-card-img-5.png'];
+const images: string[] = [
+  '/mock-card-img-1.png',
+  '/mock-card-img-2.png',
+  '/mock-card-img-3.png',
+  '/mock-card-img-4.png',
+  '/mock-card-img-5.png'
+];
 
 export const mockProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => {
   const titleStr = titles[i % titles.length];
@@ -42,6 +55,6 @@ export const mockProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => 
     id: i + 1,
     title: titleStr,
     price: 23,
-    images
+    images: [images[i % images.length]]
   };
 });
