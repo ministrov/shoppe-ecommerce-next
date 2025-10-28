@@ -54,7 +54,7 @@ export const mockProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => 
   return {
     id: i + 1,
     title: titleStr,
-    price: 23,
+    price: Math.round(300 + Math.random() * 1700),
     images: [images[i % images.length]]
   };
 });
