@@ -60,7 +60,7 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
           <div className={styles.addToCart}>
-            <Counter counter={0} />
+            <Counter counter={0} className={''} />
 
             <Button className={styles.addToCartBtn} ghost>
               Добавить в корзину

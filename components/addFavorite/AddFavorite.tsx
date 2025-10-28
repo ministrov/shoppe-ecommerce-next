@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
 import { useFavorites } from '@/hooks/useFavorite';
@@ -29,7 +31,12 @@ export const AddFavorite = ({ productId, isShown }: AddFavoriteProps) => {
           : 'Add to favorites'
       }
     >
-      <Image src={'/favorite.svg'} width={18} height={18} alt={isFavorite(productId) ? 'Remove from favorites' : 'Add to favorites'} />
+      <Image
+        src={'/favorite.svg'}
+        width={18}
+        height={18}
+        alt={isFavorite(productId) ? 'Remove from favorites' : 'Add to favorites'}
+      />
     </button>
   )
 }

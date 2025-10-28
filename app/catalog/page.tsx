@@ -12,10 +12,9 @@ import { Pagination } from '@/components/pagination/Pagination';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
-import { useApiData } from '@/hooks/useApiData';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useAuth } from '@/hooks/useAuth';
-import { fetchCategories } from '@/api/categories';
+import { getCategories } from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -29,6 +28,7 @@ export default function Catalog() {
   const [paginatedProducts, setPaginatedProducts] = useState<Product[]>([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [isChangingPage, setIsChangingPage] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const catalogRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
@@ -45,7 +45,6 @@ export default function Catalog() {
   const [search, setSearch] = useState(searchQuery);
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
   const [hasDiscount, setHasDiscount] = useState<boolean>(has_discount);
-  const { error, isLoading } = useApiData();
 
   const debouncedSearch = useDebounce<string>(search, 500);
   const debouncedPrice = useDebounce<[number, number]>(price, 500);
@@ -72,18 +71,21 @@ export default function Catalog() {
 
   // Получаем категории через ваш модуль
   useEffect(() => {
-    const getCategories = async () => {
+    const fetchCategories = async () => {
+      setIsLoading(true);
       try {
-        const categoriesData = await fetchCategories();
+        const categoriesData = await getCategories();
         if (categoriesData) {
           setCategories(categoriesData);
         }
-      } catch (error) {
-        console.error('Error loading categories:', error);
+      } catch (err) {
+        console.error('Error loading categories:', err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    getCategories();
+    fetchCategories();
   }, []);
 
   // Фетчим продукты напрямую с фильтрами
@@ -120,8 +122,8 @@ export default function Catalog() {
           restoreScrollPosition();
         }
 
-      } catch (error) {
-        console.error('Error fetching products:', error);
+      } catch (err) {
+        console.error('Error fetching products:', err);
       }
     };
 
@@ -220,12 +222,6 @@ export default function Catalog() {
   return (
     <section className={styles.catalogPage} ref={catalogRef}>
       <h1 className='visually-hidden'>Страница каталога товаров с фильтрами</h1>
-
-      {error && (
-        <div className={styles.error}>
-          {error}
-        </div>
-      )}
 
       <div className={styles.searchMobile}>
         <Searching />

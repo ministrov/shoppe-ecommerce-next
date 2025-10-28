@@ -1,45 +1,27 @@
-'use client';
-
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
+import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
 import { getProducts } from '@/api/products';
-import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
-import { useApiData } from '@/hooks/useApiData';
-import { useAuth } from '@/hooks/useAuth';
+import { demoProducts } from '@/helpers';
 import styles from './page.module.css';
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const { isLoading } = useApiData();
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
+export default async function Home() {
+  const products = await getProducts();
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/auth/login');
-    }
-  }, [isAuthenticated, isLoading, router]);
+  let itemsList;
 
-  useEffect(() => {
-    const getLastIncomeProducts = async () => {
-      try {
-        const incomeProducts = await getProducts();
-
-        if (incomeProducts) {
-          setProducts(incomeProducts);
-        }
-      } catch (error) {
-        console.error('Error loading categories:', error);
-      }
-    };
-
-    getLastIncomeProducts();
-  }, []);
+  if (!products || products.length === 0) {
+    itemsList = demoProducts.map(product => (
+      <MockProductCard key={product.id} product={product} />
+    ));
+  } else {
+    itemsList = products.slice(0, 6).map(product => (
+      <ProductCard key={product.id} product={product} />
+    ));
+  }
 
   return (
     <section>
@@ -60,18 +42,8 @@ export default function Home() {
           <Link href={'/catalog'} >Все</Link>
         </header>
 
-        {isLoading && <div className={styles.loading}>Loading</div>}
-
-        {!isLoading && products.length === 0 && (
-          <div className={styles.noProducts}>
-            Товары не найдены
-          </div>
-        )}
-
         <ul className={styles.list}>
-          {!isLoading && products.length > 0 && products?.slice(0, 6).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {itemsList}
         </ul>
       </section>
     </section>
