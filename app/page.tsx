@@ -9,7 +9,7 @@ import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
 import { getProducts } from '@/api/products';
 import { Product } from '@/interfaces/product.interface';
 import { carouselImages } from '@/interfaces/carousel.interface';
-import { mockProducts } from '@/helpers';
+import { demoProducts } from '@/helpers';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -57,8 +57,8 @@ export default function Home() {
         {isLoading && <div className={styles.loading}>Loading...</div>}
 
         <ul className={styles.list}>
-          {!isLoading && products.length === 0 && mockProducts.map((product, index) => (
-            <MockProductCard key={product.id} product={product} index={index} />
+          {!isLoading && products.length === 0 && demoProducts.map((product) => (
+            <MockProductCard key={product.id} product={product} />
           ))}
         </ul>
 

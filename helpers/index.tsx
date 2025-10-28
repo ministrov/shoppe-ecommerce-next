@@ -49,7 +49,7 @@ const images: string[] = [
   '/mock-card-img-5.png'
 ];
 
-export const mockProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => {
+export const demoProducts: MockProduct[] = Array.from({ length: 50 }, (_, i) => {
   const titleStr = titles[i % titles.length];
   return {
     id: i + 1,
