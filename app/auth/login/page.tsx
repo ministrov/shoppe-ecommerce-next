@@ -53,8 +53,18 @@ export default function Login() {
         setErrors({});
         setEmail('');
         setPassword('');
-        router.push('/');
-        console.log("Успешный вход:", result.payload);
+
+        // Сначала ждем 2 сек для показа сообщения
+        setTimeout(() => {
+          setShowSuccessMessage(false); // Запуск exit анимации
+
+          // Ждем еще 400 мс на проигрывание exit анимации
+          setTimeout(() => {
+            router.push('/');
+            console.log("Успешный вход:", result.payload);
+          }, 400);	// должно совпадать с duration exit анимации!
+        }, 3000);
+        // router.push('/');
       }
     } catch (error) {
       console.error("Неожиданная ошибка:", error);
@@ -124,7 +134,7 @@ export default function Login() {
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
-            {/* {errors.password && <Message content={errors.password} isError />} */}
+
             <AnimatePresence>
               {errors.password && (
                 <motion.div
@@ -167,7 +177,19 @@ export default function Login() {
         <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
 
-      {showSuccessMessage && <Message content='Вы успешно вошли в систему!' isError={false} />}
+      <AnimatePresence>
+        {showSuccessMessage && (
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 50, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            key="success-message"
+          >
+            <Message content="Вы успешно вошли в систему!" isError={false} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
