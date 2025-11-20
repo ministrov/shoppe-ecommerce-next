@@ -24,3 +24,14 @@
 .long p {
   color: var(--black);
 }
+
+.error {
+  max-width: 100%;
+  border: 1px solid red;
+  color: red;
+  box-shadow: none;
+}
+
+.error p {
+  color: red;
+}

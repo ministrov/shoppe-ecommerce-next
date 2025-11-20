@@ -87,7 +87,7 @@ export default function Login() {
               pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
               title="Пожалуйста, введите корректный email адрес"
             />
-            {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
+            {errors.email && <Message content={errors.email} isError />}
 
             <InputField
               type="password"
@@ -104,7 +104,7 @@ export default function Login() {
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
-            {errors.password && <div className={styles.errorMessage}>{errors.password}</div>}
+            {errors.password && <Message content={errors.password} isError />}
 
             {error && (
               <div className={styles.error}>
@@ -135,7 +135,7 @@ export default function Login() {
         <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
 
-      {showSuccessMessage && <Message content='Вы успешно вошли в систему!' />}
+      {showSuccessMessage && <Message content='Вы успешно вошли в систему!' isError={false} />}
     </section>
   );
 }
