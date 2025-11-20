@@ -11,5 +11,5 @@
 export interface InputFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  variant?: 'gray' | 'black';
+  variant?: 'gray' | 'black' | 'error';
 }

@@ -77,7 +77,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              // variant={errors.email ? 'error' : 'gray'}
+              variant={errors.email ? 'error' : 'gray'}
               name="email"
               id="email"
               placeholder="Email"
@@ -93,7 +93,7 @@ export default function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              // variant={errors.email ? 'error' : 'gray'}
+              variant={errors.email ? 'error' : 'gray'}
               name="password"
               id="password"
               placeholder="Пароль"
