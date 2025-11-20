@@ -64,7 +64,6 @@ export default function Login() {
             console.log("Успешный вход:", result.payload);
           }, 400);	// должно совпадать с duration exit анимации!
         }, 3000);
-        // router.push('/');
       }
     } catch (error) {
       console.error("Неожиданная ошибка:", error);

@@ -1,4 +1,4 @@
-import { getProduct } from '@/api/product';
+import getProduct from '@/api/product';
 import { Product } from '@/components/product/Product';
 import { GetProductResponse } from '@/interfaces/product.interface';
 import { notFound } from 'next/navigation';

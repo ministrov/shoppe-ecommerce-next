@@ -1,7 +1,7 @@
 import { API_URL } from '@/helpers';
 import { GetProductResponse } from '@/interfaces/product.interface';
 
-export async function getProduct(id: string) {
+export default async function getProduct(id: string) {
   try {
     const response = await fetch(API_URL + '/products/' + id);
 

@@ -3,7 +3,7 @@ import { Carousel } from '@/components/carousel/Carousel';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { Searching } from '@/components/searching/Searching';
 import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
-import { getProducts } from '@/api/products';
+import getProducts from '@/api/products';
 import { carouselImages } from '@/interfaces/carousel.interface';
 import { demoProducts } from '@/helpers';
 import styles from './page.module.css';

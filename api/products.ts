@@ -1,7 +1,7 @@
 import { API_URL } from '@/helpers';
 import { GetProductsResponse } from '@/interfaces/product.interface';
 
-export async function getProducts() {
+export default async function getProducts() {
   await new Promise((res) => setTimeout(res, 2000));
   try {
     const response = await fetch(API_URL + '/products');

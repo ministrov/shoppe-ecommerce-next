@@ -1,7 +1,7 @@
 import { LoginRequest, LoginResponse } from '@/interfaces/auth.interface';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setToken, setUser } from '../features/auth/authSlice';
-import { fetchAPI } from '@/api/auth';
+import fetchAPI from '@/api/auth';
 
 export const loginUser = createAsyncThunk(
   'auth/login',
@@ -20,7 +20,6 @@ export const loginUser = createAsyncThunk(
 
       return data;
     } catch (error) {
-      // return rejectWithValue(error.message || 'Ошибка входа');
       console.log(error);
       console.log(rejectWithValue);
     }
