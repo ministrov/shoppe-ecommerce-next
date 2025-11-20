@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
@@ -21,6 +22,13 @@ export default function Login() {
   const router = useRouter();
   const pathname = usePathname();
   const { isLoading, error } = useAppSelector((state) => state.auth);
+
+  // Анимация выезда справа
+  const slideIn = {
+    initial: { x: 50, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: 50, opacity: 0 }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,7 +95,19 @@ export default function Login() {
               pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
               title="Пожалуйста, введите корректный email адрес"
             />
-            {errors.email && <Message content={errors.email} isError />}
+
+            <AnimatePresence>
+              {errors.email && (
+                <motion.div
+                  className={styles.errorMessage}
+                  {...slideIn}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  key="email-error"
+                >
+                  <Message content={errors.email} isError />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <InputField
               type="password"
@@ -104,7 +124,19 @@ export default function Login() {
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
-            {errors.password && <Message content={errors.password} isError />}
+            {/* {errors.password && <Message content={errors.password} isError />} */}
+            <AnimatePresence>
+              {errors.password && (
+                <motion.div
+                  className={styles.errorMessage}
+                  {...slideIn}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  key="password-error"
+                >
+                  <Message content={errors.password} isError />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {error && (
               <div className={styles.error}>
