@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
 import { Tabs } from '@/components/tabs/Tabs';
+import { Message } from '@/components/message/Message';
 import { loginUser } from '@/store/authThunk/authThunk';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
@@ -14,6 +15,8 @@ import styles from './page.module.css';
 export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errors, setErrors] = useState<{ email?: string, password?: string }>({});
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
@@ -22,38 +25,31 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const form = e.currentTarget as HTMLFormElement;
-
-    // Проверяем валидность формы средствами HTML5
-    if (!form.checkValidity()) {
-      form.reportValidity(); // Показывает браузерные сообщения
-      return;
-    }
-
-    if (!email || !password) {
-      alert(
-        "Заполните все поля для входа в систему. Пожалуйста, проверьте введенные данные и повторите попытку."
-      );
-      return;
-    }
+    const validate = () => {
+      const newErrors: { email?: string, password?: string } = {};
+      if (!email) newErrors.email = 'Пожалуйста, введите email';
+      if (!password) newErrors.password = 'Пожалуйста, введите пароль';
+      else if (password.length < 8) newErrors.password = 'Пароль должен быть не короче 8 символов';
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    };
 
     try {
+      if (!validate()) return;
       // Используем thunk для логина
       const result = await dispatch(loginUser({ email, password }));
 
       // Проверяем результат thunk-действия
       if (loginUser.fulfilled.match(result)) {
-        // Успешный вход - перенаправляем
-        // router.push('/orders');
+        setShowSuccessMessage(true);
+        setErrors({});
+        setEmail('');
+        setPassword('');
         router.push('/');
         console.log("Успешный вход:", result.payload);
       }
-      // В случае ошибки она автоматически установится в state.auth.error
-      // через extraReducers в slice
-
     } catch (error) {
       console.error("Неожиданная ошибка:", error);
-      alert("Произошла непредвиденная ошибка");
     }
   };
 
@@ -81,7 +77,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              variant="gray"
+              // variant={errors.email ? 'error' : 'gray'}
               name="email"
               id="email"
               placeholder="Email"
@@ -91,12 +87,13 @@ export default function Login() {
               pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // ← Валидация email
               title="Пожалуйста, введите корректный email адрес"
             />
+            {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
 
             <InputField
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              variant="gray"
+              // variant={errors.email ? 'error' : 'gray'}
               name="password"
               id="password"
               placeholder="Пароль"
@@ -107,6 +104,7 @@ export default function Login() {
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
+            {errors.password && <div className={styles.errorMessage}>{errors.password}</div>}
 
             {error && (
               <div className={styles.error}>
@@ -136,6 +134,8 @@ export default function Login() {
 
         <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
+
+      {showSuccessMessage && <Message content='Вы успешно вошли в систему!' />}
     </section>
   );
 }
