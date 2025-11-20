@@ -6,9 +6,9 @@ import styles from './Message.module.css';
 export const Message = ({ content, isLong = false }: MessageProps) => {
   return (
     <div className={cn(styles.success, {
-      [styles['success--long']]: isLong
+      [styles.long]: isLong
     })}>
-      <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'}/>
+      <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'} />
       <p>{content}</p>
     </div>
   );
