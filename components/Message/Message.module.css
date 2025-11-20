@@ -15,12 +15,23 @@
   color: var(--color-gray-500);
 }
 
-.success--long {
+.long {
   max-width: 100%;
   border-top: 2px solid var(--accent);
   box-shadow: none;
 }
 
-.success--long p {
+.long p {
   color: var(--black);
+}
+
+.error {
+  max-width: 100%;
+  border: 1px solid red;
+  color: red;
+  box-shadow: none;
+}
+
+.error p {
+  color: red;
 }

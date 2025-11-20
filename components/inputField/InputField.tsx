@@ -15,7 +15,8 @@ export const InputField = ({ id, name, className, variant, ...props }: InputFiel
       name={name || inputId}
       className={cn(styles.input, className, {
         [styles.gray]: variant === 'gray',
-        [styles.black]: variant === 'black'
+        [styles.black]: variant === 'black',
+        [styles.error]: variant === 'error'
       })}
 
       autoComplete='off' {...props}

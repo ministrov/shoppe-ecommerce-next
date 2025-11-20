@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { InputField } from '@/components/inputField/InputField';
 import { Button } from '@/components/button/Button';
 import { Tabs } from '@/components/tabs/Tabs';
+import { Message } from '@/components/message/Message';
 import { loginUser } from '@/store/authThunk/authThunk';
 import { tabs } from '@/interfaces/tabs.interface';
 import styles from './page.module.css';
@@ -14,46 +16,57 @@ import styles from './page.module.css';
 export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errors, setErrors] = useState<{ email?: string, password?: string }>({});
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
   const { isLoading, error } = useAppSelector((state) => state.auth);
 
+  // Анимация выезда справа
+  const slideIn = {
+    initial: { x: 50, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: 50, opacity: 0 }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const form = e.currentTarget as HTMLFormElement;
-
-    // Проверяем валидность формы средствами HTML5
-    if (!form.checkValidity()) {
-      form.reportValidity(); // Показывает браузерные сообщения
-      return;
-    }
-
-    if (!email || !password) {
-      alert(
-        "Заполните все поля для входа в систему. Пожалуйста, проверьте введенные данные и повторите попытку."
-      );
-      return;
-    }
+    const validate = () => {
+      const newErrors: { email?: string, password?: string } = {};
+      if (!email) newErrors.email = 'Пожалуйста, введите email';
+      if (!password) newErrors.password = 'Пожалуйста, введите пароль';
+      else if (password.length < 8) newErrors.password = 'Пароль должен быть не короче 8 символов';
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    };
 
     try {
+      if (!validate()) return;
       // Используем thunk для логина
       const result = await dispatch(loginUser({ email, password }));
 
       // Проверяем результат thunk-действия
       if (loginUser.fulfilled.match(result)) {
-        // Успешный вход - перенаправляем
-        // router.push('/orders');
-        router.push('/');
-        console.log("Успешный вход:", result.payload);
-      }
-      // В случае ошибки она автоматически установится в state.auth.error
-      // через extraReducers в slice
+        setShowSuccessMessage(true);
+        setErrors({});
+        setEmail('');
+        setPassword('');
 
+        // Сначала ждем 2 сек для показа сообщения
+        setTimeout(() => {
+          setShowSuccessMessage(false); // Запуск exit анимации
+
+          // Ждем еще 400 мс на проигрывание exit анимации
+          setTimeout(() => {
+            router.push('/');
+            console.log("Успешный вход:", result.payload);
+          }, 400);	// должно совпадать с duration exit анимации!
+        }, 3000);
+      }
     } catch (error) {
       console.error("Неожиданная ошибка:", error);
-      alert("Произошла непредвиденная ошибка");
     }
   };
 
@@ -81,7 +94,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              variant="gray"
+              variant={errors.email ? 'error' : 'gray'}
               name="email"
               id="email"
               placeholder="Email"
@@ -92,11 +105,24 @@ export default function Login() {
               title="Пожалуйста, введите корректный email адрес"
             />
 
+            <AnimatePresence>
+              {errors.email && (
+                <motion.div
+                  className={styles.errorMessage}
+                  {...slideIn}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  key="email-error"
+                >
+                  <Message content={errors.email} isError />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <InputField
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              variant="gray"
+              variant={errors.email ? 'error' : 'gray'}
               name="password"
               id="password"
               placeholder="Пароль"
@@ -107,6 +133,19 @@ export default function Login() {
               inputMode="numeric" // ← Цифровая клавиатура на мобильных
               title="Пароль должен содержать только цифры"
             />
+
+            <AnimatePresence>
+              {errors.password && (
+                <motion.div
+                  className={styles.errorMessage}
+                  {...slideIn}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  key="password-error"
+                >
+                  <Message content={errors.password} isError />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {error && (
               <div className={styles.error}>
@@ -136,6 +175,20 @@ export default function Login() {
 
         <Link className={styles.forgotPassword} href={'/auth/restore'}>Забыли пароль?</Link>
       </form>
+
+      <AnimatePresence>
+        {showSuccessMessage && (
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 50, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            key="success-message"
+          >
+            <Message content="Вы успешно вошли в систему!" isError={false} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

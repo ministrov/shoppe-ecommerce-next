@@ -14,7 +14,7 @@ import { Product, GetProductsResponse } from '@/interfaces/product.interface';
 import { API_URL } from '@/helpers';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useAuth } from '@/hooks/useAuth';
-import { getCategories } from '@/api/categories';
+import getCategories from '@/api/categories';
 import cn from 'classnames';
 import styles from './page.module.css';
 

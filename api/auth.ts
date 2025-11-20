@@ -1,6 +1,6 @@
 import { API_URL } from '@/helpers';
 
-export async function fetchAPI<T>(
+export default async function fetchAPI<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
