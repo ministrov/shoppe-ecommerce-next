@@ -199,9 +199,9 @@ export default function Catalog() {
     });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleDiscountChange = () => {
     const newDiscount = !hasDiscount;
+    console.log(newDiscount);
     setHasDiscount(newDiscount);
     updateURL({ has_discount: newDiscount.toString() });
   };
@@ -252,13 +252,11 @@ export default function Catalog() {
 
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            {/* <input
-              type="checkbox"
-              checked={hasDiscount}
-              onChange={handleDiscountChange}
-              style={{ width: 40, height: 20 }}
-            /> */}
-            <Toggle isChecked={true} />
+
+            <Toggle
+              isChecked={hasDiscount}
+              onClick={handleDiscountChange}
+            />
           </div>
         </div>
 

@@ -2,4 +2,5 @@
 
 export interface ToggleProps {
   isChecked: boolean;
+  onClick: () => void;
 }
