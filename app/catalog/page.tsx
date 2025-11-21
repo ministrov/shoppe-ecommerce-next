@@ -8,6 +8,7 @@ import { Searching } from '@/components/searching/Searching';
 import { SelectField } from '@/components/selectField/SelectField';
 import { ProductCard } from '@/components/productCard/ProductCard';
 import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
+import { Toggle } from '@/components/toggle/Toggle';
 import { Pagination } from '@/components/pagination/Pagination';
 import { Category } from '@/interfaces/category.interface';
 import { Product, GetProductsResponse } from '@/interfaces/product.interface';
@@ -200,6 +201,7 @@ export default function Catalog() {
 
   const handleDiscountChange = () => {
     const newDiscount = !hasDiscount;
+    console.log(newDiscount);
     setHasDiscount(newDiscount);
     updateURL({ has_discount: newDiscount.toString() });
   };
@@ -227,7 +229,7 @@ export default function Catalog() {
         <Searching />
       </div>
 
-      <h1 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h1>
+      <h2 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h2>
 
       <div className={styles.catalog}>
         <div className={styles.catalog__filterMobile} onClick={() => setShowFilter(true)}>
@@ -250,11 +252,10 @@ export default function Catalog() {
 
           <div className={styles.catalog__switch}>
             <span className={styles.catalog__switchLabel}>Со скидкой</span>
-            <input
-              type="checkbox"
-              checked={hasDiscount}
-              onChange={handleDiscountChange}
-              style={{ width: 40, height: 20 }}
+
+            <Toggle
+              isChecked={hasDiscount}
+              onClick={handleDiscountChange}
             />
           </div>
         </div>
