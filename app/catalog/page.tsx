@@ -258,7 +258,7 @@ export default function Catalog() {
               onChange={handleDiscountChange}
               style={{ width: 40, height: 20 }}
             /> */}
-            <Toggle />
+            <Toggle isChecked={true} />
           </div>
         </div>
 

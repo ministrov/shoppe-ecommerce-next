@@ -1,8 +1,12 @@
+import { ToggleProps } from './Toggle.interface';
+import cn from 'classnames';
 import styles from './Toggle.module.css';
 
-export const Toggle = () => {
+export const Toggle = ({ isChecked }: ToggleProps) => {
   return (
-    <div className={styles.toggle}>
+    <div className={cn(styles.toggle, {
+      [styles.toggled]: isChecked
+    })}>
       <div className={styles.thumb}></div>
     </div>
   )

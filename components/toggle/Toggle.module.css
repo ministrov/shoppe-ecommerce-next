@@ -25,5 +25,5 @@
 }
 
 .toggle.toggled .thumb {
-  left: calc(52px - 32px);
+  left: calc(45px - 32px);
 }
