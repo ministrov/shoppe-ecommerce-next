@@ -19,6 +19,13 @@ export default function Cart() {
     }
   }, [isAuthenticated, router]);
 
+
+  useEffect(() => {
+    console.log("Hello from useEffect");
+
+    return () => console.log("componentWillUnmount");
+  }, []);
+
   return (
     <section className={styles.cart}>
       <h1>Корзина</h1>
