@@ -17,22 +17,22 @@
   gap: 40px;
 }
 
-.catalogPage__title {
+.title {
   margin-bottom: 40px;
 }
 
-.catalog__filter {
+.filter {
   width: 260px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.catalog__filterMobile {
+.filterMobile {
   display: none;
 }
 
-.catalog__cardsWrapper {
+.cardsWrapper {
   min-height: 100vh;
 }
 
@@ -56,37 +56,37 @@
   line-height: 52px;
 }
 
-.catalog__search {
+.search {
   position: relative;
 }
 
-.catalog__search img {
+.search img {
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.catalog__priceSearch {
+.priceSearch {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.catalog__switch {
+.switch {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.catalog__switchLabel {
+.switchLabel {
   font-size: 16px;
   line-height: 27px;
   font-weight: 400;
   color: var(--black);
 }
 
-.catalog__cards {
+.cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   column-gap: 24px;
@@ -98,7 +98,7 @@
 }
 
 @media screen and (max-width: 1330px) {
-  .catalog__cards {
+  .cards {
     grid-template-columns: repeat(2, minmax(300px, 1fr));
     column-gap: 16px;
     row-gap: 48px;
@@ -110,7 +110,7 @@
     flex-direction: column;
   }
 
-  .catalog__cards {
+  .cards {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     column-gap: 12px;
   }
@@ -132,15 +132,15 @@
     gap: 16px;
   }
 
-  .catalogPage__title {
+  .title {
     margin-bottom: 16px;
   }
 
-  .catalog__filter {
+  .filter {
     display: none;
   }
 
-  .catalog__filterMobile {
+  .filterMobile {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -152,7 +152,7 @@
     color: var(--accent);
   }
 
-  .catalog__filter.visible {
+  .filter.visible {
     position: fixed;
     z-index: 10;
     top: 0;
@@ -166,7 +166,7 @@
     background-color: var(--white);
   }
 
-  .catalog__cards {
+  .cards {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     column-gap: 16px;
     row-gap: 24px;
@@ -184,17 +184,17 @@
     padding-bottom: 48px;
   }
 
-  .catalogPage__title {
+  .title {
     margin-bottom: 16px;
     font-size: 20px;
     line-height: 26px;
   }
 
-  .catalog__filter {
+  .filter {
     width: 100%;
   }
 
-  .catalog__cards {
+  .cards {
     grid-template-columns: repeat(2, minmax(136px, 1fr));
     margin-bottom: 30px;
   }

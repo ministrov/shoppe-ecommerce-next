@@ -229,18 +229,18 @@ export default function Catalog() {
         <Searching />
       </div>
 
-      <h2 className={cn("left", styles.catalogPage__title)}>Каталог товаров</h2>
+      <h2 className={cn("left", styles.title)}>Каталог товаров</h2>
 
       <div className={styles.catalog}>
-        <div className={styles.catalog__filterMobile} onClick={() => setShowFilter(true)}>
+        <div className={styles.filterMobile} onClick={() => setShowFilter(true)}>
           <Image src={'/filter-mobile.svg'} width={20} height={20} alt={''} />
 
           <span className={styles.filterMobileLabel}>Фильтры</span>
         </div>
-        <div className={cn(styles.catalog__filter, {
+        <div className={cn(styles.filter, {
           [styles.visible]: showFilter
         })} onClick={() => setShowFilter(false)}>
-          <div className={styles.catalog__search}>
+          <div className={styles.search}>
             <InputField onChange={(e) => handleSearchChange(e.target.value)} value={search} className={styles.catalog__input} variant="gray" name={"searching"} placeholder="Поиск..." />
 
             <Image src={'/search.svg'} width={20} height={20} alt={''} />
@@ -250,8 +250,8 @@ export default function Catalog() {
 
           <RangeSlider min={0} max={1200} value={price} onChange={handlePriceChange} />
 
-          <div className={styles.catalog__switch}>
-            <span className={styles.catalog__switchLabel}>Со скидкой</span>
+          <div className={styles.switch}>
+            <span className={styles.switchLabel}>Со скидкой</span>
 
             <Toggle
               isChecked={hasDiscount}
@@ -260,7 +260,7 @@ export default function Catalog() {
           </div>
         </div>
 
-        <div className={styles.catalog__cardsWrapper}>
+        <div className={styles.cardsWrapper}>
           {isLoading && <div className={styles.loading}>Loading</div>}
 
           {!isLoading && paginatedProducts.length === 0 && (
@@ -269,7 +269,7 @@ export default function Catalog() {
             </div>
           )}
 
-          <ul className={styles.catalog__cards}>
+          <ul className={styles.cards}>
             {!isLoading && paginatedProducts.length !== 0 && paginatedProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
