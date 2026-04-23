@@ -1,34 +1,41 @@
 'use client';
 
-import { useState } from 'react';
-import { useAppDispatch } from '@/store/hooks';
-import { setToken, setUser, logout } from '@/store/features/auth/authSlice';
-import { MOCK_USERS, MOCK_TOKENS } from '@/mocks/auth.mock';
+import { useState, memo } from 'react';
+import { useDevAuth, UserType } from './hooks/useDevAuth';
+import { UserButton } from './components/UserButton/UserButton';
+import { MOCK_USERS } from '@/mocks/auth.mock';
 import styles from './DevAuthSwitch.module.css';
 
-export const DevAuthSwitch = () => {
+export const DevAuthSwitch = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useAppDispatch();
+  const { handleMockLogin, handleLogout } = useDevAuth();
 
   // Показываем только в development
   if (process.env.NODE_ENV !== 'development') {
     return null;
   }
 
-  const handleMockLogin = (userType: 'admin' | 'user' | 'premium') => {
-    const user = MOCK_USERS[userType];
-    const token = MOCK_TOKENS[userType];
-
-    dispatch(setToken(token));
-    dispatch(setUser(user));
-
-    console.log(`Mock login as ${userType}:`, user);
-    setIsOpen(false);
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  const userButtonsConfig: Array<{
+    userType: UserType;
+    title: string;
+    email: string;
+  }> = [
+      {
+        userType: 'admin',
+        title: 'Admin User',
+        email: MOCK_USERS.admin.email,
+      },
+      {
+        userType: 'user',
+        title: 'Regular User',
+        email: MOCK_USERS.user.email,
+      },
+      {
+        userType: 'premium',
+        title: 'Premium User',
+        email: MOCK_USERS.premium.email,
+      },
+    ];
 
   return (
     <div className={styles.container}>
@@ -48,35 +55,15 @@ export const DevAuthSwitch = () => {
           </div>
 
           <div className={styles.userList}>
-            <button
-              className={`${styles.userButton} ${styles.admin}`}
-              onClick={() => handleMockLogin('admin')}
-            >
-              <div className={styles.userInfo}>
-                <strong>Admin User</strong>
-                <span>{MOCK_USERS.admin.email}</span>
-              </div>
-            </button>
-
-            <button
-              className={`${styles.userButton} ${styles.user}`}
-              onClick={() => handleMockLogin('user')}
-            >
-              <div className={styles.userInfo}>
-                <strong>Regular User</strong>
-                <span>{MOCK_USERS.user.email}</span>
-              </div>
-            </button>
-
-            <button
-              className={`${styles.userButton} ${styles.premium}`}
-              onClick={() => handleMockLogin('premium')}
-            >
-              <div className={styles.userInfo}>
-                <strong>Premium User</strong>
-                <span>{MOCK_USERS.premium.email}</span>
-              </div>
-            </button>
+            {userButtonsConfig.map((config) => (
+              <UserButton
+                key={config.userType}
+                userType={config.userType}
+                title={config.title}
+                email={config.email}
+                onClick={handleMockLogin}
+              />
+            ))}
           </div>
 
           <div className={styles.footer}>
@@ -95,4 +82,6 @@ export const DevAuthSwitch = () => {
       )}
     </div>
   );
-};
+});
+
+DevAuthSwitch.displayName = 'DevAuthSwitch';
