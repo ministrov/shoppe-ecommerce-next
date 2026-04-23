@@ -13,7 +13,7 @@ import styles from './page.module.css';
 const API_URL = process.env.NEXT_PUBLIC_API;
 
 export default function Favorites() {
-  const { favoritesCount, favoriteIds } = useFavorites();
+  const { favoriteIds } = useFavorites();
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
@@ -88,27 +88,28 @@ export default function Favorites() {
     );
   }
 
+  // Если нет товаров в избранном (пустой список)
+  if (products.length === 0) {
+    return (
+      <section className={styles.favorites}>
+        <h1 className="left">Избранное</h1>
+        <NoFavorites />
+      </section>
+    );
+  }
+
+  // Есть товары в избранном
   return (
     <section className={styles.favorites}>
       <h1 className="left">Избранное</h1>
-
-      {favoritesCount === 0 && <NoFavorites />}
-
-      {products.length === 0 ? (
-        <NoFavorites />
-      ) : (
-        <>
-          <p className={styles.favoritesCount}>
-            {products.length} {declineNumber(products.length, ['товар', 'товара', 'товаров'])} в избранном
-          </p>
-
-          <ul className={styles.favoritesList}>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ul>
-        </>
-      )}
+      <p className={styles.favoritesCount}>
+        {products.length} {declineNumber(products.length, ['товар', 'товара', 'товаров'])} в избранном
+      </p>
+      <ul className={styles.favoritesList}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </ul>
     </section>
   );
 };

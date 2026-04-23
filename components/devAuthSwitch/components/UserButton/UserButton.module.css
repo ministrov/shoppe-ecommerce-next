@@ -1,0 +1,45 @@
+.userButton {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #f7fafc;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.userButton:hover {
+  background: #edf2f7;
+  transform: translateX(2px);
+}
+
+.userButton.admin {
+  border-left-color: #e53e3e;
+}
+
+.userButton.user {
+  border-left-color: #3182ce;
+}
+
+.userButton.premium {
+  border-left-color: #805ad5;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo strong {
+  font-size: 14px;
+  color: #2d3748;
+  margin-bottom: 2px;
+}
+
+.userInfo span {
+  font-size: 12px;
+  color: #718096;
+}

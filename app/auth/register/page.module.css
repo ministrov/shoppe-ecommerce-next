@@ -36,6 +36,14 @@
   color: var(--black);
 }
 
+.errorMessage {
+  margin-top: 8px;
+}
+
+.checkboxError {
+  outline: 2px solid var(--errors);
+}
+
 @media screen and (max-width: 484px) {
   .register {
     padding-top: 24px;
