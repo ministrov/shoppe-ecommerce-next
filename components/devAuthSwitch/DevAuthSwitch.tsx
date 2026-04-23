@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, memo } from 'react';
+import { useRouter } from 'next/navigation';
 import { useDevAuth, UserType } from './hooks/useDevAuth';
 import { UserButton } from './components/UserButton/UserButton';
 import { MOCK_USERS } from '@/mocks/auth.mock';
@@ -8,12 +9,19 @@ import styles from './DevAuthSwitch.module.css';
 
 export const DevAuthSwitch = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   const { handleMockLogin, handleLogout } = useDevAuth();
 
   // Показываем только в development
   if (process.env.NODE_ENV !== 'development') {
     return null;
   }
+
+  const handleUserLogin = (userType: UserType) => {
+    handleMockLogin(userType);
+    setIsOpen(false);
+    router.push('/');
+  };
 
   const userButtonsConfig: Array<{
     userType: UserType;
@@ -61,7 +69,7 @@ export const DevAuthSwitch = memo(() => {
                 userType={config.userType}
                 title={config.title}
                 email={config.email}
-                onClick={handleMockLogin}
+                onClick={handleUserLogin}
               />
             ))}
           </div>
