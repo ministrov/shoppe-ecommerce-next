@@ -3,6 +3,7 @@ import { Header } from '@/layouts/header/Header';
 import { Footer } from '@/layouts/footer/Footer';
 import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
 import { PageTransitions } from '@/components/pageTransitons/PageTransitions';
+import { DevAuthSwitch } from '@/components/devAuthSwitch/DevAuthSwitch';
 import StoreProvider from './StoreProvider';
 import { cuprum } from '@/styles/fonts';
 import './globals.css';
@@ -30,6 +31,7 @@ export default function RootLayout({
               </PageTransitions>
             </main>
             <Footer />
+            <DevAuthSwitch />
           </StoreProvider>
         </div>
       </body>
