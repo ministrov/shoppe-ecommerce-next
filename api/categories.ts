@@ -2,12 +2,15 @@ import { API_URL } from '@/helpers';
 import { GetCategoryResponse } from '@/interfaces/category.interface';
 
 export default async function getCategories() {
+  // Проверяем, что API_URL определен
+  if (!API_URL) {
+    console.warn('API_URL is not defined. Please set NEXT_PUBLIC_API environment variable.');
+    return [];
+  }
+
   try {
-    const response = await fetch(API_URL + '/categories', {
-      next: {
-        // Категории меняются редко, кэшируем на 1 час в production
-        revalidate: process.env.NODE_ENV === 'production' ? 3600 : 0,
-      },
+    const response = await fetch(`${API_URL}/categories`, {
+      next: { revalidate: process.env.NODE_ENV === 'production' ? 3600 : 0 },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -20,12 +23,13 @@ export default async function getCategories() {
     }
 
     const data: GetCategoryResponse | undefined = await response.json();
-    return data?.categories;
+    return data?.categories || [];
   } catch (error) {
     // В production можно использовать сервис логирования
     if (process.env.NODE_ENV !== 'production') {
       console.error('Error fetching categories:', error);
     }
-    throw error; // Пробрасываем ошибку для обработки в компоненте
+    // Возвращаем пустой массив вместо выброса ошибки
+    return [];
   }
 }
