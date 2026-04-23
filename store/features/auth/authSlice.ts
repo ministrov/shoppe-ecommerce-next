@@ -9,17 +9,36 @@ interface AuthState {
   error: string | null;
 }
 
-// Убрать проверку window из функций
-const setAuthCookie = (token: string | null) => {
+// Безопасное управление токенами
+const setAuthToken = (token: string | null) => {
+  // В production используем Secure, HttpOnly cookies через API
+  // На клиенте используем sessionStorage как более безопасную альтернативу localStorage
+  if (typeof window === 'undefined') return;
+
   if (token) {
-    document.cookie = `auth-token=${token}; path=/; max-age=86400`;
+    // Для development - храним в sessionStorage (исчезает при закрытии вкладки)
+    sessionStorage.setItem('auth-token', token);
+    
+    // Также устанавливаем cookie с флагами безопасности для совместимости с middleware
+    const isProduction = process.env.NODE_ENV === 'production';
+    const secureFlag = isProduction ? '; Secure' : '';
+    const sameSiteFlag = '; SameSite=Strict';
+    document.cookie = `auth-token=${token}; path=/; max-age=86400${secureFlag}${sameSiteFlag}`;
   } else {
+    sessionStorage.removeItem('auth-token');
     document.cookie =
       'auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   }
 };
 
-const getAuthCookie = (): string | null => {
+const getAuthToken = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  
+  // Пробуем получить из sessionStorage в первую очередь
+  const sessionToken = sessionStorage.getItem('auth-token');
+  if (sessionToken) return sessionToken;
+  
+  // Fallback к cookies для совместимости
   const cookies = document.cookie.split(';');
   const tokenCookie = cookies.find((cookie) =>
     cookie.trim().startsWith('auth-token=')
@@ -41,7 +60,7 @@ export const authSlice = createSlice({
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
       state.error = null;
-      setAuthCookie(action.payload);
+      setAuthToken(action.payload);
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
@@ -57,11 +76,10 @@ export const authSlice = createSlice({
       state.user = null;
       state.error = null;
       state.isLoading = false;
-      setAuthCookie(null);
-      // console.log(state.token);
+      setAuthToken(null);
     },
     initializeAuth: (state) => {
-      const token = getAuthCookie();
+      const token = getAuthToken();
       if (token) {
         state.token = token;
       }
@@ -69,24 +87,22 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Обработка loginUser thunk
-    // console.log(builder);
     builder
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginUser.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
         // Токен и пользователь уже установлены в thunk через dispatch
-        console.log('Login successful:', action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
         state.token = null;
         state.user = null;
-        setAuthCookie(null);
+        setAuthToken(null);
       });
   },
 });

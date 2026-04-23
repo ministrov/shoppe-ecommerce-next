@@ -47,11 +47,7 @@ const initialState: FavoritesState = {
 
 // const saveToSessionStorage = (ids: number[]) => {
 //   // Сохранение в storage
-//   console.log(ids);
 // };
-
-// console.log(loadFromSessionStorage);
-// console.log(saveToSessionStorage);
 
 const favoritesSlice = createSlice({
   name: 'favorites',

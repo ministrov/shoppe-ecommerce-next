@@ -20,8 +20,8 @@ export const loginUser = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log(error);
-      console.log(rejectWithValue);
+      // Возвращаем ошибку для обработки в slice
+      return rejectWithValue(error instanceof Error ? error.message : 'Login failed');
     }
   }
 );
