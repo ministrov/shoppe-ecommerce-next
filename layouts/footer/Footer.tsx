@@ -124,23 +124,23 @@ export const Footer = () => {
                 <Image src='/arrow-right.svg' width={20} height={20} alt='' />
               )}
             </button>
-
-            {/* Блок для отображения ошибки */}
-            <div className={styles.errorContainer}>
-              <AnimatePresence>
-                {error && (
-                  <motion.div
-                    className={styles.errorMessage}
-                    {...slideIn}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    key="email-error"
-                  >
-                    <Message content={error} isError />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </form>
+
+          {/* Блок для отображения ошибки */}
+          <div className={styles.errorContainer}>
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  className={styles.errorMessage}
+                  {...slideIn}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  key="email-error"
+                >
+                  <Message content={error} isError />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Блок для отображения успешного сообщения */}
           <div className={styles.successContainer}>

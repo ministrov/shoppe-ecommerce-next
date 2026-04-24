@@ -1,23 +1,23 @@
 .message {
+  max-width: 455px;
   display: flex;
   padding: 20px;
-  max-width: 455px;
   box-shadow: 0px 0px 8px 0px #00000026;
 }
 
 .message p {
+  margin: 0;
   font-family: inherit;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
-  margin: 0;
 }
 
 /* Success variant */
 .message--success {
-  background-color: gray;
   gap: 20px;
   align-items: center;
+  background-color: var(--color-gray-100);
 }
 
 .message--success p {
@@ -26,12 +26,12 @@
 
 /* Error variant */
 .message--error {
-  background-color: var(--white);
-  border: 1px solid red;
-  color: red;
-  max-width: 100%;
-  box-shadow: none;
   gap: 0;
+  max-width: 100%;
+  color: red;
+  background-color: var(--white);
+  box-shadow: none;
+  border: 1px solid red;
 }
 
 .message--error p {

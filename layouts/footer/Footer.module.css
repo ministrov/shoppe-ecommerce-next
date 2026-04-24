@@ -10,7 +10,6 @@
 .footer__top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .footer__top ul {
@@ -80,14 +79,8 @@
 
 .errorContainer,
 .successContainer {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
   width: auto;
   max-width: 396px;
-  /* ширина формы .footer__form */
-  z-index: 1;
 }
 
 .errorMessage {
