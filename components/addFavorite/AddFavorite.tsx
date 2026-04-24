@@ -16,26 +16,21 @@ export const AddFavorite = ({ productId, isShown }: AddFavoriteProps) => {
   };
 
   const shouldShow = isShown || isFavorite(productId);
-
-  if (!shouldShow) {
-    return null;
-  }
+  const favorite = isFavorite(productId);
 
   return (
     <button
-      className={styles.favButton}
+      className={`${styles.favButton} ${!shouldShow ? styles.hidden : ''}`}
       onClick={handleClick}
-      aria-label={
-        isFavorite(productId)
-          ? 'Remove from favorites'
-          : 'Add to favorites'
-      }
+      aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+      suppressHydrationWarning
     >
       <Image
         src={'/favorite.svg'}
         width={18}
         height={18}
-        alt={isFavorite(productId) ? 'Remove from favorites' : 'Add to favorites'}
+        alt={favorite ? 'Remove from favorites' : 'Add to favorites'}
+        suppressHydrationWarning
       />
     </button>
   )
