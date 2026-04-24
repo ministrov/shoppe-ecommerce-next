@@ -9,7 +9,7 @@ import { demoProducts } from '@/helpers';
 import styles from './page.module.css';
 
 export default async function Home() {
-  const products = await getProducts();
+  const { products } = await getProducts();
 
   let itemsList;
 
