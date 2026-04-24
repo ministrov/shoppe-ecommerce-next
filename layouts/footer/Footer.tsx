@@ -5,30 +5,45 @@ import { InputField } from '@/components/inputField/InputField';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
+  const emailFieldId = 'footer-subscribe-email';
+
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer} role="contentinfo">
       <div className={styles.footer__top}>
-        <ul>
-          <li>
-            <Link href='#'>Контакты</Link>
-          </li>
-          <li>
-            <Link href='#'>Условия покупки</Link>
-          </li>
-          <li>
-            <Link href='#'>Доставка и возврат</Link>
-          </li>
-        </ul>
+        <nav aria-label="Навигация по сайту">
+          <h2 className="visually-hidden">Навигация по сайту</h2>
+          <ul>
+            <li>
+              <Link href='#'>Контакты</Link>
+            </li>
+            <li>
+              <Link href='#'>Условия покупки</Link>
+            </li>
+            <li>
+              <Link href='#'>Доставка и возврат</Link>
+            </li>
+          </ul>
+        </nav>
         <div>
           <form className={styles.footer__form} action='#' method='POST'>
+            <label htmlFor={emailFieldId} className="visually-hidden">
+              Ваш email для акций и предложений
+            </label>
             <InputField
+              id={emailFieldId}
               className={styles.footer__input}
               variant='black'
               name='subscribe'
               placeholder='Ваш email для акций и предложений'
+              aria-label="Ваш email для акций и предложений"
             />
-            <button className={styles.footer__subscribe} type='submit' name='subscribe'>
-              <Image src='/arrow-right.svg' width={20} height={20} alt='Subscribe icon' />
+            <button
+              className={styles.footer__subscribe}
+              type='submit'
+              name='subscribe'
+              aria-label="Подписаться на рассылку"
+            >
+              <Image src='/arrow-right.svg' width={20} height={20} alt='' />
             </button>
           </form>
         </div>
@@ -39,6 +54,6 @@ export const Footer = () => {
           <SocialsList />
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
