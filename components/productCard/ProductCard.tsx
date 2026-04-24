@@ -10,7 +10,22 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
-  const imageUrl = baseUrl ? `${baseUrl}${product.images[0]}` : '';
+  const firstImage = product.images[0] || '';
+
+  // Определяем, является ли изображение data URL
+  const isDataUrl = firstImage.startsWith('data:');
+  let imageUrl = '';
+
+  if (isDataUrl) {
+    imageUrl = firstImage;
+  } else if (baseUrl) {
+    imageUrl = `${baseUrl}${firstImage}`;
+  } else {
+    imageUrl = firstImage;
+  }
+
+  console.log('ProductCard image debug:', { firstImage, isDataUrl, imageUrl });
+
   const imageStyle = { backgroundImage: imageUrl ? `url(${imageUrl})` : 'none' };
 
   const sale = useMemo(() => (product.price * product.discount) / 100, [product.price, product.discount]);

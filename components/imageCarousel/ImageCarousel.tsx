@@ -25,6 +25,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
           height={630}
           className={styles.mainImage}
           priority
+          unoptimized={mainImage.startsWith('data:')}
         />
       </div>
 
@@ -46,6 +47,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 width={120}
                 height={120}
                 className={styles.thumbnailImage}
+                unoptimized={image.startsWith('data:')}
               />
             </button>
           ))}

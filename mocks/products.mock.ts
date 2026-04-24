@@ -1,6 +1,9 @@
 import { Product } from '@/interfaces/product.interface';
 import { MOCK_CATEGORIES } from './categories.mock';
 
+// Простой SVG placeholder для изображений товаров (синий прямоугольник с белым текстом) в формате base64
+const PLACEHOLDER_IMAGE = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM0YTkwZTIiLz48dGV4dCB4PSIxNTAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjZmZmZmZmIj7QmNC30L7QsdGA0LDQttC10L3QuNC1INGC0L7QstCw0YDQsDwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjZjBmMGYwIj4zMDDDlzIwMDwvdGV4dD48L3N2Zz4=`;
+
 const generateMockProducts = (): Product[] => {
   const products: Product[] = [];
   const productNames = [
@@ -21,7 +24,7 @@ const generateMockProducts = (): Product[] => {
       long_description: `Подробное описание товара ${i}. Это качественный продукт с отличными характеристиками.`,
       sku: `SKU-${1000 + i}`,
       discount: hasDiscount ? Math.floor(Math.random() * 50) + 10 : 0,
-      images: [`/mock-card-img-${(i % 5) + 1}.png`],
+      images: [PLACEHOLDER_IMAGE],
       category_id: category.id,
       category: category,
       created_at: new Date().toISOString(),
