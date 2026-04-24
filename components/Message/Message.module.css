@@ -1,37 +1,58 @@
-.success {
+.message {
   display: flex;
-  gap: 20px;
-  max-width: 455px;
   padding: 20px;
-  background-color: var(--white);
+  max-width: 455px;
   box-shadow: 0px 0px 8px 0px #00000026;
 }
 
-.success p {
+.message p {
   font-family: inherit;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
+  margin: 0;
+}
+
+/* Success variant */
+.message--success {
+  background-color: gray;
+  gap: 20px;
+  align-items: center;
+}
+
+.message--success p {
   color: var(--color-gray-500);
 }
 
-.long {
+/* Error variant */
+.message--error {
+  background-color: var(--white);
+  border: 1px solid red;
+  color: red;
+  max-width: 100%;
+  box-shadow: none;
+  gap: 0;
+}
+
+.message--error p {
+  color: red;
+}
+
+/* Long variant (can be combined with success or error) */
+.message--long {
   max-width: 100%;
   border-top: 2px solid var(--accent);
   box-shadow: none;
 }
 
-.long p {
+.message--long p {
   color: var(--black);
 }
 
-.error {
-  max-width: 100%;
-  border: 1px solid red;
-  color: red;
-  box-shadow: none;
-}
-
-.error p {
-  color: red;
+/* Ensure long error overrides border */
+.message--error.message--long {
+  border-top: 2px solid red;
+  border-left: 1px solid red;
+  border-right: 1px solid red;
+  border-bottom: 1px solid red;
 }
