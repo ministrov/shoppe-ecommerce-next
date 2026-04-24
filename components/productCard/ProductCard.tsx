@@ -24,8 +24,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     imageUrl = firstImage;
   }
 
-  console.log('ProductCard image debug:', { firstImage, isDataUrl, imageUrl });
-
   const imageStyle = { backgroundImage: imageUrl ? `url(${imageUrl})` : 'none' };
 
   const sale = useMemo(() => (product.price * product.discount) / 100, [product.price, product.discount]);
