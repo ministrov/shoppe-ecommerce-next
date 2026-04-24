@@ -8,6 +8,8 @@ import styles from './ImageCarousel.module.css';
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
+  console.log(images);
+
   if (!images.length) {
     return <div className={styles.emptyState}>No images available</div>;
   }
@@ -25,6 +27,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
           height={630}
           className={styles.mainImage}
           priority
+          unoptimized={mainImage.startsWith('data:')}
         />
       </div>
 
@@ -46,6 +49,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 width={120}
                 height={120}
                 className={styles.thumbnailImage}
+                unoptimized={image.startsWith('data:')}
               />
             </button>
           ))}

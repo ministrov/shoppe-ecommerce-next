@@ -5,9 +5,10 @@ import styles from './Message.module.css';
 
 export const Message = ({ isError, content, isLong = false }: MessageProps) => {
   return (
-    <div className={cn(styles.success, {
-      [styles.long]: isLong,
-      [styles.error]: isError
+    <div className={cn(styles.message, {
+      [styles['message--success']]: !isError,
+      [styles['message--error']]: isError,
+      [styles['message--long']]: isLong,
     })}>
       {!isError && <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'} />}
       <p>{content}</p>

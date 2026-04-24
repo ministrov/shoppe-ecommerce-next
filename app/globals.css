@@ -8,6 +8,7 @@
   --color-gray-300: #979797;
   --color-gray-200: #efefef;
   --color-gray-150: #d8d8d8;
+  --color-gray-100: #efefef;
   --accent: #a18a68;
   --errors: #d82700;
   --border-radius: 4px;
@@ -97,6 +98,7 @@ h1.left {
   max-width: 1248px;
   margin: 0 auto;
 }
+
 /* 
 .page-content {
   width: 100%;
@@ -121,6 +123,7 @@ h1.left {
 }
 
 @media screen and (max-width: 375px) {
+
   h1,
   h1.left {
     font-size: 20px;

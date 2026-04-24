@@ -11,11 +11,11 @@ import { RangeSlider } from '@/components/rangeSlider/RangeSlider';
 import { Toggle } from '@/components/toggle/Toggle';
 import { Pagination } from '@/components/pagination/Pagination';
 import { Category } from '@/interfaces/category.interface';
-import { Product, GetProductsResponse } from '@/interfaces/product.interface';
-import { API_URL } from '@/helpers';
+import { Product } from '@/interfaces/product.interface';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useAuth } from '@/hooks/useAuth';
 import getCategories from '@/api/categories';
+import getProducts from '@/api/products';
 import cn from 'classnames';
 import styles from './page.module.css';
 
@@ -89,7 +89,7 @@ export default function Catalog() {
     fetchCategories();
   }, []);
 
-  // Фетчим продукты напрямую с фильтрами
+  // Фетчим продукты через API модуль с поддержкой моков
   useEffect(() => {
     const fetchProducts = async () => {
       if (debouncedSearch.length < 2 && debouncedSearch !== '') {
@@ -97,23 +97,13 @@ export default function Catalog() {
       }
 
       try {
-        // Формируем query параметры напрямую для вашего API
-        const params = new URLSearchParams();
-
-        if (category_id) params.append('category_id', category_id);
-        if (debouncedSearch) params.append('search', debouncedSearch);
-        if (hasDiscount) params.append('has_discount', 'true');
-        params.append('price_from', debouncedPrice[0].toString());
-        params.append('price_to', debouncedPrice[1].toString());
-
-        // ПРЯМОЙ запрос к вашему API!
-        const response = await fetch(`${API_URL}/products?${params}`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-
-        const data: GetProductsResponse = await response.json();
+        const data = await getProducts({
+          category_id: category_id || undefined,
+          search: debouncedSearch || undefined,
+          has_discount: hasDiscount || undefined,
+          price_from: debouncedPrice[0],
+          price_to: debouncedPrice[1],
+        });
 
         setAllProducts(data.products || []);
         setTotalProducts(data.total || 0);

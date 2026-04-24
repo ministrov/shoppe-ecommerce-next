@@ -1,16 +1,23 @@
 import { API_URL } from '@/helpers';
 import { GetProductResponse } from '@/interfaces/product.interface';
+import { USE_MOCK_DATA } from '@/mocks/categories.mock';
+import { getMockProduct } from '@/mocks/product.mock';
 
 export default async function getProduct(id: string) {
+  // Использовать моки если включен флаг
+  if (USE_MOCK_DATA) {
+    return await getMockProduct(id);
+  }
+
   // Проверяем, что API_URL определен
   if (!API_URL) {
     console.warn('API_URL is not defined. Please set NEXT_PUBLIC_API environment variable.');
-    return null;
+    // Возвращаем моковые данные если API_URL не определён
+    return await getMockProduct(id);
   }
 
   try {
     const response = await fetch(`${API_URL}/products/${id}`, {
-      next: { revalidate: process.env.NODE_ENV === 'production' ? 300 : 0 },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -30,7 +37,7 @@ export default async function getProduct(id: string) {
     if (process.env.NODE_ENV !== 'production') {
       console.error('Error fetching product:', error);
     }
-    // Возвращаем null вместо выброса ошибки
-    return null;
+    // Возвращаем моковые данные при ошибке fetch
+    return await getMockProduct(id);
   }
 }

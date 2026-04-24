@@ -19,6 +19,9 @@ export const Product = ({ product }: ProductProps) => {
   const getFullImageUrl = (imagePath: string): string => {
     if (!imagePath) return '/images/placeholder.jpg'; // Заглушка вместо null
 
+    // Если это data URL (встроенное изображение)
+    if (imagePath.startsWith('data:')) return imagePath;
+
     // Если путь уже полный URL
     if (imagePath.startsWith('http')) return imagePath;
 

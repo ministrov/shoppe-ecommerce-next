@@ -1,37 +1,58 @@
-.success {
-  display: flex;
-  gap: 20px;
+.message {
   max-width: 455px;
+  display: flex;
   padding: 20px;
-  background-color: var(--color-gray-500-200);
   box-shadow: 0px 0px 8px 0px #00000026;
 }
 
-.success p {
+.message p {
+  margin: 0;
   font-family: inherit;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
+}
+
+/* Success variant */
+.message--success {
+  gap: 20px;
+  align-items: center;
+  background-color: var(--color-gray-100);
+}
+
+.message--success p {
   color: var(--color-gray-500);
 }
 
-.long {
+/* Error variant */
+.message--error {
+  gap: 0;
+  max-width: 100%;
+  color: red;
+  background-color: var(--white);
+  box-shadow: none;
+  border: 1px solid red;
+}
+
+.message--error p {
+  color: red;
+}
+
+/* Long variant (can be combined with success or error) */
+.message--long {
   max-width: 100%;
   border-top: 2px solid var(--accent);
   box-shadow: none;
 }
 
-.long p {
+.message--long p {
   color: var(--black);
 }
 
-.error {
-  max-width: 100%;
-  border: 1px solid red;
-  color: red;
-  box-shadow: none;
-}
-
-.error p {
-  color: red;
+/* Ensure long error overrides border */
+.message--error.message--long {
+  border-top: 2px solid red;
+  border-left: 1px solid red;
+  border-right: 1px solid red;
+  border-bottom: 1px solid red;
 }

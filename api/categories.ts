@@ -1,7 +1,13 @@
 import { API_URL } from '@/helpers';
 import { GetCategoryResponse } from '@/interfaces/category.interface';
+import { USE_MOCK_DATA, getMockCategories } from '@/mocks/categories.mock';
 
 export default async function getCategories() {
+  // Использовать моки если включен флаг
+  if (USE_MOCK_DATA) {
+    return await getMockCategories();
+  }
+
   // Проверяем, что API_URL определен
   if (!API_URL) {
     console.warn('API_URL is not defined. Please set NEXT_PUBLIC_API environment variable.');
@@ -10,7 +16,6 @@ export default async function getCategories() {
 
   try {
     const response = await fetch(`${API_URL}/categories`, {
-      next: { revalidate: process.env.NODE_ENV === 'production' ? 3600 : 0 },
       headers: {
         'Content-Type': 'application/json',
       },
