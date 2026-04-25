@@ -4,12 +4,11 @@ import { useState, useEffect } from 'react';
 import { GeolocationMessage } from '../geolocationMessage/GeolocationMessage';
 import styles from './GeolocationContainer.module.css';
 
-const GeolocationContainer = () => {
+export const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
 
   const handleSuccess = ({ coords: { latitude, longitude } }: { coords: { latitude: number, longitude: number } }) => {
-    console.log('Geolocation success:', latitude, longitude);
     setLatitude(latitude);
     setLongitude(longitude);
   };
@@ -33,5 +32,3 @@ const GeolocationContainer = () => {
     </div>
   );
 };
-
-export default GeolocationContainer;

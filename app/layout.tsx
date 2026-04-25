@@ -4,7 +4,7 @@ import { Footer } from '@/layouts/footer/Footer';
 import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
 import { PageTransitions } from '@/components/pageTransitons/PageTransitions';
 import { DevAuthSwitch } from '@/components/devAuthSwitch/DevAuthSwitch';
-import GeolocationContainer from '@/components/geolocationContainer/GeolocationContainer';
+import { GeolocationContainer } from '@/components/geolocationContainer/GeolocationContainer';
 import StoreProvider from './StoreProvider';
 import { cuprum } from '@/styles/fonts';
 import './globals.css';
@@ -40,3 +40,4 @@ export default function RootLayout({
     </html>
   );
 }
+
