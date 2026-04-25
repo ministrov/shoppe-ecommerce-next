@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Geolocation } from '../geolocation/Geolocation';
+import { GeolocationMessage } from '../geolocationMessage/GeolocationMessage';
+import styles from './GeolocationContainer.module.css';
 
-const GeolocationContainer = () => {
+export const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
 
@@ -12,15 +13,22 @@ const GeolocationContainer = () => {
     setLongitude(longitude);
   };
 
+  const handleError = (error: GeolocationPositionError) => {
+    console.error('Geolocation error:', error);
+  };
+
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleSuccess);
+      console.log('Requesting geolocation...');
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+    } else {
+      console.error('Geolocation not supported');
     }
   }, []);
 
   return (
-    <Geolocation latitude={latitude} longitude={longitude} />
+    <div className={styles.container}>
+      <GeolocationMessage latitude={latitude} longitude={longitude} />
+    </div>
   );
 };
-
-export default GeolocationContainer;

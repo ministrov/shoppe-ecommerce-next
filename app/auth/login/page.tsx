@@ -113,7 +113,7 @@ export default function Login() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="email-error"
                 >
-                  <Message content={errors.email} isError />
+                  <Message text={errors.email} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -142,7 +142,7 @@ export default function Login() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="password-error"
                 >
-                  <Message content={errors.password} isError />
+                  <Message text={errors.password} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -185,7 +185,7 @@ export default function Login() {
             transition={{ duration: 0.4 }}
             key="success-message"
           >
-            <Message content="Вы успешно вошли в систему!" isError={false} />
+            <Message text="Вы успешно вошли в систему!" isError={false} />
           </motion.div>
         )}
       </AnimatePresence>

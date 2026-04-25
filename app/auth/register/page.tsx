@@ -143,7 +143,7 @@ export default function Register() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="email-error"
                 >
-                  <Message content={errors.email} isError />
+                  <Message text={errors.email} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -170,7 +170,7 @@ export default function Register() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="password-error"
                 >
-                  <Message content={errors.password} isError />
+                  <Message text={errors.password} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -198,7 +198,7 @@ export default function Register() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="confirmPassword-error"
                 >
-                  <Message content={errors.confirmPassword} isError />
+                  <Message text={errors.confirmPassword} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -227,7 +227,7 @@ export default function Register() {
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
                 key="agreeTerms-error"
               >
-                <Message content={errors.agreeTerms} isError />
+                <Message text={errors.agreeTerms} isError />
               </motion.div>
             )}
           </AnimatePresence>
@@ -254,7 +254,7 @@ export default function Register() {
             transition={{ duration: 0.4 }}
             key="success-message"
           >
-            <Message content="Регистрация успешна! Вы будете перенаправлены на главную страницу." isError={false} />
+            <Message text="Регистрация успешна! Вы будете перенаправлены на главную страницу." isError={false} />
           </motion.div>
         )}
       </AnimatePresence>
