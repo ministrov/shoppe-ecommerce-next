@@ -136,7 +136,7 @@ export const Footer = () => {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   key="email-error"
                 >
-                  <Message content={error} isError />
+                  <Message text={error} isError />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -153,7 +153,7 @@ export const Footer = () => {
                   transition={{ duration: 0.4 }}
                   key="success-message"
                 >
-                  <Message content="Вы успешно подписались на рассылку!" isError={false} />
+                  <Message text="Вы успешно подписались на рассылку!" isError={false} />
                 </motion.div>
               )}
             </AnimatePresence>
