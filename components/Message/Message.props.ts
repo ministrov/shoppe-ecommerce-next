@@ -5,4 +5,5 @@ export interface MessageProps
   content: string;
   isLong?: boolean;
   isError: boolean;
+  text: string;
 }
