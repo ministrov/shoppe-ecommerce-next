@@ -15,6 +15,19 @@ export const GeolocationMessage = ({ latitude, longitude }: GeolocationMessagePr
   const { city, isLoading, error, getCityFromCoords } = useGeocoding();
   const [messageShown, setMessageShown] = useState(false);
 
+  // Отладочный лог
+  useEffect(() => {
+    console.log('GeolocationMessage debug:', {
+      isAuthenticated,
+      latitude,
+      longitude,
+      city,
+      isLoading,
+      error,
+      messageShown,
+    });
+  }, [isAuthenticated, latitude, longitude, city, isLoading, error, messageShown]);
+
   useEffect(() => {
     // Проверяем, было ли уже показано сообщение в этой сессии
     const shown = sessionStorage.getItem('geolocationMessageShown');
@@ -25,6 +38,7 @@ export const GeolocationMessage = ({ latitude, longitude }: GeolocationMessagePr
 
   useEffect(() => {
     if (isAuthenticated && latitude && longitude && !messageShown && !city && !isLoading) {
+      console.log('GeolocationMessage: calling getCityFromCoords');
       getCityFromCoords(latitude, longitude);
     }
   }, [isAuthenticated, latitude, longitude, messageShown, city, isLoading, getCityFromCoords]);
@@ -37,10 +51,24 @@ export const GeolocationMessage = ({ latitude, longitude }: GeolocationMessagePr
     }
   }, [city, isAuthenticated, messageShown]);
 
-  if (!isAuthenticated || messageShown || !city || error) {
+  if (!isAuthenticated) {
+    console.log('GeolocationMessage: not authenticated');
+    return null;
+  }
+  if (messageShown) {
+    console.log('GeolocationMessage: already shown');
+    return null;
+  }
+  if (error) {
+    console.log('GeolocationMessage: error', error);
+    return null;
+  }
+  if (!city) {
+    console.log('GeolocationMessage: city not determined');
     return null;
   }
 
+  console.log('GeolocationMessage: rendering message with city', city);
   return (
     <Message
       isError={false}
