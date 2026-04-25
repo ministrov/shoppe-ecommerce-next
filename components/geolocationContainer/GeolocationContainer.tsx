@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Geolocation } from '../geolocation/Geolocation';
+import { GeolocationMessage } from '../geolocationMessage/GeolocationMessage';
 
 const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
@@ -19,7 +20,10 @@ const GeolocationContainer = () => {
   }, []);
 
   return (
-    <Geolocation latitude={latitude} longitude={longitude} />
+    <>
+      <Geolocation latitude={latitude} longitude={longitude} />
+      <GeolocationMessage latitude={latitude} longitude={longitude} />
+    </>
   );
 };
 
