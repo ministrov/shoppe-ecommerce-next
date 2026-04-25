@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Geolocation } from '../geolocation/Geolocation';
 import { GeolocationMessage } from '../geolocationMessage/GeolocationMessage';
+import styles from './GeolocationContainer.module.css';
 
 const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
@@ -19,11 +20,13 @@ const GeolocationContainer = () => {
     }
   }, []);
 
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
   return (
-    <>
-      <Geolocation latitude={latitude} longitude={longitude} />
+    <div className={styles.container}>
+      {isDevelopment && <Geolocation latitude={latitude} longitude={longitude} />}
       <GeolocationMessage latitude={latitude} longitude={longitude} />
-    </>
+    </div>
   );
 };
 
