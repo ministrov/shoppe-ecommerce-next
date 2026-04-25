@@ -5,7 +5,7 @@
   box-shadow: 0px 0px 8px 0px #00000026;
 }
 
-.message p {
+.text {
   margin: 0;
   font-family: inherit;
   font-weight: 400;
@@ -20,7 +20,7 @@
   background-color: var(--color-gray-100);
 }
 
-.message--success p {
+.message--success .text {
   color: var(--color-gray-500);
 }
 
@@ -34,7 +34,7 @@
   border: 1px solid red;
 }
 
-.message--error p {
+.message--error .text {
   color: red;
 }
 
@@ -45,7 +45,7 @@
   box-shadow: none;
 }
 
-.message--long p {
+.message--long .text {
   color: var(--black);
 }
 
