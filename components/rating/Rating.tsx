@@ -10,12 +10,10 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
   const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   const handleMouseEnter = (index: number) => {
-    if (!isEditable) return;
     setHoverRating(index + 1);
   };
 
   const handleMouseLeave = () => {
-    if (!isEditable) return;
     setHoverRating(null);
   };
 
