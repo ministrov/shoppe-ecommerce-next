@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StarIcon } from '../starIcon/StarIcon';
 import { RatingProps } from './Rating.props';
 import cn from 'classnames';
@@ -9,6 +9,15 @@ import styles from './Rating.module.css';
 const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [internalRating, setInternalRating] = useState(rating);
+
+  // Синхронизируем internalRating с пропом rating, когда проп изменяется
+  useEffect(() => {
+    if (!setRating) {
+      // В uncontrolled режиме internalRating должен обновляться только если rating из пропов изменился
+      // (например, при сбросе формы)
+      setInternalRating(rating);
+    }
+  }, [rating, setRating]);
 
   // Используем внутренний рейтинг, если setRating не предоставлен (uncontrolled режим)
   const currentRating = setRating ? rating : internalRating;
@@ -23,10 +32,15 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
   };
 
   const handleClick = (index: number) => {
-    if (!isEditable) return;
+    console.log('handleClick', { index, isEditable, setRatingProvided: !!setRating, currentRating });
+    if (!isEditable) {
+      console.log('isEditable false, ignoring click');
+      return;
+    }
 
     const starValue = index + 1;
     const newRating = currentRating === starValue ? 0 : starValue;
+    console.log('newRating', newRating);
     handleRatingChange(newRating);
     // Сбрасываем hover после клика, чтобы сразу показать сохраненный рейтинг
     setHoverRating(null);
@@ -58,6 +72,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     >
       {Array.from({ length: 5 }, (_, index) => {
         const isFilled = index < displayRating;
+        console.log(`Star ${index + 1}: isFilled=${isFilled}, displayRating=${displayRating}, currentRating=${currentRating}, hoverRating=${hoverRating}`);
 
         return (
           <span
