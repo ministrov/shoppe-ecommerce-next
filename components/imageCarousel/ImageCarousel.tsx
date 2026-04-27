@@ -12,12 +12,6 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   // Enhance images with mock images in development mode if we have less than 2 images
   const enhancedImages = enhanceWithMockImages(images, 2);
 
-  console.log('ImageCarousel images:', {
-    original: images,
-    enhanced: enhancedImages,
-    isDevelopment: process.env.NODE_ENV === 'development'
-  });
-
   if (!enhancedImages.length) {
     return <div className={styles.emptyState}>No images available</div>;
   }

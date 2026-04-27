@@ -52,7 +52,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
       onMouseLeave={handleMouseLeave}
     >
       {Array.from({ length: 5 }, (_, index) => {
-        const isFilled = index < displayRating;
+        const isFilled = index + 1 === displayRating;
 
         return (
           <span

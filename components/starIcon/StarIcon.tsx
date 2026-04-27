@@ -1,4 +1,3 @@
-// import Image from 'next/image';
 import { StarIconProps } from './StarIcon.inteface';
 
 export const StarIcon = ({ isEditable, isFilled }: StarIconProps) => {
