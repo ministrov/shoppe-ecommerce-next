@@ -21,7 +21,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     if (!isEditable || !setRating) return;
 
     const starValue = index + 1;
-    const newRating = rating === starValue ? index : starValue;
+    const newRating = rating === starValue ? 0 : starValue;
     setRating(newRating);
     // Сбрасываем hover после клика, чтобы сразу показать сохраненный рейтинг
     setHoverRating(null);
@@ -32,7 +32,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     if (e.code === 'Space' || e.code === 'Enter') {
       e.preventDefault();
       const starValue = index + 1;
-      const newRating = rating === starValue ? index : starValue;
+      const newRating = rating === starValue ? 0 : starValue;
       setRating(newRating);
       // Сбрасываем hover после клавиатурного выбора
       setHoverRating(null);
@@ -52,7 +52,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
       onMouseLeave={handleMouseLeave}
     >
       {Array.from({ length: 5 }, (_, index) => {
-        const isFilled = index + 1 === displayRating;
+        const isFilled = index < displayRating;
 
         return (
           <span
