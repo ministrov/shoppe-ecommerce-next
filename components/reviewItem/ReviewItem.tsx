@@ -18,11 +18,12 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
         </span>
       </div>
       <div className={styles.reviewRating}>
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
+        {[...Array(5)].map((_, index) => (
+          <StarIcon
+            key={index}
+            isFilled={index < review.rating}
+          />
+        ))}
       </div>
       <p className={styles.reviewText}>{review.text}</p>
     </motion.div>

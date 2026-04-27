@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX, useEffect, useState, KeyboardEvent, Fragment } from 'react';
+import { JSX, useEffect, useState, Fragment } from 'react';
 import { StarIcon } from '../starIcon/StarIcon';
 import { RatingProps } from './Rating.props';
 import cn from 'classnames';
@@ -26,8 +26,6 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
           })}
           onMouseEnter={() => changeDisplay(i + 1)}
           onMouseLeave={() => changeDisplay(rating)}
-          onClick={() => onClick(i + 1)}
-          onKeyDown={(e: KeyboardEvent<HTMLSpanElement>) => isEditable && handleSpace(i + 1, e)}
           role={isEditable ? 'slider' : ''}
           aria-invalid={error ? true : false}
           aria-valuenow={rating}
@@ -37,6 +35,8 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
         >
           <StarIcon
             isEditable={isEditable}
+            isFilled={i < currentRating}
+            onToggle={() => onClick(i + 1)}
           />
         </span>
       );
@@ -60,13 +60,7 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     setRating(i);
   };
 
-  const handleSpace = (i: number, e: KeyboardEvent<HTMLSpanElement>) => {
-    if (e.code !== 'Space' || !setRating) {
-      return;
-    }
-
-    setRating(i);
-  };
+  // Обработка клавиатуры теперь внутри StarIcon
 
   return (
     <div className={cn(styles.ratingWrapper, {
