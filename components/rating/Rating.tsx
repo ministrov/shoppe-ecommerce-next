@@ -8,6 +8,11 @@ import styles from './Rating.module.css';
 
 const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
+  const [internalRating, setInternalRating] = useState(rating);
+
+  // Используем внутренний рейтинг, если setRating не предоставлен (uncontrolled режим)
+  const currentRating = setRating ? rating : internalRating;
+  const handleRatingChange = setRating ? setRating : setInternalRating;
 
   const handleMouseEnter = (index: number) => {
     setHoverRating(index + 1);
@@ -18,29 +23,29 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
   };
 
   const handleClick = (index: number) => {
-    if (!isEditable || !setRating) return;
+    if (!isEditable) return;
 
     const starValue = index + 1;
-    const newRating = rating === starValue ? 0 : starValue;
-    setRating(newRating);
+    const newRating = currentRating === starValue ? 0 : starValue;
+    handleRatingChange(newRating);
     // Сбрасываем hover после клика, чтобы сразу показать сохраненный рейтинг
     setHoverRating(null);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-    if (!isEditable || !setRating) return;
+    if (!isEditable) return;
     if (e.code === 'Space' || e.code === 'Enter') {
       e.preventDefault();
       const starValue = index + 1;
-      const newRating = rating === starValue ? 0 : starValue;
-      setRating(newRating);
+      const newRating = currentRating === starValue ? 0 : starValue;
+      handleRatingChange(newRating);
       // Сбрасываем hover после клавиатурного выбора
       setHoverRating(null);
     }
   };
 
   // Определяем, какая звезда должна быть закрашена
-  const displayRating = hoverRating !== null ? hoverRating : rating;
+  const displayRating = hoverRating !== null ? hoverRating : currentRating;
 
   return (
     <div

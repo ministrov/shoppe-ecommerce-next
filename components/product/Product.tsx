@@ -47,7 +47,7 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
-            <Rating rating={5} isEditable={false} />
+            <Rating rating={0} />
             <div className={styles.reviewsCount}>
               <span>{product.reviews.length}</span>
               <span>отзыва</span>
