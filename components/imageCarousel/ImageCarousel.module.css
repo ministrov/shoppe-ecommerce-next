@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
-  width: 700px;
+  max-width: 700px;
 }
 
 .mainImageWrapper {
@@ -23,13 +23,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 528px;
-  /* 4x120 + 3x12 */
-  overflow-y: auto;
-  padding-right: 4px;
 }
 
-.thumbnailGallery::-webkit-scrollbar {
+/* .thumbnailGallery::-webkit-scrollbar {
   width: 4px;
 }
 
@@ -41,7 +37,7 @@
 .thumbnailGallery::-webkit-scrollbar-thumb {
   background: var(--color-gray-300);
   border-radius: 2px;
-}
+} */
 
 .thumbnail {
   width: 120px;
