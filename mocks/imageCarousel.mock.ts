@@ -3,14 +3,53 @@
  * Used in development mode when real images are insufficient
  */
 
-// Same placeholder image as used in products.mock.ts
-const PLACEHOLDER_IMAGE = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM0YTkwZTIiLz48dGV4dCB4PSIxNTAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjZmZmZmZmIj7QmNC30L7QsdGA0LDQttC10L3QuNC1INGC0L7QstCw0YDQsDwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjZjBmMGYwIj4zMDDDlzIwMDwvdGV4dD48L3N2Zz4=`;
+// Helper to encode string to base64 (works in both Node.js and browser)
+const encodeToBase64 = (str: string): string => {
+  // Node.js environment
+  if (typeof Buffer !== 'undefined') {
+    return Buffer.from(str).toString('base64');
+  }
+  // Browser environment
+  if (typeof btoa !== 'undefined') {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  // Fallback (should not happen in supported environments)
+  return '';
+};
 
+// Generate SVG placeholder with different numbers and colors
+const generateMockSVG = (number: number): string => {
+  // Different background colors for visual distinction
+  const colors = ['#4a90e2', '#50c878', '#ff6b6b', '#ffa500'];
+  const color = colors[(number - 1) % colors.length];
+  
+  // SVG with number and dimensions (English text to avoid encoding issues)
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+      <rect width="300" height="200" fill="${color}"/>
+      <text x="150" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#ffffff">
+        Image ${number}
+      </text>
+      <text x="150" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f0f0f0">
+        300×200
+      </text>
+      <text x="150" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">
+        Mock for testing
+      </text>
+    </svg>
+  `.trim().replace(/\s+/g, ' ');
+  
+  // Convert to base64 data URL
+  const base64 = encodeToBase64(svg);
+  return `data:image/svg+xml;base64,${base64}`;
+};
+
+// Generate 4 distinct mock images
 export const MOCK_CAROUSEL_IMAGES = [
-  PLACEHOLDER_IMAGE,
-  PLACEHOLDER_IMAGE,
-  PLACEHOLDER_IMAGE,
-  PLACEHOLDER_IMAGE,
+  generateMockSVG(1),
+  generateMockSVG(2),
+  generateMockSVG(3),
+  generateMockSVG(4),
 ];
 
 /**
