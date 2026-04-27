@@ -3,11 +3,14 @@
  * Used in development mode when real images are insufficient
  */
 
+// Same placeholder image as used in products.mock.ts
+const PLACEHOLDER_IMAGE = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM0YTkwZTIiLz48dGV4dCB4PSIxNTAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjZmZmZmZmIj7QmNC30L7QsdGA0LDQttC10L3QuNC1INGC0L7QstCw0YDQsDwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjZjBmMGYwIj4zMDDDlzIwMDwvdGV4dD48L3N2Zz4=`;
+
 export const MOCK_CAROUSEL_IMAGES = [
-  'https://picsum.photos/570/630?random=1',
-  'https://picsum.photos/570/630?random=2',
-  'https://picsum.photos/570/630?random=3',
-  'https://picsum.photos/570/630?random=4',
+  PLACEHOLDER_IMAGE,
+  PLACEHOLDER_IMAGE,
+  PLACEHOLDER_IMAGE,
+  PLACEHOLDER_IMAGE,
 ];
 
 /**
