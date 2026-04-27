@@ -23,6 +23,8 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     const starValue = index + 1;
     const newRating = rating === starValue ? index : starValue;
     setRating(newRating);
+    // Сбрасываем hover после клика, чтобы сразу показать сохраненный рейтинг
+    setHoverRating(null);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
@@ -32,6 +34,8 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
       const starValue = index + 1;
       const newRating = rating === starValue ? index : starValue;
       setRating(newRating);
+      // Сбрасываем hover после клавиатурного выбора
+      setHoverRating(null);
     }
   };
 
