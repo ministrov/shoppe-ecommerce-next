@@ -1,72 +1,73 @@
 'use client';
 
-import { JSX, useEffect, useState, Fragment } from 'react';
+import { useState } from 'react';
 import { StarIcon } from '../starIcon/StarIcon';
 import { RatingProps } from './Rating.props';
 import cn from 'classnames';
 import styles from './Rating.module.css';
 
 const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
-  const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
 
-  useEffect(() => {
-    constructRating(rating);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rating]);
-
-  const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
-
-      return (
-        <span
-          key={i}
-          className={cn(styles.star, {
-            [styles.filled]: i < currentRating,
-            [styles.editable]: isEditable
-          })}
-          onMouseEnter={() => changeDisplay(i + 1)}
-          onMouseLeave={() => changeDisplay(rating)}
-          role={isEditable ? 'slider' : ''}
-          aria-invalid={error ? true : false}
-          aria-valuenow={rating}
-          aria-valuemax={5}
-          aria-valuemin={1}
-          aria-label={isEditable ? 'Укажите рейтинг' : ('рейтинг' + rating)}
-        >
-          <StarIcon
-            isEditable={isEditable}
-            isFilled={i < currentRating}
-            onToggle={() => onClick(i + 1)}
-          />
-        </span>
-      );
-    });
-
-    setRatingArray(updatedArray);
+  const handleMouseEnter = (index: number) => {
+    if (!isEditable) return;
+    setHoverRating(index + 1);
   };
 
-  const changeDisplay = (i: number) => {
-    if (!isEditable) {
-      return;
+  const handleMouseLeave = () => {
+    if (!isEditable) return;
+    setHoverRating(null);
+  };
+
+  const handleClick = (index: number) => {
+    if (!isEditable || !setRating) return;
+    setRating(index + 1);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (!isEditable || !setRating) return;
+    if (e.code === 'Space' || e.code === 'Enter') {
+      e.preventDefault();
+      setRating(index + 1);
     }
-    constructRating(i);
   };
 
-  const onClick = (i: number) => {
-    if (!isEditable || !setRating) {
-      return;
-    }
-
-    setRating(i);
-  };
-
-  // Обработка клавиатуры теперь внутри StarIcon
+  // Определяем, какая звезда должна быть закрашена
+  const displayRating = hoverRating !== null ? hoverRating : rating;
 
   return (
-    <div className={cn(styles.ratingWrapper, {
-      [styles.error]: error
-    })} ref={ref} {...props}>
-      {ratingArray.map((r, i) => (<Fragment key={i}>{r}</Fragment>))}
+    <div
+      className={cn(styles.ratingWrapper, {
+        [styles.error]: error
+      })}
+      ref={ref}
+      {...props}
+      onMouseLeave={handleMouseLeave}
+    >
+      {Array.from({ length: 5 }, (_, index) => {
+        const isFilled = index < displayRating;
+
+        return (
+          <span
+            key={index}
+            className={cn(styles.star, {
+              [styles.editable]: isEditable
+            })}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onClick={() => handleClick(index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            role={isEditable ? 'button' : 'presentation'}
+            tabIndex={isEditable ? 0 : -1}
+            aria-label={isEditable ? `Оценить ${index + 1} из 5` : undefined}
+            aria-checked={isFilled}
+          >
+            <StarIcon
+              isEditable={isEditable}
+              isFilled={isFilled}
+            />
+          </span>
+        );
+      })}
 
       {error && <span role="alert" className={styles.errorMessage}>{error.message}</span>}
     </div>

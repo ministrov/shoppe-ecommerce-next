@@ -10,9 +10,7 @@
   transition: opacity 0.2s ease;
 }
 
-.star.filled svg path {
-  fill: var(--accent);
-}
+/* Закрашенность теперь управляется через проп isFilled в StarIcon */
 
 .star.editable {
   cursor: pointer;

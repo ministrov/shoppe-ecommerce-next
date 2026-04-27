@@ -1,41 +1,7 @@
 // import Image from 'next/image';
 import { StarIconProps } from './StarIcon.inteface';
-import { useState } from 'react';
 
-export const StarIcon = ({ isEditable, isFilled: controlledFilled, onToggle }: StarIconProps) => {
-  const [internalFilled, setInternalFilled] = useState(false);
-
-  // Управляемое или неуправляемое состояние
-  const isFilled = controlledFilled !== undefined ? controlledFilled : internalFilled;
-
-  const handleClick = (e: React.MouseEvent) => {
-    if (!isEditable) return;
-
-    // Останавливаем всплытие, чтобы не срабатывали родительские обработчики
-    e.stopPropagation();
-
-    const newFilled = !isFilled;
-
-    // Обновляем внутреннее состояние, если компонент неуправляемый
-    if (controlledFilled === undefined) {
-      setInternalFilled(newFilled);
-    }
-
-    // Вызываем callback
-    onToggle?.(newFilled);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isEditable) return;
-
-    if (e.code === 'Space' || e.code === 'Enter') {
-      e.preventDefault();
-      // Создаем фиктивное событие мыши для совместимости
-      const fakeMouseEvent = { stopPropagation: () => { } } as React.MouseEvent;
-      handleClick(fakeMouseEvent);
-    }
-  };
-
+export const StarIcon = ({ isEditable, isFilled }: StarIconProps) => {
   const fillColor = isFilled ? '#000000' : '#E2E2E2';
 
   return (
@@ -47,8 +13,6 @@ export const StarIcon = ({ isEditable, isFilled: controlledFilled, onToggle }: S
       viewBox="0 0 20 20"
       fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
       style={{ cursor: isEditable ? 'pointer' : 'default' }}
       aria-label={isEditable ? (isFilled ? 'Закрашенная звезда' : 'Незакрашенная звезда') : undefined}
       role={isEditable ? 'button' : 'img'}
