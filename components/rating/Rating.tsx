@@ -19,14 +19,19 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
 
   const handleClick = (index: number) => {
     if (!isEditable || !setRating) return;
-    setRating(index + 1);
+
+    const starValue = index + 1;
+    const newRating = rating === starValue ? index : starValue;
+    setRating(newRating);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
     if (!isEditable || !setRating) return;
     if (e.code === 'Space' || e.code === 'Enter') {
       e.preventDefault();
-      setRating(index + 1);
+      const starValue = index + 1;
+      const newRating = rating === starValue ? index : starValue;
+      setRating(newRating);
     }
   };
 
