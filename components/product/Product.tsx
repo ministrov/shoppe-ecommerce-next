@@ -2,12 +2,12 @@
 
 import { AddFavorite } from '../addFavorite/AddFavorite';
 import { Button } from '../button/Button';
-import { StarIcon } from '../starIcon/StarIcon';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
 import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
 import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
+import Rating from '../rating/Rating';
 import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
@@ -47,14 +47,7 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
-            <div className={styles.ratingContainer}>
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-            </div>
-
+            <Rating rating={0} isEditable />
             <div className={styles.reviewsCount}>
               <span>{product.reviews.length}</span>
               <span>отзыва</span>

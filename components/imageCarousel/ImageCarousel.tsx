@@ -3,22 +3,27 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ImageCarouselProps } from './ImageCarousel.interface';
+import { enhanceWithMockImages } from '@/mocks/imageCarousel.mock';
 import styles from './ImageCarousel.module.css';
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
-  console.log(images);
+  // Enhance images with mock images in development mode if we have less than 2 images
+  const enhancedImages = enhanceWithMockImages(images, 2);
 
-  if (!images.length) {
+  if (!enhancedImages.length) {
     return <div className={styles.emptyState}>No images available</div>;
   }
 
-  const mainImage = images[selectedImageIndex];
+  const mainImage = enhancedImages[selectedImageIndex];
+
+  // Limit thumbnails to 4 for display
+  const displayedThumbnails = enhancedImages.slice(0, 4);
 
   return (
     <div className={styles.carouselContainer}>
-      {/* Основное большое изображение */}
+      {/* Main large image */}
       <div className={styles.mainImageWrapper}>
         <Image
           src={mainImage}
@@ -31,10 +36,10 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
         />
       </div>
 
-      {/* Галерея превью */}
-      {images.length > 1 && (
+      {/* Thumbnail gallery (max 4 thumbnails) */}
+      {displayedThumbnails.length > 0 && (
         <div className={styles.thumbnailGallery}>
-          {images.map((image, index) => (
+          {displayedThumbnails.map((image, index) => (
             <button
               key={index}
               className={`${styles.thumbnail} ${index === selectedImageIndex ? styles.active : ''

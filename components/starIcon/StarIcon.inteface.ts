@@ -1,3 +1,6 @@
 export interface StarIconProps {
-  isEditable: boolean;
+  /** Режим редактирования (влияет на tabIndex) */
+  isEditable?: boolean;
+  /** Состояние закрашенности звезды */
+  isFilled?: boolean;
 }
