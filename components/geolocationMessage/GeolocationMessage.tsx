@@ -12,41 +12,14 @@ interface GeolocationMessageProps {
 
 export const GeolocationMessage = ({ latitude, longitude }: GeolocationMessageProps) => {
   const { isAuthenticated } = useAuth();
-  const { city, isLoading, error, getCityFromCoords } = useGeocoding();
-
-  // Отладочный лог
-  useEffect(() => {
-    console.log('GeolocationMessage debug:', {
-      isAuthenticated,
-      latitude,
-      longitude,
-      city,
-      isLoading,
-      error,
-    });
-  }, [isAuthenticated, latitude, longitude, city, isLoading, error]);
+  const { city, isLoading, getCityFromCoords } = useGeocoding();
 
   useEffect(() => {
     if (isAuthenticated && latitude && longitude && !city && !isLoading) {
-      console.log('GeolocationMessage: calling getCityFromCoords');
       getCityFromCoords(latitude, longitude);
     }
   }, [isAuthenticated, latitude, longitude, city, isLoading, getCityFromCoords]);
 
-  if (!isAuthenticated) {
-    console.log('GeolocationMessage: not authenticated');
-    return null;
-  }
-  if (error) {
-    console.log('GeolocationMessage: error', error);
-    return null;
-  }
-  if (!city) {
-    console.log('GeolocationMessage: city not determined');
-    return null;
-  }
-
-  console.log('GeolocationMessage: rendering message with city', city);
   return (
     <Message
       isError={false}
