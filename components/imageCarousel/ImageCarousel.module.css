@@ -23,6 +23,24 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: 528px;
+  /* 4x120 + 3x12 */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.thumbnailGallery::-webkit-scrollbar {
+  width: 4px;
+}
+
+.thumbnailGallery::-webkit-scrollbar-track {
+  background: var(--color-gray-200);
+  border-radius: 2px;
+}
+
+.thumbnailGallery::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 2px;
 }
 
 .thumbnail {
@@ -38,17 +56,18 @@
 }
 
 .thumbnail:hover {
-  border-radius: 8px;
-  border-color: #ddd;
+  border-color: var(--color-gray-300);
 }
 
 .thumbnail.active {
-  border-radius: 8px;
   border-color: var(--black);
 }
 
 .thumbnailImage {
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .emptyState {
@@ -61,16 +80,25 @@
 
 @media screen and (max-width: 768px) {
   .carouselContainer {
+    flex-direction: column;
     gap: 16px;
+    width: 100%;
   }
 
   .thumbnailGallery {
-    display: none;
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-right: 0;
+    padding-bottom: 4px;
+    gap: 8px;
   }
 
   .thumbnail {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
   }
 
   .mainImage {
@@ -81,5 +109,10 @@
 @media screen and (max-width: 375px) {
   .mainImageWrapper {
     aspect-ratio: 290 / 374;
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 60px;
   }
 }

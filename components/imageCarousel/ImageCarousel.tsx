@@ -16,6 +16,9 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   const mainImage = images[selectedImageIndex];
 
+  // Ограничиваем отображение миниатюр до 4
+  const displayedThumbnails = images.slice(0, 4);
+
   return (
     <div className={styles.carouselContainer}>
       {/* Основное большое изображение */}
@@ -31,10 +34,10 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
         />
       </div>
 
-      {/* Галерея превью */}
-      {images.length > 1 && (
+      {/* Галерея превью (максимум 4 миниатюры) */}
+      {displayedThumbnails.length > 0 && (
         <div className={styles.thumbnailGallery}>
-          {images.map((image, index) => (
+          {displayedThumbnails.map((image, index) => (
             <button
               key={index}
               className={`${styles.thumbnail} ${index === selectedImageIndex ? styles.active : ''

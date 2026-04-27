@@ -36,6 +36,8 @@ export const Product = ({ product }: ProductProps) => {
 
   const images = product.product.images?.map(getFullImageUrl) || [];
 
+  console.log(images);
+
   return (
     <article className={styles.product}>
       <div className={styles.wrapper}>
