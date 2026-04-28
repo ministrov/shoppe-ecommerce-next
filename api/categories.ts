@@ -2,6 +2,17 @@ import { API_URL } from '@/helpers';
 import { GetCategoryResponse } from '@/interfaces/category.interface';
 import { USE_MOCK_DATA, getMockCategories } from '@/mocks/categories.mock';
 
+/**
+ * Получает список категорий товаров.
+ * В зависимости от флага USE_MOCK_DATA возвращает моковые данные или загружает с сервера.
+ * В случае ошибки или отсутствия API_URL возвращает пустой массив.
+ *
+ * @returns {Promise<Array>} Промис с массивом категорий
+ *
+ * @example
+ * const categories = await getCategories();
+ * console.log(`Загружено ${categories.length} категорий`);
+ */
 export default async function getCategories() {
   // Использовать моки если включен флаг
   if (USE_MOCK_DATA) {

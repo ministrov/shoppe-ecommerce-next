@@ -6,6 +6,24 @@ import {
 } from '../store/features/favorites/favoriteSlice';
 import type { AppDispatch } from '@/store/store';
 
+/**
+ * Хук для работы с избранными товарами.
+ * Предоставляет доступ к списку ID избранных товаров, количеству, проверке и переключению состояния.
+ * Использует Redux store для управления состоянием.
+ *
+ * @returns {Object} Объект с данными и методами для работы с избранным:
+ * @returns {number[]} favoriteIds - Массив ID товаров, добавленных в избранное
+ * @returns {number} favoritesCount - Количество избранных товаров
+ * @returns {Function} isFavorite - Функция, проверяющая, находится ли товар с указанным ID в избранном
+ * @returns {Function} toggleFavorite - Функция для добавления/удаления товара из избранного
+ *
+ * @example
+ * const { favoriteIds, isFavorite, toggleFavorite } = useFavorites();
+ * const handleToggle = (productId) => {
+ *   toggleFavorite(productId);
+ * };
+ * console.log(`Товар 5 в избранном: ${isFavorite(5)}`);
+ */
 export const useFavorites = () => {
   // Типизированный dispatch
   const dispatch = useDispatch<AppDispatch>();

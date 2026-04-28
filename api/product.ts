@@ -3,6 +3,18 @@ import { GetProductResponse } from '@/interfaces/product.interface';
 import { USE_MOCK_DATA } from '@/mocks/categories.mock';
 import { getMockProduct } from '@/mocks/product.mock';
 
+/**
+ * Получает данные товара по его ID.
+ * В зависимости от флага USE_MOCK_DATA возвращает моковые данные или загружает с сервера.
+ * В случае ошибки или отсутствия API_URL возвращает моковые данные.
+ *
+ * @param id - Идентификатор товара (строка)
+ * @returns {Promise<GetProductResponse>} Промис с данными товара
+ *
+ * @example
+ * const product = await getProduct('123');
+ * console.log(`Товар: ${product.name}, цена: ${product.price}`);
+ */
 export default async function getProduct(id: string) {
   // Использовать моки если включен флаг
   if (USE_MOCK_DATA) {
