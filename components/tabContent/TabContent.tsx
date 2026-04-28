@@ -6,6 +6,17 @@ import { ReviewForm } from '../reviewForm/ReviewForm';
 import { Review } from '@/interfaces/review.interface';
 import styles from './TabContent.module.css';
 
+/**
+ * Компонент контента вкладок (описание и отзывы).
+ * Переключается между описанием товара и списком отзывов с анимацией.
+ *
+ * @param {TabContentProps} props - Свойства компонента
+ * @param {'description' | 'reviews'} props.activeTab - Активная вкладка
+ * @param {string} props.description - Текстовое описание товара
+ * @param {Review[]} props.reviews - Массив отзывов о товаре
+ * @param {function} props.formatDescription - Функция форматирования описания
+ * @returns {JSX.Element} Контейнер с анимированным контентом вкладок
+ */
 export const TabContent = ({ activeTab, description, reviews, formatDescription }: TabContentProps) => {
   return (
     <div className={styles.tabsContent}>
@@ -27,6 +38,14 @@ export const TabContent = ({ activeTab, description, reviews, formatDescription 
   );
 };
 
+/**
+ * Внутренний компонент для отображения вкладки с описанием товара.
+ *
+ * @param {Object} props - Свойства компонента
+ * @param {string} props.description - Текстовое описание товара
+ * @param {function} props.formatDescription - Функция форматирования описания
+ * @returns {JSX.Element} Анимированный блок с описанием
+ */
 const TabDescription = ({ description, formatDescription }: {
   description: string;
   formatDescription: (text: string) => JSX.Element[];
@@ -44,6 +63,13 @@ const TabDescription = ({ description, formatDescription }: {
   </motion.div>
 );
 
+/**
+ * Внутренний компонент для отображения вкладки с отзывами.
+ *
+ * @param {Object} props - Свойства компонента
+ * @param {Review[]} props.reviews - Массив отзывов о товаре
+ * @returns {JSX.Element} Анимированный блок со списком отзывов и формой добавления
+ */
 const TabReviews = ({ reviews }: { reviews: Review[] }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
