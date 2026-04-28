@@ -8,6 +8,13 @@ import { carouselImages } from '@/interfaces/carousel.interface';
 import { demoProducts } from '@/mocks/demoProducts.mock';
 import styles from './page.module.css';
 
+/**
+ * Домашняя страница приложения.
+ * Отображает карусель, поисковую строку (на мобильных) и список последних поступлений.
+ * Если реальные продукты недоступны, использует моковые данные.
+ *
+ * @returns {Promise<JSX.Element>} Страница с каруселью и списком продуктов
+ */
 export default async function Home() {
   const { products } = await getProducts();
 

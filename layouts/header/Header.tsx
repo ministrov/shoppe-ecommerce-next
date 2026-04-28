@@ -13,6 +13,13 @@ import { Searching } from '../../components/searching/Searching';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './Header.module.css';
 
+/**
+ * Компонент шапки сайта.
+ * Содержит логотип, навигационное меню, поиск, пользовательское меню и кнопку корзины.
+ * Адаптирован для мобильных устройств с выдвижным меню.
+ *
+ * @returns {JSX.Element} Шапка сайта
+ */
 export const Header = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [isOpened, setIsOpened] = useState<boolean>(false);

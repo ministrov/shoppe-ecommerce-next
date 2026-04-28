@@ -9,6 +9,13 @@ import { InputField } from '@/components/inputField/InputField';
 import { Message } from '@/components/message/Message';
 import styles from './Footer.module.css';
 
+/**
+ * Компонент подвала сайта.
+ * Содержит навигационные ссылки, форму подписки на рассылку и социальные сети.
+ * Реализует валидацию email и отображение сообщений об ошибках/успехе.
+ *
+ * @returns {JSX.Element} Подвал сайта
+ */
 export const Footer = () => {
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<string>('');

@@ -6,6 +6,29 @@ import { RatingProps } from './Rating.props';
 import cn from 'classnames';
 import styles from './Rating.module.css';
 
+/**
+ * Компонент рейтинга в виде звёзд.
+ * Поддерживает два режима: управляемый (controlled) и неуправляемый (uncontrolled).
+ * В управляемом режиме рейтинг контролируется через проп `rating` и `setRating`.
+ * В неуправляемом режиме компонент хранит состояние внутри себя.
+ *
+ * @param {RatingProps} props - Свойства компонента
+ * @param {number} props.rating - Текущий рейтинг (от 0 до 5)
+ * @param {boolean} [props.isEditable=false] - Можно ли изменять рейтинг
+ * @param {function} [props.setRating] - Функция для обновления рейтинга (если не передана, используется внутреннее состояние)
+ * @param {Object} [props.error] - Ошибка валидации
+ * @param {string} props.error.message - Сообщение об ошибке
+ * @param {Ref} [props.ref] - Ref для доступа к корневому элементу
+ * @returns {JSX.Element} Компонент рейтинга
+ *
+ * @example
+ * // Управляемый режим
+ * <Rating rating={3} setRating={handleRatingChange} isEditable />
+ *
+ * @example
+ * // Неуправляемый режим (только отображение)
+ * <Rating rating={4} />
+ */
 const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [internalRating, setInternalRating] = useState(rating);
