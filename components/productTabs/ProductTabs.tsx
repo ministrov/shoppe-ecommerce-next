@@ -5,8 +5,8 @@ import { TabSkeleton } from '../tabSkeleton/TabSkeleton';
 import { TabButton } from '../tabButton/TabButton';
 import { ProductTabsProps } from './ProductTabs.interface';
 import { formatDescription } from '@/helpers';
-import styles from './ProductTabs.module.css';
 import { TabContent } from '../tabContent/TabContent';
+import styles from './ProductTabs.module.css';
 
 export const ProductTabs = ({ description, reviews, loading = false }: ProductTabsProps) => {
   const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description');
