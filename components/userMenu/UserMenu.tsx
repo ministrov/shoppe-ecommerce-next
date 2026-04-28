@@ -2,10 +2,22 @@ import { ButtonLink } from '../buttonLink/ButtonLink';
 import { useFavorites } from '@/hooks/useFavorite';
 import styles from './UserMenu.module.css';
 
+/**
+ * Свойства компонента меню пользователя.
+ */
 type UserMenuProps = {
+  /** Текущий путь (pathname) для определения активной ссылки */
   pathname: string;
 };
 
+/**
+ * Компонент меню пользователя, отображающий иконки корзины, избранного и аккаунта.
+ * Использует хук `useFavorites` для отображения количества избранных товаров.
+ *
+ * @param {UserMenuProps} props - Свойства компонента
+ * @param {string} props.pathname - Текущий путь
+ * @returns {JSX.Element} Меню с иконками-ссылками
+ */
 export const UserMenu = ({ pathname }: UserMenuProps) => {
   const { favoritesCount } = useFavorites();
 

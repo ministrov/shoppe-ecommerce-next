@@ -6,6 +6,22 @@ import { useState, useEffect, useCallback } from 'react';
 import { CarouselProps } from './Carousel.interface';
 import styles from './Carousel.module.css';
 
+/**
+ * Компонент карусели изображений с автоматическим переключением и навигацией.
+ * Поддерживает адаптивные изображения (разные версии для мобильных устройств).
+ *
+ * @param {CarouselProps} props - Свойства компонента
+ * @param {CarouselImage[]} props.images - Массив изображений для отображения в карусели
+ * @param {number} [props.autoPlayInterval=5000] - Интервал автоматического переключения слайдов в миллисекундах
+ * @returns {JSX.Element} Карусель с слайдами и буллетами
+ *
+ * @example
+ * const images = [
+ *   { src: '/img1.jpg', mobileSrc: '/img1-mobile.jpg', width: 800, height: 400, alt: 'Image 1' },
+ *   { src: '/img2.jpg', mobileSrc: '/img2-mobile.jpg', width: 800, height: 400, alt: 'Image 2' },
+ * ];
+ * <Carousel images={images} autoPlayInterval={3000} />
+ */
 export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 

@@ -4,6 +4,14 @@ import { setToken, setUser } from '../features/auth/authSlice';
 import fetchAPI from '@/api/auth';
 import { getMockAuthResponse, shouldUseMockAuth } from '@/mocks/auth.mock';
 
+/**
+ * Thunk для аутентификации пользователя.
+ * Поддерживает как реальное API, так и моковый режим (для разработки).
+ *
+ * @param {LoginRequest} credentials - Данные для входа (email и пароль)
+ * @returns {Promise<LoginResponse>} Ответ с токеном и данными пользователя
+ * @throws {string} Сообщение об ошибке при неудачном входе
+ */
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginRequest, { dispatch, rejectWithValue }) => {

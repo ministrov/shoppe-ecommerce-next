@@ -1,5 +1,11 @@
 import styles from './TabSkeleton.module.css';
 
+/**
+ * Компонент-скелетон для загрузки вкладок.
+ * Используется для отображения плейсхолдера во время загрузки данных.
+ *
+ * @returns {JSX.Element} Скелетон с заголовками вкладок и контентом
+ */
 export const TabSkeleton = () => {
   return (
     <div className={styles.tabs}>

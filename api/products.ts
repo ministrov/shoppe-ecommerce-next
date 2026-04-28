@@ -3,16 +3,38 @@ import { GetProductsResponse } from '@/interfaces/product.interface';
 import { USE_MOCK_DATA } from '@/mocks/categories.mock';
 import { getMockProducts } from '@/mocks/products.mock';
 
+/**
+ * Параметры запроса для получения списка товаров.
+ */
 export interface GetProductsParams {
+  /** ID категории для фильтрации */
   category_id?: string;
+  /** Строка поиска по названию товара */
   search?: string;
+  /** Флаг наличия скидки */
   has_discount?: boolean;
+  /** Минимальная цена */
   price_from?: number;
+  /** Максимальная цена */
   price_to?: number;
+  /** Лимит количества товаров на странице */
   limit?: number;
+  /** Смещение (пагинация) */
   offset?: number;
 }
 
+/**
+ * Получает список товаров с возможностью фильтрации и пагинации.
+ * В зависимости от флага USE_MOCK_DATA возвращает моковые данные или загружает с сервера.
+ * В случае ошибки или отсутствия API_URL возвращает пустой список.
+ *
+ * @param params - Параметры фильтрации и пагинации
+ * @returns {Promise<GetProductsResponse>} Промис с данными товаров и метаданными
+ *
+ * @example
+ * const data = await getProducts({ category_id: '1', limit: 10, offset: 0 });
+ * console.log(`Найдено ${data.total} товаров`);
+ */
 export default async function getProducts(params: GetProductsParams = {}) {
   // Использовать моки если включен флаг
   if (USE_MOCK_DATA) {

@@ -8,6 +8,7 @@ import { ProductProps } from './Product.interface';
 import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
 import Rating from '../rating/Rating';
+import { declineReviewWord } from '@/helpers';
 import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
@@ -50,7 +51,7 @@ export const Product = ({ product }: ProductProps) => {
             <Rating rating={0} isEditable />
             <div className={styles.reviewsCount}>
               <span>{product.reviews.length}</span>
-              <span>отзыва</span>
+              <span>{declineReviewWord(product.reviews.length)}</span>
             </div>
           </div>
           <p className={styles.shortDescr}>{product.product.short_description}</p>

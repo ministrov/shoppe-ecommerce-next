@@ -6,11 +6,26 @@ import { InputField } from '../inputField/InputField';
 import { StarIcon } from '../starIcon/StarIcon';
 import styles from './ReviewForm.module.css';
 
+/**
+ * Компонент формы для добавления отзыва о товаре.
+ * Предоставляет поля для текста отзыва, имени пользователя, email и рейтинга.
+ * При отправке формы данные логируются в консоль и поля сбрасываются.
+ *
+ * @returns {JSX.Element} Элемент формы с полями ввода и кнопкой отправки.
+ */
 export const ReviewForm = () => {
   const [textarea, setTextArea] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
+  /**
+   * Обрабатывает отправку формы отзыва.
+   * Предотвращает стандартное поведение формы, собирает данные из состояния,
+   * выводит их в консоль и сбрасывает поля формы.
+   *
+   * @param {FormEvent<HTMLFormElement>} event - Событие отправки формы
+   * @returns {void}
+   */
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 

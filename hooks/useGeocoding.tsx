@@ -2,6 +2,22 @@
 
 import { useState, useCallback } from 'react';
 
+/**
+ * Хук для геокодирования: преобразования географических координат (широта, долгота) в название города.
+ * Использует Nominatim API OpenStreetMap.
+ *
+ * @returns {Object} Объект с состоянием и методом геокодирования:
+ * @returns {string | null} city - Название определённого города (или null, если ещё не определено)
+ * @returns {boolean} isLoading - Флаг выполнения запроса
+ * @returns {string | null} error - Текст ошибки (или null, если ошибки нет)
+ * @returns {Function} getCityFromCoords - Асинхронная функция для получения города по координатам
+ *
+ * @example
+ * const { city, isLoading, error, getCityFromCoords } = useGeocoding();
+ * useEffect(() => {
+ *   getCityFromCoords(55.7558, 37.6176); // Москва
+ * }, []);
+ */
 export function useGeocoding() {
   const [city, setCity] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);

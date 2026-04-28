@@ -6,6 +6,19 @@ import { ProductCardProps } from './ProductCard.interface';
 import { AddFavorite } from '../addFavorite/AddFavorite';
 import styles from './ProductCard.module.css';
 
+/**
+ * Карточка товара для отображения в каталоге.
+ * Отображает изображение, название, цену, скидку и кнопку добавления в избранное.
+ * При наведении показывает кнопку избранного.
+ * Рассчитывает итоговую цену с учётом скидки.
+ *
+ * @param props - Пропсы компонента
+ * @param props.product - Данные товара
+ * @returns React-элемент карточки товара
+ *
+ * @example
+ * <ProductCard product={product} />
+ */
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 

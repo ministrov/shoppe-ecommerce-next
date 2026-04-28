@@ -2,21 +2,28 @@
 
 import { useState } from 'react';
 import styles from './SelectField.module.css';
+import type { SelectFieldProps } from './SelectField.interface';
 
-type SelectFieldOption = {
-  value: string;
-  label: string;
-}
-
-type SelectFieldProps = {
-  options: SelectFieldOption[];
-  value?: string;
-  onChange?: (value: string) => void;
-}
-
+/**
+ * Компонент выпадающего списка (select) с кастомной стрелкой.
+ * Поддерживает управляемое и неуправляемое состояние.
+ *
+ * @param {SelectFieldProps} props - Пропсы компонента.
+ * @param {SelectFieldOption[]} props.options - Опции для выбора.
+ * @param {string} [props.value] - Начальное выбранное значение.
+ * @param {(value: string) => void} [props.onChange] - Обработчик изменения выбора.
+ * @returns {JSX.Element} Элемент выпадающего списка.
+ */
 export const SelectField = ({ options, value, onChange }: SelectFieldProps) => {
   const [selectedValue, setSelectedValue] = useState(value || '');
 
+  /**
+   * Обрабатывает изменение значения в элементе <select>.
+   * Обновляет локальное состояние и вызывает внешний обработчик, если передан.
+   *
+   * @param {React.ChangeEvent<HTMLSelectElement>} event - Событие изменения select.
+   * @returns {void}
+   */
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value;
     setSelectedValue(newValue);
