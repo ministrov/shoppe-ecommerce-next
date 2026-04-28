@@ -3,6 +3,15 @@ import { StarIcon } from '../starIcon/StarIcon';
 import { ReviewItemProps } from './ReviewItem.interface';
 import styles from './ReviewItem.module.css';
 
+/**
+ * Компонент отзыва о товаре.
+ * Отображает информацию об авторе, дате, рейтинге (звёзды) и тексте отзыва.
+ * Использует анимации Framer Motion для плавного появления.
+ *
+ * @param {ReviewItemProps} props - Свойства компонента.
+ * @param {Review} props.review - Объект отзыва, содержащий имя, дату, рейтинг и текст.
+ * @returns {JSX.Element} Элемент карточки отзыва с оформлением.
+ */
 export const ReviewItem = ({ review }: ReviewItemProps) => {
   return (
     <motion.div

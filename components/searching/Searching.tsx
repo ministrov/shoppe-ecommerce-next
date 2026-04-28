@@ -5,9 +5,25 @@ import { useId } from 'react';
 import searchIcon from '../../public/search-icon-2.svg';
 import styles from './Searching.module.css';
 
+/**
+ * Компонент поисковой формы.
+ * Предоставляет поле ввода для поиска по сайту с иконкой и обработкой отправки.
+ * Использует `useId` для генерации уникального идентификатора поля ввода.
+ * При отправке формы выводит поисковый запрос в консоль (временная реализация).
+ *
+ * @returns {JSX.Element} Элемент формы поиска с доступностью и семантической разметкой.
+ */
 export const Searching = () => {
   const searchId = useId();
 
+  /**
+   * Обрабатывает отправку поисковой формы.
+   * Предотвращает стандартное поведение формы, извлекает поисковый запрос из поля `search`
+   * и выводит его в консоль (временная реализация для отладки).
+   *
+   * @param {React.FormEvent<HTMLFormElement>} event - Событие отправки формы.
+   * @returns {void}
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Обработка отправки формы поиска
