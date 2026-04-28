@@ -1,6 +1,12 @@
 export const API_URL = process.env.NEXT_PUBLIC_API;
 
-// Форматирование описания с сохранением переносов строк
+/**
+ * Форматирует многострочный текст, разбивая его по символам новой строки и сохраняя переносы.
+ * Каждая строка оборачивается в `<span>`, а между строками вставляется `<br />` (кроме последней).
+ *
+ * @param {string} text - Исходный текст, который может содержать символы новой строки (`\n`)
+ * @returns {JSX.Element[]} Массив React-элементов, готовых для вставки в JSX
+ */
 export const formatDescription = (text: string) => {
   return text.split('\n').map((line, index) => (
     <span key={index}>
