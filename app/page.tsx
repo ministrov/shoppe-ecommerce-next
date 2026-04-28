@@ -5,7 +5,7 @@ import { Searching } from '@/components/searching/Searching';
 import { MockProductCard } from '@/components/mockProductCard/MockProductCard';
 import getProducts from '@/api/products';
 import { carouselImages } from '@/interfaces/carousel.interface';
-import { demoProducts } from '@/helpers';
+import { demoProducts } from '@/mocks/demoProducts.mock';
 import styles from './page.module.css';
 
 export default async function Home() {
