@@ -1,10 +1,20 @@
 import { StarIconProps } from './StarIcon.inteface';
 
+/**
+ * Компонент иконки звезды для отображения рейтинга.
+ * Используется в компонентах оценки (например, отзывы, рейтинг товаров).
+ * Поддерживает два состояния: закрашенная и незакрашенная звезда.
+ * Может быть интерактивной (редактируемой) или статичной (только отображение).
+ *
+ * @param {StarIconProps} props - Пропсы компонента
+ * @param {boolean} [props.isEditable=false] - Режим редактирования. Если true, звезда становится кликабельной, получает tabIndex=0 и роль button.
+ * @param {boolean} [props.isFilled=false] - Состояние закрашенности. Если true, звезда заливается чёрным цветом, иначе серым.
+ * @returns {JSX.Element} SVG-элемент звезды с соответствующими атрибутами доступности и стилями.
+ */
 export const StarIcon = ({ isEditable, isFilled }: StarIconProps) => {
   const fillColor = isFilled ? '#000000' : '#E2E2E2';
 
   return (
-    // <Image src={'/star.svg'} width={18} height={18} alt={''} />
     <svg
       tabIndex={isEditable ? 0 : -1}
       width="20"
