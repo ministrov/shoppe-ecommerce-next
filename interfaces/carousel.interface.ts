@@ -1,11 +1,22 @@
+/**
+ * Изображение для карусели с поддержкой адаптивности.
+ */
 export interface CarouselImage {
+  /** URL изображения для десктопной версии */
   src: string;
+  /** URL изображения для мобильной версии */
   mobileSrc: string;
+  /** Альтернативный текст для доступности */
   alt: string;
+  /** Ширина изображения в пикселях */
   width: number;
+  /** Высота изображения в пикселях */
   height: number;
 }
 
+/**
+ * Массив изображений для карусели на главной странице.
+ */
 export const carouselImages: CarouselImage[] = [
   {
     src: '/home-img-1.jpg',
