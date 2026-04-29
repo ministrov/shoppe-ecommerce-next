@@ -13,10 +13,37 @@ import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
 
+/**
+ * Основной компонент страницы товара, отображающий детальную информацию о продукте.
+ * Включает карусель изображений, название, цену, рейтинг, описание, кнопки добавления в корзину,
+ * избранное, социальные кнопки и вкладки с подробным описанием и отзывами.
+ *
+ * @param {ProductProps} props - Пропсы компонента
+ * @param {ProductWithReviews} props.product - Объект товара с дополнительной информацией (продукт, отзывы)
+ * @returns {JSX.Element} Разметка страницы товара или сообщение об отсутствии товара
+ *
+ * @example
+ * // Использование на странице товара
+ * <Product product={productData} />
+ */
 export const Product = ({ product }: ProductProps) => {
   if (!product?.product) return <div>Product not available</div>;
 
-  // Функция для создания полного URL изображения - всегда возвращает string
+  /**
+   * Вспомогательная функция для преобразования пути изображения в полный URL.
+   * Обрабатывает различные форматы путей: data URL, абсолютные URL, абсолютные пути и относительные пути.
+   *
+   * @param {string} imagePath - Путь к изображению (может быть data URL, полным URL, абсолютным или относительным путём)
+   * @returns {string} Полный URL изображения или путь к заглушке, если передан пустой путь
+   *
+   * @example
+   * // Возвращает 'http://localhost:3000/uploads/image.jpg'
+   * getFullImageUrl('image.jpg')
+   *
+   * @example
+   * // Возвращает 'http://localhost:3000/images/placeholder.jpg'
+   * getFullImageUrl('')
+   */
   const getFullImageUrl = (imagePath: string): string => {
     if (!imagePath) return '/images/placeholder.jpg'; // Заглушка вместо null
 

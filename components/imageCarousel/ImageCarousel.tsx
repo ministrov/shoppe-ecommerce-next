@@ -6,6 +6,24 @@ import { ImageCarouselProps } from './ImageCarousel.interface';
 import { enhanceWithMockImages } from '@/mocks/imageCarousel.mock';
 import styles from './ImageCarousel.module.css';
 
+/**
+ * Компонент карусели изображений для товаров.
+ * Отображает основное большое изображение и до 4 миниатюр для навигации.
+ * Поддерживает мок-изображения в режиме разработки, если реальных изображений недостаточно.
+ * Позволяет выбирать изображение кликом по миниатюре.
+ *
+ * @param {ImageCarouselProps} props - Свойства компонента
+ * @param {string[]} props.images - Массив URL изображений товара
+ * @returns {JSX.Element} Карусель изображений с основным изображением и миниатюрами
+ *
+ * @example
+ * // Базовое использование
+ * <ImageCarousel images={['/img1.jpg', '/img2.jpg']} />
+ *
+ * @example
+ * // С одним изображением (будут добавлены мок-изображения в development)
+ * <ImageCarousel images={['/img1.jpg']} />
+ */
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 

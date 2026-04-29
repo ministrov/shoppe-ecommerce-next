@@ -1,6 +1,18 @@
 import { InputField } from '@/components/inputField/InputField';
 import styles from './CartForm.module.css';
 
+/**
+ * Компонент формы оформления заказа в корзине.
+ * Содержит поля для ввода email, пароля и адреса доставки.
+ * Все поля обязательны для заполнения и имеют базовую валидацию.
+ * Форма использует компонент InputField с вариантом стиля "gray".
+ *
+ * @returns {JSX.Element} Форма оформления заказа с полями ввода
+ *
+ * @example
+ * // Использование на странице корзины
+ * <CartForm />
+ */
 export const CartForm = () => {
   return (
     <div className={styles.form}>
