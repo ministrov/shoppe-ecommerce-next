@@ -7,6 +7,18 @@ import { UserButton } from './components/UserButton/UserButton';
 import { MOCK_USERS } from '@/mocks/auth.mock';
 import styles from './DevAuthSwitch.module.css';
 
+/**
+ * Компонент переключателя аутентификации для разработки.
+ * Позволяет быстро входить под разными типами пользователей (admin, user, premium) в development-режиме.
+ * В production-режиме компонент не отображается.
+ * Использует мемоизацию для оптимизации рендеринга.
+ *
+ * @returns {JSX.Element | null} Компонент переключателя аутентификации или null в production
+ *
+ * @example
+ * // Использование в layout или корневом компоненте
+ * <DevAuthSwitch />
+ */
 export const DevAuthSwitch = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();

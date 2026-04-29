@@ -4,6 +4,18 @@ import { useState, useEffect, useRef } from 'react';
 import { GeolocationMessage } from '../geolocationMessage/GeolocationMessage';
 import styles from './GeolocationContainer.module.css';
 
+/**
+ * Компонент-контейнер для получения геолокации пользователя.
+ * Использует браузерный API Geolocation для определения координат.
+ * При успешном получении координат отображает сообщение с городом пользователя.
+ * Сообщение автоматически скрывается через 3 секунды.
+ *
+ * @returns {JSX.Element} Контейнер геолокации (не отображает визуальных элементов самостоятельно)
+ *
+ * @example
+ * // Использование в layout или странице
+ * <GeolocationContainer />
+ */
 export const GeolocationContainer = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
