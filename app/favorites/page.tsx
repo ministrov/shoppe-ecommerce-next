@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/productCard/ProductCard';
-import { NoFavorites } from '@/components/noFavorites/NoFavorites';
 import { Product } from '@/interfaces/product.interface';
 import { useFavorites } from '@/hooks/useFavorite';
 import { useAuth } from '@/hooks/useAuth';
@@ -93,7 +92,9 @@ export default function Favorites() {
     return (
       <section className={styles.favorites}>
         <h1 className="left">Избранное</h1>
-        <NoFavorites />
+        <div className={styles.noFavorites}>
+          <h2>Вы еще не добавили ничего в избранное!!!</h2>
+        </div>
       </section>
     );
   }
