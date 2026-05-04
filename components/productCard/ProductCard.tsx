@@ -8,16 +8,20 @@ import styles from './ProductCard.module.css';
 
 /**
  * Карточка товара для отображения в каталоге.
- * Отображает изображение, название, цену, скидку и кнопку добавления в избранное.
- * При наведении показывает кнопку избранного.
- * Рассчитывает итоговую цену с учётом скидки.
+ * Клиентский компонент (use client), отображает изображение, название, цену, скидку и кнопку добавления в избранное.
+ * При наведении показывает кнопку избранного, при клике ведёт на страницу товара.
+ * Автоматически рассчитывает итоговую цену с учётом скидки.
+ * Обрабатывает изображения: поддерживает data URL и относительные пути через NEXT_PUBLIC_IMAGE_URL.
  *
- * @param props - Пропсы компонента
- * @param props.product - Данные товара
- * @returns React-элемент карточки товара
+ * @param {ProductCardProps} props - Пропсы компонента
+ * @param {Product} props.product - Данные товара (обязательный)
+ * @returns {JSX.Element} React-элемент карточки товара (li > Link)
  *
  * @example
  * <ProductCard product={product} />
+ *
+ * @see {@link AddFavorite} Компонент кнопки избранного, используемый внутри
+ * @see {@link Product} Интерфейс данных товара
  */
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
