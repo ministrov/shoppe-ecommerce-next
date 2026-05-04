@@ -47,7 +47,9 @@ export default function Cart() {
         <div className={styles.cartItem}>
           {isEmpty ? (
             <div className={styles.emptyCart}>
-              <p>Ваша корзина пуста</p>
+              <div className={styles.noFavorites}>
+                <h2 className={styles.noFavoritesTitle}>Ваша корзина пуста</h2>
+              </div>
               <Button onClick={() => router.push('/catalog')}>
                 Перейти в каталог
               </Button>
