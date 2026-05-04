@@ -16,6 +16,7 @@ import styles from './ButtonLink.module.css';
  * @property {string} [text] - Опциональный текст ссылки
  * @property {boolean} [isCount] - Флаг отображения счетчика
  * @property {number} [count] - Числовое значение счетчика
+ * @property {() => void} [onClick] - Callback, вызываемый при клике на ссылку
  */
 type ButtonLinkProps = {
   pathname: string;
@@ -24,6 +25,7 @@ type ButtonLinkProps = {
   text?: string;
   isCount?: boolean;
   count?: number;
+  onClick?: () => void;
 };
 
 const underlineVariants = {
@@ -43,6 +45,7 @@ const underlineVariants = {
  * @param {string} [props.text] - Опциональный текст ссылки
  * @param {boolean} [props.isCount] - Флаг отображения счетчика
  * @param {number} [props.count] - Числовое значение счетчика
+ * @param {() => void} [props.onClick] - Callback, вызываемый при клике на ссылку
  * @returns {JSX.Element} Ссылка с возможными иконкой, текстом, счетчиком и индикатором активности
  *
  * @example
@@ -52,8 +55,12 @@ const underlineVariants = {
  * @example
  * // Ссылка с иконкой и счетчиком
  * <ButtonLink pathname="/cart" path="/cart" iconPath="/cart.svg" isCount count={3} />
+ *
+ * @example
+ * // Ссылка с обработчиком клика
+ * <ButtonLink pathname="/cart" path="/cart" onClick={() => console.log('Clicked')} />
  */
-export const ButtonLink = ({ pathname, path, iconPath, text, isCount = false, count = 0 }: ButtonLinkProps) => {
+export const ButtonLink = ({ pathname, path, iconPath, text, isCount = false, count = 0, onClick }: ButtonLinkProps) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -64,7 +71,7 @@ export const ButtonLink = ({ pathname, path, iconPath, text, isCount = false, co
   const shouldShowCount = isMounted && isCount;
 
   return (
-    <Link href={path} className={styles.navLink}>
+    <Link href={path} className={styles.navLink} onClick={onClick}>
       {iconPath && <Image src={iconPath} width={21} height={21} alt={`Icon link ${iconPath}`} />}
       {<p className={styles.linkText}>{text}</p>}
       {pathname === path && (
