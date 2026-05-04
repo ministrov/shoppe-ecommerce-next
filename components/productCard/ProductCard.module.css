@@ -57,6 +57,22 @@
   color: var(--errors);
 }
 
+.cartButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 @media screen and (max-width: 375px) {
   .card {
     gap: 6px;

@@ -26,12 +26,6 @@ export const Header = () => {
   const pathname = usePathname();
   const { clearToken, token } = useAuth();
 
-  // useEffect(() => {
-  //   console.log("Hello from useEffect");
-
-  //   return () => console.log("componentWillUnmount");
-  // }, []);
-
   const showSearching = {
     hidden: { opacity: 0 },
     visible: { opacity: visible ? 1 : 0 },

@@ -16,6 +16,24 @@
   gap: 40px;
 }
 
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noFavorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.noFavoritesTitle {
+  font-size: 32px;
+  font-weight: 700;
+}
+
 .listItem {
   padding-bottom: 40px;
 }

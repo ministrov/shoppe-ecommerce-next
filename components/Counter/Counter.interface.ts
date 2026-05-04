@@ -7,4 +7,6 @@ export interface CounterProps
   > {
   counter: number;
   className: string;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
 }

@@ -21,14 +21,17 @@ export const GeolocationContainer = () => {
   const [longitude, setLongitude] = useState<number | null>(null);
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const isMounted = useRef<boolean>(true);
 
   const handleSuccess = ({ coords: { latitude, longitude } }: { coords: { latitude: number, longitude: number } }) => {
+    if (!isMounted.current) return;
     setLatitude(latitude);
     setLongitude(longitude);
     setShowMessage(true);
   };
 
   const handleError = (error: GeolocationPositionError) => {
+    if (!isMounted.current) return;
     console.error('Geolocation error:', error);
   };
 
@@ -39,6 +42,10 @@ export const GeolocationContainer = () => {
     } else {
       console.error('Geolocation not supported');
     }
+
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   useEffect(() => {
