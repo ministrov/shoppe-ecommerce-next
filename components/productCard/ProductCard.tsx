@@ -2,10 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ProductCardProps } from './ProductCard.interface';
 import { AddFavorite } from '../addFavorite/AddFavorite';
-import { useCart } from '@/hooks/useCart';
 import styles from './ProductCard.module.css';
 
 /**
@@ -27,7 +25,6 @@ import styles from './ProductCard.module.css';
  */
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const { addItem } = useCart();
 
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const firstImage = product.images[0] || '';
@@ -49,12 +46,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const sale = useMemo(() => (product.price * product.discount) / 100, [product.price, product.discount]);
   const priceWithDiscount = useMemo(() => Math.round(product.price - sale), [product.price, sale]);
 
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem({ product, quantity: 1 });
-  };
-
   return (
     <li className={styles.item}>
       <Link
@@ -66,14 +57,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div className={styles.image} style={imageStyle}>
           {product.discount > 0 ? <span className={styles.discount}>-{product.discount}%</span> : <span></span>}
           <AddFavorite productId={product.id} isShown={isHovered} />
-          <button
-            type="button"
-            className={styles.cartButton}
-            onClick={handleAddToCart}
-            aria-label={`Добавить ${product.name} в корзину`}
-          >
-            <Image src="/shopping-cart.svg" width={18} height={18} alt="" />
-          </button>
         </div>
         <div className={styles.footer}>
           <div className={styles.name}>
