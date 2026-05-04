@@ -175,14 +175,14 @@ export const {
  * @param {RootState} state - Корневое состояние
  * @returns {CartItem[]} Массив элементов корзины
  */
-export const selectCartItems = (state: RootState) => state.cart.items;
+export const selectCartItems = (state: RootState) => state.cart?.items ?? [];
 
 /**
  * Селектор для получения общей суммы корзины.
  * @param {RootState} state - Корневое состояние
  * @returns {number} Общая сумма
  */
-export const selectCartTotal = (state: RootState) => state.cart.total;
+export const selectCartTotal = (state: RootState) => state.cart?.total ?? 0;
 
 /**
  * Селектор для получения количества товаров в корзине (сумма quantity).
@@ -190,20 +190,20 @@ export const selectCartTotal = (state: RootState) => state.cart.total;
  * @returns {number} Количество товаров
  */
 export const selectCartItemsCount = (state: RootState) =>
-  state.cart.items.reduce((count, item) => count + item.quantity, 0);
+  state.cart?.items?.reduce((count, item) => count + item.quantity, 0) ?? 0;
 
 /**
  * Селектор для получения флага загрузки.
  * @param {RootState} state - Корневое состояние
  * @returns {boolean} Флаг загрузки
  */
-export const selectCartLoading = (state: RootState) => state.cart.loading;
+export const selectCartLoading = (state: RootState) => state.cart?.loading ?? false;
 
 /**
  * Селектор для получения ошибки.
  * @param {RootState} state - Корневое состояние
  * @returns {string | null} Сообщение об ошибке
  */
-export const selectCartError = (state: RootState) => state.cart.error;
+export const selectCartError = (state: RootState) => state.cart?.error ?? null;
 
 export default cartSlice.reducer;
