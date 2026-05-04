@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { AddFavorite } from '../addFavorite/AddFavorite';
 import { Button } from '../button/Button';
 import { ImageCarousel } from '../imageCarousel/ImageCarousel';
@@ -9,6 +10,7 @@ import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
 import Rating from '../rating/Rating';
 import { declineReviewWord } from '@/helpers';
+import { useCart } from '@/hooks/useCart';
 import styles from './Product.module.css';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:3000';
@@ -27,7 +29,16 @@ const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || 'http://localhost:30
  * <Product product={productData} />
  */
 export const Product = ({ product }: ProductProps) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
+
   if (!product?.product) return <div>Product not available</div>;
+
+  const handleIncrement = () => setQuantity(prev => prev + 1);
+  const handleDecrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  const handleAddToCart = () => {
+    addItem({ product: product.product, quantity });
+  };
 
   /**
    * Вспомогательная функция для преобразования пути изображения в полный URL.
@@ -84,9 +95,14 @@ export const Product = ({ product }: ProductProps) => {
           <p className={styles.shortDescr}>{product.product.short_description}</p>
 
           <div className={styles.addToCart}>
-            <Counter counter={0} className={''} />
+            <Counter
+              counter={quantity}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              className={''}
+            />
 
-            <Button className={styles.addToCartBtn} ghost>
+            <Button className={styles.addToCartBtn} ghost onClick={handleAddToCart}>
               Добавить в корзину
             </Button>
           </div>
