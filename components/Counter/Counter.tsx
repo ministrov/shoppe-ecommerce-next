@@ -12,24 +12,35 @@ import styles from './Counter.module.css';
  * @param {CounterProps} props - Свойства компонента
  * @param {number} props.counter - Текущее значение счетчика
  * @param {string} [props.className] - Дополнительные CSS-классы для контейнера
+ * @param {Function} [props.onDecrement] - Обработчик уменьшения значения
+ * @param {Function} [props.onIncrement] - Обработчик увеличения значения
  * @returns {JSX.Element} Счетчик с кнопками управления
  *
  * @example
  * // Базовое использование
- * <Counter counter={5} />
+ * <Counter counter={5} onIncrement={() => {}} onDecrement={() => {}} />
  *
  * @example
  * // С дополнительным классом для стилизации
  * <Counter counter={3} className="my-counter" />
  */
-export const Counter = ({ counter, className }: CounterProps) => {
+export const Counter = ({ counter, className, onDecrement, onIncrement }: CounterProps) => {
   return (
     <div className={cn(styles.counter, className)}>
-      <button>
+      <button
+        type="button"
+        onClick={onDecrement}
+        aria-label="Уменьшить количество"
+        disabled={counter <= 1}
+      >
         <Image src={'/minus.svg'} width={10} height={27} alt={''} />
       </button>
       {counter}
-      <button>
+      <button
+        type="button"
+        onClick={onIncrement}
+        aria-label="Увеличить количество"
+      >
         <Image src={'/plus.svg'} width={10} height={27} alt={''} />
       </button>
     </div>

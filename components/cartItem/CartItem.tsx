@@ -10,21 +10,53 @@ import styles from './CartItem.module.css';
  * Имеет доступную разметку с ARIA-атрибутами.
  *
  * @param {CartItemProps} props - Свойства компонента
+ * @param {string} props.id - Уникальный идентификатор элемента корзины
  * @param {string} props.title - Название товара
  * @param {string} props.image - URL изображения товара
  * @param {string} props.price - Цена товара (форматированная строка)
  * @param {number} props.quantity - Количество товара в корзине
+ * @param {Function} [props.onRemove] - Обработчик удаления товара из корзины
+ * @param {Function} [props.onChangeQuantity] - Обработчик изменения количества товара
  * @returns {JSX.Element} Элемент товара в корзине
  *
  * @example
  * <CartItem
+ *   id="123"
  *   title="Футболка"
  *   image="/tshirt.jpg"
  *   price="$29.99"
  *   quantity={2}
+ *   onRemove={(id) => console.log('Remove', id)}
+ *   onChangeQuantity={(id, quantity) => console.log('Change', id, quantity)}
  * />
  */
-export const CartItem = ({ title, image, price, quantity }: CartItemProps) => {
+export const CartItem = ({
+  id,
+  title,
+  image,
+  price,
+  quantity,
+  onRemove,
+  onChangeQuantity,
+}: CartItemProps) => {
+  const handleDecrement = () => {
+    if (onChangeQuantity && quantity > 1) {
+      onChangeQuantity(id, quantity - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    if (onChangeQuantity) {
+      onChangeQuantity(id, quantity + 1);
+    }
+  };
+
+  const handleRemove = () => {
+    if (onRemove) {
+      onRemove(id);
+    }
+  };
+
   return (
     <article
       className={styles.item}
@@ -42,12 +74,17 @@ export const CartItem = ({ title, image, price, quantity }: CartItemProps) => {
           <p>{price}</p>
         </div>
 
-        <Counter className={styles.cartCounter} counter={quantity} />
+        <Counter
+          className={styles.cartCounter}
+          counter={quantity}
+          onDecrement={handleDecrement}
+          onIncrement={handleIncrement}
+        />
       </div>
 
       <button
         type="button"
-        // onClick={() => onRemove(id)}
+        onClick={handleRemove}
         aria-label={`Удалить ${title} из корзины`}
         className={styles.cartItemRemove}
       >

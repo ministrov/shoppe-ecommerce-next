@@ -2,10 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import favoritesReducer from './features/favorites/favoriteSlice';
 import counterReducer from './features/counter/counterSlice';
 import authReducer from './features/auth/authSlice';
+import cartReducer from './features/cart/cartSlice';
 
 /**
  * Создаёт и настраивает Redux store приложения.
- * Включает редьюсеры для избранного, счётчика и аутентификации.
+ * Включает редьюсеры для избранного, счётчика, аутентификации и корзины.
  *
  * @returns {Store} Настроенный Redux store
  */
@@ -15,6 +16,7 @@ export const makeStore = () => {
       favorites: favoritesReducer,
       counter: counterReducer,
       auth: authReducer,
+      cart: cartReducer,
     },
   });
 };
