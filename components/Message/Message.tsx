@@ -33,7 +33,16 @@ export const Message = ({ isError, text, isLong = false }: MessageProps) => {
       [styles['message--error']]: isError,
       [styles['message--long']]: isLong,
     })}>
-      {!isError && <Image src={'/check.svg'} width={20} height={20} alt={'Icon check'} />}
+      {!isError && (
+        <Image
+          src={'/check.svg'}
+          width={20}
+          height={20}
+          alt={'Icon check'}
+          priority={true}
+          unoptimized={true}
+        />
+      )}
       <p className={styles.text}>{text}</p>
     </div>
   );
