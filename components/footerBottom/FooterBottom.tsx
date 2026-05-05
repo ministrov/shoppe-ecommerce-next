@@ -24,9 +24,7 @@ import styles from './FooterBottom.module.css';
  */
 export const FooterBottom = ({
   copyrightText,
-  showSocials = true,
   className,
-  socialsClassName,
   copyrightClassName,
 }: FooterBottomProps) => {
   // Генерация текста копирайта по умолчанию
@@ -38,11 +36,7 @@ export const FooterBottom = ({
       <div className={cn(styles.copyright, copyrightClassName)}>
         {finalCopyrightText}
       </div>
-      {showSocials && (
-        <div className={cn(styles.socials, socialsClassName)}>
-          <SocialsList />
-        </div>
-      )}
+      <SocialsList />
     </div>
   );
 };

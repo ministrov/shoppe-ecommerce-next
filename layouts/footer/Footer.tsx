@@ -35,22 +35,23 @@ export const Footer = () => {
           links={navigationLinks}
           ariaLabel="Навигация по сайту"
         />
-        <div>
-          <NewsletterSubscription
-            onSubmit={handleSubscribe}
-            inputId="footer-subscribe-email"
-            inputPlaceholder="Ваш email для акций и предложений"
-            buttonAriaLabel="Подписаться на рассылку"
-            customErrorMessages={{
-              empty: 'Пожалуйста, введите email',
-              invalid: 'Пожалуйста, введите корректный email',
-              submitError: 'Произошла ошибка при подписке. Попробуйте позже.',
-              success: 'Вы успешно подписались на рассылку!',
-            }}
-            showMessages={true}
-            successMessageDuration={3000}
-          />
-        </div>
+        {/* <div>
+          
+        </div> */}
+        <NewsletterSubscription
+          onSubmit={handleSubscribe}
+          inputId="footer-subscribe-email"
+          inputPlaceholder="Ваш email для акций и предложений"
+          buttonAriaLabel="Подписаться на рассылку"
+          customErrorMessages={{
+            empty: 'Пожалуйста, введите email',
+            invalid: 'Пожалуйста, введите корректный email',
+            submitError: 'Произошла ошибка при подписке. Попробуйте позже.',
+            success: 'Вы успешно подписались на рассылку!',
+          }}
+          showMessages={true}
+          successMessageDuration={3000}
+        />
       </div>
       <div className={styles.footer__bottom}>
         <FooterBottom

@@ -9,15 +9,9 @@
 }
 
 .copyright {
-  /* Стили для текста копирайта */
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--color-dark-gray);
-}
-
-.socials {
-  /* Контейнер для социальных сетей */
-  display: flex;
-  align-items: center;
 }
 
 /* Адаптивные стили */
