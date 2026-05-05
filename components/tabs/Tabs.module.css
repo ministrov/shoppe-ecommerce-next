@@ -8,23 +8,28 @@
   background-color: var(--color-gray-200);
 }
 
-.tabsItem {
+.tab {
   display: block;
   width: 236px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
   text-align: center;
-}
-
-.tabsItem a {
   font-size: 20px;
   line-height: 26px;
   color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tab:hover,
+.tab:focus {
+  background-color: var(--color-gray-100);
 }
 
 .active {
   border-radius: 8px;
   background-color: var(--white);
+  font-weight: 500;
 }
 
 @media screen and (max-width: 484px) {
