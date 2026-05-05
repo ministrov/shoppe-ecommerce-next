@@ -50,10 +50,10 @@ export const Header = () => {
 
           <UserMenu pathname={pathname} />
 
-          <AuthButton
+          {token && <AuthButton
             token={token}
             onLogout={clearToken}
-          />
+          />}
         </div>
       </div>
 
