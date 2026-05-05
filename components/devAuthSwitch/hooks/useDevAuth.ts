@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback } from 'react';
 import { useAppDispatch } from '@/store/hooks';
 import { setToken, setUser, logout } from '@/store/features/auth/authSlice';

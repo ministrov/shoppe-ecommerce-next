@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonLink } from '../buttonLink/ButtonLink';
 import { NAVIGATION_LINKS } from '@/layouts/header/header.config';
 import styles from './NavMenu.module.css';

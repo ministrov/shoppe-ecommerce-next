@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { MockProductCardProps } from './MockProductCard.interface';
 import styles from './MockProductCard.module.css';

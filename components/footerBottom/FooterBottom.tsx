@@ -1,3 +1,5 @@
+'use client';
+
 import { SocialsList } from '@/components/socialsList/SocialsList';
 import { FooterBottomProps } from './FooterBottom.interface';
 import cn from 'classnames';

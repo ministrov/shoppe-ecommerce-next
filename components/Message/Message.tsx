@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { MessageProps } from './Message.props';
 import cn from 'classnames';

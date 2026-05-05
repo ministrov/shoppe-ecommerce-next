@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { FooterNavigationProps } from './FooterNavigation.interface';
 import cn from 'classnames';
