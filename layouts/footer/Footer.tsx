@@ -35,9 +35,7 @@ export const Footer = () => {
           links={navigationLinks}
           ariaLabel="Навигация по сайту"
         />
-        {/* <div>
-          
-        </div> */}
+
         <NewsletterSubscription
           onSubmit={handleSubscribe}
           inputId="footer-subscribe-email"
@@ -53,14 +51,13 @@ export const Footer = () => {
           successMessageDuration={3000}
         />
       </div>
-      <div className={styles.footer__bottom}>
-        <FooterBottom
-          copyrightText={`© ${new Date().getFullYear()} Shoppe`}
-          showSocials={true}
-          copyrightClassName={styles.footer__copyright}
-          socialsClassName={styles.footer__social}
-        />
-      </div>
+
+      <FooterBottom
+        copyrightText={`© ${new Date().getFullYear()} Shoppe`}
+        showSocials={true}
+        copyrightClassName={styles.footer__copyright}
+        socialsClassName={styles.footer__social}
+      />
     </footer>
   );
 };
