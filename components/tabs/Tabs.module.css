@@ -26,10 +26,17 @@
   background-color: var(--color-gray-100);
 }
 
-.active {
+/* Активное состояние должно переопределять hover */
+.tab.active {
+  font-weight: 500;
   border-radius: 8px;
   background-color: var(--white);
-  font-weight: 500;
+}
+
+/* Отключить hover эффект для активной вкладки */
+.tab.active:hover,
+.tab.active:focus {
+  background-color: var(--white);
 }
 
 @media screen and (max-width: 484px) {
@@ -41,13 +48,13 @@
     background-color: var(--color-gray-200);
   }
 
-  .tabsItem {
+  .tab {
     width: 100%;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 6px 0;
   }
 
-  .tabsItem a {
+  .tab,
+  .tab.active {
     font-size: 14px;
     line-height: 20px;
   }
