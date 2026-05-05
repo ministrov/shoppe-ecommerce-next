@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Searching } from '../../components/searching/Searching';
 import styles from './Header.module.css';
@@ -16,14 +17,6 @@ interface SearchToggleProps {
 }
 
 /**
- * Варианты анимации для поискового поля.
- */
-const showSearching = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-/**
  * Компонент переключения поиска.
  * Управляет отображением поискового поля с анимацией Framer Motion.
  * Содержит иконку поиска, при клике на которую появляется/скрывается поле поиска.
@@ -32,6 +25,18 @@ const showSearching = {
  * @returns {JSX.Element} Блок поиска с переключателем
  */
 export const SearchToggle = ({ isVisible, onToggle }: SearchToggleProps) => {
+  /**
+   * Варианты анимации для поискового поля.
+   * Мемоизированы, чтобы избежать пересоздания при каждом рендере.
+   */
+  const showSearching = useMemo(
+    () => ({
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    }),
+    []
+  );
+
   return (
     <div className={styles.searchBox}>
       <motion.div

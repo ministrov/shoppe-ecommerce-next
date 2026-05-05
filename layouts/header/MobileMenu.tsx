@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Logo } from '../../components/logo/Logo';
 import { ButtonLink } from '../../components/buttonLink/ButtonLink';
@@ -26,23 +27,6 @@ interface MobileMenuProps {
 }
 
 /**
- * Варианты анимации для мобильного меню.
- */
-const variants = {
-  opened: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      stiffness: 20,
-    },
-  },
-  closed: {
-    opacity: 0,
-    x: '100%',
-  },
-};
-
-/**
  * Компонент мобильного меню.
  * Отображает навигацию, поиск и пользовательские ссылки на мобильных устройствах.
  * Использует Framer Motion для плавной анимации появления/скрытия.
@@ -57,6 +41,27 @@ export const MobileMenu = ({
   token,
   onLogout,
 }: MobileMenuProps) => {
+  /**
+   * Варианты анимации для мобильного меню.
+   * Мемоизированы, чтобы избежать пересоздания при каждом рендере.
+   */
+  const variants = useMemo(
+    () => ({
+      opened: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          stiffness: 20,
+        },
+      },
+      closed: {
+        opacity: 0,
+        x: '100%',
+      },
+    }),
+    []
+  );
+
   return (
     <motion.div
       initial={'closed'}

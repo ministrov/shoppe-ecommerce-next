@@ -2,17 +2,23 @@
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { Logo } from '../../components/logo/Logo';
 import { ButtonLink } from '../../components/buttonLink/ButtonLink';
 import { NavMenu } from '../../components/navMenu/NavMenu';
 import { UserMenu } from '../../components/userMenu/UserMenu';
 import { useAuth } from '@/hooks/useAuth';
-import { MobileMenu } from './MobileMenu';
 import { SearchToggle } from './SearchToggle';
 import { AuthButton } from './AuthButton';
 import { useMobileMenu } from './hooks/useMobileMenu';
 import { useSearch } from './hooks/useSearch';
 import styles from './Header.module.css';
+
+// Ленивая загрузка мобильного меню (загружается только при открытии)
+const MobileMenu = dynamic(() => import('./MobileMenu').then((mod) => mod.MobileMenu), {
+  ssr: false,
+  loading: () => <div>Загрузка...</div>,
+});
 
 /**
  * Компонент шапки сайта.
