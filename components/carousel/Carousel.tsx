@@ -35,8 +35,6 @@ export const Carousel = ({ images, autoPlayInterval = 5000 }: CarouselProps) => 
     setCurrentSlide(index);
   };
 
-  useEffect(() => { }, []);
-
   // Автоматическое переключение слайдов
   useEffect(() => {
     const interval = setInterval(nextSlide, autoPlayInterval);

@@ -1,3 +1,5 @@
+'use client';
+
 import { InputField } from '@/components/inputField/InputField';
 import styles from './CartForm.module.css';
 

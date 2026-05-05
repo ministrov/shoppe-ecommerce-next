@@ -1,0 +1,38 @@
+/**
+ * Стили для компонента FooterNavigation.
+ * Соответствуют стилям навигации из оригинального Footer.
+ */
+
+.navigation {
+  /* Контейнер навигации */
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation ul {
+  display: flex;
+  padding: 0;
+  gap: 30px;
+  list-style: none;
+}
+
+.navigation ul a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-dark-gray);
+}
+
+.navigation ul a:hover {
+  fill: red;
+}
+
+/* Адаптивные стили */
+@media screen and (max-width: 1024px) {
+  .navigation ul {
+    order: 2;
+    /* Соответствует порядку в оригинальном Footer */
+  }
+}

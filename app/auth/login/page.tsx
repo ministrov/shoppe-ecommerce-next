@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { InputField } from '@/components/inputField/InputField';
@@ -23,6 +23,29 @@ export default function Login() {
   const pathname = usePathname();
   const { isLoading, error } = useAppSelector((state) => state.auth);
 
+  // Рефы для хранения ID таймеров
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const secondTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Реф для отслеживания mounted состояния
+  const isMounted = useRef(true);
+
+  // Очистка таймеров и установка флага mounted при размонтировании
+  useEffect(() => {
+    return () => {
+      console.log('Login component unmounting, cleaning up timers');
+      isMounted.current = false;
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      if (secondTimerRef.current) {
+        clearTimeout(secondTimerRef.current);
+        secondTimerRef.current = null;
+      }
+    };
+  }, []);
+
   // Анимация выезда справа
   const slideIn = {
     initial: { x: 50, opacity: 0 },
@@ -32,6 +55,18 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log('Login attempt started, cleaning up previous timers');
+
+    // Очищаем предыдущие таймеры
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    if (secondTimerRef.current) {
+      clearTimeout(secondTimerRef.current);
+      secondTimerRef.current = null;
+    }
 
     const validate = () => {
       const newErrors: { email?: string, password?: string } = {};
@@ -49,19 +84,26 @@ export default function Login() {
 
       // Проверяем результат thunk-действия
       if (loginUser.fulfilled.match(result)) {
+        console.log('Login successful, showing success message');
         setShowSuccessMessage(true);
         setErrors({});
         setEmail('');
         setPassword('');
 
-        // Сначала ждем 2 сек для показа сообщения
-        setTimeout(() => {
-          setShowSuccessMessage(false); // Запуск exit анимации
+        // Сначала ждем 3 сек для показа сообщения
+        timerRef.current = setTimeout(() => {
+          console.log('First timer: hiding success message');
+          if (isMounted.current) {
+            setShowSuccessMessage(false); // Запуск exit анимации
+          }
 
           // Ждем еще 400 мс на проигрывание exit анимации
-          setTimeout(() => {
-            router.push('/');
-            console.log("Успешный вход:", result.payload);
+          secondTimerRef.current = setTimeout(() => {
+            console.log('Second timer: navigating to home');
+            if (isMounted.current) {
+              router.push('/');
+              console.log("Успешный вход:", result.payload);
+            }
           }, 400);	// должно совпадать с duration exit анимации!
         }, 3000);
       }

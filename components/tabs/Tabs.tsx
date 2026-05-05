@@ -20,16 +20,26 @@ import styles from './Tabs.module.css';
  */
 export const Tabs = ({ tabs, pathname }: TabsProps) => {
   return (
-    <div className={styles.tabs}>
-      {tabs.map((tab) => (
-        <span
-          key={tab.href}
-          className={`${styles.tabsItem} ${pathname === tab.href ? styles.active : ''
-            }`}
-        >
-          <Link href={tab.href}>{tab.label}</Link>
-        </span>
-      ))}
+    <div
+      className={styles.tabs}
+      role="tablist"
+      aria-label="Навигация по разделам аккаунта"
+    >
+      {tabs.map((tab) => {
+        const isActive = pathname === tab.href;
+        return (
+          <Link
+            key={tab.href}
+            href={tab.href}
+            className={`${styles.tab} ${isActive ? styles.active : ''}`}
+            role="tab"
+            aria-selected={isActive}
+            tabIndex={isActive ? 0 : -1}
+          >
+            {tab.label}
+          </Link>
+        );
+      })}
     </div>
   )
 }

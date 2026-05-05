@@ -8,22 +8,34 @@
   background-color: var(--color-gray-200);
 }
 
-.tabsItem {
+.tab {
   display: block;
   width: 236px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
   text-align: center;
-}
-
-.tabsItem a {
   font-size: 20px;
   line-height: 26px;
   color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.active {
+.tab:hover,
+.tab:focus {
+  background-color: var(--color-gray-100);
+}
+
+/* Активное состояние должно переопределять hover */
+.tab.active {
+  font-weight: 500;
   border-radius: 8px;
+  background-color: var(--white);
+}
+
+/* Отключить hover эффект для активной вкладки */
+.tab.active:hover,
+.tab.active:focus {
   background-color: var(--white);
 }
 
@@ -36,13 +48,13 @@
     background-color: var(--color-gray-200);
   }
 
-  .tabsItem {
+  .tab {
     width: 100%;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 6px 0;
   }
 
-  .tabsItem a {
+  .tab,
+  .tab.active {
     font-size: 14px;
     line-height: 20px;
   }

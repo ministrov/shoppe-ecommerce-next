@@ -1,3 +1,4 @@
+/* Основные стили шапки */
 .header {
   display: flex;
   justify-content: space-between;
@@ -7,27 +8,37 @@
   border-bottom: 1px solid var(--color-gray-150);
 }
 
+/* Основное меню (десктоп) */
 .mainMenu {
   display: flex;
   align-items: center;
   gap: 62px;
 }
 
-.searchBox {
-  display: flex;
-  align-items: center;
-}
-
-.searchIcon {
-  cursor: pointer;
-}
-
+/* Блок пользователя (поиск, меню, кнопка выхода) */
 .userBlock {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 
+/* Контейнер поиска */
+.searchBox {
+  display: flex;
+  align-items: center;
+}
+
+/* Иконка поиска */
+.searchIcon {
+  cursor: pointer;
+}
+
+/* Поле поиска */
+.searching {
+  max-width: 288px;
+}
+
+/* Кнопка выхода */
 .exitBtn {
   display: flex;
   width: 21px;
@@ -40,10 +51,23 @@
   cursor: pointer;
 }
 
-.searching {
-  max-width: 288px;
+/* Обертка для бургер-меню и корзины (скрыта на десктопе) */
+.burgerWrapper {
+  display: none;
 }
 
+/* Кнопка бургер-меню */
+.burgerMenu {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Мобильное меню (выдвижная панель) */
 .mobileMenu {
   position: fixed;
   z-index: 10;
@@ -51,40 +75,41 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 16px 16px;
+  padding: 16px;
   background-color: var(--white);
 }
 
-.burgerWrapper {
-  display: none;
-}
-
-.burgerMenu {
-  display: none;
-}
-
-.navMobile {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 24px 32px;
-  background-color: var(--color-white);
-}
-
-.navMobile__header {
+/* Заголовок мобильного меню */
+.mobileHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
+/* Правая часть заголовка мобильного меню */
+.mobileHeaderRight {
+  display: flex;
+  gap: 16px;
+}
+
+/* Кнопка закрытия мобильного меню */
+.closeMenu {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Контент мобильной навигации */
 .navMobile__content {
   margin-top: 48px;
 }
 
+/* Меню навигации в мобильном виде */
 .navMobile__menu {
   display: flex;
   flex-direction: column;
@@ -92,18 +117,21 @@
   margin-bottom: 30px;
 }
 
+/* Горизонтальная разделительная линия */
 .navMobile__hr {
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid var(--color-gray-500-150);
 }
 
+/* Иконки в мобильном меню */
 .navMobile__icons {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
+/* Ссылка в мобильном меню */
 .navMobile__link {
   display: flex;
   align-items: center;
@@ -115,6 +143,7 @@
   color: var(--color-black);
 }
 
+/* Кнопка выхода в мобильном меню */
 .navMobile__exit {
   display: flex;
   gap: 12px;
@@ -129,68 +158,34 @@
   cursor: pointer;
 }
 
-.navMobile__btns {
-  display: flex;
-  gap: 16px;
-}
+/* ========== МЕДИА-ЗАПРОСЫ ========== */
 
-.navMobile__close {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
+/* Планшеты и мобильные (максимальная ширина 768px) */
 @media screen and (max-width: 768px) {
+
+  /* Скрываем поиск и блок пользователя на мобильных */
   .searchBox {
     display: none;
   }
 
-  .userList {
-    display: none;
-  }
-
+  /* Показываем обертку бургер-меню */
   .burgerWrapper {
     display: flex;
     gap: 16px;
   }
 
+  /* Показываем кнопку бургер-меню */
   .burgerMenu {
     display: block;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
-    background-color: transparent;
-    cursor: pointer;
   }
 
-  .closeMenu {
-    display: block;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  .mobileHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .mobileHeaderRight {
-    display: flex;
-    gap: 16px;
-  }
-
+  /* Скрываем кнопку выхода в десктопной версии */
   .exitBtn {
     display: none;
   }
 }
 
+/* Маленькие мобильные (максимальная ширина 375px) */
 @media screen and (max-width: 375px) {
   .navMobile__content {
     margin-top: 40px;
@@ -201,17 +196,16 @@
     gap: 24px;
   }
 
-  .navMobile {
-    padding: 16px 16px;
-  }
-
   .navMobile__link {
     font-size: 20px;
     line-height: 26px;
   }
 }
 
+/* Очень маленькие мобильные (максимальная ширина 320px) */
 @media screen and (max-width: 320px) {
+
+  /* Дополнительные стили для очень маленьких экранов */
   .cartCount {
     display: flex;
   }

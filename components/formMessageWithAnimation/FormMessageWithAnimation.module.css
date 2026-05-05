@@ -1,0 +1,22 @@
+/**
+ * Стили для компонента FormMessageWithAnimation.
+ * Компонент использует существующие стили из Footer.module.css через композицию.
+ */
+
+.container {
+  /* Контейнер для сообщения, наследует стили из Footer */
+  width: auto;
+  max-width: 396px;
+}
+
+.message {
+  /* Стиль для анимированного сообщения */
+  margin-top: 4px;
+}
+
+/* Адаптивные стили */
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+  }
+}
