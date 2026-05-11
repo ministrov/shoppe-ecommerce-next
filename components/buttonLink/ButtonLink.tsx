@@ -52,7 +52,6 @@ export const ButtonLink = ({ pathname, path, iconPath, text, isCount = false, co
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         />
       )}
-      {/* {isCount && <span className={styles.count}>{count}</span>} */}
       {shouldShowCount && (
         <span className={styles.count}>
           {count}
