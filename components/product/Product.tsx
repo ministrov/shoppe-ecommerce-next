@@ -84,7 +84,7 @@ export const Product = ({ product }: ProductProps) => {
     <article className={styles.product}>
       <div className={styles.wrapper}>
 
-        <ImageCarousel images={images} />
+        <ImageCarousel images={images} productName={product.product.name} />
 
         <div className={styles.infoContainer}>
           <h1 className={styles.infoTitle}>{product.product.name}</h1>

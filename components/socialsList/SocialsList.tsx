@@ -20,8 +20,17 @@ export const SocialsList = () => {
     <ul className={styles.socials}>
       {socials.map((social) => (
         <li key={social.id} className={styles.item}>
-          <Link href='#'>
-            <Image src={social.icon} width={20} height={20} alt={`Social icon ${social.name}`} />
+          <Link
+            href='#'
+            aria-label={`Перейти в ${social.name}`}
+            title={`${social.name}`}
+          >
+            <Image
+              src={social.icon}
+              width={20}
+              height={20}
+              alt={`Иконка ${social.name}`}
+            />
           </Link>
         </li>
       ))}
