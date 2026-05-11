@@ -6,7 +6,7 @@ export interface Social {
   id: number;
   /** Название социальной сети (например, "Facebook") */
   name: string;
-  /** Имя иконки из библиотеки lucide-react */
+  /** Ключ иконки (Linkedin, Facebook, Instagram, Twitter) для сопоставления с компонентом иконки */
   icon: string;
   /** URL-адрес страницы социальной сети */
   url: string;
