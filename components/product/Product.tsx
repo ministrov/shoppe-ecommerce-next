@@ -8,7 +8,7 @@ import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
 import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
-import Rating from '../rating/Rating';
+import { Rating } from '../rating/Rating';
 import { declineReviewWord } from '@/helpers';
 import { useCart } from '@/hooks/useCart';
 import styles from './Product.module.css';

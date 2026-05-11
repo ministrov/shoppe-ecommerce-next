@@ -148,4 +148,4 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
   )
 }
 
-export default Rating;
+export { Rating };
