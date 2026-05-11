@@ -3,22 +3,14 @@
 import { ButtonLink } from '../buttonLink/ButtonLink';
 import { NAVIGATION_LINKS } from '@/layouts/header/header.config';
 import styles from './NavMenu.module.css';
-
-/**
- * Пропсы для компонента навигационного меню.
- *
- * @property {string} pathname - Текущий путь (URL) для определения активной ссылки
- */
-type NavListProps = {
-  pathname: string;
-};
+import { NavMenuProps } from './NavMenu.interface';
 
 /**
  * Компонент навигационного меню, отображающий список ссылок на основные разделы сайта.
  * Использует компонент `ButtonLink` для каждой ссылки, подсвечивая активный маршрут.
  * Предназначен для использования в шапке сайта или других навигационных блоках.
  *
- * @param {NavListProps} props - Пропсы компонента
+ * @param {NavMenuProps} props - Пропсы компонента
  * @param {string} props.pathname - Текущий путь (URL) для определения активной ссылки
  * @returns {JSX.Element} Неупорядоченный список (`<ul>`) с элементами навигации
  *
@@ -26,7 +18,7 @@ type NavListProps = {
  * // Использование в компоненте Header
  * <NavMenu pathname={currentPath} />
  */
-export const NavMenu = ({ pathname }: NavListProps) => {
+export const NavMenu = ({ pathname }: NavMenuProps) => {
   return (
     <ul className={styles.navMenu}>
       {NAVIGATION_LINKS.map((link) => (
