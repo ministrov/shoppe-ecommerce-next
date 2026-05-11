@@ -6,7 +6,7 @@ export interface Social {
   id: number;
   /** Название социальной сети (например, "Facebook") */
   name: string;
-  /** Путь к иконке социальной сети в папке public */
+  /** Имя иконки из библиотеки lucide-react */
   icon: string;
   /** URL-адрес страницы социальной сети */
   url: string;
@@ -14,11 +14,12 @@ export interface Social {
 
 export const socials: Social[] = [
   {
-    id: 1, icon: '/in.svg',
-    name: 'In',
+    id: 1,
+    icon: 'Linkedin',
+    name: 'LinkedIn',
     url: "#"
   },
-  { id: 2, icon: '/facebook.svg', name: 'Facebook', url: '#' },
-  { id: 3, icon: '/insta.svg', name: 'Instagram', url: '#' },
-  { id: 4, icon: '/twitter.svg', name: 'Twitter', url: '#' },
+  { id: 2, icon: 'Facebook', name: 'Facebook', url: '#' },
+  { id: 3, icon: 'Instagram', name: 'Instagram', url: '#' },
+  { id: 4, icon: 'Twitter', name: 'Twitter', url: '#' },
 ];

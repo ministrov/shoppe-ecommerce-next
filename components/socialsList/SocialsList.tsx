@@ -1,13 +1,23 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { Linkedin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { socials } from '@/mocks/socials.mock';
+import { SocialsListProps } from './SocialsList.interface';
+import cn from 'classnames';
 import styles from './SocialsList.module.css';
+
+const iconComponents: Record<string, React.ComponentType<{ size?: number }>> = {
+  Linkedin: Linkedin,
+  Facebook: Facebook,
+  Instagram: Instagram,
+  Twitter: Twitter,
+};
 
 /**
  * Компонент списка социальных сетей.
- * Отображает иконки социальных сетей в виде горизонтального списка ссылок.
- * Использует данные из файла `socials.ts`.
+ * Отображает иконки социальных сетей в виде горизонтального или вертикального списка ссылок.
+ * Использует данные из файла `socials.mock.ts`.
  * Каждая иконка обёрнута в ссылку (Link) для навигации (в текущей реализации ведёт на "#").
+ * Поддерживает настройку размера иконок, ориентации и дополнительных CSS-классов.
  *
  * @param {SocialsListProps} props - Пропсы компонента
  * @param {string} [props.className] - Дополнительный CSS-класс для контейнера списка
@@ -15,25 +25,39 @@ import styles from './SocialsList.module.css';
  * @param {number} [props.iconSize=20] - Размер иконок социальных сетей в пикселях
  * @returns {JSX.Element} Неупорядоченный список (`<ul>`) с элементами социальных сетей.
  */
-export const SocialsList = () => {
+export const SocialsList = ({
+  className,
+  variant = 'horizontal',
+  iconSize = 20,
+}: SocialsListProps) => {
+  const listClassName = cn(
+    styles.socials,
+    {
+      [styles.vertical]: variant === 'vertical',
+    },
+    className
+  );
+
   return (
-    <ul className={styles.socials}>
-      {socials.map((social) => (
-        <li key={social.id} className={styles.item}>
-          <Link
-            href='#'
-            aria-label={`Перейти в ${social.name}`}
-            title={`${social.name}`}
-          >
-            <Image
-              src={social.icon}
-              width={20}
-              height={20}
-              alt={`Иконка ${social.name}`}
-            />
-          </Link>
-        </li>
-      ))}
+    <ul className={listClassName}>
+      {socials.map((social) => {
+        const IconComponent = iconComponents[social.icon];
+        return (
+          <li key={social.id} className={styles.item}>
+            <Link
+              href='#'
+              aria-label={`Перейти в ${social.name}`}
+              title={`${social.name}`}
+            >
+              {IconComponent ? (
+                <IconComponent size={iconSize} />
+              ) : (
+                <span>{social.name}</span>
+              )}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };
