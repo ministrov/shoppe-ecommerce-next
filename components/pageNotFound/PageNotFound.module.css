@@ -1,4 +1,4 @@
-.error__wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
   height: 100vh;
 }
 
-.error__message {
+.message {
   margin: 0;
   margin-bottom: 40px;
   font-size: 20px;
@@ -20,7 +20,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .error__wrapper {
+  .wrapper {
     max-width: 100%;
     margin: 0;
     padding-left: 16px;

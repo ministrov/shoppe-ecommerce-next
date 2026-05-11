@@ -14,6 +14,7 @@ import styles from './ImageCarousel.module.css';
  *
  * @param {ImageCarouselProps} props - Свойства компонента
  * @param {string[]} props.images - Массив URL изображений товара
+ * @param {string} [props.productName] - Название товара для генерации описательных alt-текстов
  * @returns {JSX.Element} Карусель изображений с основным изображением и миниатюрами
  *
  * @example
@@ -21,10 +22,10 @@ import styles from './ImageCarousel.module.css';
  * <ImageCarousel images={['/img1.jpg', '/img2.jpg']} />
  *
  * @example
- * // С одним изображением (будут добавлены мок-изображения в development)
- * <ImageCarousel images={['/img1.jpg']} />
+ * // С описательными alt-текстами
+ * <ImageCarousel images={['/img1.jpg']} productName="Смартфон X" />
  */
-export const ImageCarousel = ({ images }: ImageCarouselProps) => {
+export const ImageCarousel = ({ images, productName }: ImageCarouselProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
   // Enhance images with mock images in development mode if we have less than 2 images
@@ -39,13 +40,26 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   // Limit thumbnails to 4 for display
   const displayedThumbnails = enhancedImages.slice(0, 4);
 
+  // Генерация описательных alt-текстов
+  const getAltText = (index: number, isThumbnail: boolean = false) => {
+    if (productName) {
+      return isThumbnail
+        ? `Миниатюра ${index + 1} товара "${productName}"`
+        : `Изображение ${index + 1} товара "${productName}"`;
+    }
+    // Обратная совместимость: общие alt-тексты
+    return isThumbnail
+      ? `Thumbnail ${index + 1}`
+      : `Product image ${index + 1}`;
+  };
+
   return (
     <div className={styles.carouselContainer}>
       {/* Main large image */}
       <div className={styles.mainImageWrapper}>
         <Image
           src={mainImage}
-          alt={`Product image ${selectedImageIndex + 1}`}
+          alt={getAltText(selectedImageIndex, false)}
           width={570}
           height={630}
           className={styles.mainImage}
@@ -63,12 +77,12 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
               className={`${styles.thumbnail} ${index === selectedImageIndex ? styles.active : ''
                 }`}
               onClick={() => setSelectedImageIndex(index)}
-              aria-label={`View image ${index + 1}`}
+              aria-label={productName ? `Просмотр изображения ${index + 1} товара "${productName}"` : `View image ${index + 1}`}
               type="button"
             >
               <Image
                 src={image}
-                alt={`Thumbnail ${index + 1}`}
+                alt={getAltText(index, true)}
                 width={120}
                 height={120}
                 className={styles.thumbnailImage}

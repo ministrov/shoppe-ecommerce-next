@@ -8,7 +8,7 @@ import { SocialsList } from '../socialsList/SocialsList';
 import { ProductProps } from './Product.interface';
 import { Counter } from '../counter/Counter';
 import { ProductTabs } from '../productTabs/ProductTabs';
-import Rating from '../rating/Rating';
+import { Rating } from '../rating/Rating';
 import { declineReviewWord } from '@/helpers';
 import { useCart } from '@/hooks/useCart';
 import styles from './Product.module.css';
@@ -75,18 +75,23 @@ export const Product = ({ product }: ProductProps) => {
 
   const images = product.product.images?.map(getFullImageUrl) || [];
 
+  // Вычисление среднего рейтинга из отзывов
+  const averageRating = product.reviews.length > 0
+    ? Math.round(product.reviews.reduce((sum, review) => sum + review.rating, 0) / product.reviews.length)
+    : 0;
+
   return (
     <article className={styles.product}>
       <div className={styles.wrapper}>
 
-        <ImageCarousel images={images} />
+        <ImageCarousel images={images} productName={product.product.name} />
 
         <div className={styles.infoContainer}>
           <h1 className={styles.infoTitle}>{product.product.name}</h1>
           <p className={styles.price}>$ {product.product.price}</p>
 
           <div className={styles.rating}>
-            <Rating rating={0} isEditable />
+            <Rating rating={averageRating} isEditable />
             <div className={styles.reviewsCount}>
               <span>{product.reviews.length}</span>
               <span>{declineReviewWord(product.reviews.length)}</span>
@@ -102,7 +107,12 @@ export const Product = ({ product }: ProductProps) => {
               className={''}
             />
 
-            <Button className={styles.addToCartBtn} ghost onClick={handleAddToCart}>
+            <Button
+              className={styles.addToCartBtn}
+              ghost
+              onClick={handleAddToCart}
+              aria-label={`Добавить в корзину, количество: ${quantity}`}
+            >
               Добавить в корзину
             </Button>
           </div>
@@ -116,11 +126,11 @@ export const Product = ({ product }: ProductProps) => {
           <div className={styles.skuBlock}>
             <p className={styles.sku}>
               SKU:
-              <span>{product.product.sku}</span>
+              <strong aria-hidden="true">{product.product.sku}</strong>
             </p>
             <p className={styles.categoryName}>
               Категория:
-              <span>{product.product?.category.name}</span>
+              <strong aria-hidden="true">{product.product?.category.name}</strong>
             </p>
           </div>
         </div>

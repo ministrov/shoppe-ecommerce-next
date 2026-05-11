@@ -53,7 +53,7 @@ import styles from './Rating.module.css';
  * const ref = useRef<HTMLDivElement>(null);
  * <Rating rating={3} ref={ref} className="my-rating" aria-label="Рейтинг товара" />
  */
-const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
+export const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }: RatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [internalRating, setInternalRating] = useState(rating);
 
@@ -147,5 +147,3 @@ const Rating = ({ isEditable = false, error, rating, setRating, ref, ...props }:
     </div>
   )
 }
-
-export default Rating;

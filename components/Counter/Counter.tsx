@@ -28,22 +28,29 @@ import styles from './Counter.module.css';
  */
 export const Counter = ({ counter, className, onDecrement, onIncrement }: CounterProps) => {
   return (
-    <div className={cn(styles.counter, className)}>
+    <div
+      className={cn(styles.counter, className)}
+      role="spinbutton"
+      aria-valuenow={counter}
+      aria-valuemin={1}
+      aria-valuemax={999}
+      aria-label="Количество товара"
+    >
       <button
         type="button"
         onClick={onDecrement}
         aria-label="Уменьшить количество"
         disabled={counter <= 1}
       >
-        <Image src={'/minus.svg'} width={10} height={27} alt={''} />
+        <Image src={'/minus.svg'} width={10} height={27} alt={''} aria-hidden="true" />
       </button>
-      {counter}
+      <span aria-live="polite">{counter}</span>
       <button
         type="button"
         onClick={onIncrement}
         aria-label="Увеличить количество"
       >
-        <Image src={'/plus.svg'} width={10} height={27} alt={''} />
+        <Image src={'/plus.svg'} width={10} height={27} alt={''} aria-hidden="true" />
       </button>
     </div>
   )

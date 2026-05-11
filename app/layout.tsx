@@ -5,6 +5,7 @@ import { AuthInitializer } from '@/components/authInitializer/AuthInitializer';
 import { PageTransitions } from '@/components/pageTransitons/PageTransitions';
 import { DevAuthSwitch } from '@/components/devAuthSwitch/DevAuthSwitch';
 import { GeolocationContainer } from '@/components/geolocationContainer/GeolocationContainer';
+import { ScrollToTopButton } from '@/components/scrollToTop/ScrollToTopButton';
 import StoreProvider from './StoreProvider';
 import { cuprum } from '@/styles/fonts';
 import './globals.css';
@@ -47,6 +48,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <DevAuthSwitch />
+            <ScrollToTopButton />
           </StoreProvider>
         </div>
       </body>

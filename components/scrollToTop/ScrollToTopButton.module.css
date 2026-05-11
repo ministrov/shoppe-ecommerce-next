@@ -1,0 +1,121 @@
+/**
+ * Стили компонента ScrollToTopButton.
+ * Кнопка для возврата к началу страницы с плавными анимациями.
+ */
+
+/* Основной контейнер кнопки */
+.button {
+  position: fixed;
+  bottom: 4rem;
+  left: 2rem;
+  z-index: 1000;
+
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Сброс стандартных стилей кнопки */
+  padding: 0;
+  margin: 0;
+  outline: none;
+
+  /* Тень для лучшей видимости */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Состояния кнопки */
+.button:hover {
+  background-color: #333333;
+  border-color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:focus-visible {
+  outline: 2px solid #4d90fe;
+  outline-offset: 2px;
+}
+
+/* Состояние скрытия/появления */
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem) scale(0.9);
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Иконка стрелки */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.button:hover .icon {
+  transform: translateY(-2px);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+  .button {
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+/* Темная тема (если будет поддерживаться) */
+@media (prefers-color-scheme: dark) {
+  .button {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  .button:hover {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+  }
+}
