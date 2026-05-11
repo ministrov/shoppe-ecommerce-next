@@ -6,8 +6,8 @@
 /* Основной контейнер кнопки */
 .button {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 4rem;
+  left: 2rem;
   z-index: 1000;
 
   width: 3.5rem;

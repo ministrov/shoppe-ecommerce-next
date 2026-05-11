@@ -1,4 +1,6 @@
 ---
+
+name: progect-rules
 alwaysApply: true
 ---
 ## Общее
@@ -12,7 +14,7 @@ alwaysApply: true
 | **Состояние**     | Redux Toolkit (глобальное), `useState` (локальное)       |
 | **Анимации**      | Framer Motion                                            |
 | **Иконки**        | Lucide React                                             |
-| **Утилиты классов** | classnames, clsx, class-variance-authority               |
+| **Утилиты классов** | classnames              |
 | **Линтер**        | ESLint с конфигурацией Next.js                           |
 | **Комментарии**   | комментарии и описания — **на русском**                  |
 
