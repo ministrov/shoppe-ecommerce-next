@@ -19,10 +19,10 @@ export const PageNotFound = () => {
   }
 
   return (
-    <div className={styles.error__wrapper}>
+    <div className={styles.wrapper}>
       <h1>404 ошибка</h1>
 
-      <p className={styles.error__message}>Страница не найдена, попробуйте перейти на главную страницу</p>
+      <p className={styles.message}>Страница не найдена, попробуйте перейти на главную страницу</p>
 
       <Button ghost size='medium' onClick={goHome}>
         Главная страница
